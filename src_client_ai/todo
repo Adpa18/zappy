@@ -1,0 +1,8 @@
+TODO:
+	-Interface ICommunication
+	-Classe Client
+	-Classe IA (hérite de client) gère les infos de l'IA et fait le pont vers le LUA
+	-Classe Core qui gère le core du projet
+	-Classe Prototocle Zappy qui va implémenter toutes les commandes du serveur
+	-Classe de Parsing du pseudo JSON
+	-Eclaircir ce problème de 10 requêtes à push (asynchrone a cause des délais de réalisation, faire gaffe au serveur)
