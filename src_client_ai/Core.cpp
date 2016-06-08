@@ -5,7 +5,7 @@
 // Login   <tavern_d@epitech.net>
 // 
 // Started on  Wed Jun  8 11:40:42 2016 Matthieu Tavernier
-// Last update Wed Jun  8 15:12:21 2016 Matthieu Tavernier
+// Last update Wed Jun  8 15:37:58 2016 Matthieu Tavernier
 //
 
 #include "Core.hpp"
@@ -15,7 +15,7 @@ Core::Core()
   this->teamName = "";
   this->ip = "";
   this->port = -1;
-  this->fileIA = "";//IAClient::Default;
+  this->fileIA = IAClient::Default;
 }
 
 Core::~Core()
