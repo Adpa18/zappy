@@ -5,19 +5,36 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:47:38 2016 Victor Gouet
-** Last update Tue Jun  7 18:32:03 2016 Victor Gouet
+** Last update Tue Jun  7 22:12:23 2016 Victor Gouet
 */
 
 #include <stdio.h>
 #include <string.h>
 #include "../include_server/server.h"
 
+static void	trantorien_connection(t_ref *ref, t_team_name *team,
+				      t_command_line *command)
+{
+  t_trantorien	*trantorien;
+  int		client_left;
+
+  client_left = command->nb_client - team->nbr_client;
+  sendf_message(&(ref->client->sock), "%d\n", client_left);
+  sendf_message(&(ref->client->sock), "%d %d\n", command->x, command->y);
+  if (client_left == 0)
+    {
+      return ;
+    }
+  trantorien = transform_to_trantorien(ref);
+  add_client_to_team(team, trantorien);
+  trantorien->koala = 10;
+}
+
 int		unknwon_client_event(t_ref *ref, t_list *list,
 				     t_command_line *command,
 				     char **tab)
 {
   t_team_name	*team;
-  t_trantorien	*trantorien;
   t_monitor	*monitor;
 
   if (strcmp(tab[0], GRAPHIC) == 0)
@@ -25,11 +42,14 @@ int		unknwon_client_event(t_ref *ref, t_list *list,
       monitor = transform_to_monitor(ref);
       monitor->data = 0;
     }
-  if ((team = get_team(&(command->team_list), tab[0])))
+  else if ((team = get_team(&(command->team_list), tab[0])))
     {
-      trantorien = transform_to_trantorien(ref);
-      add_client_to_team(team, trantorien);
-      trantorien->koala = 10;
+      trantorien_connection(ref, team, command);
+    }
+  else
+    {
+      send_message("0\n", &(ref->client->sock));
+      sendf_message(&(ref->client->sock), "%d %d\n", command->x, command->y);
     }
   return (0);
 }

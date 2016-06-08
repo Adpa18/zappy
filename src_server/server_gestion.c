@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Tue Jun  7 20:15:48 2016 Victor Gouet
+** Last update Tue Jun  7 21:42:26 2016 Victor Gouet
 */
 
 #include <sys/select.h>
@@ -53,6 +53,7 @@ void		server_run(t_command_line *command)
 	    break;
 	  if (add_client_to_list(&list, UNKNOWN, client) == NULL)
 	    break;
+	  send_message(BIENVENUE, &(client->sock));
 	}
       else
 	event_client(&list, command, &fds, server);

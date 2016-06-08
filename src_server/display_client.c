@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:09:09 2016 Victor Gouet
-** Last update Tue Jun  7 18:58:27 2016 Victor Gouet
+** Last update Tue Jun  7 21:36:46 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -13,32 +13,32 @@
 
 static void	display_monitor(t_monitor *monitor)
 {
-  printf("-- monitor --\n");
-  printf("data: %d\n", monitor->data);
-  printf("--END--\n");
+  printf("\t-- monitor -- {\n");
+  printf("\tdata: %d\n", monitor->data);
+  printf("\t}\n");
 }
 
 static void	display_trantorien(t_trantorien *trantorien)
 {
-  printf("-- trantorien --\n");
-  printf("koala: %f\n", trantorien->koala);
-  printf("--END--\n");
+  printf("\t-- trantorien -- {\n");
+  printf("\tkoala: %f\n", trantorien->koala);
+  printf("\t}\n");
 }
 
 static void	display_unknown(t_ref *unknwon)
 {
-  printf("-- unknwon --\n");
-  printf("%p\n", unknwon);
-  printf("socket: %d\n", unknwon->client->sock.sock);
-  printf("ip: %s\n", unknwon->client->ip);
-  printf("--END--\n");
+  printf("\tŧ-- unknwon -- {\n");
+  printf("\t%p\n", unknwon);
+  printf("\tsocket: %d\n", unknwon->client->sock.sock);
+  printf("\tip: %s\n", unknwon->client->ip);
+  printf("\t}\n");
 }
 
 void	display_client_in_list(t_list *list)
 {
   t_ref	*elem;
 
-  printf("\n\n --- begin ---\n");
+  printf("SERVER INFO {\n");
   printf("max fd: %d\n", list->max_fd);
   printf("nbr_client: %d\n", list->nbr_client);
   elem = list->begin;
@@ -58,7 +58,7 @@ void	display_client_in_list(t_list *list)
 	}
       elem = elem->next;
     }
-  printf("--- end ---\n");
+  printf("}\n");
 }
 
 void		display_team(t_team_list *list)
@@ -71,12 +71,14 @@ void		display_team(t_team_list *list)
   while (elem)
     {
       ref = elem->begin;
-      printf("team: %s\n", elem->name);
+      printf("team: %s {\n", elem->name);
+      printf("nbr: %d\n", elem->nbr_client);
       while (ref)
 	{
 	  display_trantorien(ref);
 	  ref = ref->next_on_team;
 	}
+      printf("}\n");
       elem = elem->next;
     }
 }

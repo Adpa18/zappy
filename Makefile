@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ## 
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Tue Jun  7 19:09:48 2016 Victor Gouet
+## Last update Wed Jun  8 08:24:34 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -32,7 +32,18 @@ SRCS		= src_server/main.c \
 		  src_server/unknown_client.c \
 		  src_server/convert_client.c \
 		  src_server/team_gestion.c \
-
+		  src_server/Trantorien_Event/avance_event.c \
+		  src_server/Trantorien_Event/broadcast_event.c \
+		  src_server/Trantorien_Event/connect_nbr_event.c \
+		  src_server/Trantorien_Event/droite_event.c \
+		  src_server/Trantorien_Event/expulse_event.c \
+		  src_server/Trantorien_Event/fork_event.c \
+		  src_server/Trantorien_Event/gauche_event.c \
+		  src_server/Trantorien_Event/incantation_event.c \
+		  src_server/Trantorien_Event/inventaire_event.c \
+		  src_server/Trantorien_Event/pose_obj_event.c \
+		  src_server/Trantorien_Event/prend_obj_event.c \
+		  src_server/Trantorien_Event/voir_event.c \
 
 OBJS		= $(SRCS:.c=.o)
 

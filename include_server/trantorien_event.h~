@@ -1,0 +1,18 @@
+/*
+** trantorien_event.c for TRANTORIEN EVENT in /home/gouet_v/Rendu/semester4/PSU/PSU_2015_zappy
+** 
+** Made by Victor Gouet
+** Login   <gouet_v@epitech.net>
+** 
+** Started on  Wed Jun  8 07:56:42 2016 Victor Gouet
+** Last update Wed Jun  8 07:58:07 2016 Victor Gouet
+*/
+
+#ifndef TRANTORIEN_EVENT_H_
+# define TRANTORIEN_EVENT_H_
+
+# include "server.h"
+
+
+
+#endif

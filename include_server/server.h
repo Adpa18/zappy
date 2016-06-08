@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Tue Jun  7 20:00:26 2016 Victor Gouet
+** Last update Wed Jun  8 08:12:38 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -14,7 +14,9 @@
 # include "command_line_arguments.h"
 # include "../socketlib/include/my_sock.h"
 
+# define EVENTSIZE	25
 # define GRAPHIC	"GRAPHIC"
+# define BIENVENUE	"BIENVENUE\n"
 
 typedef enum
   {
@@ -22,6 +24,12 @@ typedef enum
     MONITOR,
     UNKNOWN
   }		t_type;
+
+typedef struct	s_event
+{
+  char		*event_name[EVENTSIZE];
+  int		(*callBack[EVENTSIZE])();
+}		t_event;
 
 typedef struct	s_ref
 {
