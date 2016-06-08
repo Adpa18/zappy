@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:09:09 2016 Victor Gouet
-** Last update Tue Jun  7 21:36:46 2016 Victor Gouet
+** Last update Wed Jun  8 11:30:51 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -20,8 +20,16 @@ static void	display_monitor(t_monitor *monitor)
 
 static void	display_trantorien(t_trantorien *trantorien)
 {
+  char		*tab[4];
+
+  tab[0] = "Nord";
+  tab[1] = "EST";
+  tab[2] = "SUD";
+  tab[3] = "OUEST";
   printf("\t-- trantorien -- {\n");
-  printf("\tkoala: %f\n", trantorien->koala);
+  display_inventories(&(trantorien->inventaire));
+  printf("\tx: %d y: %d\n", trantorien->pos.x, trantorien->pos.y);
+  printf("\t orientation: %s\n", tab[trantorien->orientation - 1]);
   printf("\t}\n");
 }
 

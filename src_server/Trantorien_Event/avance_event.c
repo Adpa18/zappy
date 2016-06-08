@@ -5,12 +5,12 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:49:13 2016 Victor Gouet
-** Last update Wed Jun  8 08:02:09 2016 Victor Gouet
+** Last update Wed Jun  8 11:22:36 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
 
-int	avance_event(t_ref *ref, t_list *list,
+int	avance_event(t_trantorien *trantorien, t_list *list,
 		     t_command_line *command, char **tab)
 {
   return (0);

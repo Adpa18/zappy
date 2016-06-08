@@ -5,12 +5,12 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:52:46 2016 Victor Gouet
-** Last update Wed Jun  8 08:24:36 2016 Victor Gouet
+** Last update Wed Jun  8 11:22:03 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
 
-int     prend_obj_event(t_ref *ref, t_list *list,
+int     prend_obj_event(t_trantorien *trantorien, t_list *list,
 			t_command_line *command, char **tab)
 {
   return (0);

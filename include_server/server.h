@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Wed Jun  8 08:12:38 2016 Victor Gouet
+** Last update Wed Jun  8 11:18:55 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -25,6 +25,32 @@ typedef enum
     UNKNOWN
   }		t_type;
 
+typedef enum
+  {
+    N = 1,
+    E = 2,
+    S = 3,
+    O = 4
+  }		t_orientation;
+
+typedef struct	s_inventories
+{
+  int		food;
+  int		linemate;
+  int		deraumere;
+  int		sibur;
+  int		mendiane;
+  int		phiras;
+  int		thystame;
+}		t_inventories;
+
+typedef struct	s_map
+{
+  t_inventories	**map;
+  int		width;
+  int		height;
+}		t_map;
+
 typedef struct	s_event
 {
   char		*event_name[EVENTSIZE];
@@ -39,10 +65,18 @@ typedef struct	s_ref
   void		*ref;
 }		t_ref;
 
+typedef struct	s_vector2d
+{
+  int		x;
+  int		y;
+}		t_vector2d;
+
 typedef struct	s_trantorien
 {
   t_ref		*ref;
-  double	koala;
+  t_inventories	inventaire;
+  t_orientation	orientation;
+  t_vector2d	pos;
   struct s_trantorien	*next_on_team;
 }		t_trantorien;
 
@@ -58,7 +92,17 @@ typedef struct	s_list
   void		*end;
   int		max_fd;
   int		nbr_client;
+  t_map		*map;
 }		t_list;
+
+/*
+**	map.c
+*/
+
+void			display_map(t_map *map);
+t_map			*create_map(int width, int height);
+void			display_inventories(t_inventories *inventories);
+void			generate_random_ressources(t_map *map);
 
 /*
 **	convert_client.c

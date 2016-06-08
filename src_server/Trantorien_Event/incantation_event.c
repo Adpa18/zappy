@@ -5,12 +5,12 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:59 2016 Victor Gouet
-** Last update Wed Jun  8 08:24:40 2016 Victor Gouet
+** Last update Wed Jun  8 11:21:50 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
 
-int     incantation_event(t_ref *ref, t_list *list,
+int     incantation_event(t_trantorien *trantorien, t_list *list,
 			  t_command_line *command, char **tab)
 {
   return (0);

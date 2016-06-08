@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Tue Jun  7 21:42:26 2016 Victor Gouet
+** Last update Wed Jun  8 11:08:58 2016 Victor Gouet
 */
 
 #include <sys/select.h>
@@ -34,6 +34,21 @@ static int	init_select(fd_set *fds,
   return (0);
 }
 
+static int	init_all(t_list *list, t_server **server,
+			  t_command_line *command)
+{
+  if ((*server = create_server(100, TCP, AF_INET, command->port)) == NULL)
+    return (-1);
+  list_constructor(list, (*server)->socket.sock);
+  if ((list->map = create_map(command->x, command->y)) == NULL)
+    {
+      delete_server(*server);
+      return (-1);
+    }
+  generate_random_ressources(list->map);
+  return (0);
+}
+
 void		server_run(t_command_line *command)
 {
   t_server	*server;
@@ -41,9 +56,8 @@ void		server_run(t_command_line *command)
   fd_set	fds;
   t_list	list;
 
-  if ((server = create_server(100, TCP, AF_INET, command->port)) == NULL)
+  if (init_all(&list, &server, command) == -1)
     return ;
-  list_constructor(&list, server->socket.sock);
   while (server)
     {
       init_select(&fds, server->socket.sock, &list);

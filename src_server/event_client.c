@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Wed Jun  8 08:30:48 2016 Victor Gouet
+** Last update Wed Jun  8 11:20:37 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -149,7 +149,7 @@ static int	convert_data_to_command(char *data,
 	    && event_player[ref->type].callBack[idx]
 	    && strcmp(event_player[ref->type].event_name[idx], tab[0]) == 0)
 	  {
-	    ret_value = event_player[ref->type].callBack[idx](ref, list,
+	    ret_value = event_player[ref->type].callBack[idx](ref->ref, list,
 							     command, tab);
 	    delete_command(tab, data);
 	    return (ret_value);

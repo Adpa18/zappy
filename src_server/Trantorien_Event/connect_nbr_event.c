@@ -5,12 +5,12 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:55:56 2016 Victor Gouet
-** Last update Wed Jun  8 08:03:16 2016 Victor Gouet
+** Last update Wed Jun  8 11:21:20 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
 
-int     connect_nbr_event(t_ref *ref, t_list *list,
+int     connect_nbr_event(t_trantorien *trantorien, t_list *list,
 			  t_command_line *command, char **tab)
 {
   return (0);

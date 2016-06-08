@@ -1,0 +1,11 @@
+/*
+** map.c for MAP in /home/gouet_v/Rendu/semester4/PSU/PSU_2015_zappy
+** 
+** Made by Victor Gouet
+** Login   <gouet_v@epitech.net>
+** 
+** Started on  Wed Jun  8 09:46:02 2016 Victor Gouet
+** Last update Wed Jun  8 09:49:16 2016 Victor Gouet
+*/
+
+#include "../include_server/server.h"
