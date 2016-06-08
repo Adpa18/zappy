@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:49:13 2016 Victor Gouet
-** Last update Wed Jun  8 11:22:36 2016 Victor Gouet
+** Last update Wed Jun  8 11:49:53 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
@@ -13,5 +13,6 @@
 int	avance_event(t_trantorien *trantorien, t_list *list,
 		     t_command_line *command, char **tab)
 {
+  send_message("ok\n", &(trantorien->ref->client->sock));
   return (0);
 }
