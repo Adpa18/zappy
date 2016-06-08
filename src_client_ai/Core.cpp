@@ -9,6 +9,7 @@
 //
 
 #include "Core.hpp"
+#include "IAClient.hpp"
 
 Core::Core()
 {
@@ -114,4 +115,15 @@ int	Core::parseArg(int ac, char **av)
       return (1);
     }
   return (0);
+}
+
+/**
+ * TODO
+ *  -   Connect IA
+ *  -   UpdateLoop
+ *  -   Call Receive in IA when notification from server
+ */
+int Core::run(void)
+{
+    return 0;
 }

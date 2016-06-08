@@ -8,6 +8,14 @@
 #include "Client.hpp"
 #include "LuaScript.hpp"
 
+/**
+ * TODO:
+ *  -   Tells if IA died
+ *  -   Store:
+ *          -   Sight
+ *          -   Inventory
+ *          -   Life
+ */
 class IAClient : public Client
 {
 public:

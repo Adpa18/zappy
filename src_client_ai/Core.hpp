@@ -31,6 +31,7 @@ public:
   void		setFileIA(const std::string);
 public:
   int		parseArg(int, char **);
+    int    run(void);
 private:
   int		isNumber(char *) const;
 private:
