@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:09:09 2016 Victor Gouet
-** Last update Wed Jun  8 11:30:51 2016 Victor Gouet
+** Last update Wed Jun  8 11:43:12 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -28,8 +28,9 @@ static void	display_trantorien(t_trantorien *trantorien)
   tab[3] = "OUEST";
   printf("\t-- trantorien -- {\n");
   display_inventories(&(trantorien->inventaire));
+  printf("\televation: %d\n", trantorien->elevation);
   printf("\tx: %d y: %d\n", trantorien->pos.x, trantorien->pos.y);
-  printf("\t orientation: %s\n", tab[trantorien->orientation - 1]);
+  printf("\torientation: %s\n", tab[trantorien->orientation - 1]);
   printf("\t}\n");
 }
 

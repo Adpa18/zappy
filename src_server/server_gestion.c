@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Wed Jun  8 11:08:58 2016 Victor Gouet
+** Last update Wed Jun  8 11:36:47 2016 Victor Gouet
 */
 
 #include <sys/select.h>
@@ -71,7 +71,7 @@ void		server_run(t_command_line *command)
 	}
       else
 	event_client(&list, command, &fds, server);
-      display_client_in_list(&list);
+      /* display_client_in_list(&list); */
       display_team(&(command->team_list));
     }
   delete_server(server);

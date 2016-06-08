@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:47:38 2016 Victor Gouet
-** Last update Wed Jun  8 11:26:52 2016 Victor Gouet
+** Last update Wed Jun  8 11:41:42 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -29,9 +29,10 @@ static void	trantorien_connection(t_ref *ref, t_team_name *team,
   add_client_to_team(team, trantorien);
   bzero(&(trantorien->inventaire), sizeof(t_inventories));
   trantorien->orientation = (rand() % 4) + 1;
+  trantorien->inventaire.food = 1;
+  trantorien->elevation = 1;
   trantorien->pos.x = rand() % command->x;
   trantorien->pos.y = rand() % command->y;
-  /* trantorien->koala = 10; */
 }
 
 int		unknwon_client_event(t_ref *ref, t_list *list,
