@@ -6,6 +6,7 @@
 #define PSU_2015_ZAPPY_NETWORKTRASH_HPP
 
 #include <functional>
+#include <bits/stl_bvector.h>
 
 /**
  * TODO:
@@ -15,7 +16,22 @@
 class NetworkWatcher
 {
 public:
-//    NetworkWatcher();
+    typedef std::function<int (std::string const &)> NetworkCallback;
+
+private:
+    typedef typename std::vector<NetworkCallback>   CallbackVectors;
+
+public:
+    NetworkWatcher(CallbackVectors callbacks = {});
+    NetworkWatcher(NetworkWatcher const &ref);
+    ~NetworkWatcher();
+    NetworkWatcher  &operator=(NetworkWatcher const &ref);
+
+public:
+    //todo implement a call to the callbacks after a server notif
+
+private:
+    CallbackVectors callBacks;
 };
 
 #endif //PSU_2015_ZAPPY_NETWORKTRASH_HPP
