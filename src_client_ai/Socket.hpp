@@ -12,6 +12,7 @@ extern "C"
 {
 # include <sys/types.h>
 # include <sys/socket.h>
+# include <sys/select.h>
 # include <netdb.h>
 # include <netinet/in.h>
 # include <arpa/inet.h>
@@ -44,6 +45,8 @@ public:
         TALKING
     };
     static const std::string    TCP;
+    static const std::string    CRLF;
+    static const std::string    LF;
 
 public:
     Socket(std::string const &protocol = Socket::TCP, const sa_family_t domain = AF_INET, int option = 1) throw(SocketException);
@@ -56,8 +59,12 @@ public:
     void Talk(const std::string &ip, const uint16_t port) throw(SocketException);
 
 public:
-    virtual std::string Read(void) const;
-    virtual void Write(std::string const &towrite) const;
+    virtual std::string Read(int flags = 0) const;
+    virtual void Write(std::string const &towrite, int flags = MSG_NOSIGNAL) const;
+    Socket  &operator<<(std::string const &towrite);
+    Socket  &operator>>(std::string &dest);
+    int getCRLFLine(std::string &dest, struct timeval timeout = {1, 0}, int flags = 0) const;
+    bool canRead(struct timeval timeout = {0, 0}) const;
 
 private:
     const std::string   protocol;
@@ -66,6 +73,7 @@ private:
     struct sockaddr_in  sockaddr;
     int                 fd;
     SOCKTYPE            type;
+    mutable std::string save;
 };
 
 #endif //PSU_2015_ZAPPY_SOCKET_HPP

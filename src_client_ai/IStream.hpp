@@ -13,8 +13,8 @@ public:
     virtual ~IStream(){}
 
 public:
-    virtual std::string Read(void) const = 0;
-    virtual void Write(std::string const &towrite) const = 0;
+    virtual std::string Read(int flags) const = 0;
+    virtual void Write(std::string const &towrite, int flags) const = 0;
 };
 
 #endif //SRC_CLIENT_AI_ISTREAM_HPP

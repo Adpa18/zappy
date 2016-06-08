@@ -16,8 +16,8 @@ public:
     Client  &operator=(Client const &ref) = delete;
 
 public:
-    void Connect(const std::string &ip, const uint16_t port);
-    bool isConnected(void) const;
+    virtual void Connect(const std::string &ip, const uint16_t port);
+    bool         isConnected(void) const;
 
 private:
     bool        _connected;

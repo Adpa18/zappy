@@ -5,9 +5,13 @@
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/select.h>
+#include <iostream>
 #include "Socket.hpp"
 
 const std::string Socket::TCP = "TCP";
+const std::string Socket::CRLF = "\r\n";
+const std::string Socket::LF = "\n";
 
 Socket::Socket(std::string const &protocol, const sa_family_t domain, int option) throw(SocketException) :
         protocol(protocol),
@@ -66,27 +70,69 @@ void Socket::Talk(const std::string &ip, const uint16_t port) throw(SocketExcept
     type = TALKING;
 }
 
-std::string Socket::Read(void) const
+std::string Socket::Read(int flags) const
 {
     std::string toreturn;
     char        buff[BUFSIZ];
 
     memset(buff, 0, BUFSIZ);
-    while (read(fd, buff, BUFSIZ - 1))
-    {
-        toreturn += buff;
-        memset(buff, 0, BUFSIZ);
-    }
+    if (recv(fd, buff, BUFSIZ - 1, flags) == -1)
+        throw SocketException(strerror(errno));
+    toreturn += buff;
     return toreturn;
 }
 
-void Socket::Write(std::string const &towrite) const
+void Socket::Write(std::string const &towrite, int flags) const
 {
-    size_t len = towrite.size();
-    size_t wri = 0;
+    if (send(fd, (towrite + Socket::LF).c_str(), towrite.length() + Socket::LF.length(), flags) == -1)
+        throw SocketException(strerror(errno));
+}
 
-    do
+Socket &Socket::operator>>(std::string &dest)
+{
+    dest = Read();
+    return *this;
+}
+
+Socket &Socket::operator<<(std::string const &towrite)
+{
+    Write(towrite);
+    return *this;
+}
+
+int Socket::getCRLFLine(std::string &dest, struct timeval timeout, int flags) const
+{
+    unsigned long   posCRLF = save.find(Socket::CRLF);
+    unsigned long   posLF = save.find(Socket::LF);
+
+    if (posCRLF != std::string::npos)
     {
-        wri += write(fd, towrite.substr(wri, len - wri).c_str(), len - wri);
-    } while (wri < len);
+        dest = save.substr(0, posCRLF);
+        save = save.substr(posCRLF + Socket::CRLF.length(), save.length() - posCRLF - Socket::CRLF.length());
+    }
+    else if (posLF != std::string::npos)
+    {
+        dest = save.substr(0, posLF);
+        save = save.substr(posLF + Socket::LF.length(), save.length() - posLF - Socket::LF.length());
+    }
+    else if (canRead(timeout))
+    {
+        save += Read(flags);
+        return getCRLFLine(dest, timeout, flags);
+    }
+    else
+    {
+        dest = save;
+        save.clear();
+    }
+    return !dest.empty();
+}
+
+bool Socket::canRead(struct timeval timeout) const
+{
+    fd_set  set;
+
+    FD_ZERO(&set);
+    FD_SET(fd, &set);
+    return select(fd + 1, &set, NULL, NULL, &timeout) != 0;
 }
