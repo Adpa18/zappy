@@ -71,7 +71,6 @@ void		server_run(t_command_line *command)
 	}
       else
 	event_client(&list, command, &fds, server);
-      /* display_client_in_list(&list); */
       display_team(&(command->team_list));
     }
   delete_server(server);

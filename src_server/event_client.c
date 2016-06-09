@@ -135,6 +135,7 @@ static int	convert_data_to_command(char *data,
   int		idx;
   int		ret_value;
 
+  ret_value = 0;
   idx = -1;
   if ((tab = str_to_word_tab(data)) == NULL)
     return (-1);
@@ -151,11 +152,10 @@ static int	convert_data_to_command(char *data,
 	  {
 	    ret_value = event_player[ref->type].callBack[idx](ref->ref, list,
 							     command, tab);
-	    delete_command(tab, data);
-	    return (ret_value);
+	    break;
 	  }
       }
-  return (delete_command(tab, data), 0);
+  return (delete_command(tab, data), ret_value);
 }
 
 static t_ref	*delete_all_in_client(t_list *list,
@@ -178,9 +178,9 @@ static int	event_call(t_list *list, t_command_line *command,
   t_ref		*ref;
 
   ref = list->begin;
-  //display_buffer_from_client(ref);
   while (ref)
     {
+        // TODO set timeout of cmd and execute when timeout <= 0
       display_buffer_from_client(ref);
       if (ref->buffer_size > 0 && ref->begin)
 	{
@@ -204,17 +204,13 @@ int	event_client(t_list *list, t_command_line *command,
     {
       if (FD_ISSET(ref->client->sock.sock, fds))
 	{
-	  // TODO ENGROS il faudrait faire une queue de commande sur chaque client
-	  // ET FAUT CHECKER QUAND TU PEUX EXECUTE LA COMMANDE
 	  if ((data = get_crlf_line(ref->client)) == NULL)
 	    {
 	      ref = delete_all_in_client(list, command, server, ref);
 	      continue;
 	    }
-	  /* printf("%s\n", data); */
 	  if (ref->buffer_size < 10 && data[0])
 	    buffer_push_back(ref, data);
-	  /* convert_data_to_command(data, list, ref, command); */
 	}
       ref = ref->next;
     }
