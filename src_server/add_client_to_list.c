@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:52:48 2016 Victor Gouet
-** Last update Tue Jun  7 18:43:43 2016 Victor Gouet
+** Last update Wed Jun  8 14:35:18 2016 Victor Gouet
 */
 
 #include <stdlib.h>
@@ -36,6 +36,9 @@ void	*add_client_to_list(t_list *list, t_type type,
   ref->ref = NULL;
   ref->next = NULL;
   ref->type = type;
+  ref->begin = NULL;
+  ref->end = NULL;
+  ref->buffer_size = 0;
   ref->client = client;
   if (client->sock.sock > list->max_fd)
     list->max_fd = client->sock.sock;

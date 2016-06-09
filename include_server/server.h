@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Wed Jun  8 11:41:00 2016 Victor Gouet
+** Last update Wed Jun  8 14:26:32 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -57,11 +57,20 @@ typedef struct	s_event
   int		(*callBack[EVENTSIZE])();
 }		t_event;
 
+typedef struct	s_buffer
+{
+  char		*buffer;
+  struct s_buffer	*next;
+}		t_buffer;
+
 typedef struct	s_ref
 {
   t_type	type;
   t_client	*client;
   struct s_ref	*next;
+  t_buffer	*begin;
+  t_buffer	*end;
+  int		buffer_size;
   void		*ref;
 }		t_ref;
 
@@ -95,6 +104,14 @@ typedef struct	s_list
   int		nbr_client;
   t_map		*map;
 }		t_list;
+
+/*
+**	buffer_gestion.c
+*/
+
+void		display_buffer_from_client(t_ref *ref);
+void		buffer_pop_front(t_ref *ref);
+void		buffer_push_back(t_ref *ref, char *buffer);
 
 /*
 **	map.c

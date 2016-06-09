@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Wed Jun  8 11:20:37 2016 Victor Gouet
+** Last update Wed Jun  8 14:46:51 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -131,9 +131,9 @@ static int	convert_data_to_command(char *data,
 					t_ref *ref,
 					t_command_line *command)
 {
-  char	**tab;
-  int	idx;
-  int	ret_value;
+  char		**tab;
+  int		idx;
+  int		ret_value;
 
   idx = -1;
   if ((tab = str_to_word_tab(data)) == NULL)
@@ -172,6 +172,27 @@ static t_ref	*delete_all_in_client(t_list *list,
   return (ref);
 }
 
+static int	event_call(t_list *list, t_command_line *command,
+			   t_server *server)
+{
+  t_ref		*ref;
+
+  ref = list->begin;
+  //display_buffer_from_client(ref);
+  while (ref)
+    {
+      display_buffer_from_client(ref);
+      if (ref->buffer_size > 0 && ref->begin)
+	{
+	  convert_data_to_command(ref->begin->buffer,
+				  list, ref, command);
+	  buffer_pop_front(ref);
+	}
+      ref = ref->next;
+    }
+  return (0);
+}
+
 int	event_client(t_list *list, t_command_line *command,
 		     fd_set *fds, t_server *server)
 {
@@ -183,15 +204,20 @@ int	event_client(t_list *list, t_command_line *command,
     {
       if (FD_ISSET(ref->client->sock.sock, fds))
 	{
+	  // TODO ENGROS il faudrait faire une queue de commande sur chaque client
+	  // ET FAUT CHECKER QUAND TU PEUX EXECUTE LA COMMANDE
 	  if ((data = get_crlf_line(ref->client)) == NULL)
 	    {
 	      ref = delete_all_in_client(list, command, server, ref);
 	      continue;
 	    }
-	  printf("%s\n", data);
-	  convert_data_to_command(data, list, ref, command);
+	  /* printf("%s\n", data); */
+	  if (ref->buffer_size < 10 && data[0])
+	    buffer_push_back(ref, data);
+	  /* convert_data_to_command(data, list, ref, command); */
 	}
       ref = ref->next;
     }
+  event_call(list, command, server);
   return (0);
 }

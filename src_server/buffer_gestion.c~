@@ -1,0 +1,11 @@
+/*
+** buffer_gestion.c for BUFFER in /home/gouet_v/Rendu/semester4/PSU/PSU_2015_zappy
+** 
+** Made by Victor Gouet
+** Login   <gouet_v@epitech.net>
+** 
+** Started on  Wed Jun  8 14:14:09 2016 Victor Gouet
+** Last update Wed Jun  8 14:14:17 2016 Victor Gouet
+*/
+
+#include "../include_server/server.h"
