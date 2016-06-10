@@ -13,5 +13,10 @@
 int	droite_event(t_trantorien *trantorien, t_list *list,
 		     t_command_line *command, char **tab)
 {
+    if (trantorien->orientation == 4)
+        trantorien->orientation = 1;
+    else
+        ++trantorien->orientation;
+    send_message("ok\n", &(trantorien->ref->client->sock));
   return (0);
 }
