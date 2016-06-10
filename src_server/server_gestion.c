@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Fri Jun 10 16:15:36 2016 Victor Gouet
+** Last update Fri Jun 10 17:44:40 2016 Victor Gouet
 */
 
 #include <sys/select.h>
@@ -21,7 +21,7 @@ static int		init_select(fd_set *fds,
 
   FD_ZERO(fds);
   timeout.tv_sec = 0;
-  timeout.tv_usec = 0;
+  timeout.tv_usec = 1000;
   FD_SET(server, fds);
   elem = list->begin;
   while (elem)
