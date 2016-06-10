@@ -11,110 +11,105 @@
 #include "Core.hpp"
 #include "IAClient.hpp"
 
+const std::string Core::usage = "-n team_name -p port -h hostname [-s script_name]";
+
 Core::Core()
 {
-  this->teamName = "";
-  this->ip = "";
-  this->port = -1;
-  this->fileIA = IAClient::Default;
+    this->teamName = "";
+    this->ip       = "";
+    this->port     = -1;
+    this->fileIA   = IAClient::Default;
 }
 
 Core::~Core()
 {
 }
 
-std::string	Core::getIp() const
+std::string    Core::getIp() const
 {
-  return (this->ip);
+    return (this->ip);
 }
 
-void	Core::setIp(const std::string ip)
+void    Core::setIp(const std::string ip)
 {
-  this->ip = ip;
+    this->ip = ip;
 }
 
-int	Core::getPort() const
+int    Core::getPort() const
 {
-  return (this->port);
+    return (this->port);
 }
 
-void	Core::setPort(const int port)
+void    Core::setPort(const int port)
 {
-  this->port = port;
+    this->port = port;
 }
 
-std::string	Core::getTeamName() const
+std::string    Core::getTeamName() const
 {
-  return (this->teamName);
+    return (this->teamName);
 }
 
-void	Core::setTeamName(const std::string teamName)
+void    Core::setTeamName(const std::string teamName)
 {
-  this->teamName = teamName;
+    this->teamName = teamName;
 }
 
-std::string	Core::getFileIA() const
+std::string    Core::getFileIA() const
 {
-  return (this->fileIA);
+    return (this->fileIA);
 }
 
-void	Core::setFileIA(const std::string fileIA)
+void    Core::setFileIA(const std::string fileIA)
 {
-  this->fileIA = fileIA;
+    this->fileIA = fileIA;
 }
 
-int	Core::isNumber(char *str) const
+int    Core::isNumber(char *str) const
 {
-  int	i;
+    int i;
 
-  i = 0;
-  while (str[i] != '\0')
+    i = 0;
+    while (str[i] != '\0')
     {
-      if (str[i] < '0' || str[i] > '9')
-	return (-1);
-      ++i;
+        if (str[i] < '0' || str[i] > '9')
+            return (-1);
+        ++i;
     }
-  return (0);
+    return (0);
 }
 
-int	Core::parseArg(int ac, char **av)
+int    Core::parseArg(int ac, char **av) throw(ParsingError)
 {
-  int	c;
-  char	opt[] = "n:p:h:s:";
-  
-  while ((c = getopt(ac, av, opt)) != -1)
+    int  c;
+    char opt[] = "n:p:h:s:";
+
+    while ((c = getopt(ac, av, opt)) != -1)
     {
-      switch (c)
-	{
-	case 'n':
-	  this->setTeamName(std::string(optarg));
-	  break;
-	case 'p':
-	  if (this->isNumber(optarg) == 0)
-	    this->setPort(atoi(optarg));
-	  else
-	    {
-	      std::cerr << "Invalid argument for -p" << std::endl;
-	      return (1);
-	    }
-	  break;
-	case 'h':
-	  this->setIp(std::string(optarg));
-	  break;
-	case 's':
-	  this->setFileIA(std::string(optarg));
-	  break;
-	default:
-	  std::cerr << "Invalid parameter" << std::endl;
-	  return (1);
-	}
+        switch (c)
+        {
+            case 'n':
+                this->setTeamName(std::string(optarg));
+                break;
+            case 'p':
+                if (this->isNumber(optarg) == 0)
+                    this->setPort(atoi(optarg));
+                else
+                    throw ParsingError(av[0], "-p argument has to be numeric");
+                break;
+            case 'h':
+                this->setIp(std::string(optarg));
+                break;
+            case 's':
+                this->setFileIA(std::string(optarg));
+                break;
+            default:
+                throw ParsingError();
+        }
     }
-  if (this->teamName == "" || this->ip == "" || this->port == -1)
-    {
-      std::cerr << "Missing parameters" << std::endl;
-      return (1);
-    }
-  return (0);
+    if (this->teamName == "" || this->ip == "" || this->port == -1)
+        throw ParsingError(av[0], usage);
+    return (0);
 }
 
 /**

@@ -14,31 +14,63 @@
 # include <iostream>
 # include <unistd.h>
 # include <cstdlib>
+#include <stdexcept>
 
-class		Core
+class ParsingError : std::runtime_error
 {
 public:
-  Core();
-  ~Core();
+    ParsingError(std::string const &exe = "", std::string const &err = "") :
+            std::runtime_error(exe.empty() ? "" : exe + (err.empty() ? "" : ' ' + err))
+    {
+
+    }
+    virtual ~ParsingError() throw()
+    {
+
+    }
+    using std::runtime_error::what;
+};
+
+class Core
+{
 public:
-  std::string	getIp() const;
-  void		setIp(const std::string);
-  int		getPort() const;
-  void		setPort(const int);
-  std::string	getTeamName() const;
-  void		setTeamName(const std::string);
-  std::string	getFileIA() const;
-  void		setFileIA(const std::string);
+    static const std::string usage;
+
 public:
-  int		parseArg(int, char **);
-    int    run(void);
+    Core();
+
+    ~Core();
+
+public:
+    std::string getIp() const;
+
+    void        setIp(const std::string);
+
+    int         getPort() const;
+
+    void        setPort(const int);
+
+    std::string getTeamName() const;
+
+    void        setTeamName(const std::string);
+
+    std::string getFileIA() const;
+
+    void        setFileIA(const std::string);
+
+public:
+    int parseArg(int, char **) throw(ParsingError);
+
+    int run(void);
+
 private:
-  int		isNumber(char *) const;
+    int isNumber(char *) const;
+
 private:
-  std::string	ip;
-  int		port;
-  std::string	teamName;
-  std::string	fileIA;
+    std::string ip;
+    int         port;
+    std::string teamName;
+    std::string fileIA;
 };
 
 #endif /* !CORE_HPP_ */

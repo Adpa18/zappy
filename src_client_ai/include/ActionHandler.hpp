@@ -17,6 +17,11 @@ public:
             std::runtime_error("ActionHandler: No such action selected")
     {
     }
+    virtual ~NoActionException()
+    {
+
+    }
+    using std::runtime_error::what;
 };
 
 /**
@@ -213,7 +218,7 @@ public:
      * \return A Standard function corresponding to the call of the method
      */
     template <typename methType, typename ... Types>
-    static std::function<actionRet(Types...)>   MethodToWrapedFunction(elementType &elem, methType method, Types&& ... args)
+    static std::function<actionRet()>   MethodToWrapedFunction(elementType &elem, methType method, Types&& ... args)
     {
         return std::bind(MethodToFunction<Types...>(elem, method), std::forward<Types>(args)...);
     }
