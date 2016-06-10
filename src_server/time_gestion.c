@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun 10 12:00:15 2016 Victor Gouet
-** Last update Fri Jun 10 17:15:06 2016 Victor Gouet
+** Last update Fri Jun 10 18:19:43 2016 Victor Gouet
 */
 
 #include <sys/time.h>
@@ -17,27 +17,27 @@
 static void	init_command_time(int time, t_time_command *time_command)
 {
   strcpy(time_command[0].command, "avance");
-  time_command[0].timeout = (7 / (time == 0 ? 1 : time) * 1000);
+  time_command[0].timeout = ((double)7 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[1].command, "droite");
-  time_command[1].timeout = (7 / (time == 0 ? 1 : time) * 1000);
+  time_command[1].timeout = ((double)7 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[2].command, "gauche");
-  time_command[2].timeout = (7 / (time == 0 ? 1 : time) * 1000);
+  time_command[2].timeout = ((double)7 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[3].command, "voir");
-  time_command[3].timeout = (7 / (time == 0 ? 1 : time) * 1000);
+  time_command[3].timeout = ((double)7 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[4].command, "inventaire");
-  time_command[4].timeout = (1 / (time == 0 ? 1 : time) * 1000);
+  time_command[4].timeout = ((double)1 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[5].command, "prend");
-  time_command[5].timeout = (7 / (time == 0 ? 1 : time) * 1000);
+  time_command[5].timeout = ((double)7 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[6].command, "pose");
-  time_command[6].timeout = (7 / (time == 0 ? 1 : time) * 1000);
+  time_command[6].timeout = ((double)7 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[7].command, "expulse");
-  time_command[7].timeout = (7 / (time == 0 ? 1 : time) * 1000);
+  time_command[7].timeout = ((double)7 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[8].command, "broadcast");
-  time_command[8].timeout = (7 / (time == 0 ? 1 : time) * 1000);
+  time_command[8].timeout = ((double)7 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[9].command, "incantation");
-  time_command[9].timeout = (300 / (time == 0 ? 1 : time) * 1000);
+  time_command[9].timeout = ((double)300 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[10].command, "fork");
-  time_command[10].timeout = (42 / (time == 0 ? 1 : time) * 1000);
+  time_command[10].timeout = ((double)42 / (time == 0 ? 1 : time) * 1000);
   strcpy(time_command[11].command, "connect_nbr");
   time_command[11].timeout = 0;
 }

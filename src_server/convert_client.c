@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 18:01:05 2016 Victor Gouet
-** Last update Tue Jun  7 18:38:54 2016 Victor Gouet
+** Last update Fri Jun 10 18:00:13 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
@@ -18,6 +18,7 @@ t_trantorien	*transform_to_trantorien(t_ref *ref)
     return (NULL);
   trantorien->ref = ref;
   ref->ref = trantorien;
+  trantorien->team = NULL;
   trantorien->ref->type = TRANTORIEN;
   return (trantorien);
 }

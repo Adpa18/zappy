@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Fri Jun 10 17:24:59 2016 Victor Gouet
+** Last update Fri Jun 10 18:13:13 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -137,7 +137,7 @@ static int	convert_data_to_command(t_list *list,
   if (!ref->begin || !ref->begin->tab || !ref->begin->tab[0])
     return (0);
   if (ref->type == UNKNOWN)
-    unknwon_client_event(ref, list, command, ref->begin->tab);
+    return (unknwon_client_event(ref, list, command, ref->begin->tab));
   else
     while (++idx < EVENTSIZE)
       {
@@ -174,8 +174,6 @@ static int	event_call(t_list *list, t_command_line *command,
   ref = list->begin;
   while (ref)
     {
-      // TODO set timeout of cmd and execute when timeout <= 0
-      /* display_buffer_from_client(ref); */
       if (ref->buffer_size > 0 && ref->time_ref == 0)
 	{
 	  ref->time_ref = getTimeSeconds();
@@ -184,7 +182,11 @@ static int	event_call(t_list *list, t_command_line *command,
 	  && ref->begin
 	  && is_time_out_for(ref->begin->tab[0], command->time, ref->time_ref))
 	{
-	  convert_data_to_command(list, ref, command);
+	  if (convert_data_to_command(list, ref, command) == -1)
+	    {
+	      ref = delete_all_in_client(list, command, server, ref);
+	      continue;
+	    }
 	  ref->time_ref = 0;
 	  buffer_pop_front(ref);
 	}

@@ -5,12 +5,13 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 17:50:22 2016 Victor Gouet
-** Last update Tue Jun  7 17:56:53 2016 Victor Gouet
+** Last update Fri Jun 10 17:57:04 2016 Victor Gouet
 */
 
 #include <stdbool.h>
 #include <string.h>
 #include "../include_server/command_line_arguments.h"
+#include "../include_server/server.h"
 
 t_team_name	*get_team(t_team_list *list, char const *name)
 {

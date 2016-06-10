@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Fri Jun 10 17:15:30 2016 Victor Gouet
+** Last update Fri Jun 10 17:58:23 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -85,6 +85,7 @@ typedef struct	s_vector2d
 typedef struct	s_trantorien
 {
   t_ref		*ref;
+  char		*team;
   int		elevation;
   t_inventories	inventaire;
   t_orientation	orientation;

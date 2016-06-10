@@ -5,26 +5,27 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:47:38 2016 Victor Gouet
-** Last update Wed Jun  8 11:41:42 2016 Victor Gouet
+** Last update Fri Jun 10 18:12:08 2016 Victor Gouet
 */
 
 #include <stdio.h>
 #include <string.h>
 #include "../include_server/server.h"
 
-static void	trantorien_connection(t_ref *ref, t_team_name *team,
+static int	trantorien_connection(t_ref *ref, t_team_name *team,
 				      t_command_line *command)
 {
   t_trantorien	*trantorien;
   int		client_left;
 
-  client_left = command->nb_client - team->nbr_client;
+  client_left = command->nb_client - team->nbr_client - 1;
+  if (client_left == -1)
+    {
+      send_message("ko\n", &(ref->client->sock));
+      return (-1);
+    }
   sendf_message(&(ref->client->sock), "%d\n", client_left);
   sendf_message(&(ref->client->sock), "%d %d\n", command->x, command->y);
-  if (client_left == 0)
-    {
-      return ;
-    }
   trantorien = transform_to_trantorien(ref);
   add_client_to_team(team, trantorien);
   bzero(&(trantorien->inventaire), sizeof(t_inventories));
@@ -33,6 +34,7 @@ static void	trantorien_connection(t_ref *ref, t_team_name *team,
   trantorien->elevation = 1;
   trantorien->pos.x = rand() % command->x;
   trantorien->pos.y = rand() % command->y;
+  return (0);
 }
 
 int		unknwon_client_event(t_ref *ref, t_list *list,
@@ -49,12 +51,12 @@ int		unknwon_client_event(t_ref *ref, t_list *list,
     }
   else if ((team = get_team(&(command->team_list), tab[0])))
     {
-      trantorien_connection(ref, team, command);
+      return (trantorien_connection(ref, team, command));
     }
   else
     {
-      send_message("0\n", &(ref->client->sock));
-      sendf_message(&(ref->client->sock), "%d %d\n", command->x, command->y);
+      send_message("ko\n", &(ref->client->sock));
+      return (-1);
     }
   return (0);
 }
