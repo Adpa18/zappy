@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ## 
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Wed Jun  8 14:31:04 2016 Victor Gouet
+## Last update Fri Jun 10 14:42:08 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -34,6 +34,7 @@ SRCS		= src_server/main.c \
 		  src_server/team_gestion.c \
 		  src_server/map.c \
 		  src_server/buffer_gestion.c \
+		  src_server/time_gestion.c \
 		  src_server/Trantorien_Event/avance_event.c \
 		  src_server/Trantorien_Event/broadcast_event.c \
 		  src_server/Trantorien_Event/connect_nbr_event.c \
