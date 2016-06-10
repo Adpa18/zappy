@@ -25,10 +25,27 @@ IAClient::~IAClient()
 
 }
 
-void IAClient::Connect(const std::string &ip, const uint16_t port)
+void IAClient::Connect(const std::string &ip, const uint16_t port, std::string const &teamName)
 {
+    std::string answer;
+
     Client::Connect(ip, port);
-    script.Handler()->Select(IAClient::OnStart).Call();
+    if (getCRLFLine(answer) && answer == "BIENVENUE")
+    {
+        Write(teamName);
+        if (getCRLFLine(answer) && atoi(answer.c_str()) > 0 && getCRLFLine(answer))
+        {
+            unsigned long i = answer.find(' ');
+
+            if (i > 0 && i != std::string::npos && i < answer.length() - 1)
+            {
+                mapDimensions = {atoi(answer.substr(0, i - 1).c_str()), atoi(answer.substr(i + 1, answer.length() - i).c_str())};
+                script.Handler()->Select(IAClient::OnStart).Call();
+            }
+        }
+    }
+    else
+        throw SocketException("Unable to connect");
 }
 
 void IAClient::Update(void)
@@ -45,4 +62,9 @@ int IAClient::callTest(std::string const &res)
 {
     std::cout << res << std::endl;
     return 0;
+}
+
+const IAClient::Vector2 &IAClient::getMapDimmensions(void) const
+{
+    return mapDimensions;
 }

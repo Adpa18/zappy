@@ -19,6 +19,19 @@
 class IAClient : public Client
 {
 public:
+    struct Vector2
+    {
+    public:
+        Vector2 &operator=(Vector2 const &ref)
+        {
+            x = ref.x;
+            y = ref.y;
+            return *this;
+        }
+        int x, y;
+    };
+
+public:
     static const std::string                                Default;
     static const std::string                                OnStart;
     static const std::string                                OnUpdate;
@@ -34,13 +47,17 @@ public:
     IAClient    &operator=(IAClient const &ref) = delete;
 
 public:
-    virtual void Connect(const std::string &ip, const uint16_t port);
+    virtual void Connect(const std::string &ip, const uint16_t port, std::string const &teamName);
     void Update(void);
     void Receive(void);
     int callTest(std::string const &answer);
 
+public:
+    Vector2 const &getMapDimmensions(void) const;
+
 private:
     Lua::LuaScript      script;
+    Vector2             mapDimensions;
 };
 
 #endif //PSU_2015_ZAPPY_IACLIENT_HPP

@@ -197,8 +197,8 @@ public:
      * \param method A pointer on the method to call
      * \return A standard function corresponding to the method to call
      */
-    template <typename ... Types>
-    static std::function<actionRet(Types...)>   MethodToFunction(elementType &elem, actionRet (elementType::*method)(Types ...))
+    template <typename methType, typename ... Types>
+    static std::function<actionRet(Types...)>   MethodToFunction(elementType &elem, methType method)
     {
         return [&elem, method] (Types&& ... params) {
                 return ((elem.*method)(params...));
@@ -212,8 +212,8 @@ public:
      * \param args All the arguments to wrap in the function
      * \return A Standard function corresponding to the call of the method
      */
-    template <typename ... Types>
-    static std::function<actionRet(Types...)>   MethodToWrapedFunction(elementType &elem, actionRet (elementType::*method)(Types...), Types&& ... args)
+    template <typename methType, typename ... Types>
+    static std::function<actionRet(Types...)>   MethodToWrapedFunction(elementType &elem, methType method, Types&& ... args)
     {
         return std::bind(MethodToFunction<Types...>(elem, method), std::forward<Types>(args)...);
     }

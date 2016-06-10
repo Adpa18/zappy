@@ -28,6 +28,7 @@ LUALIBINC	=	$(LUADIR)lua-5.3.2/src/
 SRCS		=	Core.cpp		\
 			IAClient.cpp		\
 			ZappyData.cpp		\
+			ZappyRequest.cpp    \
 			main.cpp
 
 OBJS		=	$(addprefix $(SRCDIR), $(SRCS:.cpp=.o))

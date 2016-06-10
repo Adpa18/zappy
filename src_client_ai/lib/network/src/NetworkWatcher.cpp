@@ -49,8 +49,8 @@ NetworkWatcher &NetworkWatcher::operator=(NetworkWatcher const &ref)
  * \param callBack The callback associated to the request ping
  * \param from The client linked to the server to ping
  */
-NetworkWatcher &NetworkWatcher::RequestServer(std::string const &request, std::function<int(std::string const &)> callBack,
-                                   Client &from, size_t nbAnswers)
+NetworkWatcher &NetworkWatcher::RequestServer(std::string const &request, NetworkWatcher::NetworkCallback callBack,
+                                              Client &from, size_t nbAnswers)
 {
     from.Write(request);
     for (size_t i = 0; i < nbAnswers; ++i)
@@ -69,7 +69,7 @@ NetworkWatcher &NetworkWatcher::Update(Client &from)
     if (!callBacks[&from].empty())
     {
         std::string line;
-        std::function<int(std::string const &)> func = callBacks[&from].front();
+        NetworkCallback func = callBacks[&from].front();
 
         if (from.getCRLFLine(line, {0, 0}))
         {

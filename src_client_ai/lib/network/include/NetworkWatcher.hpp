@@ -18,7 +18,7 @@
 class NetworkWatcher
 {
 public:
-    typedef std::function<int (std::string const &)> NetworkCallback;
+    typedef std::function<void (std::string const &)> NetworkCallback;
     typedef typename std::queue<NetworkCallback>   CallbackQueue;
 
 public:
@@ -28,8 +28,7 @@ public:
     NetworkWatcher  &operator=(NetworkWatcher const &ref);
 
 public:
-    //todo implement a call to the callbacks after a server notif
-    NetworkWatcher &RequestServer(std::string const &request, std::function<int (std::string const &)> callBack, Client &from, size_t nbAnswers = 1);
+    NetworkWatcher &RequestServer(std::string const &request, NetworkCallback callBack, Client &from, size_t nbAnswers = 1);
     NetworkWatcher &Update(Client &from);
 
 private:
