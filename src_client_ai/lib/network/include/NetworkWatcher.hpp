@@ -10,11 +10,6 @@
 # include <map>
 # include "Client.hpp"
 
-/**
- * TODO:
- *  -   Connect The ia
- *  -   Do the commands (make a système with callBacks when getting a server notification)
- */
 class NetworkWatcher
 {
 public:

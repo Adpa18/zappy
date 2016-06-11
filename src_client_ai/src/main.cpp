@@ -2,10 +2,6 @@
 #include <Socket.hpp>
 #include "Core.hpp"
 
-/**
- * TODO:
- *  -   Class de déserialisation du pseudo JSON
- */
 int main(int ac, char **av)
 {
     Core core;

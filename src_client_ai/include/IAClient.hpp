@@ -10,12 +10,7 @@
 #include "Inventory.hpp"
 
 /**
- * TODO:
- *  -   Tells if IA died
- *  -   Store:
- *          -   Sight
- *          -   Inventory
- *          -   Life
+ * TODO: Sight => ZappyMap
  */
 class IAClient : public Client
 {
@@ -49,11 +44,19 @@ public:
     void Die(void);
     bool IsDead(void) const;
     void Upgrade(const std::string &);
+    bool IsIncanting(void) const;
+    void Incant(void);
+    void setMissingPeople(size_t miss);
+    size_t getMissingPeople(void) const;
+    void See(std::vector<std::vector<std::string>> const &vision);
+    void TurnRight(void);
+    void TurnLeft(void);
 
 public:
     virtual void Connect(const std::string &ip, const uint16_t port, std::string const &teamName);
     void Update(void);
     void Receive(void);
+    Inventory   &Bag(void);
 
 public:
     Vector2 const &getMapDimmensions(void) const;
@@ -64,6 +67,8 @@ private:
     Inventory           inventory;
     bool                dead;
     int                 lvl;
+    bool                incanting;
+    size_t              missing;
 };
 
 #endif //PSU_2015_ZAPPY_IACLIENT_HPP

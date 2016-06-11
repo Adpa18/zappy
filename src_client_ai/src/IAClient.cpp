@@ -17,7 +17,8 @@ IAClient::IAClient(const std::string &scriptname) :
     script(),
     mapDimensions(),
     dead(false),
-    lvl(0)
+    lvl(0),
+    incanting(false)
 {
     script.LoadFile(scriptname);
     script.SetGlobalValue(this, "IA");
@@ -36,7 +37,7 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
     if (getCRLFLine(answer) && answer == "BIENVENUE")
     {
         Write(teamName);
-        if (getCRLFLine(answer) && atoi(answer.c_str()) > 0 && getCRLFLine(answer))
+        if (getCRLFLine(answer) && atoi(answer.c_str()) >= 0 && getCRLFLine(answer))
         {
             unsigned long i = answer.find(' ');
 
@@ -44,11 +45,11 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
             {
                 mapDimensions = {atoi(answer.substr(0, i - 1).c_str()), atoi(answer.substr(i + 1, answer.length() - i).c_str())};
                 script.Handler()->Select(IAClient::OnStart).Call();
+                return;
             }
         }
     }
-    else
-        throw SocketException("Unable to connect");
+    throw SocketException("Unable to connect");
 }
 
 void IAClient::Update(void)
@@ -80,4 +81,45 @@ void IAClient::Upgrade(const std::string &string)
 {
     std::cout << "You have been upgraded: '" << string << "'" << std::endl;
     lvl++;
+    incanting = false;
+}
+
+bool IAClient::IsIncanting(void) const
+{
+    return incanting;
+}
+
+void IAClient::Incant(void)
+{
+    incanting = true;
+}
+
+size_t IAClient::getMissingPeople(void) const
+{
+    return missing;
+}
+
+void IAClient::setMissingPeople(size_t miss)
+{
+    missing = miss;
+}
+
+Inventory &IAClient::Bag(void)
+{
+    return inventory;
+}
+
+void IAClient::See(std::vector<std::vector<std::string>> const &vision)
+{
+    //todo refresh ZappyMap in function of the orientation of the player
+}
+
+void IAClient::TurnRight(void)
+{
+    //todo implement a right rotation on the player
+}
+
+void IAClient::TurnLeft(void)
+{
+    //todo implement a left rotation on the player
 }

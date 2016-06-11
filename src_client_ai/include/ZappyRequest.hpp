@@ -24,6 +24,9 @@ public:
     using std::runtime_error::what;
 };
 
+/**
+ * todo add a callback on turn right/left finish see callback
+ */
 class ZappyRequest
 {
 public:
@@ -43,11 +46,12 @@ public:
         LAYEGG,
         CONNECTNBR
     };
-    typedef void (ZappyRequest::*ZappyCallback)(std::string const &);
+    typedef void (ZappyRequest::*ZappyCallback)(std::string const &, std::string const &);
 
 private:
     static const std::map<Request, std::string> requests;
     static const std::map<Request, ZappyCallback> callbacks;
+    static const int maxRequest;
 
 public:
     ZappyRequest(IAClient &toWatch);
@@ -61,11 +65,13 @@ public:
     bool IsARequest(Request request) const;
 
 private:
-    void ReceiveServerPong(Request request, std::string const &answer);
-    void Req_seeForward(const std::string &answer);
-    void Req_stockInventory(const std::string &answer);
-    void Req_incantation(const std::string &answer);
-    void Req_connectNbr(const std::string &answer);
+    void ReceiveServerPong(Request request, std::string const &answer, std::string const &param);
+    void Req_takeObj(const std::string &answer, const std::string &param);
+    void Req_dropObj(const std::string &answer, const std::string &param);
+    void Req_seeForward(const std::string &answer, const std::string &param);
+    void Req_stockInventory(const std::string &answer, const std::string &param);
+    void Req_incantation(const std::string &answer, const std::string &param);
+    void Req_connectNbr(const std::string &answer, const std::string &param);
 
 private:
     void ResolveState(const std::string answer);
@@ -75,6 +81,7 @@ private:
     NetworkWatcher  watcher;
     Request         lastRequest;
     bool            status;
+    int             nbRequest;
 };
 
 #endif //PSU_2015_ZAPPY_ZAPPYREQUEST_HPP

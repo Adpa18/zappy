@@ -121,12 +121,20 @@ void Inventory::Refresh(std::vector<std::vector<std::string> > const &content)
     std::map<Object, size_t >   save = stuff;
 
     Reset();
-    std::for_each(content.begin(), content.end(), [this] (std::vector<std::string> const &curr)
-        {
-            if (curr.size() != 2)
-                throw std::runtime_error("Incorrect format");
-            stuff[getObjectFromName(curr[0])] = strtoul(curr[1].c_str(), NULL, 10);
-        });
+    try
+    {
+        std::for_each(content.begin(), content.end(), [this] (std::vector<std::string> const &curr)
+            {
+                if (curr.size() != 2)
+                    throw std::runtime_error("Incorrect format");
+                stuff[getObjectFromName(curr[0])] = strtoul(curr[1].c_str(), NULL, 10);
+            });
+    }
+    catch (std::exception &exception)
+    {
+        stuff = save;
+        throw(exception);
+    }
 }
 
 /**

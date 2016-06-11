@@ -3,6 +3,7 @@
 //
 
 #include <ActionHandler.hpp>
+#include <ZappyData.hpp>
 #include "ZappyRequest.hpp"
 
 /**
@@ -30,8 +31,12 @@ const std::map<ZappyRequest::Request, ZappyRequest::ZappyCallback> ZappyRequest:
         {ZappyRequest::SEE, &ZappyRequest::Req_seeForward},
         {ZappyRequest::STOCK, &ZappyRequest::Req_stockInventory},
         {ZappyRequest::INCANTATION, &ZappyRequest::Req_incantation},
-        {ZappyRequest::CONNECTNBR, &ZappyRequest::Req_connectNbr}
+        {ZappyRequest::CONNECTNBR, &ZappyRequest::Req_connectNbr},
+        {ZappyRequest::TAKE, &ZappyRequest::Req_takeObj},
+        {ZappyRequest::DROP, &ZappyRequest::Req_dropObj}
 };
+
+const int ZappyRequest::maxRequest = 10;
 
 /**
  * \brief Constructor in which you have to give a reference on the client you make requests
@@ -42,7 +47,9 @@ ZappyRequest::ZappyRequest(IAClient &toWatch) :
                     {"mort", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string), std::string>(client, (void (IAClient::*)(std::string))&IAClient::Die)},
                     {"niveau actuel : ", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(client, &IAClient::Upgrade)}
             }),
-    lastRequest(DEFAULT)
+    lastRequest(DEFAULT),
+    status(false),
+    nbRequest(0)
 {
 
 }
@@ -70,12 +77,15 @@ ZappyRequest::~ZappyRequest()
  */
 void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string &toConcat) throw(BadRequestException)
 {
+    if (nbRequest == ZappyRequest::maxRequest)
+        return;
     if (!IsARequest(request))
         throw BadRequestException("No request found");
 
     std::string req = ZappyRequest::requests.find(request)->second + (toConcat.empty() ? "" : " " + toConcat);
 
-    watcher.RequestServer(req, [this, request] (std::string const &s) { ReceiveServerPong(request, s); }, client);
+    watcher.RequestServer(req, [this, request, toConcat] (std::string const &s) { ReceiveServerPong(request, s, toConcat); }, client);
+    ++nbRequest;
 }
 
 /**
@@ -114,23 +124,31 @@ void ZappyRequest::ResolveState(const std::string answer)
  * \param request The request to which the command is linked
  * \param answer The answer of the server
  */
-void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string const &answer)
+void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string const &answer, const std::string &param)
 {
     std::map<Request, ZappyCallback>::const_iterator    it;
 
     lastRequest = request;
     ResolveState(answer);
-    it = callbacks.find(request);
-    if (it != callbacks.end())
-        (*this.*it->second)(answer);
-    client.Receive();
+    try
+    {
+        it = callbacks.find(request);
+        if (it != callbacks.end())
+            (*this.*it->second)(answer, param);
+        client.Receive();
+    }
+    catch (std::exception &exception)
+    {
+        std::cerr << "Receive server pong: " << exception.what() << std::endl;
+    }
+    --nbRequest;
 }
 
 /**
  * \brief Resolve the request See Forward
  * \param answer The answer received from the server
  */
-void ZappyRequest::Req_seeForward(const std::string &answer)
+void ZappyRequest::Req_seeForward(const std::string &answer, const std::string &)
 {
     (void)answer;
 }
@@ -139,25 +157,48 @@ void ZappyRequest::Req_seeForward(const std::string &answer)
  * \brief Resolve the request Stock Inventory
  * \param answer The answer received from the server
  */
-void ZappyRequest::Req_stockInventory(const std::string &answer)
+void ZappyRequest::Req_stockInventory(const std::string &answer, const std::string &)
 {
-    (void)answer;
+    client.Bag().Refresh(ZappyData::deserialize(answer));
 }
 
 /**
  * \brief Resolve the request Incantation
  * \param answer The answer received from the server
  */
-void ZappyRequest::Req_incantation(const std::string &answer)
+void ZappyRequest::Req_incantation(const std::string &answer, const std::string &)
 {
-    (void)answer;
+    if (answer == "elevation en cours")
+        client.Incant();
 }
 
 /**
  * \brief Resolve the request Connect Nbr
  * \param answer The answer received from the server
  */
-void ZappyRequest::Req_connectNbr(const std::string &answer)
+void ZappyRequest::Req_connectNbr(const std::string &answer, const std::string &)
 {
-    (void)answer;
+    client.setMissingPeople(strtoul(answer.c_str(), NULL, 10));
+}
+
+/**
+ * \brief Resolve the request take object
+ * \param answer The answer received from the server
+ * \param param The parameter giver in the request
+ */
+void ZappyRequest::Req_takeObj(const std::string &answer, const std::string &param)
+{
+    if (status)
+        client.Bag().Add(Inventory::getObjectFromName(param));
+}
+
+/**
+ * \brief Resolve the request take object
+ * \param answer The answer received from the server
+ * \param param The parameter giver in the request
+ */
+void ZappyRequest::Req_dropObj(const std::string &answer, const std::string &param)
+{
+    if (status)
+        client.Bag().Remove(Inventory::getObjectFromName(param));
 }

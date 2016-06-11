@@ -2,6 +2,3 @@ TODO:
 	-Classe Core qui gère le core du projet (finaliser le link complet)
 	-Classe Prototocle Zappy qui va implémenter toutes les commandes du serveur
 	-Class ZappyMap pour faire un cache de la map du zappy où (0, 0) correspond à la toute première position du trantorien
-	-Faire un système où le trantorien va avoir un cache de son inventaire (actualisation avec prend et pose) (Class inventaire)
-	-Sauvegarder le nombre de personne non connecté a l'équipe
-
