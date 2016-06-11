@@ -29,6 +29,7 @@ class ZappyRequest
 public:
     enum    Request
     {
+        DEFAULT,
         MOVE,
         RIGHT,
         LEFT,
@@ -42,7 +43,7 @@ public:
         LAYEGG,
         CONNECTNBR
     };
-    typedef void (ZappyRequest::*ZappyCallback)(std::string const &) const;
+    typedef void (ZappyRequest::*ZappyCallback)(std::string const &);
 
 private:
     static const std::map<Request, std::string> requests;
@@ -60,22 +61,20 @@ public:
     bool IsARequest(Request request) const;
 
 private:
-    void Req_moveForward(const std::string &answer) const;
-    void Req_turnRight(const std::string &answer) const;
-    void Req_turnLeft(const std::string &answer) const;
-    void Req_seeForward(const std::string &answer) const;
-    void Req_stockInventory(const std::string &answer) const;
-    void Req_takeObject(const std::string &answer) const;
-    void Req_dropObject(const std::string &answer) const;
-    void Req_expulsePlayers(const std::string &answer) const;
-    void Req_broadcastText(const std::string &answer) const;
-    void Req_incantation(const std::string &answer) const;
-    void Req_layEgg(const std::string &answer) const;
-    void Req_connectNbr(const std::string &answer) const;
+    void ReceiveServerPong(Request request, std::string const &answer);
+    void Req_seeForward(const std::string &answer);
+    void Req_stockInventory(const std::string &answer);
+    void Req_incantation(const std::string &answer);
+    void Req_connectNbr(const std::string &answer);
+
+private:
+    void ResolveState(const std::string answer);
 
 private:
     IAClient        &client;
     NetworkWatcher  watcher;
+    Request         lastRequest;
+    bool            status;
 };
 
 #endif //PSU_2015_ZAPPY_ZAPPYREQUEST_HPP

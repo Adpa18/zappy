@@ -9,35 +9,27 @@
  * \brief Variable for associating a Request code to a request string command
  */
 const std::map<ZappyRequest::Request, std::string> ZappyRequest::requests = {
-        {ZappyRequest::MOVE, ""},
-        {ZappyRequest::RIGHT, ""},
-        {ZappyRequest::LEFT, ""},
-        {ZappyRequest::SEE, ""},
-        {ZappyRequest::STOCK, ""},
-        {ZappyRequest::TAKE, ""},
-        {ZappyRequest::DROP, ""},
-        {ZappyRequest::EXPULSE, ""},
-        {ZappyRequest::BROADCAST, ""},
-        {ZappyRequest::INCANTATION, ""},
-        {ZappyRequest::LAYEGG, ""},
-        {ZappyRequest::CONNECTNBR, ""}
+        {ZappyRequest::MOVE, "avance"},
+        {ZappyRequest::RIGHT, "droite"},
+        {ZappyRequest::LEFT, "gauche"},
+        {ZappyRequest::SEE, "voir"},
+        {ZappyRequest::STOCK, "inventaire"},
+        {ZappyRequest::TAKE, "prend"},
+        {ZappyRequest::DROP, "pose"},
+        {ZappyRequest::EXPULSE, "expulse"},
+        {ZappyRequest::BROADCAST, "broadcast"},
+        {ZappyRequest::INCANTATION, "incantation"},
+        {ZappyRequest::LAYEGG, "fork"},
+        {ZappyRequest::CONNECTNBR, "connect_nbr"}
 };
 
 /**
  * \brief Variable to associate a Request code to a method pointer
  */
 const std::map<ZappyRequest::Request, ZappyRequest::ZappyCallback> ZappyRequest::callbacks = {
-        {ZappyRequest::MOVE, &ZappyRequest::Req_moveForward},
-        {ZappyRequest::RIGHT, &ZappyRequest::Req_turnRight},
-        {ZappyRequest::LEFT, &ZappyRequest::Req_turnLeft},
         {ZappyRequest::SEE, &ZappyRequest::Req_seeForward},
         {ZappyRequest::STOCK, &ZappyRequest::Req_stockInventory},
-        {ZappyRequest::TAKE, &ZappyRequest::Req_takeObject},
-        {ZappyRequest::DROP, &ZappyRequest::Req_dropObject},
-        {ZappyRequest::EXPULSE, &ZappyRequest::Req_expulsePlayers},
-        {ZappyRequest::BROADCAST, &ZappyRequest::Req_broadcastText},
         {ZappyRequest::INCANTATION, &ZappyRequest::Req_incantation},
-        {ZappyRequest::LAYEGG, &ZappyRequest::Req_layEgg},
         {ZappyRequest::CONNECTNBR, &ZappyRequest::Req_connectNbr}
 };
 
@@ -45,7 +37,12 @@ const std::map<ZappyRequest::Request, ZappyRequest::ZappyCallback> ZappyRequest:
  * \brief Constructor in which you have to give a reference on the client you make requests
  */
 ZappyRequest::ZappyRequest(IAClient &toWatch) :
-    client(toWatch)
+    client(toWatch),
+    watcher({
+                    {"mort", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string), std::string>(client, (void (IAClient::*)(std::string))&IAClient::Die)},
+                    {"niveau actuel : ", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(client, &IAClient::Upgrade)}
+            }),
+    lastRequest(DEFAULT)
 {
 
 }
@@ -68,127 +65,17 @@ ZappyRequest::~ZappyRequest()
 }
 
 /**
- * \brief Resolve the request Move Forward
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_moveForward(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Turn Right
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_turnRight(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Turn Left
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_turnLeft(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request See Forward
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_seeForward(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Stock Inventory
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_stockInventory(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Move Forward
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_takeObject(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Drop object
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_dropObject(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Expulse Players
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_expulsePlayers(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Broadcast Text
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_broadcastText(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Incantation
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_incantation(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Lay Egg
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_layEgg(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
- * \brief Resolve the request Connect Nbr
- * \param answer The answer received from the server
- */
-void ZappyRequest::Req_connectNbr(const std::string &answer) const
-{
-    (void)answer;
-}
-
-/**
  * \brief Make a Zappy Request you can set 'toConcat' parameter to insert a request parameter
  * \param toConcat Allow user to add a request parameter
  */
-void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string &toConcat)  throw(BadRequestException)
+void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string &toConcat) throw(BadRequestException)
 {
     if (!IsARequest(request))
         throw BadRequestException("No request found");
 
     std::string req = ZappyRequest::requests.find(request)->second + (toConcat.empty() ? "" : " " + toConcat);
-    ZappyRequest::ZappyCallback tobind = callbacks.find(request)->second;
-    NetworkWatcher::NetworkCallback tocall = ActionHandler<ZappyRequest>::MethodToFunction<ZappyCallback, std::string>(*this, tobind);
 
-    watcher.RequestServer(req, tocall, client);
+    watcher.RequestServer(req, [this, request] (std::string const &s) { ReceiveServerPong(request, s); }, client);
 }
 
 /**
@@ -208,4 +95,68 @@ bool ZappyRequest::IsARequest(ZappyRequest::Request request) const
     if (request >= MOVE && request <= CONNECTNBR)
         return true;
     return false;
+}
+
+/**
+ * \brief Will resolve the state of the command pong received and will set the status approriately
+ * \param answer The answer of the server, if 'ko' the state will be set to false, true either
+ */
+void ZappyRequest::ResolveState(const std::string answer)
+{
+    if (answer.find("ko") != std::string::npos)
+        status = false;
+    else
+        status = true;
+}
+
+/**
+ * \brief Callback when we receive a pong command replied
+ * \param request The request to which the command is linked
+ * \param answer The answer of the server
+ */
+void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string const &answer)
+{
+    std::map<Request, ZappyCallback>::const_iterator    it;
+
+    lastRequest = request;
+    ResolveState(answer);
+    it = callbacks.find(request);
+    if (it != callbacks.end())
+        (*this.*it->second)(answer);
+}
+
+/**
+ * \brief Resolve the request See Forward
+ * \param answer The answer received from the server
+ */
+void ZappyRequest::Req_seeForward(const std::string &answer)
+{
+    (void)answer;
+}
+
+/**
+ * \brief Resolve the request Stock Inventory
+ * \param answer The answer received from the server
+ */
+void ZappyRequest::Req_stockInventory(const std::string &answer)
+{
+    (void)answer;
+}
+
+/**
+ * \brief Resolve the request Incantation
+ * \param answer The answer received from the server
+ */
+void ZappyRequest::Req_incantation(const std::string &answer)
+{
+    (void)answer;
+}
+
+/**
+ * \brief Resolve the request Connect Nbr
+ * \param answer The answer received from the server
+ */
+void ZappyRequest::Req_connectNbr(const std::string &answer)
+{
+    (void)answer;
 }

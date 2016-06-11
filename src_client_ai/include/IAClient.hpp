@@ -45,12 +45,14 @@ public:
     virtual ~IAClient();
     IAClient(IAClient const &ref) = delete;
     IAClient    &operator=(IAClient const &ref) = delete;
+    void Die(void);
+    bool IsDead(void) const;
+    void Upgrade(const std::string &);
 
 public:
     virtual void Connect(const std::string &ip, const uint16_t port, std::string const &teamName);
     void Update(void);
     void Receive(void);
-    int callTest(std::string const &answer);
 
 public:
     Vector2 const &getMapDimmensions(void) const;
@@ -58,6 +60,8 @@ public:
 private:
     Lua::LuaScript      script;
     Vector2             mapDimensions;
+    bool                dead;
+    int                 lvl;
 };
 
 #endif //PSU_2015_ZAPPY_IACLIENT_HPP

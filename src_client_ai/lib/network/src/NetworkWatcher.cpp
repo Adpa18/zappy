@@ -8,8 +8,9 @@
  * \brief Constructor with a prepared queue and default
  * \param actionsQueue A queue of actions already prepared
  */
-NetworkWatcher::NetworkWatcher(std::map<Client *, NetworkWatcher::CallbackQueue> actionsQueue) :
-    callBacks(actionsQueue)
+NetworkWatcher::NetworkWatcher(std::map<std::string, NetworkWatcher::NetworkCallback> const &exception, std::map<Client *, NetworkWatcher::CallbackQueue> const &actionsQueue) :
+        exceptions(exception),
+        callBacks(actionsQueue)
 {
 
 }
@@ -19,7 +20,7 @@ NetworkWatcher::NetworkWatcher(std::map<Client *, NetworkWatcher::CallbackQueue>
  * \param ref A reference on a already prepared NetworkWatcher
  */
 NetworkWatcher::NetworkWatcher(NetworkWatcher const &ref) :
-    NetworkWatcher(ref.callBacks)
+    NetworkWatcher(ref.exceptions, ref.callBacks)
 {
 
 }
@@ -70,11 +71,17 @@ NetworkWatcher &NetworkWatcher::Update(Client &from)
     {
         std::string line;
         NetworkCallback func = callBacks[&from].front();
+        std::map<std::string, NetworkCallback>::const_iterator  it;
 
         if (from.getCRLFLine(line, {0, 0}))
         {
-            func(line);
-            callBacks[&from].pop();
+            if ((it = exceptions.find(line)) != exceptions.end())
+                it->second(line);
+            else
+            {
+                func(line);
+                callBacks[&from].pop();
+            }
         }
     }
     return *this;

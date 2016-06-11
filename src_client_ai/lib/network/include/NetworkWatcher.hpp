@@ -22,7 +22,7 @@ public:
     typedef typename std::queue<NetworkCallback>   CallbackQueue;
 
 public:
-    NetworkWatcher(std::map<Client *, CallbackQueue> callbacks = {});
+    NetworkWatcher(std::map<std::string, NetworkCallback> const &exceptions = {}, std::map<Client *, CallbackQueue> const &callbacks = {});
     NetworkWatcher(NetworkWatcher const &ref);
     ~NetworkWatcher();
     NetworkWatcher  &operator=(NetworkWatcher const &ref);
@@ -32,6 +32,7 @@ public:
     NetworkWatcher &Update(Client &from);
 
 private:
+    const std::map<std::string, NetworkCallback> exceptions;
     std::map<Client *, CallbackQueue> callBacks;
 };
 

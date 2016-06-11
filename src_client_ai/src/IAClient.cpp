@@ -14,7 +14,10 @@ const std::string    IAClient::className = typeid(IAClient).name();
 Lua::LuaClass<IAClient>::LuaPrototype    prototype = {{}, {}};
 
 IAClient::IAClient(const std::string &scriptname) :
-    script()
+    script(),
+    mapDimensions(),
+    dead(false),
+    lvl(0)
 {
     script.LoadFile(scriptname);
     script.SetGlobalValue(this, "IA");
@@ -58,13 +61,23 @@ void IAClient::Receive()
     script.Handler()->Select(IAClient::OnReceive).Call();
 }
 
-int IAClient::callTest(std::string const &res)
-{
-    std::cout << res << std::endl;
-    return 0;
-}
-
 const IAClient::Vector2 &IAClient::getMapDimmensions(void) const
 {
     return mapDimensions;
+}
+
+void IAClient::Die(void)
+{
+    dead = true;
+}
+
+bool IAClient::IsDead(void) const
+{
+    return dead;
+}
+
+void IAClient::Upgrade(const std::string &string)
+{
+    std::cout << "You have been upgraded: '" << string << "'" << std::endl;
+    lvl++;
 }
