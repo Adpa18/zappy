@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ##
 ## Started on  Fri Jun 10 17:45:12 2016 Quentin Gasparotto
-## Last update Fri Jun 10 18:43:17 2016 Quentin Gasparotto
+## Last update Sat Jun 11 16:04:25 2016 Quentin Gasparotto
 ##
 
 NAME	=	libluawrapper.a
@@ -20,28 +20,34 @@ SRCDIR	=	./src/
 
 INCDIR	=	./include/
 
-LUADIR	=	./lua-5.3.2/src/
+LUADIR	=	./lua-5.3.2
 
-LUALIB	=	$(LUADIR)liblua.a
+LUASRC	=	$(LUADIR)/src/
+
+LUALIB	=	$(LUASRC)liblua.a
 
 OBJ	=	$(addprefix $(SRCDIR), $(SRC:.cpp=.o))
 
 CPPFLAGS	=	-W -Wall -Wextra
-CPPFLAGS	+=	-I$(INCDIR) -I$(LUADIR)
+CPPFLAGS	+=	-I$(INCDIR) -I$(LUASRC)
 CPPFLAGS	+=	-std=c++11
 
-$(NAME):	$(OBJ)
+$(NAME):	uziplua $(OBJ)
 	ar crsT $(NAME) $(OBJ) $(LUALIB)
 	ranlib $(NAME)
+
+uziplua:
+	unzip $(LUADIR).zip
 
 all:	$(NAME)
 
 clean:
 	$(RM) $(OBJ)
+	$(RM) $(LUADIR)
 
 fclean:	clean
 	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re uziplua

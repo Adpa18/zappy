@@ -5,7 +5,7 @@
 ## Login   <gaspar_q@epitech.net>
 ##
 ## Started on  Fri Jun 10 17:14:14 2016 Quentin Gasparotto
-## Last update Fri Jun 10 18:59:21 2016 Quentin Gasparotto
+## Last update Sat Jun 11 16:05:46 2016 Quentin Gasparotto
 ##
 
 NAME		=	zappy_ai
@@ -61,7 +61,7 @@ ifeq	($(DEBUG),yes)
 	CPPFLAGS += -g
 endif
 
-$(NAME):	$(OBJS) lib
+$(NAME):	lib $(OBJS)
 	unzip $(WINLIB) -d $(WINDIR)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 

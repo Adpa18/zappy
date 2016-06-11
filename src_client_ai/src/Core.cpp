@@ -19,10 +19,16 @@ Core::Core()
     this->ip       = "";
     this->port     = -1;
     this->fileIA   = IAClient::Default;
+#ifdef _WIN32
+    Socket::WinSocket(Socket::START);
+#endif
 }
 
 Core::~Core()
 {
+#ifdef  _WIN32
+    Socket::WinSocket(Socket::STOP);
+#endif
 }
 
 std::string    Core::getIp() const
