@@ -5,7 +5,7 @@
 #ifndef PSU_2015_ZAPPY_INVENTORY_HPP
 #define PSU_2015_ZAPPY_INVENTORY_HPP
 
-#include <glob.h>
+#include <stddef.h>
 #include <map>
 #include <vector>
 
