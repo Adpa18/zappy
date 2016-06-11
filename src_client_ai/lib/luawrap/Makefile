@@ -32,12 +32,12 @@ CPPFLAGS	=	-W -Wall -Wextra
 CPPFLAGS	+=	-I$(INCDIR) -I$(LUASRC)
 CPPFLAGS	+=	-std=c++11
 
-$(NAME):	uziplua $(OBJ)
+$(NAME):	$(LUADIR) $(OBJ)
 	ar crsT $(NAME) $(OBJ) $(LUALIB)
 	ranlib $(NAME)
 
-uziplua:
-	unzip $(LUADIR).zip
+$(LUADIR):
+	@unzip -q -o $(LUADIR).zip
 
 all:	$(NAME)
 

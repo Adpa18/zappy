@@ -29,6 +29,7 @@ SRCS		=	Core.cpp		\
 			IAClient.cpp		\
 			ZappyData.cpp		\
 			ZappyRequest.cpp    \
+			Inventory.cpp       \
 			main.cpp
 
 OBJS		=	$(addprefix $(SRCDIR), $(SRCS:.cpp=.o))
@@ -61,11 +62,11 @@ ifeq	($(DEBUG),yes)
 	CPPFLAGS += -g
 endif
 
-$(NAME):	lib $(OBJS)
-	unzip $(WINLIB) -d $(WINDIR)
+$(NAME):	$(DLLS) $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
-lib:
+$(DLLS):
+	@unzip -q -o $(WINLIB) -d $(WINDIR)
 	@echo -e "\n[===\e[33mCompiling Network library\e[0m===]"
 	@make -C $(NETDIR)
 	@echo -e "[===\e[32mDone\e[0m===]\n"
@@ -96,4 +97,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re lib
+.PHONY:	all clean fclean re

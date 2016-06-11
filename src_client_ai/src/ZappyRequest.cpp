@@ -123,6 +123,7 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
     it = callbacks.find(request);
     if (it != callbacks.end())
         (*this.*it->second)(answer);
+    client.Receive();
 }
 
 /**

@@ -7,6 +7,7 @@
 
 #include "Client.hpp"
 #include "LuaScript.hpp"
+#include "Inventory.hpp"
 
 /**
  * TODO:
@@ -60,6 +61,7 @@ public:
 private:
     Lua::LuaScript      script;
     Vector2             mapDimensions;
+    Inventory           inventory;
     bool                dead;
     int                 lvl;
 };
