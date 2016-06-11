@@ -37,7 +37,23 @@ CPPFLAGS	=	-Wall -Wextra -W
 CPPFLAGS	+=	-I$(INCDIR) -I$(NETINC) -I$(LUAINC) -I$(LUALIBINC)
 CPPFLAGS	+=	-std=c++1y
 
-LDFLAGS		=	-L$(NETDIR) -lnetwork -L$(LUADIR) -lluawrapper -ldl
+LDFLAGS		=	-L$(NETDIR) -lnetwork -L$(LUADIR) -lluawrapper
+
+WINDIR      =   ./win/
+
+WINLIB      =   $(WINDIR)winlib.zip
+
+DLLS        =   $(WINDIR)libgcc_s_dw2-1.dll  \
+                $(WINDIR)libstdc++-6.dll     \
+                $(WINDIR)libwinpthread-1.dll \
+                $(WINDIR)lua53.dll
+
+ifeq ($(OS),Windows_NT)
+    NAME    =  $(WINDIR)zappy_ai.exe
+    LDFLAGS += $(WINDIR)lua53.dll -lws2_32
+else
+    LDFLAGS += -ldl
+endif
 
 DEBUG		=	no
 
@@ -46,6 +62,7 @@ ifeq	($(DEBUG),yes)
 endif
 
 $(NAME):	$(OBJS) lib
+	unzip $(WINLIB) -d $(WINDIR)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 lib:
@@ -66,6 +83,7 @@ clean:
 	@make clean -C $(LUADIR)
 	@echo -e "[===\e[31mDone\e[0m===]\n"
 	$(RM) $(OBJS)
+	$(RM) $(DLLS)
 
 fclean:	clean
 	@echo -e "\n[===\e[35mFCleaning Network library\e[0m===]"

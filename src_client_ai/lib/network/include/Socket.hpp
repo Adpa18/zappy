@@ -10,17 +10,27 @@
 
 extern "C"
 {
-# include <sys/types.h>
-# include <sys/socket.h>
-# include <sys/select.h>
-# include <netdb.h>
-# include <netinet/in.h>
-# include <arpa/inet.h>
+# ifdef __linux__
+#  include <sys/types.h>
+#  include <sys/socket.h>
+#  include <sys/select.h>
+#  include <netdb.h>
+#  include <netinet/in.h>
+#  include <arpa/inet.h>
+# elif _WIN32
+#  include <winsock2.h>
+# endif
 };
 
-# include "IStream.hpp"
+# include "INetStream.hpp"
 
-class Socket : public IStream
+# ifdef __linux__
+    typedef int SOCKET;
+# elif _WIN32
+    typedef short sa_family_t;
+# endif
+
+class Socket : public INetStream
 {
 public:
     class SocketException : std::runtime_error
@@ -36,6 +46,17 @@ public:
 
         }
     };
+
+# ifdef _WIN32
+
+    enum Action
+    {
+        START,
+        STOP
+    };
+
+    static void WinSocket(Action todo);
+# endif
 
 public:
     enum SOCKTYPE
@@ -60,7 +81,12 @@ public:
 
 public:
     virtual std::string Read(int flags = 0) const;
+
+# ifdef __linux__
     virtual void Write(std::string const &towrite, int flags = MSG_NOSIGNAL) const;
+# elif _WIN32
+    virtual void Write(std::string const &towrite, int flags = 0) const;
+# endif
     Socket  &operator<<(std::string const &towrite);
     Socket  &operator>>(std::string &dest);
     int getCRLFLine(std::string &dest, struct timeval timeout = {1, 0}, int flags = 0) const;
@@ -71,7 +97,7 @@ private:
     const sa_family_t   domain;
     const int           option;
     struct sockaddr_in  sockaddr;
-    int                 fd;
+    SOCKET              fd;
     SOCKTYPE            type;
     mutable std::string save;
 };

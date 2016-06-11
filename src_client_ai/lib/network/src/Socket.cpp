@@ -5,20 +5,41 @@
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
-#include <sys/select.h>
 #include <iostream>
+#ifdef __linux__
+# include <sys/select.h>
+#elif _WIN32
+# include <ws2tcpip.h>
+#endif
+
 #include "Socket.hpp"
 
 const std::string Socket::TCP = "TCP";
 const std::string Socket::CRLF = "\r\n";
 const std::string Socket::LF = "\n";
 
+#ifdef _WIN32
+    void Socket::WinSocket(Action todo)
+    {
+        if (todo == Action::START)
+        {
+            WSADATA  tofill;
+
+            WSAStartup(MAKEWORD(2, 0), &tofill);
+        }
+        else if (todo == Action::STOP)
+        {
+            WSACleanup();
+        }
+    }
+#endif
+
 Socket::Socket(std::string const &protocol, const sa_family_t domain, int option) throw(SocketException) :
         protocol(protocol),
         domain(domain),
         option(option),
         sockaddr(),
-        fd(-1),
+        fd(static_cast<SOCKET>(-1)),
         type(Socket::NOMODE)
 {
     struct protoent	*proto = getprotobyname(protocol.c_str());
@@ -26,10 +47,12 @@ Socket::Socket(std::string const &protocol, const sa_family_t domain, int option
     if (proto == NULL)
         throw Socket::SocketException(strerror(errno));
     fd = socket(domain, SOCK_STREAM, proto->p_proto);
-    if (fd == -1)
+    if (fd == static_cast<SOCKET>(-1))
         throw Socket::SocketException(strerror(errno));
+#ifdef  __linux__
     if (setsockopt(fd, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char *)&option, sizeof(option)) == -1)
         throw Socket::SocketException(strerror(errno));
+#endif
 }
 
 Socket::~Socket()

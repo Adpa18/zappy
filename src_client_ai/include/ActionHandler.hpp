@@ -9,6 +9,7 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <functional>
 
 class NoActionException : public std::runtime_error
 {

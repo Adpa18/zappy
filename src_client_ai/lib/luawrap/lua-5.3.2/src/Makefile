@@ -6,6 +6,8 @@
 # Your platform. See PLATS for possible values.
 PLAT= none
 
+MAKE= make
+
 CC= gcc -std=gnu99
 CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_2 $(SYSCFLAGS) $(MYCFLAGS)
 LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS) -ldl

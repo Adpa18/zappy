@@ -5,12 +5,12 @@
 #ifndef SRC_CLIENT_AI_ISTREAM_HPP
 #define SRC_CLIENT_AI_ISTREAM_HPP
 
-#include <bits/stringfwd.h>
+#include <string>
 
-class IStream
+class INetStream
 {
 public:
-    virtual ~IStream(){}
+    virtual ~INetStream(){}
 
 public:
     virtual std::string Read(int flags) const = 0;

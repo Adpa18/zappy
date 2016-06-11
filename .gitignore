@@ -9,6 +9,8 @@
 *.gch
 *.pch
 
+*.dll
+
 # Executables
 *.exe
 *.out
