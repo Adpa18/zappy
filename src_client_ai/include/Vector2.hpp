@@ -15,6 +15,14 @@ public:
     static const Vector2    Down;
     static const Vector2    Left;
     static const Vector2    Right;
+    static const Vector2    Directions[4];
+    enum DIR : int
+    {
+        UP = 0,
+        RIGHT,
+        DOWN,
+        LEFT
+    };
 
 public:
     Vector2(int x = 0, int y = 0);

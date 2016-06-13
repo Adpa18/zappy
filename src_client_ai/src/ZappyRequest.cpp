@@ -186,7 +186,7 @@ void ZappyRequest::Req_connectNbr(const std::string &answer, const std::string &
  * \param answer The answer received from the server
  * \param param The parameter giver in the request
  */
-void ZappyRequest::Req_takeObj(const std::string &answer, const std::string &param)
+void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
 {
     if (status)
         client.Bag().Add(Inventory::getObjectFromName(param));
@@ -197,7 +197,7 @@ void ZappyRequest::Req_takeObj(const std::string &answer, const std::string &par
  * \param answer The answer received from the server
  * \param param The parameter giver in the request
  */
-void ZappyRequest::Req_dropObj(const std::string &answer, const std::string &param)
+void ZappyRequest::Req_dropObj(const std::string &, const std::string &param)
 {
     if (status)
         client.Bag().Remove(Inventory::getObjectFromName(param));

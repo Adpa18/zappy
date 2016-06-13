@@ -15,10 +15,14 @@ Lua::LuaClass<IAClient>::LuaPrototype    prototype = {{}, {}};
 
 IAClient::IAClient(const std::string &scriptname) :
     script(),
-    mapDimensions(),
+    inventory(),
+    map(NULL),
+    position(Vector2::Zero),
+    orientation(Vector2::UP),
     dead(false),
     lvl(0),
-    incanting(false)
+    incanting(false),
+    missing(0)
 {
     script.LoadFile(scriptname);
     script.SetGlobalValue(this, "IA");
@@ -26,7 +30,8 @@ IAClient::IAClient(const std::string &scriptname) :
 
 IAClient::~IAClient()
 {
-
+    if (map)
+        delete(map);
 }
 
 void IAClient::Connect(const std::string &ip, const uint16_t port, std::string const &teamName)
@@ -37,16 +42,20 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
     if (getCRLFLine(answer) && answer == "BIENVENUE")
     {
         Write(teamName);
-        if (getCRLFLine(answer) && atoi(answer.c_str()) >= 0 && getCRLFLine(answer))
+        if (getCRLFLine(answer))
         {
-            unsigned long i = answer.find(' ');
-
-            if (i > 0 && i != std::string::npos && i < answer.length() - 1)
+            missing = static_cast<size_t >(atol(answer.c_str()));
+            if (getCRLFLine(answer))
             {
-                mapDimensions = {atoi(answer.substr(0, i - 1).c_str()), atoi(answer.substr(i + 1, answer.length() - i).c_str())};
-                script.Handler()->Select(IAClient::OnStart).Call();
-                return;
+                unsigned long i = answer.find(' ');
+                if (i > 0 && i != std::string::npos && i < answer.length() - 1)
+                {
+                    map = new ZappyMap(Vector2(atoi(answer.substr(0, i - 1).c_str()), atoi(answer.substr(i + 1, answer.length() - i).c_str())));
+                    script.Handler()->Select(IAClient::OnStart).Call();
+                    return;
+                }
             }
+
         }
     }
     throw SocketException("Unable to connect");
@@ -60,11 +69,6 @@ void IAClient::Update(void)
 void IAClient::Receive()
 {
     script.Handler()->Select(IAClient::OnReceive).Call();
-}
-
-const Vector2 &IAClient::getMapDimmensions(void) const
-{
-    return mapDimensions;
 }
 
 void IAClient::Die(void)
@@ -111,15 +115,17 @@ Inventory &IAClient::Bag(void)
 
 void IAClient::See(std::vector<std::vector<std::string>> const &vision)
 {
-    //todo refresh ZappyMap in function of the orientation of the player
+    map->Refresh(position, Vector2::Directions[orientation], vision);
 }
 
 void IAClient::TurnRight(void)
 {
-    //todo implement a right rotation on the player
+    orientation = static_cast<Vector2::DIR >((orientation + 1) % 4);
 }
 
 void IAClient::TurnLeft(void)
 {
-    //todo implement a left rotation on the player
+    orientation = static_cast<Vector2::DIR >(orientation - 1);
+    if (orientation < 0)
+        orientation = Vector2::LEFT;
 }

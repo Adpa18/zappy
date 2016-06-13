@@ -9,6 +9,7 @@
 #include "LuaScript.hpp"
 #include "Inventory.hpp"
 #include "Vector2.hpp"
+#include "ZappyMap.hpp"
 
 /**
  * TODO: Sight => ZappyMap
@@ -48,13 +49,12 @@ public:
     void Receive(void);
     Inventory   &Bag(void);
 
-public:
-    Vector2 const &getMapDimmensions(void) const;
-
 private:
     Lua::LuaScript      script;
-    Vector2             mapDimensions;
     Inventory           inventory;
+    ZappyMap            *map;
+    Vector2             position;
+    Vector2::DIR        orientation;
     bool                dead;
     int                 lvl;
     bool                incanting;
