@@ -49,12 +49,19 @@ SRCS		= src_server/main.c \
 		  src_server/Trantorien_Event/pose_obj_event.c \
 		  src_server/Trantorien_Event/prend_obj_event.c \
 		  src_server/Trantorien_Event/voir_event.c \
+		  src_server/Object/object.c \
+		  src_server/Object/leaveObject.c \
+		  src_server/Object/leaveObject_next.c \
+		  src_server/Object/takeObject.c \
+		  src_server/Object/takeObject_next.c \
 
 OBJS		= $(SRCS:.c=.o)
 
 OBJSLIB		= $(LIBS:.c=.o)
 
-CFLAGS		= -I./include -Wall -Wextra -W -I ./lib -I $(SOCKETLIB)include/ -I ./server_include/ -g
+CFLAGS      =   -Wall -Wextra -W -g
+
+CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/
 
 LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket
 

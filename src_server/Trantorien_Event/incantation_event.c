@@ -13,5 +13,9 @@
 int     incantation_event(t_trantorien *trantorien, t_list *list,
 			  t_command_line *command, char **tab)
 {
+    (void)trantorien;
+    (void)list;
+    (void)command;
+    (void)tab;
   return (0);
 }

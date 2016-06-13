@@ -46,6 +46,7 @@ int		unknwon_client_event(t_ref *ref, t_list *list,
   t_team_name	*team;
   t_monitor	*monitor;
 
+  (void)list;
   if (strcmp(tab[0], GRAPHIC) == 0)
     {
       monitor = transform_to_monitor(ref);

@@ -14,7 +14,7 @@ static t_vector2d vectorDir[5] = {
         {0, 0}, {1, 0}, {0, -1}, {-1, 0}, {0, 1}
 };
 
-t_vector2d  getVectorDir(t_orientation orientation)
+static t_vector2d  getVectorDir(t_orientation orientation)
 {
     if (orientation >= N && orientation <= O)
         return (vectorDir[orientation]);
@@ -22,13 +22,19 @@ t_vector2d  getVectorDir(t_orientation orientation)
 }
 
 int	avance_event(t_trantorien *trantorien, t_list *list,
-		     t_command_line *command, char **tab)
+                    t_command_line *command, char **tab)
 {
     t_vector2d  dir;
 
     dir = getVectorDir(trantorien->orientation);
     trantorien->pos.x += dir.x;
     trantorien->pos.y += dir.y;
-  send_message("ok\n", &(trantorien->ref->client->sock));
-  return (0);
+    if (trantorien->pos.x <= 0 || trantorien->pos.x > command->x)
+        trantorien->pos.x = 0;
+    if (trantorien->pos.y <= 0 || trantorien->pos.y > command->y)
+        trantorien->pos.y = 0;
+    send_message("ok\n", &(trantorien->ref->client->sock));
+    (void)list;
+    (void)tab;
+    return (0);
 }
