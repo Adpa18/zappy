@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ## 
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Mon Jun 13 12:10:54 2016 Victor Gouet
+## Last update Mon Jun 13 13:46:44 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -49,6 +49,30 @@ SRCS		= src_server/main.c \
 		  src_server/Trantorien_Event/pose_obj_event.c \
 		  src_server/Trantorien_Event/prend_obj_event.c \
 		  src_server/Trantorien_Event/voir_event.c \
+		  src_server/Monitor_event/bct.c \
+		  src_server/Monitor_event/ebo.c \
+		  src_server/Monitor_event/edi.c \
+		  src_server/Monitor_event/eht.c \
+		  src_server/Monitor_event/enw.c \
+		  src_server/Monitor_event/msz.c \
+		  src_server/Monitor_event/pbc.c \
+		  src_server/Monitor_event/pdi.c \
+		  src_server/Monitor_event/pdr.c \
+		  src_server/Monitor_event/pex.c \
+		  src_server/Monitor_event/pfk.c \
+	 	  src_server/Monitor_event/pgt.c \
+		  src_server/Monitor_event/pic.c \
+		  src_server/Monitor_event/pie.c \
+		  src_server/Monitor_event/pin.c \
+		  src_server/Monitor_event/plv.c \
+		  src_server/Monitor_event/pnw.c \
+		  src_server/Monitor_event/ppo.c \
+		  src_server/Monitor_event/sbp.c \
+		  src_server/Monitor_event/seg.c \
+		  src_server/Monitor_event/sgt.c \
+		  src_server/Monitor_event/smg.c \
+		  src_server/Monitor_event/suc.c \
+		  src_server/Monitor_event/tna.c \
 		  src_server/Object/object.c \
 		  src_server/Object/leaveObject.c \
 		  src_server/Object/leaveObject_next.c \
