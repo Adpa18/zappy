@@ -45,6 +45,7 @@ public:
         {
 
         }
+        using std::runtime_error::what;
     };
 
 # ifdef _WIN32

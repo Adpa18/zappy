@@ -8,6 +8,7 @@
 #include <stddef.h>
 #include <map>
 #include <vector>
+#include "ZappyRequest.hpp"
 
 class Inventory
 {
@@ -25,7 +26,7 @@ public:
     };
 
 public:
-    Inventory(std::map<Object, size_t> const &stuff = {
+    Inventory(ZappyRequest *request, std::map<Object, size_t> const &stuff = {
             {FOOD, 0},
             {LINEMATE, 0},
             {DERAUMERE, 0},
@@ -33,7 +34,7 @@ public:
             {MENDIANE, 0},
             {PHIRAS, 0},
             {THYSTAME, 0}
-      }, ZappyRequest *request);
+      });
   Inventory(Inventory const &ref);
     ~Inventory();
     Inventory   &operator=(Inventory const &ref);

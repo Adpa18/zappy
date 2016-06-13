@@ -13,7 +13,7 @@ function OnStart()
 end
 
 function OnUpdate()
-    print("update");
+--    print("update");
 end
 
 function OnReceive()

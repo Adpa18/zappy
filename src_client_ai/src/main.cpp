@@ -17,6 +17,11 @@ int main(int ac, char **av)
             std::cerr << "Zappy AI:" << std::endl << "\t" << error.what() << std::endl;
         return 1;
     }
+    catch (std::exception &error)
+    {
+        std::cerr << error.what() << std::endl;
+        return 1;
+    }
     std::cout << "ip : " << core.getIp() << std::endl;
     std::cout << "port : " << core.getPort() << std::endl;
     std::cout << "team name : " << core.getTeamName() << std::endl;

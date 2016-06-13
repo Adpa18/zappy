@@ -119,14 +119,12 @@ int    Core::parseArg(int ac, char **av) throw(ParsingError)
     return (0);
 }
 
-/**
- * TODO
- *  -   UpdateLoop
- *  -   Call Receive in IA when notification from server
- */
 int Core::run(void)
 {
-  while (this->client.dead != true)
-    this->client.Update();
+  while (this->client.IsDead() != true)
+  {
+      if (this->client.Update() != 0)
+          return 1;
+  }
   return 0;
 }

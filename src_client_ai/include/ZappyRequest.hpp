@@ -86,7 +86,8 @@ private:
     int                                             nbRequest;
     std::map<Request, std::clock_t >                nextRequest;
     std::queue<std::pair<Request, std::clock_t > >  requestQueue;
-    int                                             serverT;
+    double                                          serverT;
+    std::clock_t                                    lastAnswer;
 };
 
 #endif //PSU_2015_ZAPPY_ZAPPYREQUEST_HPP

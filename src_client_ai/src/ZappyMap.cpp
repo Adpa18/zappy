@@ -7,7 +7,8 @@
 
 ZappyMap::ZappyMap(Vector2 const &dimensions, ZappyRequest *request, std::map<Vector2, std::vector<Inventory::Object> > const &map) :
     dimmensions(dimensions),
-    map(map)
+    map(map),
+    request(request)
 {
 
 }
@@ -101,16 +102,18 @@ std::vector<std::vector<Inventory::Object >> ZappyMap::getIaSight(Vector2 const 
     Vector2 decalIterator = {direction.x - direction.y, direction.x + direction.y};
     Vector2 lineIterator = {direction.y, -direction.x};
 
-    for (size_t  range = 0, lineLength = 1; range < lvl; ++range, lineLength += 2)
+    for (int range = 0, lineLength = 1; range < lvl; ++range, lineLength += 2)
     {
-        for (size_t  currLine = 0; currLine < lineLength; ++currLine)
+        for (int currLine = 0; currLine < lineLength; ++currLine)
         {
             Vector2 position = decalIterator * range + lineIterator * currLine + from;
+
+            position.limit(Vector2::Zero, dimmensions);
+
             std::map<Vector2, std::vector<Inventory::Object > >::const_iterator it = map.find(position);
 
             if (it == map.end())
             {
-                //todo ajouter un système de timer de request dans le ZappyRequest
                 if (request->CanMakeUnStackedRequest(ZappyRequest::SEE))
                 {
                     request->MakeRequest(ZappyRequest::SEE);

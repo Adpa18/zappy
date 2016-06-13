@@ -50,7 +50,7 @@ const std::map<ZappyRequest::Request, std::clock_t> ZappyRequest::requTimer = {
         {ZappyRequest::BROADCAST, 7},
         {ZappyRequest::INCANTATION, 300},
         {ZappyRequest::LAYEGG, 42},
-        {ZappyRequest::CONNECTNBR, 0}
+        {ZappyRequest::CONNECTNBR,  0}
 };
 
 const int ZappyRequest::maxRequest = 10;
@@ -80,7 +80,8 @@ ZappyRequest::ZappyRequest(IAClient *client) :
                         {ZappyRequest::Request::LAYEGG, std::clock()},
                         {ZappyRequest::Request::CONNECTNBR, std::clock()}
                 }),
-    serverT(100)
+    serverT(100),
+    lastAnswer(std::clock())
 {
 
 }
@@ -114,9 +115,8 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
         throw BadRequestException("No request found");
 
     std::string req = ZappyRequest::requests.find(request)->second + (toConcat.empty() ? "" : " " + toConcat);
-    std::map<ZappyRequest::Request, std::clock_t >::const_iterator it = ZappyRequest::requTimer.find(request);
 
-    nextRequest[request] = std::clock() + it->second;
+    nextRequest[request] = std::clock() + static_cast<std::clock_t >((static_cast<double>(getRequTimer(request)) / serverT) * CLOCKS_PER_SEC);
     requestQueue.push(std::make_pair(request, std::clock()));
     watcher.RequestServer(req, [this, request, toConcat] (std::string const &s) { ReceiveServerPong(request, s, toConcat); }, *client);
     ++nbRequest;
@@ -161,11 +161,15 @@ void ZappyRequest::ResolveState(const std::string answer)
 void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string const &answer, const std::string &param)
 {
     std::map<Request, ZappyCallback>::const_iterator    it;
-    std::clock_t duration = std::clock() - requestQueue.front().second;
+    std::clock_t duration = std::clock();
 
     lastRequest = request;
-    serverT = static_cast<int>(getRequTimer(request) / duration);
-    std::cout << "duration: " << duration <<  " => t: " << serverT << std::endl;
+    if (requestQueue.front().second <= lastAnswer)
+        duration -= lastAnswer;
+    else
+        duration -= requestQueue.front().second;
+    serverT = static_cast<double >(getRequTimer(requestQueue.front().first) * CLOCKS_PER_SEC) / static_cast<double>(duration);
+    lastAnswer = std::clock();
     requestQueue.pop();
     ResolveState(answer);
     try
@@ -252,5 +256,5 @@ std::clock_t ZappyRequest::getRequTimer(const ZappyRequest::Request &request)
 
 bool ZappyRequest::CanMakeUnStackedRequest(const ZappyRequest::Request &request) const
 {
-    return std::clock() >= nextRequest[request];
+    return std::clock() >= nextRequest.find(request)->second;
 }

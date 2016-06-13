@@ -23,7 +23,7 @@ const std::map<Inventory::Object, std::string>  Inventory::objectsName = {
  * \brief Inventory constructor for the inventory initialisation
  * \param stuff The stuff to set to the inventory, by default it has 0 to each Object enumerated in class
  */
-Inventory::Inventory(std::map<Object, size_t> const &stuff, ZappyRequest *request) :
+Inventory::Inventory(ZappyRequest *request, std::map<Object, size_t> const &stuff) :
   stuff(stuff), request(request)
 {
 
@@ -34,7 +34,7 @@ Inventory::Inventory(std::map<Object, size_t> const &stuff, ZappyRequest *reques
  * \param ref The object to copy
  */
 Inventory::Inventory(Inventory const &ref) :
-  Inventory(ref.stuff, ref.request)
+  Inventory(ref.request, ref.stuff)
 {
 
 }
@@ -109,8 +109,9 @@ void Inventory::Remove(Inventory::Object object)
  */
 std::map<Inventory::Object, size_t> const &Inventory::getStuff(void) const
 {
-  this->request.MakeRequest(STOCK);
-  return stuff;
+    if (request->CanMakeUnStackedRequest(ZappyRequest::STOCK))
+        this->request->MakeRequest(ZappyRequest::STOCK);
+    return stuff;
 }
 
 /**
@@ -124,12 +125,12 @@ void Inventory::Refresh(std::vector<std::vector<std::string> > const &content)
     Reset();
     try
     {
-        std::for_each(content.begin(), content.end(), [this] (std::vector<std::string> const &curr)
-            {
-                if (curr.size() != 2)
-                    throw std::runtime_error("Incorrect format");
-                stuff[getObjectFromName(curr[0])] = strtoul(curr[1].c_str(), NULL, 10);
-            });
+        for (std::vector<std::string> const &curr : content)
+        {
+            if (curr.size() != 2)
+                throw std::runtime_error("Incorrect format");
+            stuff[getObjectFromName(curr[0])] = strtoul(curr[1].c_str(), NULL, 10);
+        }
     }
     catch (std::exception &exception)
     {

@@ -33,9 +33,6 @@ public:
     using std::runtime_error::what;
 };
 
-/**
- * todo finish the merge of everything
- */
 class Core
 {
 public:

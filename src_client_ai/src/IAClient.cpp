@@ -5,7 +5,7 @@
 #include "IAClient.hpp"
 #include "LuaHandler.hpp"
 
-const std::string    IAClient::Default = "default.lua";
+const std::string    IAClient::Default = "./lua/default.lua";
 const std::string    IAClient::OnStart = "OnStart";
 const std::string    IAClient::OnUpdate = "OnUpdate";
 const std::string    IAClient::OnReceive = "OnReceive";
@@ -15,7 +15,7 @@ Lua::LuaClass<IAClient>::LuaPrototype    prototype = {{}, {}};
 
 IAClient::IAClient(const std::string &scriptname) :
     script(),
-    inventory(),
+    inventory(&request),
     request(this),
     map(NULL),
     position(Vector2::Zero),
@@ -51,7 +51,7 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
                 unsigned long i = answer.find(' ');
                 if (i > 0 && i != std::string::npos && i < answer.length() - 1)
                 {
-                    map = new ZappyMap(Vector2(atoi(answer.substr(0, i - 1).c_str()), atoi(answer.substr(i + 1, answer.length() - i).c_str())));
+                    map = new ZappyMap(Vector2(atoi(answer.substr(0, i - 1).c_str()), atoi(answer.substr(i + 1, answer.length() - i).c_str())), &request);
                     script.Handler()->Select(IAClient::OnStart).Call();
                     return;
                 }
@@ -62,9 +62,19 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
     throw SocketException("Unable to connect");
 }
 
-void IAClient::Update(void)
+int IAClient::Update(void)
 {
     script.Handler()->Select(IAClient::OnUpdate).Call();
+    try
+    {
+        request.Update();
+    }
+    catch (Socket::SocketException &exception)
+    {
+        std::cerr << exception.what() << std::endl;
+        return 1;
+    }
+    return 0;
 }
 
 void IAClient::Receive()
@@ -75,6 +85,7 @@ void IAClient::Receive()
 void IAClient::Die(void)
 {
     dead = true;
+    std::cout << "\e[31mPlayer die\e[0m" << std::endl;
 }
 
 bool IAClient::IsDead(void) const
