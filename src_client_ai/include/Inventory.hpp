@@ -33,8 +33,8 @@ public:
             {MENDIANE, 0},
             {PHIRAS, 0},
             {THYSTAME, 0}
-    });
-    Inventory(Inventory const &ref);
+      }, ZappyRequest *request);
+  Inventory(Inventory const &ref);
     ~Inventory();
     Inventory   &operator=(Inventory const &ref);
 
@@ -57,7 +57,8 @@ public:
     size_t &operator[](Object object);
 
 private:
-    std::map<Object, size_t> stuff;
+  std::map<Object, size_t>	stuff;
+  ZappyRequest			*request;
 };
 
 #endif //PSU_2015_ZAPPY_INVENTORY_HPP

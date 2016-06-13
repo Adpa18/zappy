@@ -23,8 +23,8 @@ const std::map<Inventory::Object, std::string>  Inventory::objectsName = {
  * \brief Inventory constructor for the inventory initialisation
  * \param stuff The stuff to set to the inventory, by default it has 0 to each Object enumerated in class
  */
-Inventory::Inventory(std::map<Object, size_t> const &stuff) :
-    stuff(stuff)
+Inventory::Inventory(std::map<Object, size_t> const &stuff, ZappyRequest *request) :
+  stuff(stuff), request(request)
 {
 
 }
@@ -34,7 +34,7 @@ Inventory::Inventory(std::map<Object, size_t> const &stuff) :
  * \param ref The object to copy
  */
 Inventory::Inventory(Inventory const &ref) :
-    Inventory(ref.stuff)
+  Inventory(ref.stuff, ref.request)
 {
 
 }
@@ -109,7 +109,8 @@ void Inventory::Remove(Inventory::Object object)
  */
 std::map<Inventory::Object, size_t> const &Inventory::getStuff(void) const
 {
-    return stuff;
+  this->request.MakeRequest(STOCK);
+  return stuff;
 }
 
 /**

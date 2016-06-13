@@ -5,7 +5,7 @@
 // Login   <tavern_d@epitech.net>
 // 
 // Started on  Wed Jun  8 11:40:42 2016 Matthieu Tavernier
-// Last update Mon Jun 13 11:46:27 2016 Matthieu Tavernier
+// Last update Mon Jun 13 13:44:39 2016 Matthieu Tavernier
 //
 
 #include "Core.hpp"
@@ -127,17 +127,6 @@ int    Core::parseArg(int ac, char **av) throw(ParsingError)
 int Core::run(void)
 {
   while (this->client.dead != true)
-    {
-      this->client.Update();
-      try
-	{
-	  this->request.Update();
-	}
-      catch (Socket::SocketException &err)
-	{
-	  std::cerr << err.what() << std::endl;
-	  return (1);
-	}
-    }
+    this->client.Update();
   return 0;
 }

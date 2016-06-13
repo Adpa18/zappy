@@ -5,7 +5,7 @@
 // Login   <tavern_d@epitech.net>
 // 
 // Started on  Wed Jun  8 11:32:26 2016 Matthieu Tavernier
-// Last update Mon Jun 13 11:43:59 2016 Matthieu Tavernier
+// Last update Mon Jun 13 13:44:25 2016 Matthieu Tavernier
 //
 
 #ifndef CORE_HPP_
@@ -77,7 +77,6 @@ private:
   std::string teamName;
   std::string fileIA;
   IAClient	client;
-  ZappyRequest	request;
 };
 
 #endif /* !CORE_HPP_ */
