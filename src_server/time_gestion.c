@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun 10 12:00:15 2016 Victor Gouet
-** Last update Fri Jun 10 18:19:43 2016 Victor Gouet
+** Last update Mon Jun 13 11:40:52 2016 Victor Gouet
 */
 
 #include <sys/time.h>
@@ -52,6 +52,17 @@ long long		getTimeSeconds()
   return (mslong);
 }
 
+bool			is_time_out_in(long long time_ref, long long time)
+{
+  long long		actual_time;
+
+  actual_time = getTimeSeconds();
+  if (time_ref + time >= actual_time)
+    {
+      return (false);
+    }
+  return (true);
+}
 
 bool			is_time_out_for(char *command, int time,
 					long long time_ref)

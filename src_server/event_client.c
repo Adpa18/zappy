@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Fri Jun 10 18:13:13 2016 Victor Gouet
+** Last update Mon Jun 13 11:55:08 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -14,7 +14,7 @@
 #include "../include_server/trantorien_event.h"
 #include "../include_server/time_gestion.h"
 
-t_event		event_player[2] = {
+static const t_event		event_player[2] = {
   {
     {"avance",
      "droite",
@@ -152,20 +152,6 @@ static int	convert_data_to_command(t_list *list,
   return (0);
 }
 
-static t_ref	*delete_all_in_client(t_list *list,
-				      t_command_line *command,
-				      t_server *server,
-				      t_ref *ref)
-{
-  remove_client_from_server(server, ref->client);
-  if (ref->type == TRANTORIEN)
-    {
-      remove_client_to_unknown_team(&(command->team_list), ref->ref);
-    }
-  ref = remove_client_to_list(list, ref);
-  return (ref);
-}
-
 static int	event_call(t_list *list, t_command_line *command,
 			   t_server *server)
 {
@@ -217,5 +203,6 @@ int	event_client(t_list *list, t_command_line *command,
       ref = ref->next;
     }
   event_call(list, command, server);
+  food_gestion_for_trantorien(list, command, server);
   return (0);
 }

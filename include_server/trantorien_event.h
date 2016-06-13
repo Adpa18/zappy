@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:56:42 2016 Victor Gouet
-** Last update Wed Jun  8 11:20:17 2016 Victor Gouet
+** Last update Mon Jun 13 12:09:04 2016 Victor Gouet
 */
 
 #ifndef TRANTORIEN_EVENT_H_
@@ -13,6 +13,7 @@
 
 # include "server.h"
 
+int	die_event(t_trantorien *trantorien);
 int	avance_event(t_trantorien *trantorien, t_list *list,
 		     t_command_line *command, char **tab);
 int     broadcast_event(t_trantorien *trantorien, t_list *list,

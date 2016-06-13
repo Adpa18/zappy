@@ -5,12 +5,13 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:47:38 2016 Victor Gouet
-** Last update Fri Jun 10 18:12:08 2016 Victor Gouet
+** Last update Mon Jun 13 11:36:35 2016 Victor Gouet
 */
 
 #include <stdio.h>
 #include <string.h>
 #include "../include_server/server.h"
+#include "../include_server/time_gestion.h"
 
 static int	trantorien_connection(t_ref *ref, t_team_name *team,
 				      t_command_line *command)
@@ -30,7 +31,8 @@ static int	trantorien_connection(t_ref *ref, t_team_name *team,
   add_client_to_team(team, trantorien);
   bzero(&(trantorien->inventaire), sizeof(t_inventories));
   trantorien->orientation = (rand() % 4) + 1;
-  trantorien->inventaire.food = 1;
+  trantorien->inventaire.food = 10;
+  trantorien->time_left_food = getTimeSeconds();
   trantorien->elevation = 1;
   trantorien->pos.x = rand() % command->x;
   trantorien->pos.y = rand() % command->y;

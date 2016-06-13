@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ## 
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Fri Jun 10 14:42:08 2016 Victor Gouet
+## Last update Mon Jun 13 12:10:54 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -35,6 +35,8 @@ SRCS		= src_server/main.c \
 		  src_server/map.c \
 		  src_server/buffer_gestion.c \
 		  src_server/time_gestion.c \
+		  src_server/food_gestion.c \
+		  src_server/Trantorien_Event/die_event.c \
 		  src_server/Trantorien_Event/avance_event.c \
 		  src_server/Trantorien_Event/broadcast_event.c \
 		  src_server/Trantorien_Event/connect_nbr_event.c \
@@ -54,7 +56,7 @@ OBJSLIB		= $(LIBS:.c=.o)
 
 CFLAGS		= -I./include -Wall -Wextra -W -I ./lib -I $(SOCKETLIB)include/ -I ./server_include/ -g
 
-LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket 
+LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket
 
 $(NAME):	$(OBJS)
 		make -C $(SOCKETLIB)

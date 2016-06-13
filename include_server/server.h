@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Fri Jun 10 17:58:23 2016 Victor Gouet
+** Last update Mon Jun 13 11:54:15 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -17,6 +17,7 @@
 # define EVENTSIZE	25
 # define GRAPHIC	"GRAPHIC"
 # define BIENVENUE	"BIENVENUE\n"
+# define UNITEDLIFE	126
 
 typedef enum
   {
@@ -88,6 +89,7 @@ typedef struct	s_trantorien
   char		*team;
   int		elevation;
   t_inventories	inventaire;
+  long long	time_left_food;
   t_orientation	orientation;
   t_vector2d	pos;
   struct s_trantorien	*next_on_team;
@@ -107,6 +109,14 @@ typedef struct	s_list
   int		nbr_client;
   t_map		*map;
 }		t_list;
+
+/*
+**	food_gestion.c
+*/
+
+int	        food_gestion_for_trantorien(t_list *list,
+					    t_command_line *command,
+					    t_server *server);
 
 /*
 **	buffer_gestion.c
@@ -176,6 +186,10 @@ void		delete_command(char **command, char *buffer);
 */
 
 t_ref	*remove_client_to_list(t_list *list, t_ref *ref);
+t_ref	*delete_all_in_client(t_list *list,
+			      t_command_line *command,
+			      t_server *server,
+			      t_ref *ref);
 
 /*
 **	event_client.c
