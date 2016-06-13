@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Mon Jun 13 15:17:53 2016 Victor Gouet
+** Last update Tue Jun 14 00:58:56 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -73,55 +73,55 @@ static const t_event		event_player[2] = {
   },
   {
     {"bct",
-     "ebo",
-     "edi",
-     "eht",
-     "enw",
+     "sst",
+     NULL,
+     NULL,
+     NULL,
      "msz",
-     "pbc",
-     "pdi",
-     "pdr",
-     "pex",
-     "pfk",
-     "pgt",
-     "pic",
-     "pie",
+     NULL,
+     NULL,
+     NULL,
+     NULL,
+     NULL,
+     NULL,
+     NULL,
+     NULL,
      "pin",
      "plv",
-     "pnw",
+     NULL,
      "ppo",
-     "sbp",
-     "seg",
+     NULL,
+     NULL,
      "sgt",
-     "smg",
-     "suc",
+     NULL,
+     NULL,
      "tna",
      "mct",
     },
     {
       bct_event,
-      ebo_event,
-      edi_event,
-      eht_event,
-      enw_event,
+      sst_event,
+      NULL,
+      NULL,
+      NULL,
       msz_event,
-      pbc_event,
-      pdi_event,
-      pdr_event,
-      pex_event,
-      pfk_event,
-      pgt_event,
-      pic_event,
-      pie_event,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
       pin_event,
       plv_event,
-      pnw_event,
+      NULL,
       ppo_event,
-      sbp_event,
-      seg_event,
+      NULL,
+      NULL,
       sgt_event,
-      smg_event,
-      suc_event,
+      NULL,
+      NULL,
       tna_event,
       mct_event
     }
@@ -195,7 +195,8 @@ int	event_client(t_list *list, t_command_line *command,
 	{
 	  if ((data = get_crlf_line(ref->client)) == NULL)
 	    {
-	      ref = delete_all_in_client(list, command, server, ref);
+	      ref = remove_client_if_trantorien_change_state(list, command,
+							     server, ref);
 	      continue;
 	    }
 	  if (ref->buffer_size < 10 && data[0])
@@ -205,5 +206,6 @@ int	event_client(t_list *list, t_command_line *command,
     }
   event_call(list, command, server);
   food_gestion_for_trantorien(list, command, server);
+  on_gestion_egg(command, list);
   return (0);
 }
