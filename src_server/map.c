@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 09:46:02 2016 Victor Gouet
-** Last update Wed Jun  8 10:36:50 2016 Victor Gouet
+** Last update Mon Jun 13 15:04:31 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -45,7 +45,7 @@ void			generate_random_ressources(t_map *map)
       x = 0;
       while (x < map->width)
 	{
-	  map->map[y][x].food += rand() % 200;
+	  map->map[y][x].food += rand() % 2;
 	  map->map[y][x].linemate += rand() % 2;
 	  map->map[y][x].deraumere += rand() % 2;
 	  map->map[y][x].sibur += rand() % 2;

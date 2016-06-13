@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Mon Jun 13 14:10:48 2016 Victor Gouet
+** Last update Mon Jun 13 15:17:53 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -96,7 +96,7 @@ static const t_event		event_player[2] = {
      "smg",
      "suc",
      "tna",
-     "",
+     "mct",
     },
     {
       bct_event,
@@ -123,7 +123,7 @@ static const t_event		event_player[2] = {
       smg_event,
       suc_event,
       tna_event,
-      NULL
+      mct_event
     }
   }
 };

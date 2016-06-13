@@ -5,13 +5,21 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:32:18 2016 Victor Gouet
-** Last update Mon Jun 13 13:35:46 2016 Victor Gouet
+** Last update Mon Jun 13 15:52:07 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
 
-int	tna_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab)
+int		tna_event(t_monitor *monitor, t_list *list,
+			  t_command_line *command, char **tab)
 {
+  t_team_name	*team;
+
+  team = command->team_list.begin;
+  while (team)
+    {
+      sendf_message(&(monitor->ref->client->sock), "tna %s\n", team->name);
+      team = team->next;
+    }
   return (0);
 }

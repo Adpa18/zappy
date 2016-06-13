@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:36:07 2016 Victor Gouet
-** Last update Mon Jun 13 14:00:07 2016 Victor Gouet
+** Last update Mon Jun 13 15:17:00 2016 Victor Gouet
 */
 
 #ifndef MONITOR_EVENT_H_
@@ -60,6 +60,8 @@ int	smg_event(t_monitor *monitor, t_list *list,
 int	suc_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab);
 int	tna_event(t_monitor *monitor, t_list *list,
+		  t_command_line *command, char **tab);
+int     mct_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab);
 
 #endif
