@@ -8,10 +8,29 @@
 ** Last update Wed Jun  8 11:21:59 2016 Victor Gouet
 */
 
+#include "object.h"
 #include "../../include_server/trantorien_event.h"
+
+static const objectPtr leaveObjectFunc[] = {
+        leaveFood, leaveLinemate, leaveDeraumere, leaveSibure,
+        leaveMediane, leavePhiras, leaveThystame
+};
 
 int     pose_obj_event(t_trantorien *trantorien, t_list *list,
 		       t_command_line *command, char **tab)
 {
-  return (0);
+    int     ret;
+    int     object_type;
+
+    ret = 1;
+    if ((object_type = getObject(tab[1])) != -1)
+        ret = leaveObjectFunc[object_type](&(trantorien->inventaire),
+                                           &(list->map->map[trantorien->pos.y]
+                                           [trantorien->pos.x]));
+    if (ret == 0)
+        send_message("ok\n", &(trantorien->ref->client->sock));
+    else
+        send_message("ko\n", &(trantorien->ref->client->sock));
+    (void)command;
+    return (ret);
 }

@@ -5,11 +5,12 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:52:48 2016 Victor Gouet
-** Last update Wed Jun  8 14:35:18 2016 Victor Gouet
+** Last update Fri Jun 10 16:00:53 2016 Victor Gouet
 */
 
 #include <stdlib.h>
 #include "../include_server/server.h"
+#include "../include_server/time_gestion.h"
 
 static int	struct_size[3] = {
   sizeof(t_trantorien) + sizeof(t_ref),
@@ -33,6 +34,7 @@ void	*add_client_to_list(t_list *list, t_type type,
   if ((ref = malloc(struct_size[type])) == NULL)
     return (NULL);
   ++(list->nbr_client);
+  ref->time_ref = 0;
   ref->ref = NULL;
   ref->next = NULL;
   ref->type = type;

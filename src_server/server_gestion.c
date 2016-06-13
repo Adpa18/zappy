@@ -5,20 +5,23 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Wed Jun  8 11:36:47 2016 Victor Gouet
+** Last update Fri Jun 10 17:44:40 2016 Victor Gouet
 */
 
 #include <sys/select.h>
 #include <stdio.h>
 #include "../include_server/server.h"
 
-static int	init_select(fd_set *fds,
-			    int const server,
-			    t_list *list)
+static int		init_select(fd_set *fds,
+				    int const server,
+				    t_list *list)
 {
-  t_ref		*elem;
+  t_ref			*elem;
+  struct timeval	timeout;
 
   FD_ZERO(fds);
+  timeout.tv_sec = 0;
+  timeout.tv_usec = 1000;
   FD_SET(server, fds);
   elem = list->begin;
   while (elem)
@@ -26,7 +29,7 @@ static int	init_select(fd_set *fds,
       FD_SET(elem->client->sock.sock, fds);
       elem = elem->next;
     }
-  if (select(list->max_fd + 1, fds, NULL, NULL, NULL) == -1)
+  if (select(list->max_fd + 1, fds, NULL, NULL, &timeout) == -1)
     {
       fprintf(stderr, "select failed\n");
       return (-1);
@@ -71,7 +74,7 @@ void		server_run(t_command_line *command)
 	}
       else
 	event_client(&list, command, &fds, server);
-      display_team(&(command->team_list));
+      /* display_team(&(command->team_list)); */
     }
   delete_server(server);
 }

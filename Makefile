@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ## 
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Wed Jun  8 14:31:04 2016 Victor Gouet
+## Last update Fri Jun 10 14:42:08 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -34,6 +34,7 @@ SRCS		= src_server/main.c \
 		  src_server/team_gestion.c \
 		  src_server/map.c \
 		  src_server/buffer_gestion.c \
+		  src_server/time_gestion.c \
 		  src_server/Trantorien_Event/avance_event.c \
 		  src_server/Trantorien_Event/broadcast_event.c \
 		  src_server/Trantorien_Event/connect_nbr_event.c \
@@ -46,12 +47,19 @@ SRCS		= src_server/main.c \
 		  src_server/Trantorien_Event/pose_obj_event.c \
 		  src_server/Trantorien_Event/prend_obj_event.c \
 		  src_server/Trantorien_Event/voir_event.c \
+		  src_server/Object/object.c \
+		  src_server/Object/leaveObject.c \
+		  src_server/Object/leaveObject_next.c \
+		  src_server/Object/takeObject.c \
+		  src_server/Object/takeObject_next.c \
 
 OBJS		= $(SRCS:.c=.o)
 
 OBJSLIB		= $(LIBS:.c=.o)
 
-CFLAGS		= -I./include -Wall -Wextra -W -I ./lib -I $(SOCKETLIB)include/ -I ./server_include/ -g
+CFLAGS      =   -Wall -Wextra -W -g
+
+CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/
 
 LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket 
 

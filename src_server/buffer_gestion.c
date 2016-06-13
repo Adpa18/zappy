@@ -5,18 +5,20 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 14:14:09 2016 Victor Gouet
-** Last update Wed Jun  8 14:43:20 2016 Victor Gouet
+** Last update Fri Jun 10 11:49:47 2016 Victor Gouet
 */
 
 #include <stdio.h>
 #include "../include_server/server.h"
 
-void		buffer_push_back(t_ref *ref, char *buffer)
+void		buffer_push_back(t_ref *ref, char *buffer,
+				 char **tab)
 {
   t_buffer	*elem;
 
   if ((elem = malloc(sizeof(t_buffer))) == NULL)
     return ;
+  elem->tab = tab;
   elem->next = NULL;
   ++(ref->buffer_size);
   elem->buffer = buffer;
@@ -41,6 +43,7 @@ void		buffer_pop_front(t_ref *ref)
   if (ref->end == ref->begin)
     ref->end = NULL;
   ref->begin = ref->begin->next;
+  delete_command(elem->tab, elem->buffer);
   free(elem);
   --(ref->buffer_size);
 }

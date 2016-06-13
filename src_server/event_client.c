@@ -5,13 +5,14 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Wed Jun  8 14:46:51 2016 Victor Gouet
+** Last update Fri Jun 10 18:13:13 2016 Victor Gouet
 */
 
 #include <string.h>
 #include <stdio.h>
 #include "../include_server/server.h"
 #include "../include_server/trantorien_event.h"
+#include "../include_server/time_gestion.h"
 
 t_event		event_player[2] = {
   {
@@ -126,36 +127,29 @@ t_event		event_player[2] = {
   }
 };
 
-static int	convert_data_to_command(char *data,
-					t_list *list,
+static int	convert_data_to_command(t_list *list,
 					t_ref *ref,
 					t_command_line *command)
 {
-  char		**tab;
   int		idx;
-  int		ret_value;
 
-  ret_value = 0;
   idx = -1;
-  if ((tab = str_to_word_tab(data)) == NULL)
-    return (-1);
-  if (!tab[0])
-    return (delete_command(tab, data), 0);
+  if (!ref->begin || !ref->begin->tab || !ref->begin->tab[0])
+    return (0);
   if (ref->type == UNKNOWN)
-    unknwon_client_event(ref, list, command, tab);
+    return (unknwon_client_event(ref, list, command, ref->begin->tab));
   else
     while (++idx < EVENTSIZE)
       {
 	if (event_player[ref->type].event_name[idx]
 	    && event_player[ref->type].callBack[idx]
-	    && strcmp(event_player[ref->type].event_name[idx], tab[0]) == 0)
-	  {
-	    ret_value = event_player[ref->type].callBack[idx](ref->ref, list,
-							     command, tab);
-	    break;
-	  }
+	    && strcmp(event_player[ref->type].event_name[idx],
+		      ref->begin->tab[0]) == 0)
+	  return (event_player[ref->type].callBack[idx](ref->ref, list,
+							command,
+							ref->begin->tab));
       }
-  return (delete_command(tab, data), ret_value);
+  return (0);
 }
 
 static t_ref	*delete_all_in_client(t_list *list,
@@ -180,12 +174,20 @@ static int	event_call(t_list *list, t_command_line *command,
   ref = list->begin;
   while (ref)
     {
-        // TODO set timeout of cmd and execute when timeout <= 0
-      display_buffer_from_client(ref);
-      if (ref->buffer_size > 0 && ref->begin)
+      if (ref->buffer_size > 0 && ref->time_ref == 0)
 	{
-	  convert_data_to_command(ref->begin->buffer,
-				  list, ref, command);
+	  ref->time_ref = getTimeSeconds();
+	}
+      if (ref->buffer_size > 0
+	  && ref->begin
+	  && is_time_out_for(ref->begin->tab[0], command->time, ref->time_ref))
+	{
+	  if (convert_data_to_command(list, ref, command) == -1)
+	    {
+	      ref = delete_all_in_client(list, command, server, ref);
+	      continue;
+	    }
+	  ref->time_ref = 0;
 	  buffer_pop_front(ref);
 	}
       ref = ref->next;
@@ -210,7 +212,7 @@ int	event_client(t_list *list, t_command_line *command,
 	      continue;
 	    }
 	  if (ref->buffer_size < 10 && data[0])
-	    buffer_push_back(ref, data);
+	    buffer_push_back(ref, data, str_to_word_tab(data));
 	}
       ref = ref->next;
     }
