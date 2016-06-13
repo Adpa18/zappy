@@ -13,7 +13,12 @@
 int     inventaire_event(t_trantorien *trantorien, t_list *list,
 			 t_command_line *command, char **tab)
 {
-    (void)trantorien;
+    sendf_message(&(trantorien->ref->client->sock),
+                  START_INVETAIRE END_INVENTAIRE,
+                  trantorien->inventaire.food, trantorien->inventaire.linemate,
+                  trantorien->inventaire.deraumere, trantorien->inventaire.sibur,
+                  trantorien->inventaire.mendiane, trantorien->inventaire.phiras,
+                  trantorien->inventaire.thystame);
     (void)list;
     (void)command;
     (void)tab;

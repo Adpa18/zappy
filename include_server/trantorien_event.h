@@ -13,6 +13,9 @@
 
 # include "server.h"
 
+#define START_INVETAIRE "{nourriture %d, linemate %d, deraumere %d, "
+#define END_INVENTAIRE  "sibur %d, mendiane %d, phiras %d, thystame %d}"
+
 int	avance_event(t_trantorien *trantorien, t_list *list,
 		     t_command_line *command, char **tab);
 int     broadcast_event(t_trantorien *trantorien, t_list *list,

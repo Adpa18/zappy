@@ -18,6 +18,8 @@ int		connect_nbr_event(t_trantorien *trantorien, t_list *list,
   if ((team = get_team(&command->team_list,
 		       !trantorien->team ? "" : trantorien->team)))
     {
+        sendf_message(&(trantorien->ref->client->sock), "%d\n",
+                      command->nb_client - team->nbr_client);
     }
     (void)list;
     (void)tab;
