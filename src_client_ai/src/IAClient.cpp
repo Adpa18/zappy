@@ -16,6 +16,7 @@ Lua::LuaClass<IAClient>::LuaPrototype    prototype = {{}, {}};
 IAClient::IAClient(const std::string &scriptname) :
     script(),
     inventory(),
+    request(this),
     map(NULL),
     position(Vector2::Zero),
     orientation(Vector2::UP),

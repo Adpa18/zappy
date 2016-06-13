@@ -6,8 +6,8 @@
 #define PSU_2015_ZAPPY_ZAPPYREQUEST_HPP
 
 #include <stddef.h>
+#include <ctime>
 #include <NetworkWatcher.hpp>
-#include "IAClient.hpp"
 
 class BadRequestException : public std::runtime_error
 {
@@ -24,9 +24,8 @@ public:
     using std::runtime_error::what;
 };
 
-/**
- * todo add a callback on turn right/left finish see callback
- */
+class IAClient;
+
 class ZappyRequest
 {
 public:
@@ -51,10 +50,12 @@ public:
 private:
     static const std::map<Request, std::string> requests;
     static const std::map<Request, ZappyCallback> callbacks;
+    static const std::map<Request, std::clock_t > requTimer;
     static const int maxRequest;
+    static std::clock_t getRequTimer(Request const &request);
 
 public:
-    ZappyRequest(IAClient &toWatch);
+    ZappyRequest(IAClient *client);
     ZappyRequest(ZappyRequest const &ref);
     ~ZappyRequest();
     ZappyRequest    &operator=(ZappyRequest const &ref) = delete;
@@ -63,6 +64,7 @@ public:
     void MakeRequest(Request request, std::string const &toConcat = "") throw(BadRequestException);
     void Update();
     bool IsARequest(Request request) const;
+    bool CanMakeUnStackedRequest(Request const &request) const;
 
 private:
     void ReceiveServerPong(Request request, std::string const &answer, std::string const &param);
@@ -77,11 +79,14 @@ private:
     void ResolveState(const std::string answer);
 
 private:
-    IAClient        &client;
-    NetworkWatcher  watcher;
-    Request         lastRequest;
-    bool            status;
-    int             nbRequest;
+    IAClient                                        *client;
+    NetworkWatcher                                  watcher;
+    Request                                         lastRequest;
+    bool                                            status;
+    int                                             nbRequest;
+    std::map<Request, std::clock_t >                nextRequest;
+    std::queue<std::pair<Request, std::clock_t > >  requestQueue;
+    int                                             serverT;
 };
 
 #endif //PSU_2015_ZAPPY_ZAPPYREQUEST_HPP

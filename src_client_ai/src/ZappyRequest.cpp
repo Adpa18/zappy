@@ -4,6 +4,8 @@
 
 #include <ActionHandler.hpp>
 #include <ZappyData.hpp>
+#include <Inventory.hpp>
+#include <IAClient.hpp>
 #include "ZappyRequest.hpp"
 
 /**
@@ -36,20 +38,49 @@ const std::map<ZappyRequest::Request, ZappyRequest::ZappyCallback> ZappyRequest:
         {ZappyRequest::DROP, &ZappyRequest::Req_dropObj}
 };
 
+const std::map<ZappyRequest::Request, std::clock_t> ZappyRequest::requTimer = {
+        {ZappyRequest::MOVE, 7},
+        {ZappyRequest::RIGHT, 7},
+        {ZappyRequest::LEFT, 7},
+        {ZappyRequest::SEE, 7},
+        {ZappyRequest::STOCK, 1},
+        {ZappyRequest::TAKE, 7},
+        {ZappyRequest::DROP, 7},
+        {ZappyRequest::EXPULSE, 7},
+        {ZappyRequest::BROADCAST, 7},
+        {ZappyRequest::INCANTATION, 300},
+        {ZappyRequest::LAYEGG, 42},
+        {ZappyRequest::CONNECTNBR, 0}
+};
+
 const int ZappyRequest::maxRequest = 10;
 
 /**
  * \brief Constructor in which you have to give a reference on the client you make requests
  */
-ZappyRequest::ZappyRequest(IAClient &toWatch) :
-    client(toWatch),
+ZappyRequest::ZappyRequest(IAClient *client) :
+    client(client),
     watcher({
-                    {"mort", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string), std::string>(client, (void (IAClient::*)(std::string))&IAClient::Die)},
-                    {"niveau actuel : ", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(client, &IAClient::Upgrade)}
+                    {"mort", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string), std::string>(*client, (void (IAClient::*)(std::string))&IAClient::Die)},
+                    {"niveau actuel : ", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(*client, &IAClient::Upgrade)}
             }),
     lastRequest(DEFAULT),
     status(false),
-    nbRequest(0)
+    nbRequest(0),
+    nextRequest({
+                        {ZappyRequest::Request::MOVE, std::clock()},
+                        {ZappyRequest::Request::RIGHT, std::clock()},
+                        {ZappyRequest::Request::LEFT, std::clock()},
+                        {ZappyRequest::Request::STOCK, std::clock()},
+                        {ZappyRequest::Request::TAKE, std::clock()},
+                        {ZappyRequest::Request::DROP, std::clock()},
+                        {ZappyRequest::Request::EXPULSE, std::clock()},
+                        {ZappyRequest::Request::BROADCAST, std::clock()},
+                        {ZappyRequest::Request::INCANTATION, std::clock()},
+                        {ZappyRequest::Request::LAYEGG, std::clock()},
+                        {ZappyRequest::Request::CONNECTNBR, std::clock()}
+                }),
+    serverT(100)
 {
 
 }
@@ -83,8 +114,11 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
         throw BadRequestException("No request found");
 
     std::string req = ZappyRequest::requests.find(request)->second + (toConcat.empty() ? "" : " " + toConcat);
+    std::map<ZappyRequest::Request, std::clock_t >::const_iterator it = ZappyRequest::requTimer.find(request);
 
-    watcher.RequestServer(req, [this, request, toConcat] (std::string const &s) { ReceiveServerPong(request, s, toConcat); }, client);
+    nextRequest[request] = std::clock() + it->second;
+    requestQueue.push(std::make_pair(request, std::clock()));
+    watcher.RequestServer(req, [this, request, toConcat] (std::string const &s) { ReceiveServerPong(request, s, toConcat); }, *client);
     ++nbRequest;
 }
 
@@ -93,7 +127,7 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
  */
 void ZappyRequest::Update()
 {
-    watcher.Update(client);
+    watcher.Update(*client);
 }
 
 /**
@@ -127,15 +161,19 @@ void ZappyRequest::ResolveState(const std::string answer)
 void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string const &answer, const std::string &param)
 {
     std::map<Request, ZappyCallback>::const_iterator    it;
+    std::clock_t duration = std::clock() - requestQueue.front().second;
 
     lastRequest = request;
+    serverT = static_cast<int>(getRequTimer(request) / duration);
+    std::cout << "duration: " << duration <<  " => t: " << serverT << std::endl;
+    requestQueue.pop();
     ResolveState(answer);
     try
     {
         it = callbacks.find(request);
         if (it != callbacks.end())
             (*this.*it->second)(answer, param);
-        client.Receive();
+        client->Receive();
     }
     catch (std::exception &exception)
     {
@@ -159,7 +197,7 @@ void ZappyRequest::Req_seeForward(const std::string &answer, const std::string &
  */
 void ZappyRequest::Req_stockInventory(const std::string &answer, const std::string &)
 {
-    client.Bag().Refresh(ZappyData::deserialize(answer));
+    client->Bag().Refresh(ZappyData::deserialize(answer));
 }
 
 /**
@@ -169,7 +207,7 @@ void ZappyRequest::Req_stockInventory(const std::string &answer, const std::stri
 void ZappyRequest::Req_incantation(const std::string &answer, const std::string &)
 {
     if (answer == "elevation en cours")
-        client.Incant();
+        client->Incant();
 }
 
 /**
@@ -178,7 +216,7 @@ void ZappyRequest::Req_incantation(const std::string &answer, const std::string 
  */
 void ZappyRequest::Req_connectNbr(const std::string &answer, const std::string &)
 {
-    client.setMissingPeople(strtoul(answer.c_str(), NULL, 10));
+    client->setMissingPeople(strtoul(answer.c_str(), NULL, 10));
 }
 
 /**
@@ -189,7 +227,7 @@ void ZappyRequest::Req_connectNbr(const std::string &answer, const std::string &
 void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
 {
     if (status)
-        client.Bag().Add(Inventory::getObjectFromName(param));
+        client->Bag().Add(Inventory::getObjectFromName(param));
 }
 
 /**
@@ -200,5 +238,19 @@ void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
 void ZappyRequest::Req_dropObj(const std::string &, const std::string &param)
 {
     if (status)
-        client.Bag().Remove(Inventory::getObjectFromName(param));
+        client->Bag().Remove(Inventory::getObjectFromName(param));
+}
+
+std::clock_t ZappyRequest::getRequTimer(const ZappyRequest::Request &request)
+{
+    std::map<ZappyRequest::Request, std::clock_t>::const_iterator   it = requTimer.find(request);
+
+    if (it == requTimer.end())
+        throw BadRequestException("No such request: " + std::to_string(request));
+    return it->second;
+}
+
+bool ZappyRequest::CanMakeUnStackedRequest(const ZappyRequest::Request &request) const
+{
+    return std::clock() >= nextRequest[request];
 }

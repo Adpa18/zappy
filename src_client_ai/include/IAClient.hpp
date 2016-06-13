@@ -10,6 +10,7 @@
 #include "Inventory.hpp"
 #include "Vector2.hpp"
 #include "ZappyMap.hpp"
+#include "ZappyRequest.hpp"
 
 /**
  * TODO: Sight => ZappyMap
@@ -52,6 +53,7 @@ public:
 private:
     Lua::LuaScript      script;
     Inventory           inventory;
+    ZappyRequest        request;
     ZappyMap            *map;
     Vector2             position;
     Vector2::DIR        orientation;
