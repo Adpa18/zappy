@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Mon Jun 13 11:55:08 2016 Victor Gouet
+** Last update Mon Jun 13 14:10:48 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -13,6 +13,7 @@
 #include "../include_server/server.h"
 #include "../include_server/trantorien_event.h"
 #include "../include_server/time_gestion.h"
+#include "../include_server/monitor_event.h"
 
 static const t_event		event_player[2] = {
   {
@@ -71,57 +72,57 @@ static const t_event		event_player[2] = {
     }
   },
   {
-    {"",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
-     "",
+    {"bct",
+     "ebo",
+     "edi",
+     "eht",
+     "enw",
+     "msz",
+     "pbc",
+     "pdi",
+     "pdr",
+     "pex",
+     "pfk",
+     "pgt",
+     "pic",
+     "pie",
+     "pin",
+     "plv",
+     "pnw",
+     "ppo",
+     "sbp",
+     "seg",
+     "sgt",
+     "smg",
+     "suc",
+     "tna",
      "",
     },
     {
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
+      bct_event,
+      ebo_event,
+      edi_event,
+      eht_event,
+      enw_event,
+      msz_event,
+      pbc_event,
+      pdi_event,
+      pdr_event,
+      pex_event,
+      pfk_event,
+      pgt_event,
+      pic_event,
+      pie_event,
+      pin_event,
+      plv_event,
+      pnw_event,
+      ppo_event,
+      sbp_event,
+      seg_event,
+      sgt_event,
+      smg_event,
+      suc_event,
+      tna_event,
       NULL
     }
   }
