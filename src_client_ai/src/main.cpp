@@ -1,5 +1,6 @@
 #include <iomanip>
 #include <Socket.hpp>
+#include <stdexcept>
 #include "Core.hpp"
 
 int main(int ac, char **av)
