@@ -8,25 +8,13 @@
 #include "Client.hpp"
 #include "LuaScript.hpp"
 #include "Inventory.hpp"
+#include "Vector2.hpp"
 
 /**
  * TODO: Sight => ZappyMap
  */
 class IAClient : public Client
 {
-public:
-    struct Vector2
-    {
-    public:
-        Vector2 &operator=(Vector2 const &ref)
-        {
-            x = ref.x;
-            y = ref.y;
-            return *this;
-        }
-        int x, y;
-    };
-
 public:
     static const std::string                                Default;
     static const std::string                                OnStart;
@@ -41,6 +29,8 @@ public:
     virtual ~IAClient();
     IAClient(IAClient const &ref) = delete;
     IAClient    &operator=(IAClient const &ref) = delete;
+
+public:
     void Die(void);
     bool IsDead(void) const;
     void Upgrade(const std::string &);

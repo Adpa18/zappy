@@ -62,7 +62,7 @@ void IAClient::Receive()
     script.Handler()->Select(IAClient::OnReceive).Call();
 }
 
-const IAClient::Vector2 &IAClient::getMapDimmensions(void) const
+const Vector2 &IAClient::getMapDimmensions(void) const
 {
     return mapDimensions;
 }

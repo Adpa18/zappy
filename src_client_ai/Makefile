@@ -30,6 +30,8 @@ SRCS		=	Core.cpp		\
 			ZappyData.cpp		\
 			ZappyRequest.cpp    \
 			Inventory.cpp       \
+			Vector2.cpp         \
+			ZappyMap.cpp        \
 			main.cpp
 
 OBJS		=	$(addprefix $(SRCDIR), $(SRCS:.cpp=.o))
