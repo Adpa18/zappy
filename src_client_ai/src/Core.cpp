@@ -5,7 +5,7 @@
 // Login   <tavern_d@epitech.net>
 // 
 // Started on  Wed Jun  8 11:40:42 2016 Matthieu Tavernier
-// Last update Wed Jun  8 15:37:58 2016 Matthieu Tavernier
+// Last update Mon Jun 13 11:46:27 2016 Matthieu Tavernier
 //
 
 #include "Core.hpp"
@@ -115,16 +115,29 @@ int    Core::parseArg(int ac, char **av) throw(ParsingError)
     }
     if (this->teamName == "" || this->ip == "" || this->port == -1)
         throw ParsingError(av[0], usage);
+    this->client.Connect(this->ip, this->port, this->teamName);
     return (0);
 }
 
 /**
  * TODO
- *  -   Connect IA
  *  -   UpdateLoop
  *  -   Call Receive in IA when notification from server
  */
 int Core::run(void)
 {
-    return 0;
+  while (this->client.dead != true)
+    {
+      this->client.Update();
+      try
+	{
+	  this->request.Update();
+	}
+      catch (Socket::SocketException &err)
+	{
+	  std::cerr << err.what() << std::endl;
+	  return (1);
+	}
+    }
+  return 0;
 }
