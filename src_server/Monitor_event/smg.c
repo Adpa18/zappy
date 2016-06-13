@@ -5,13 +5,17 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:41:15 2016 Victor Gouet
-** Last update Mon Jun 13 14:03:19 2016 Victor Gouet
+** Last update Tue Jun 14 01:36:02 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
+#include "../../stringLib/storage.h"
 
-int	smg_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab)
+int	smg_event(char *msg, t_list *list)
 {
+  char	*str;
+
+  str = STRING("smg %s\n", msg);
+  send_msg_to_all_monitor(str, list);
   return (0);
 }

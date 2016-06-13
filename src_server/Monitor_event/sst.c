@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 21:16:27 2016 Victor Gouet
-** Last update Mon Jun 13 21:21:18 2016 Victor Gouet
+** Last update Tue Jun 14 01:30:56 2016 Victor Gouet
 */
 
 #include "../../stringLib/storage.h"
@@ -15,7 +15,7 @@ int     sst_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab)
 {
   if (!tab[1])
-    return (sbp_event(monitor, list, command, tab));
+    return (sbp_event(monitor));
   command->time = atoi(tab[1]);
   sgt_event(monitor, list, command, tab);
   return (0);

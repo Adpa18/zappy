@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Tue Jun 14 00:58:56 2016 Victor Gouet
+** Last update Tue Jun 14 01:34:11 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -150,6 +150,8 @@ static int	convert_data_to_command(t_list *list,
 							command,
 							ref->begin->tab));
       }
+  if (ref->type == MONITOR)
+    suc_event(ref->ref);
   return (0);
 }
 
@@ -162,9 +164,7 @@ static int	event_call(t_list *list, t_command_line *command,
   while (ref)
     {
       if (ref->buffer_size > 0 && ref->time_ref == 0)
-	{
-	  ref->time_ref = getTimeSeconds();
-	}
+	ref->time_ref = getTimeSeconds();
       if (ref->buffer_size > 0
 	  && ref->begin
 	  && is_time_out_for(ref->begin->tab[0], command->time, ref->time_ref))
@@ -178,6 +178,21 @@ static int	event_call(t_list *list, t_command_line *command,
 	  buffer_pop_front(ref);
 	}
       ref = ref->next;
+    }
+  return (0);
+}
+
+static int	event_gestion(t_list *list, t_command_line *command,
+			      t_server *server)
+{
+  t_trantorien	*trantorien;
+
+  event_call(list, command, server);
+  food_gestion_for_trantorien(list, command, server);
+  on_gestion_egg(command, list);
+  if ((trantorien = get_trantorien_with_max_elevation(list)))
+    {
+      seg_event(trantorien, list);
     }
   return (0);
 }
@@ -204,8 +219,6 @@ int	event_client(t_list *list, t_command_line *command,
 	}
       ref = ref->next;
     }
-  event_call(list, command, server);
-  food_gestion_for_trantorien(list, command, server);
-  on_gestion_egg(command, list);
+  event_gestion(list, command, server);
   return (0);
 }

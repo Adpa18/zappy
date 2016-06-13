@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Tue Jun 14 00:58:42 2016 Victor Gouet
+** Last update Tue Jun 14 01:22:56 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -122,6 +122,12 @@ typedef struct	s_list
   int		nbr_client;
   t_map		*map;
 }		t_list;
+
+/*
+**	end_of_game.c
+*/
+
+t_trantorien	*get_trantorien_with_max_elevation(t_list *list);
 
 /*
 **	egg_gestion.c

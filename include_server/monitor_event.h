@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:36:07 2016 Victor Gouet
-** Last update Tue Jun 14 01:01:38 2016 Victor Gouet
+** Last update Tue Jun 14 01:37:09 2016 Victor Gouet
 */
 
 #ifndef MONITOR_EVENT_H_
@@ -47,16 +47,12 @@ int	plv_event(t_monitor *monitor, t_list *list,
 int	pnw_event(t_trantorien *, t_list *);
 int	ppo_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab);
-int	sbp_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab);
-int	seg_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab);
+int	sbp_event(t_monitor *monitor);
+int	seg_event(t_trantorien *trantorien, t_list *list);
 int	sgt_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab);
-int	smg_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab);
-int	suc_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab);
+int	smg_event(char *msg, t_list *list);
+int	suc_event(t_monitor *monitor);
 int	tna_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab);
 int     mct_event(t_monitor *monitor, t_list *list,
