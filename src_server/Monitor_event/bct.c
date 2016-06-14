@@ -5,10 +5,11 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:38:59 2016 Victor Gouet
-** Last update Tue Jun 14 01:29:44 2016 Victor Gouet
+** Last update Tue Jun 14 17:11:34 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
+#include "../../stringLib/storage.h"
 
 int	bct_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab)
@@ -32,5 +33,28 @@ int	bct_event(t_monitor *monitor, t_list *list,
 		list->map->map[y][x].mendiane,
 		list->map->map[y][x].phiras,
 		list->map->map[y][x].thystame);
+  return (0);
+}
+
+int	bct_event_to_all_monitor(t_list *list, int x, int y)
+{
+  char	*msg;
+
+  if (x >= list->map->width || y >= list->map->height || x < 0 || y < 0)
+    return (0);
+  msg = STRING("bct %d %d %d %d %d %d %d %d %d\n",
+	       x, y,
+	       list->map->map[y][x].food,
+	       list->map->map[y][x].linemate,
+	       list->map->map[y][x].deraumere,
+	       list->map->map[y][x].sibur,
+	       list->map->map[y][x].mendiane,
+	       list->map->map[y][x].phiras,
+	       list->map->map[y][x].thystame);
+  if (msg)
+    {
+      send_msg_to_all_monitor(msg, list);
+      free(msg);
+    }
   return (0);
 }
