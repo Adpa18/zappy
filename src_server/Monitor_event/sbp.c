@@ -5,13 +5,13 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:37:49 2016 Victor Gouet
-** Last update Mon Jun 13 14:01:22 2016 Victor Gouet
+** Last update Tue Jun 14 01:28:49 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
 
-int	sbp_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab)
+int     sbp_event(t_monitor *monitor)
 {
+  send_message("sbp\n", &(monitor->ref->client->sock));
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:40:45 2016 Victor Gouet
-** Last update Tue Jun  7 17:42:34 2016 Victor Gouet
+** Last update Mon Jun 13 22:47:50 2016 Victor Gouet
 */
 
 #ifndef COMMAND_LINE_ARGUMENTS_H_
@@ -22,6 +22,7 @@ typedef struct		s_team_name
   void			*begin;
   void			*end;
   int			nbr_client;
+  int			nbr_max;
   struct s_team_name	*next;
 }			t_team_name;
 

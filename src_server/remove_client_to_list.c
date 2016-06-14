@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:01:02 2016 Victor Gouet
-** Last update Mon Jun 13 11:07:09 2016 Victor Gouet
+** Last update Mon Jun 13 23:02:45 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
@@ -43,6 +43,28 @@ t_ref	*delete_all_in_client(t_list *list,
   if (ref->type == TRANTORIEN)
     {
       remove_client_to_unknown_team(&(command->team_list), ref->ref);
+    }
+  ref = remove_client_to_list(list, ref);
+  return (ref);
+}
+
+t_ref	*remove_client_if_trantorien_change_state(t_list *list,
+						  t_command_line *command,
+						  t_server *server,
+						  t_ref *ref)
+{
+  t_trantorien	*trantorien;
+  t_team_name	*team;
+
+  remove_client_from_server(server, ref->client);
+  if (ref->type == TRANTORIEN)
+    {
+      trantorien = ref->ref;
+      trantorien->state = GHOST;
+      if ((team = get_team(&command->team_list, trantorien->team)))
+	{
+	  --(team->nbr_client);
+	}
     }
   ref = remove_client_to_list(list, ref);
   return (ref);

@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Mon Jun 13 15:17:53 2016 Victor Gouet
+** Last update Tue Jun 14 10:36:56 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -73,55 +73,55 @@ static const t_event		event_player[2] = {
   },
   {
     {"bct",
-     "ebo",
-     "edi",
-     "eht",
-     "enw",
+     "sst",
+     NULL,
+     NULL,
+     NULL,
      "msz",
-     "pbc",
-     "pdi",
-     "pdr",
-     "pex",
-     "pfk",
-     "pgt",
-     "pic",
-     "pie",
+     NULL,
+     NULL,
+     NULL,
+     NULL,
+     NULL,
+     NULL,
+     NULL,
+     NULL,
      "pin",
      "plv",
-     "pnw",
+     NULL,
      "ppo",
-     "sbp",
-     "seg",
+     NULL,
+     NULL,
      "sgt",
-     "smg",
-     "suc",
+     NULL,
+     NULL,
      "tna",
      "mct",
     },
     {
       bct_event,
-      ebo_event,
-      edi_event,
-      eht_event,
-      enw_event,
+      sst_event,
+      NULL,
+      NULL,
+      NULL,
       msz_event,
-      pbc_event,
-      pdi_event,
-      pdr_event,
-      pex_event,
-      pfk_event,
-      pgt_event,
-      pic_event,
-      pie_event,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
       pin_event,
       plv_event,
-      pnw_event,
+      NULL,
       ppo_event,
-      sbp_event,
-      seg_event,
+      NULL,
+      NULL,
       sgt_event,
-      smg_event,
-      suc_event,
+      NULL,
+      NULL,
       tna_event,
       mct_event
     }
@@ -150,6 +150,8 @@ static int	convert_data_to_command(t_list *list,
 							command,
 							ref->begin->tab));
       }
+  if (ref->type == MONITOR)
+    suc_event(ref->ref);
   return (0);
 }
 
@@ -162,9 +164,7 @@ static int	event_call(t_list *list, t_command_line *command,
   while (ref)
     {
       if (ref->buffer_size > 0 && ref->time_ref == 0)
-	{
-	  ref->time_ref = getTimeSeconds();
-	}
+	ref->time_ref = getTimeSeconds();
       if (ref->buffer_size > 0
 	  && ref->begin
 	  && is_time_out_for(ref->begin->tab[0], command->time, ref->time_ref))
@@ -182,6 +182,22 @@ static int	event_call(t_list *list, t_command_line *command,
   return (0);
 }
 
+static int	event_gestion(t_list *list, t_command_line *command,
+			      t_server *server)
+{
+  t_trantorien	*trantorien;
+
+  event_call(list, command, server);
+  food_gestion_for_trantorien(list, command, server);
+  on_gestion_egg(command, list);
+  if ((trantorien = get_trantorien_with_max_elevation(list)))
+    {
+      if (trantorien->elevation == 8)
+	seg_event(trantorien, list);
+    }
+  return (0);
+}
+
 int	event_client(t_list *list, t_command_line *command,
 		     fd_set *fds, t_server *server)
 {
@@ -195,7 +211,8 @@ int	event_client(t_list *list, t_command_line *command,
 	{
 	  if ((data = get_crlf_line(ref->client)) == NULL)
 	    {
-	      ref = delete_all_in_client(list, command, server, ref);
+	      ref = remove_client_if_trantorien_change_state(list, command,
+							     server, ref);
 	      continue;
 	    }
 	  if (ref->buffer_size < 10 && data[0])
@@ -203,7 +220,6 @@ int	event_client(t_list *list, t_command_line *command,
 	}
       ref = ref->next;
     }
-  event_call(list, command, server);
-  food_gestion_for_trantorien(list, command, server);
+  event_gestion(list, command, server);
   return (0);
 }

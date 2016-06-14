@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ## 
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Mon Jun 13 15:18:46 2016 Victor Gouet
+## Last update Tue Jun 14 01:31:32 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -36,6 +36,10 @@ SRCS		= src_server/main.c \
 		  src_server/buffer_gestion.c \
 		  src_server/time_gestion.c \
 		  src_server/food_gestion.c \
+		  src_server/get_trantorien.c \
+		  src_server/egg_gestion.c \
+		  src_server/end_of_game.c \
+		  src_server/trantorien_connection.c \
 		  src_server/Trantorien_Event/die_event.c \
 		  src_server/Trantorien_Event/avance_event.c \
 		  src_server/Trantorien_Event/broadcast_event.c \
@@ -74,6 +78,8 @@ SRCS		= src_server/main.c \
 		  src_server/Monitor_event/suc.c \
 		  src_server/Monitor_event/tna.c \
 		  src_server/Monitor_event/mct.c \
+		  src_server/Monitor_event/sst.c \
+		  src_server/Monitor_event/send_msg_monitor.c \
 		  src_server/Object/object.c \
 		  src_server/Object/leaveObject.c \
 		  src_server/Object/leaveObject_next.c \

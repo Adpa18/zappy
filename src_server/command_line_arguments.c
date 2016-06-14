@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:40:39 2016 Victor Gouet
-** Last update Tue Jun  7 17:44:04 2016 Victor Gouet
+** Last update Mon Jun 13 22:51:13 2016 Victor Gouet
 */
 
 #include <stdlib.h>
@@ -40,12 +40,6 @@ static t_opt_gestion	opt_gestion[OPTION_NBR] = {
   },
 };
 
-static void		print_usage()
-{
-  fprintf(stderr, "Usage: -p port -x width -y height -n name_of_team");
-  fprintf(stderr, "-c client\'s number [-t] time delay\n");
-}
-
 t_team_name	*add_team_elem(t_team_list *list)
 {
   t_team_name	*elem;
@@ -56,6 +50,7 @@ t_team_name	*add_team_elem(t_team_list *list)
   elem->begin = NULL;
   elem->end = NULL;
   elem->nbr_client = 0;
+  elem->nbr_max = 0;
   if (list->begin == NULL && list->end == NULL)
     {
       list->begin = elem;
@@ -87,14 +82,23 @@ static void     constructor_command_line(t_command_line *command)
 
 static int     is_command_line_valid(t_command_line *command)
 {
+  t_team_name	*team;
+
   if (command->nb_client == -1
       || command->port == -1
       || command->team_list.begin == NULL
       || command->x == -1
       || command->y == -1)
     {
-      print_usage();
+      fprintf(stderr, "Usage: -p port -x width -y height -n name_of_team");
+      fprintf(stderr, " -c client\'s number [-t] time delay\n");
       return (FAILURE);
+    }
+  team = command->team_list.begin;
+  while (team)
+    {
+      team->nbr_max = command->nb_client;
+      team = team->next;
     }
   return (SUCCESS);
 }
@@ -121,7 +125,8 @@ int	on_command_line_server(int ac, char **av,
 	}
       if (idx == OPTION_NBR)
 	{
-	  print_usage();
+	  fprintf(stderr, "Usage: -p port -x width -y height -n name_of_team");
+	  fprintf(stderr, " -c client\'s number [-t] time delay\n");
 	  return (FAILURE);
 	}
     }

@@ -11,14 +11,11 @@
 #include "../../include_server/trantorien_event.h"
 #include "direction.h"
 #include <stdio.h>
+#include <string.h>
+#include "object.h"
 #include "storage.h"
 
-static const char	*objectsStr[7] = {
-        "nourriture", "linemate", "deraumere", "sibur",
-        "mendiane", "phiras", "thystame"
-};
-
-int     modulo(int nb, int by)
+static inline int     modulo(int nb, int by)
 {
     if (nb < 0)
         return (by - 1);
@@ -33,21 +30,56 @@ char    *get_all_objects(t_inventories **map, t_vector2d pos)
     char    *tmp_buffer;
     void    *object;
 
-    buffer = "";
+    buffer = NULL;
     object = &map[pos.y][pos.x];
-    printf("pos = [%d][%d]\n", pos.y, pos.x);
     i = 0;
     while (++i < 7)
     {
-        tmp_buffer = buffer;
-        printf("\t%d => %d\n", i, *(int*)object);
         for (j = 0; j < *(int*)object; ++j)
         {
-            buffer = STRING("%s %s", tmp_buffer, objectsStr[i]);
+            if (buffer)
+            {
+                tmp_buffer = buffer;
+                buffer = STRING("%s %s", tmp_buffer, objectsStr[i]);
+                free(tmp_buffer);
+            }
+            else
+                buffer = strdup(objectsStr[i]);
         }
         object += sizeof(int);
     }
-    printf("buffer = %s\n", buffer);
+    return (buffer);
+}
+
+static char     *do_voir(t_inventories **map, t_vector2d pos, char *buffer)
+{
+    char    *tmp;
+    char    *ret;
+
+    tmp = get_all_objects(map, pos);
+    if (tmp)
+    {
+        ret = STRING("%s,%s", buffer, tmp);
+        free(tmp);
+    }
+    else
+    {
+        ret = STRING("%s,", buffer);
+    }
+    free(buffer);
+    return (ret);
+}
+
+static char    *init_voir(t_inventories **map, t_vector2d pos)
+{
+    char    *buffer;
+    char    *tmp;
+
+    tmp = get_all_objects(map, pos);
+    if (tmp)
+        buffer = STRING("{%s", tmp);
+    else
+        buffer = strdup("{");
     return (buffer);
 }
 
@@ -57,14 +89,12 @@ int     voir_event(t_trantorien *trantorien, t_list *list,
     int     i;
     int     j;
     char    *buffer;
-    char    *tmp;
-    char    *tmp_buffer;
     t_vector2d  dir;
     t_vector2d  pos;
     t_vector2d  cur_pos;
 
-    buffer = "";
     pos = trantorien->pos;
+    buffer = init_voir(list->map->map, pos);
     dir = getVectorDir(trantorien->orientation);
     for (i = 1; i <= trantorien->elevation; ++i)
     {
@@ -75,15 +105,10 @@ int     voir_event(t_trantorien *trantorien, t_list *list,
             cur_pos = pos;
             cur_pos.x = modulo(cur_pos.x + (dir.x == 0) ? j : 0, command->x);
             cur_pos.y = modulo(cur_pos.y + (dir.y == 0) ? j : 0, command->y);
-            tmp = get_all_objects(list->map->map, cur_pos);
-            tmp_buffer = buffer;
-            buffer = STRING("%s,%s", tmp_buffer, tmp);
-            free(tmp_buffer);
-            free(tmp);
+            buffer = do_voir(list->map->map, cur_pos, buffer);
         }
     }
-    sendf_message(&(trantorien->ref->client->sock), "{%s}", buffer);
-    (void)list;
+    sendf_message(&(trantorien->ref->client->sock), "%s}\n", buffer);
     (void)tab;
     return (0);
 }

@@ -5,13 +5,21 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:41:09 2016 Victor Gouet
-** Last update Mon Jun 13 14:03:12 2016 Victor Gouet
+** Last update Tue Jun 14 01:15:03 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
+#include "../../stringLib/storage.h"
 
-int	seg_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab)
+int	seg_event(t_trantorien *trantorien, t_list *list)
 {
+  char	*msg;
+
+  msg = STRING("seg %s\n", trantorien->team);
+  if (msg)
+    {
+      send_msg_to_all_monitor(msg, list);
+      free(msg);
+    }
   return (0);
 }

@@ -5,10 +5,18 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 18:01:05 2016 Victor Gouet
-** Last update Fri Jun 10 18:00:13 2016 Victor Gouet
+** Last update Mon Jun 13 22:31:08 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
+
+void		convert_to_trantorien(t_ref *ref,
+				      t_trantorien *trantorien)
+{
+  trantorien->ref = ref;
+  ref->ref = trantorien;  
+  trantorien->ref->type = TRANTORIEN;
+}
 
 t_trantorien	*transform_to_trantorien(t_ref *ref)
 {
@@ -16,10 +24,8 @@ t_trantorien	*transform_to_trantorien(t_ref *ref)
 
   if ((trantorien = malloc(sizeof(*trantorien))) == NULL)
     return (NULL);
-  trantorien->ref = ref;
-  ref->ref = trantorien;
+  convert_to_trantorien(ref, trantorien);
   trantorien->team = NULL;
-  trantorien->ref->type = TRANTORIEN;
   return (trantorien);
 }
 
