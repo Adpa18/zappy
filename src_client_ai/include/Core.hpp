@@ -18,7 +18,7 @@
 # include "IAClient.hpp"
 # include "ZappyRequest.hpp"
 
-class ParsingError : std::runtime_error
+class ParsingError : public std::runtime_error
 {
 public:
     ParsingError(std::string const &exe = "", std::string const &err = "") :
@@ -61,7 +61,7 @@ public:
     void        setFileIA(const std::string);
 
 public:
-    int parseArg(int, char **) throw(ParsingError);
+    int parseArg(int, char **) throw(std::runtime_error);
 
     int run(void);
 

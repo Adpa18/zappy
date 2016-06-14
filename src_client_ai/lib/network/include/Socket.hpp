@@ -33,7 +33,7 @@ extern "C"
 class Socket : public INetStream
 {
 public:
-    class SocketException : std::runtime_error
+    class SocketException : public std::runtime_error
     {
     public:
         SocketException(std::string const &err) :

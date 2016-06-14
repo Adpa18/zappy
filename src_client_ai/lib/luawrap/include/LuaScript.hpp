@@ -13,7 +13,7 @@ namespace Lua
     /**
      * \brief LuaException for lua handler errors
      */
-    class LuaException : std::runtime_error
+    class LuaException : public std::runtime_error
     {
     public:
         LuaException(std::string const &err) :
@@ -24,6 +24,7 @@ namespace Lua
         {
 
         }
+        using std::runtime_error::what;
     };
 
     class LuaHandler;

@@ -11,15 +11,10 @@ int main(int ac, char **av)
     {
         core.parseArg(ac, av);
     }
-    catch (ParsingError &error)
+    catch (std::exception &error)
     {
         if (!std::string(error.what()).empty())
             std::cerr << "Zappy AI:" << std::endl << "\t" << error.what() << std::endl;
-        return 1;
-    }
-    catch (std::exception &error)
-    {
-        std::cerr << error.what() << std::endl;
         return 1;
     }
     std::cout << "ip : " << core.getIp() << std::endl;

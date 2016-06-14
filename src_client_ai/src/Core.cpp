@@ -85,7 +85,7 @@ int    Core::isNumber(char *str) const
     return (0);
 }
 
-int    Core::parseArg(int ac, char **av) throw(ParsingError)
+int    Core::parseArg(int ac, char **av) throw(std::runtime_error)
 {
     int  c;
     char opt[] = "n:p:h:s:";

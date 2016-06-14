@@ -102,6 +102,8 @@ std::string Socket::Read(int flags) const
     if (recv(fd, buff, BUFSIZ - 1, flags) == -1)
         throw SocketException(strerror(errno));
     toreturn += buff;
+    if (toreturn.empty())
+        throw SocketException("Kicked by server");
     return toreturn;
 }
 
