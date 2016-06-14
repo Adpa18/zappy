@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:36:07 2016 Victor Gouet
-** Last update Tue Jun 14 16:46:55 2016 Victor Gouet
+** Last update Tue Jun 14 18:32:55 2016 Victor Gouet
 */
 
 #ifndef MONITOR_EVENT_H_
@@ -13,6 +13,9 @@
 
 # include "server.h"
 
+int	plv_event_for_one_trantorien(t_list *list,
+				     t_trantorien *trantorien);
+int	plv_event_all_monitor(t_list *list);
 int     pin_event_to_all_monitor(t_list *list, t_trantorien *trantorien);
 int	bct_event_to_all_monitor(t_list *list, int x, int y);
 int	ppo_event_to_all_monitor(t_trantorien *trantorien,

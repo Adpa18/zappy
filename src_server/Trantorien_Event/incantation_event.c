@@ -5,13 +5,14 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:59 2016 Victor Gouet
-** Last update Wed Jun  8 11:21:50 2016 Victor Gouet
+** Last update Tue Jun 14 18:37:19 2016 Victor Gouet
 */
 
 #include <stdbool.h>
 #include "player.h"
 #include "incantation.h"
 #include "../../include_server/trantorien_event.h"
+#include "../../include_server/monitor_event.h"
 
 static const incantationPtr incantationFunc[] = {
         incantation_one, incantation_two, incantation_three, incantation_four,
@@ -71,9 +72,17 @@ bool    can_elevate(t_trantorien *trantorien, t_list *list)
 int     incantation_event(t_trantorien *trantorien, t_list *list,
 			  t_command_line *command, char **tab)
 {
-    (void)command;
-    (void)tab;
-    return (incantationFunc[trantorien->elevation - 1]
-            (trantorien, list, true));
-
+  (void)command;
+  (void)tab;
+  if (incantationFunc[trantorien->elevation - 1]
+      (trantorien, list, true))
+    {
+      pie_event(trantorien, list, 1);
+      plv_event_all_monitor(list);
+    }
+  else
+    {
+      pie_event(trantorien, list, 1);
+      plv_event_all_monitor(list);
+    }
 }

@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 **
 ** Started on  Wed Jun  8 07:53:04 2016 Victor Gouet
-** Last update Wed Jun  8 11:21:59 2016 Victor Gouet
+** Last update Tue Jun 14 17:50:53 2016 Victor Gouet
 */
 
 #ifndef ZAPPY_INCANTATION_H
@@ -22,5 +22,6 @@ bool     incantation_four(t_trantorien *trantorien, t_list *list, bool end);
 bool     incantation_five(t_trantorien *trantorien, t_list *list, bool end);
 bool     incantation_six(t_trantorien *trantorien, t_list *list, bool end);
 bool     incantation_seven(t_trantorien *trantorien, t_list *list, bool end);
+bool    can_elevate(t_trantorien *trantorien, t_list *list);
 
 #endif //ZAPPY_INCANTATION_H
