@@ -8,14 +8,72 @@
 ** Last update Wed Jun  8 11:21:50 2016 Victor Gouet
 */
 
+#include <stdbool.h>
+#include "player.h"
+#include "incantation.h"
 #include "../../include_server/trantorien_event.h"
+
+static const incantationPtr incantationFunc[] = {
+        incantation_one, incantation_two, incantation_three, incantation_four,
+        incantation_five, incantation_six, incantation_seven
+};
+
+bool     incantation_six(t_trantorien *trantorien, t_list *list, bool end)
+{
+    if (count_players_by_pos(list, trantorien) >= 6
+        && trantorien->inventaire.linemate >= 1
+        && trantorien->inventaire.deraumere >= 2
+        && trantorien->inventaire.sibur >= 3
+        && trantorien->inventaire.phiras >= 1)
+    {
+        if (end)
+        {
+            trantorien->inventaire.linemate -= 1;
+            trantorien->inventaire.deraumere -= 2;
+            trantorien->inventaire.sibur -= 3;
+            trantorien->inventaire.phiras -= 1;
+        }
+        return (true);
+    }
+    return (false);
+}
+
+bool     incantation_seven(t_trantorien *trantorien, t_list *list, bool end)
+{
+    if (count_players_by_pos(list, trantorien) >= 6
+        && trantorien->inventaire.linemate >= 2
+        && trantorien->inventaire.deraumere >= 2
+        && trantorien->inventaire.sibur >= 2
+        && trantorien->inventaire.mendiane >= 2
+        && trantorien->inventaire.phiras >= 2
+        && trantorien->inventaire.thystame >= 1)
+    {
+        if (end)
+        {
+            trantorien->inventaire.linemate -= 2;
+            trantorien->inventaire.deraumere -= 2;
+            trantorien->inventaire.sibur -= 2;
+            trantorien->inventaire.mendiane -= 2;
+            trantorien->inventaire.phiras -= 2;
+            trantorien->inventaire.thystame -= 1;
+        }
+        return (true);
+    }
+    return (false);
+}
+
+bool    can_elevate(t_trantorien *trantorien, t_list *list)
+{
+    return (incantationFunc[trantorien->elevation - 1]
+            (trantorien, list, false));
+}
 
 int     incantation_event(t_trantorien *trantorien, t_list *list,
 			  t_command_line *command, char **tab)
 {
-    (void)trantorien;
-    (void)list;
     (void)command;
     (void)tab;
-  return (0);
+    return (incantationFunc[trantorien->elevation - 1]
+            (trantorien, list, true));
+
 }

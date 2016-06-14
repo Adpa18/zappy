@@ -14,7 +14,7 @@ void		convert_to_trantorien(t_ref *ref,
 				      t_trantorien *trantorien)
 {
   trantorien->ref = ref;
-  ref->ref = trantorien;  
+  ref->ref = trantorien;
   trantorien->ref->type = TRANTORIEN;
 }
 

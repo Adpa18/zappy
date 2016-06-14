@@ -38,3 +38,4 @@ void    move_by_dir(t_trantorien *trantorien, t_command_line *command,
     if (trantorien->pos.y <= 0 || trantorien->pos.y > command->y)
         trantorien->pos.y = 0;
 }
+

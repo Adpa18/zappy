@@ -54,6 +54,7 @@ SRCS		= src_server/main.c \
 		  src_server/Trantorien_Event/fork_event.c \
 		  src_server/Trantorien_Event/gauche_event.c \
 		  src_server/Trantorien_Event/incantation_event.c \
+		  src_server/Trantorien_Event/incantation_func.c \
 		  src_server/Trantorien_Event/inventaire_event.c \
 		  src_server/Trantorien_Event/pose_obj_event.c \
 		  src_server/Trantorien_Event/prend_obj_event.c \
@@ -91,6 +92,7 @@ SRCS		= src_server/main.c \
 		  src_server/Object/takeObject.c \
 		  src_server/Object/takeObject_next.c \
 		  src_server/Tools/direction.c \
+		  src_server/Tools/player.c \
 
 OBJS		= $(SRCS:.c=.o)
 
