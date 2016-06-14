@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:36:07 2016 Victor Gouet
-** Last update Tue Jun 14 01:37:09 2016 Victor Gouet
+** Last update Tue Jun 14 12:26:36 2016 Victor Gouet
 */
 
 #ifndef MONITOR_EVENT_H_
@@ -13,6 +13,9 @@
 
 # include "server.h"
 
+int	pnw_event_all_to_monitor(t_monitor *monitor,
+				 t_command_line *command);
+int	enw_event_all_to_monitor(t_monitor *monitor, t_command_line *);
 void	send_msg_to_all_monitor(char const *msg, t_list *);
 int     sst_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab);

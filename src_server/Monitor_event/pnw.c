@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:37:58 2016 Victor Gouet
-** Last update Tue Jun 14 00:03:55 2016 Victor Gouet
+** Last update Tue Jun 14 12:34:41 2016 Victor Gouet
 */
 
 #include "../../stringLib/storage.h"
@@ -23,6 +23,43 @@ int	pnw_event(t_trantorien *trantorien, t_list *list)
     {
       send_msg_to_all_monitor(msg, list);
       free(msg);
+    }
+  return (0);
+}
+
+static int      pnw_msg(t_trantorien *trantorien, t_monitor *monitor)
+{
+  char		*msg;
+
+  if (trantorien->state == PLAYER)
+    {
+      if ((msg = STRING("pnw %d %d %d %d %d %s\n", trantorien->id,
+			trantorien->pos.x, trantorien->pos.y,
+			trantorien->orientation, trantorien->elevation,
+			trantorien->team)) == NULL)
+	return (-1);
+      send_message(msg, &(monitor->ref->client->sock));
+      free(msg);
+    }
+  return (0);
+}
+
+int	        pnw_event_all_to_monitor(t_monitor *monitor,
+					 t_command_line *command)
+{
+  t_trantorien	*ref;
+  t_team_name	*team;
+
+  team = command->team_list.begin;
+  while (team)
+    {
+      ref = team->begin;
+      while (ref)
+	{
+	  pnw_msg(ref, monitor);
+	  ref = ref->next_on_team;
+	}
+      team = team->next;
     }
   return (0);
 }

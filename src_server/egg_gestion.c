@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 23:09:39 2016 Victor Gouet
-** Last update Tue Jun 14 00:58:28 2016 Victor Gouet
+** Last update Tue Jun 14 12:09:59 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
@@ -40,7 +40,6 @@ void		on_gestion_egg(t_command_line *command, t_list *list)
     }
 }
 
-// NOT TESTED
 int		create_egg_on_team_from_trantorien(t_vector2d pos,
 						   t_team_name *team,
 						   t_trantorien *player,
@@ -55,6 +54,7 @@ int		create_egg_on_team_from_trantorien(t_vector2d pos,
   (team->nbr_client)--;
   init_trantorien(trantorien, pos.x, pos.y);
   trantorien->state = EGG;
+  trantorien->id_parrent = player->id;
   trantorien->egg_id = egg_id++;
   enw_event(player, trantorien, list);
   return (0);

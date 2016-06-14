@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Tue Jun 14 10:36:31 2016 Victor Gouet
+** Last update Tue Jun 14 11:23:07 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -106,6 +106,7 @@ typedef struct	s_trantorien
   t_trantorien_state	state;
   long long	spawn;
   int		egg_id;
+  int		id_parrent;
   struct s_trantorien	*next_on_team;
 }		t_trantorien;
 
@@ -123,6 +124,13 @@ typedef struct	s_list
   int		nbr_client;
   t_map		*map;
 }		t_list;
+
+/*
+**	monitor_connection.c
+*/
+
+int		monitor_connection(t_ref *ref, t_list *list,
+				   t_command_line *command);
 
 /*
 **	end_of_game.c

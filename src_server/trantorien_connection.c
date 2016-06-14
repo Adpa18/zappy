@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 21:37:18 2016 Victor Gouet
-** Last update Tue Jun 14 00:25:55 2016 Victor Gouet
+** Last update Tue Jun 14 12:32:26 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -29,21 +29,18 @@ void	init_trantorien(t_trantorien *trantorien,
   trantorien->spawn = getTimeSeconds();
   trantorien->pos.x = x;
   trantorien->pos.y = y;
+  trantorien->id_parrent = 0;
   trantorien->id = id++;
 }
 
 static void	send_corect_event_to_monitor(t_trantorien *trantorien,
 					     t_list *list)
 {
-  if (trantorien->state == GHOST)
-    {
-      // event qui existe pas encore
-    }
-  else if (trantorien->state == BABY)
+  if (trantorien->state == BABY)
     {
       ebo_event(trantorien, list);
     }
-  else if (trantorien->state == PLAYER)
+  else if (trantorien->state == PLAYER || trantorien->state == GHOST)
     {
       pnw_event(trantorien, list);
     }

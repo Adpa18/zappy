@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:47:38 2016 Victor Gouet
-** Last update Tue Jun 14 00:23:43 2016 Victor Gouet
+** Last update Tue Jun 14 11:04:02 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -18,13 +18,11 @@ int		unknwon_client_event(t_ref *ref, t_list *list,
 				     char **tab)
 {
   t_team_name	*team;
-  t_monitor	*monitor;
 
   (void)list;
   if (strcmp(tab[0], GRAPHIC) == 0)
     {
-      monitor = transform_to_monitor(ref);
-      monitor->data = 0;
+      return (monitor_connection(ref, list, command));
     }
   else if ((team = get_team(&(command->team_list), tab[0])))
     {
