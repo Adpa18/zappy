@@ -14,5 +14,8 @@
 # include "server.h"
 
 t_vector2d  getVectorDir(t_orientation orientation);
+int         modulo(int nb, int by);
+void        move_by_dir(t_trantorien *trantorien, t_command_line *command,
+                        t_vector2d dir);
 
 #endif //ZAPPY_DIRECTION_H

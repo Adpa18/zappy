@@ -8,19 +8,11 @@
 ** Last update Wed Jun  8 11:22:08 2016 Victor Gouet
 */
 
-#include "../../include_server/trantorien_event.h"
-#include "direction.h"
-#include <stdio.h>
 #include <string.h>
+#include "trantorien_event.h"
+#include "direction.h"
 #include "object.h"
 #include "storage.h"
-
-static inline int     modulo(int nb, int by)
-{
-    if (nb < 0)
-        return (by - 1);
-    return (nb % by);
-}
 
 char    *get_all_objects(t_inventories **map, t_vector2d pos)
 {
@@ -108,6 +100,7 @@ int     voir_event(t_trantorien *trantorien, t_list *list,
             buffer = do_voir(list->map->map, cur_pos, buffer);
         }
     }
+    // TODO maybe add players
     sendf_message(&(trantorien->ref->client->sock), "%s}\n", buffer);
     (void)tab;
     return (0);

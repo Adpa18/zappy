@@ -9,13 +9,34 @@
 */
 
 #include "../../include_server/trantorien_event.h"
+#include "direction.h"
 
 int     expulse_event(t_trantorien *trantorien, t_list *list,
 		      t_command_line *command, char **tab)
 {
-    (void)trantorien;
+    t_trantorien  *drone;
+    t_ref   *ref;
+    t_vector2d  dir;
+
+    drone = NULL;
+    dir = getVectorDir(trantorien->orientation);
+    ref = list->begin;
+    while (ref)
+    {
+        if (ref->type == TRANTORIEN)
+        {
+            drone = ref->ref;
+            move_by_dir(drone, command, dir);
+            sendf_message(&(drone->ref->client->sock), "deplacement: %c\n",
+                          modulo(trantorien->orientation + 2, 4));
+        }
+        ref = ref->next;
+    }
+    if (drone)
+        send_message("ok\n", &(trantorien->ref->client->sock));
+    else
+        send_message("ko\n", &(trantorien->ref->client->sock));
     (void)list;
-    (void)command;
     (void)tab;
   return (0);
 }
