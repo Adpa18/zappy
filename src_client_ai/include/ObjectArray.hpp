@@ -13,7 +13,7 @@ class ObjectArray : public std::vector<Inventory::Object>
 {
 public:
     static const std::string                                className;
-    static const Lua::LuaClass<ObjectArray>::LuaPrototype      prototype;
+    static const Lua::LuaClass<ObjectArray>::LuaPrototype   prototype;
 
 public:
     ObjectArray();
