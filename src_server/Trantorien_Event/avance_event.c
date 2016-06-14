@@ -9,17 +9,7 @@
 */
 
 #include "../../include_server/trantorien_event.h"
-
-static t_vector2d vectorDir[5] = {
-        {0, 0}, {1, 0}, {0, -1}, {-1, 0}, {0, 1}
-};
-
-static t_vector2d  getVectorDir(t_orientation orientation)
-{
-    if (orientation >= N && orientation <= O)
-        return (vectorDir[orientation]);
-    return (vectorDir[0]);
-}
+#include "direction.h"
 
 int	avance_event(t_trantorien *trantorien, t_list *list,
                     t_command_line *command, char **tab)
