@@ -30,6 +30,7 @@ const std::map<ZappyRequest::Request, std::string> ZappyRequest::requests = {
  * \brief Variable to associate a Request code to a method pointer
  */
 const std::map<ZappyRequest::Request, ZappyRequest::ZappyCallback> ZappyRequest::callbacks = {
+        {ZappyRequest::MOVE, &ZappyRequest::Req_move},
         {ZappyRequest::SEE, &ZappyRequest::Req_seeForward},
         {ZappyRequest::STOCK, &ZappyRequest::Req_stockInventory},
         {ZappyRequest::INCANTATION, &ZappyRequest::Req_incantation},
@@ -109,7 +110,7 @@ ZappyRequest::~ZappyRequest()
  */
 void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string &toConcat) throw(BadRequestException)
 {
-    if (nbRequest == ZappyRequest::maxRequest)
+    if (request == DEFAULT || nbRequest == ZappyRequest::maxRequest)
         return;
     if (!IsARequest(request))
         throw BadRequestException("No request found");
@@ -192,7 +193,7 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
  */
 void ZappyRequest::Req_seeForward(const std::string &answer, const std::string &)
 {
-    (void)answer;
+    client->RefreshMap(ZappyData::deserialize(answer));
 }
 
 /**
@@ -225,7 +226,6 @@ void ZappyRequest::Req_connectNbr(const std::string &answer, const std::string &
 
 /**
  * \brief Resolve the request take object
- * \param answer The answer received from the server
  * \param param The parameter giver in the request
  */
 void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
@@ -236,7 +236,6 @@ void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
 
 /**
  * \brief Resolve the request take object
- * \param answer The answer received from the server
  * \param param The parameter giver in the request
  */
 void ZappyRequest::Req_dropObj(const std::string &, const std::string &param)
@@ -245,6 +244,19 @@ void ZappyRequest::Req_dropObj(const std::string &, const std::string &param)
         client->Bag().Remove(Inventory::getObjectFromName(param));
 }
 
+/**
+ * \brief Resolve the request move
+ */
+void ZappyRequest::Req_move(const std::string &, const std::string &)
+{
+    client->Moved();
+}
+
+/**
+ * \brief Get the time of a specific request
+ * \param request The request you want to get the time
+ * \return The time of a specific request
+ */
 std::clock_t ZappyRequest::getRequTimer(const ZappyRequest::Request &request)
 {
     std::map<ZappyRequest::Request, std::clock_t>::const_iterator   it = requTimer.find(request);
@@ -254,6 +266,11 @@ std::clock_t ZappyRequest::getRequTimer(const ZappyRequest::Request &request)
     return it->second;
 }
 
+/**
+ * \brief Check if you can make a command that is not currently working (not safe)
+ * \param request The request you want to check
+ * \return If you can make an unstacked request
+ */
 bool ZappyRequest::CanMakeUnStackedRequest(const ZappyRequest::Request &request) const
 {
     return std::clock() >= nextRequest.find(request)->second;

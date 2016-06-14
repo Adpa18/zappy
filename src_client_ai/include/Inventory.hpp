@@ -8,6 +8,7 @@
 #include <stddef.h>
 #include <map>
 #include <vector>
+#include <LuaScript.hpp>
 #include "ZappyRequest.hpp"
 
 class Inventory
@@ -24,6 +25,8 @@ public:
         PHIRAS,
         THYSTAME
     };
+    static const std::string    className;
+    static const Lua::LuaClass<Inventory>::LuaPrototype prototype;
 
 public:
     Inventory(ZappyRequest *request, std::map<Object, size_t> const &stuff = {
@@ -52,6 +55,9 @@ public:
     std::map<Object, size_t> const &getStuff(void) const;
     void Refresh(std::vector<std::vector<std::string>> const &content);
     void Reset(void);
+
+public:
+    int GetNbOf(Lua::LuaScript const &script);
 
 public:
     size_t operator[](Object object) const;

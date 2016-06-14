@@ -39,6 +39,7 @@ public:
     void Upgrade(const std::string &);
     bool IsIncanting(void) const;
     void Incant(void);
+    void Moved(void);
     void setMissingPeople(size_t miss);
     size_t getMissingPeople(void) const;
     void See(std::vector<std::vector<std::string>> const &vision);
@@ -46,22 +47,31 @@ public:
     void TurnLeft(void);
 
 public:
+    int     GetInventory(Lua::LuaScript const &script);
+    int     GetSightAt(Lua::LuaScript const &script);
+    int     SetParameter(Lua::LuaScript const &script);
+
+public:
     virtual void Connect(const std::string &ip, const uint16_t port, std::string const &teamName);
     int Update(void);
     void Receive(void);
     Inventory   &Bag(void);
+    void        RefreshMap(std::vector<std::vector<std::string> > const &data);
 
 private:
-    Lua::LuaScript      script;
-    Inventory           inventory;
-    ZappyRequest        request;
-    ZappyMap            *map;
-    Vector2             position;
-    Vector2::DIR        orientation;
-    bool                dead;
-    int                 lvl;
-    bool                incanting;
-    size_t              missing;
+    Lua::LuaScript              script;
+    Inventory                   inventory;
+    ZappyRequest                request;
+    ZappyMap                    *map;
+    Vector2                     position;
+    Vector2::DIR                orientation;
+    std::vector<ObjectArray>    sight;
+    std::string                 reqParam;
+    bool                        dead;
+    int                         lvl;
+    bool                        incanting;
+    bool                        moved;
+    size_t                      missing;
 };
 
 #endif //PSU_2015_ZAPPY_IACLIENT_HPP

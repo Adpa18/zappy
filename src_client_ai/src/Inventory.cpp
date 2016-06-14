@@ -6,6 +6,14 @@
 #include <algorithm>
 #include "Inventory.hpp"
 
+const std::string    Inventory::className = typeid(Inventory).name();
+const Lua::LuaClass<Inventory>::LuaPrototype Inventory::prototype = {
+        {},
+        {
+                {"GetNbOf", (int (Inventory::*)(lua_State *))&Inventory::GetNbOf}
+        }
+};
+
 /**
  * \brief A map that make corresponding an object and its name
  */
@@ -179,4 +187,10 @@ std::string const &Inventory::getNameFromObject(Inventory::Object object)
     if (it == objectsName.end())
         throw std::logic_error("You give an object that has no name");
     return it->second;
+}
+
+int Inventory::GetNbOf(Lua::LuaScript const &script)
+{
+    script.PushVar(static_cast<int>(stuff[static_cast<Object >(script.GetInteger())]));
+    return 1;
 }

@@ -5,10 +5,11 @@
 #include <algorithm>
 #include "ZappyMap.hpp"
 
-ZappyMap::ZappyMap(Vector2 const &dimensions, ZappyRequest *request, std::map<Vector2, std::vector<Inventory::Object> > const &map) :
+ZappyMap::ZappyMap(Vector2 const &dimensions, ZappyRequest *request, std::map<Vector2, ObjectArray> const &map) :
     dimmensions(dimensions),
     map(map),
-    request(request)
+    request(request),
+    updated(true)
 {
 
 }
@@ -83,25 +84,31 @@ void ZappyMap::Refresh(Vector2 const &from, Vector2 const &direction,
         }
         ++currLine;
     }
+    updated = true;
 }
 
-std::vector<Inventory::Object> ZappyMap::getObjectsAt(Vector2 const &pos) const
+ObjectArray ZappyMap::getObjectsAt(Vector2 const &pos) const
 {
-    std::map<Vector2, std::vector<Inventory::Object> >::const_iterator  it;
+    std::map<Vector2, ObjectArray>::const_iterator  it;
 
     it = map.find(pos);
     if (it == map.end())
-        return std::vector<Inventory::Object >();
+        return ObjectArray();
     return it->second;
 }
 
-std::vector<std::vector<Inventory::Object >> ZappyMap::getIaSight(Vector2 const &from, Vector2 const &direction,
+std::vector<ObjectArray> ZappyMap::getIaSight(Vector2 const &from, Vector2 const &direction,
                                                                   int lvl) const
 {
-    std::vector<std::vector<Inventory::Object > >   sight;
+    std::vector<ObjectArray>   sight;
     Vector2 decalIterator = {direction.x - direction.y, direction.x + direction.y};
     Vector2 lineIterator = {direction.y, -direction.x};
 
+    if (updated)
+    {
+        updated = false;
+        request->MakeRequest(ZappyRequest::SEE);
+    }
     for (int range = 0, lineLength = 1; range < lvl; ++range, lineLength += 2)
     {
         for (int currLine = 0; currLine < lineLength; ++currLine)
@@ -110,7 +117,7 @@ std::vector<std::vector<Inventory::Object >> ZappyMap::getIaSight(Vector2 const 
 
             position.limit(Vector2::Zero, dimmensions);
 
-            std::map<Vector2, std::vector<Inventory::Object > >::const_iterator it = map.find(position);
+            std::map<Vector2, ObjectArray>::const_iterator it = map.find(position);
 
             if (it == map.end())
             {
@@ -118,7 +125,7 @@ std::vector<std::vector<Inventory::Object >> ZappyMap::getIaSight(Vector2 const 
                 {
                     request->MakeRequest(ZappyRequest::SEE);
                 }
-                sight.push_back(std::vector<Inventory::Object>());
+                sight.push_back(ObjectArray());
             }
             else
                 sight.push_back(it->second);

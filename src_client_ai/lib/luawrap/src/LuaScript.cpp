@@ -109,3 +109,8 @@ void Lua::LuaScript::LoadFiles(std::vector<std::string> const &filesname) const
         LoadFile(*it);
     }
 }
+
+std::string Lua::LuaScript::GetString(int rank) const
+{
+    return luaL_checkstring(state, rank);
+}

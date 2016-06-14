@@ -59,6 +59,7 @@ namespace Lua
             return Lua::LuaClass<toGet>::getThis(state, rank);
         }
         int GetInteger(int rank = 1) const;
+        std::string GetString(int rank = 1) const;
 
     public:
         int          PushVar(void) const;

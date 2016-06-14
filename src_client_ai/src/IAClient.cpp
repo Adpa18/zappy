@@ -11,7 +11,14 @@ const std::string    IAClient::OnUpdate = "OnUpdate";
 const std::string    IAClient::OnReceive = "OnReceive";
 
 const std::string    IAClient::className = typeid(IAClient).name();
-Lua::LuaClass<IAClient>::LuaPrototype    prototype = {{}, {}};
+const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
+        {},
+        {
+                {"GetInventory", (int (IAClient::*)(lua_State *))&IAClient::GetInventory},
+                {"GetSightAt", (int (IAClient::*)(lua_State *))&IAClient::GetSightAt},
+                {"SetParameter", (int (IAClient::*)(lua_State *))&IAClient::SetParameter}
+        }
+};
 
 IAClient::IAClient(const std::string &scriptname) :
     script(),
@@ -20,13 +27,27 @@ IAClient::IAClient(const std::string &scriptname) :
     map(NULL),
     position(Vector2::Zero),
     orientation(Vector2::UP),
+    sight(),
+    reqParam(),
     dead(false),
     lvl(0),
     incanting(false),
+    moved(false),
     missing(0)
 {
     script.LoadFile(scriptname);
     script.SetGlobalValue(this, "IA");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::DEFAULT), "NONE");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::MOVE), "MOVE");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::RIGHT), "RIGHT");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::LEFT), "LEFT");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::TAKE), "TAKE");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::DROP), "DROP");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::EXPULSE), "EXPULSE");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::BROADCAST), "BROADCAST");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::INCANTATION), "INCANTATION");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::LAYEGG), "LAYEGG");
+    script.SetGlobalValue(static_cast<int>(ZappyRequest::CONNECTNBR), "CONNECTNBR");
 }
 
 IAClient::~IAClient()
@@ -56,7 +77,6 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
                     return;
                 }
             }
-
         }
     }
     throw SocketException("Unable to connect");
@@ -64,7 +84,8 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
 
 int IAClient::Update(void)
 {
-    script.Handler()->Select(IAClient::OnUpdate).Call();
+    reqParam = "";
+    request.MakeRequest(static_cast<ZappyRequest::Request >(script.Handler()->Select(IAClient::OnUpdate).Call()), reqParam);
     try
     {
         request.Update();
@@ -96,7 +117,7 @@ bool IAClient::IsDead(void) const
 void IAClient::Upgrade(const std::string &string)
 {
     std::cout << "You have been upgraded: '" << string << "'" << std::endl;
-    lvl++;
+    ++lvl;
     incanting = false;
 }
 
@@ -140,4 +161,41 @@ void IAClient::TurnLeft(void)
     orientation = static_cast<Vector2::DIR >(orientation - 1);
     if (orientation < 0)
         orientation = Vector2::LEFT;
+}
+
+void IAClient::RefreshMap(std::vector<std::vector<std::string> > const &data)
+{
+    map->Refresh(position, Vector2::Directions[orientation], data);
+}
+
+void IAClient::Moved(void)
+{
+    moved = true;
+}
+
+int IAClient::GetInventory(Lua::LuaScript const &script)
+{
+    script.PushVar(&inventory);
+    return 1;
+}
+
+int IAClient::GetSightAt(Lua::LuaScript const &script)
+{
+    if (moved)
+    {
+        moved = false;
+        sight = map->getIaSight(position, Vector2::Directions[orientation], lvl);
+    }
+    size_t index = static_cast<size_t >(script.GetInteger());
+
+    if (index >= sight.size())
+        return 0;
+    script.PushVar(&sight[index]);
+    return 1;
+}
+
+int IAClient::SetParameter(Lua::LuaScript const &script)
+{
+    reqParam = script.GetString();
+    return 0;
 }

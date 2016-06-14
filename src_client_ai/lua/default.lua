@@ -8,14 +8,20 @@
 
 IA = {}
 
+received = true;
+
 function OnStart()
     print("start");
 end
 
 function OnUpdate()
---    print("update");
+    if (received) then
+        received = false;
+        return MOVE;
+    end
+    return NONE;
 end
 
 function OnReceive()
-    print("reception");
+    received = true;
 end
