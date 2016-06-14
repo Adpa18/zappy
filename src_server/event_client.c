@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Tue Jun 14 01:34:11 2016 Victor Gouet
+** Last update Tue Jun 14 10:36:56 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -192,7 +192,8 @@ static int	event_gestion(t_list *list, t_command_line *command,
   on_gestion_egg(command, list);
   if ((trantorien = get_trantorien_with_max_elevation(list)))
     {
-      seg_event(trantorien, list);
+      if (trantorien->elevation == 8)
+	seg_event(trantorien, list);
     }
   return (0);
 }

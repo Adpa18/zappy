@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:38:46 2016 Victor Gouet
-** Last update Tue Jun 14 00:56:04 2016 Victor Gouet
+** Last update Tue Jun 14 10:39:34 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
@@ -16,7 +16,7 @@ int     enw_event(t_trantorien *player, t_trantorien *egg,
 {
   char	*msg;
 
-  msg = STRING("enw %d %d\n", egg->egg_id, player->id,
+  msg = STRING("enw %d %d %d %d\n", egg->egg_id, player->id,
 	       egg->pos.x, egg->pos.y);
   if (msg)
     {

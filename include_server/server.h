@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Tue Jun 14 01:22:56 2016 Victor Gouet
+** Last update Tue Jun 14 10:36:31 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -19,6 +19,7 @@
 # define GRAPHIC	"GRAPHIC"
 # define BIENVENUE	"BIENVENUE\n"
 # define UNITEDLIFE	126
+# define MAXLEVEL	8
 
 typedef enum
   {
