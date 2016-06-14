@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ##
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Tue Jun 14 13:02:55 2016 Quentin Gasparotto
+## Last update Tue Jun 14 14:19:10 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -102,6 +102,8 @@ CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/ -I
 
 LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket
 
+all:		$(NAME) $(NAMEAI)
+
 $(NAME):	$(OBJS)
 		make -C $(SOCKETLIB)
 		make -C $(STRINGLIB)
@@ -110,8 +112,6 @@ $(NAME):	$(OBJS)
 $(NAMEAI):
 	make -C $(AIDIR)
 	cp $(AIDIR)$(NAMEAI) $(NAMEAI)
-
-all:		$(NAME) $(NAMEAI)
 
 clean:
 		$(RM) $(OBJS)

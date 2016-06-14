@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 20:56:58 2016 Victor Gouet
-** Last update Tue Jun 14 01:10:33 2016 Victor Gouet
+** Last update Tue Jun 14 14:56:21 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
@@ -64,6 +64,27 @@ t_trantorien	*get_trantorien_from_id(t_list *list, int id)
 	  if (((t_trantorien *)ref->ref)->id == id)
 	    {
 	      return (ref->ref);
+	    }
+	}
+      ref = ref->next;
+    }
+  return (NULL);
+}
+
+t_trantorien	*get_trantorien_in_x_y(t_list *list, int x, int y)
+{
+  t_ref		*ref;
+  t_trantorien	*trantorien;
+
+  ref = list->begin;
+  while (ref)
+    {
+      if (ref->type == TRANTORIEN)
+	{
+	  trantorien = ref->ref;
+	  if (trantorien->pos.x == x && trantorien->pos.y == y)
+	    {
+	      
 	    }
 	}
       ref = ref->next;
