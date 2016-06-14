@@ -11,11 +11,6 @@
 #include <string.h>
 #include "object.h"
 
-static const char	*objectsStr[7] = {
-        "nourriture", "linemate", "deraumere", "sibur",
-        "mendiane", "phiras", "thystame"
-};
-
 int leaveObject(int *object_inventaire, int *object_ground)
 {
     if (*object_inventaire > 0)

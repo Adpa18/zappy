@@ -86,6 +86,7 @@ SRCS		= src_server/main.c \
 		  src_server/Object/leaveObject_next.c \
 		  src_server/Object/takeObject.c \
 		  src_server/Object/takeObject_next.c \
+		  src_server/Tools/direction.c \
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -93,7 +94,7 @@ OBJSLIB		= $(LIBS:.c=.o)
 
 CFLAGS      =   -Wall -Wextra -W -g
 
-CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/
+CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/ -I./stringLib/
 
 LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket
 
