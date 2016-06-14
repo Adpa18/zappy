@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon May  2 12:44:39 2016 Quentin Gasparotto
-** Last update Fri Jun  3 20:15:00 2016 Quentin Gasparotto
+** Last update Tue Jun  7 22:10:17 2016 Victor Gouet
 */
 
 #include <stdarg.h>
@@ -62,8 +62,8 @@ int	send_message(const char *message, t_socket *interlocutor)
 	return (-1);
       i += len;
     }
-  if (write(interlocutor->sock, CRLF, strlen(CRLF)) == -1)
-    return (-1);
+  /* if (write(interlocutor->sock, CRLF, strlen(CRLF)) == -1) */
+  /*   return (-1); */
   return (0);
 }
 

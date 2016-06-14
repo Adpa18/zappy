@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### C++ template
 # Compiled Object files
 *.slo
@@ -23,3 +24,5 @@ CMakeLists.txt
 
 src_client_ai/lib/luawrap/lua-5.3.2/src/*.c
 src_client_ai/lib/luawrap/lua-5.3.2/src/*.h
+*.a
+zappy_server
