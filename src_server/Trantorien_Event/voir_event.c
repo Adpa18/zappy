@@ -11,34 +11,34 @@
 #include <string.h>
 #include "trantorien_event.h"
 #include "direction.h"
-#include "object.h"
 #include "storage.h"
+#include "object.h"
 
-char    *get_all_objects(t_inventories **map, t_vector2d pos)
+static const char   *state_str[] = {
+        "oeuf", "baby", "ghost", "joueur"
+};
+
+char    *get_all_players(t_team_list *team_list, t_vector2d pos, int id)
 {
-    int     i;
-    int     j;
-    char    *buffer;
-    char    *tmp_buffer;
-    void    *object;
+    t_team_name     *team;
+    t_trantorien    *drone;
+    char            *buffer;
 
     buffer = NULL;
-    object = &map[pos.y][pos.x];
-    i = 0;
-    while (++i < 7)
+    team = team_list->begin;
+    while (team)
     {
-        for (j = 0; j < *(int*)object; ++j)
+        drone = team->begin;
+        while (drone)
         {
-            if (buffer)
+            if (drone->id != id && drone->pos.x == pos.x
+                && drone->pos.y == pos.y)
             {
-                tmp_buffer = buffer;
-                buffer = STRING("%s %s", tmp_buffer, objectsStr[i]);
-                free(tmp_buffer);
+                concat(buffer, state_str[drone->state]);
             }
-            else
-                buffer = strdup(objectsStr[i]);
+            drone = drone->next_on_team;
         }
-        object += sizeof(int);
+        team = team->next;
     }
     return (buffer);
 }

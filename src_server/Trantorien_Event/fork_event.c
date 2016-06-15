@@ -23,10 +23,6 @@ int		fork_event(t_trantorien *trantorien, t_list *list,
   pos.y = trantorien->pos.y;
   create_egg_on_team_from_trantorien(pos, team, trantorien, list);
   send_message("ok\n", &(trantorien->ref->client->sock));
-  //    ++team->max_clients;
-    /* (void)trantorien; */
-    /* (void)list; */
-    /* (void)command; */
-    /* (void)tab; */
+  (void)tab;
   return (0);
 }

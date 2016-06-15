@@ -15,10 +15,7 @@ int		pie_event(t_trantorien *trantorien, t_list *list,
 			  int succes)
 {
   char		*msg;
-  t_vector2d	pos;
 
-  pos.x = trantorien->pos.x;
-  pos.y = trantorien->pos.y;
   msg = STRING("pie %d %d %d\n", trantorien->pos.x, trantorien->pos.y,
 	       succes);
   if (msg)

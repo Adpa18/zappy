@@ -9,7 +9,13 @@
 */
 
 #include <string.h>
+#include "storage.h"
 #include "object.h"
+
+static const char	*objectsStr[7] = {
+        "nourriture", "linemate", "deraumere", "sibur",
+        "mendiane", "phiras", "thystame"
+};
 
 int leaveObject(int *object_inventaire, int *object_ground)
 {
@@ -45,4 +51,38 @@ int		getObject(const char *object_str)
             return (i);
     }
     return (-1);
+}
+
+char    *concat(char *tmp_buffer, const char *add)
+{
+    char    *buffer;
+
+    if (tmp_buffer)
+    {
+        buffer = STRING("%s %s", tmp_buffer, add);
+        free(tmp_buffer);
+    }
+    else
+        buffer = strdup(add);
+    return (buffer);
+}
+
+char    *get_all_objects(t_inventories **map, t_vector2d pos)
+{
+    int     i;
+    int     j;
+    char    *buffer;
+    void    *object;
+
+    buffer = NULL;
+    object = &map[pos.y][pos.x];
+    for (i = 1; i < 7; ++i)
+    {
+        for (j = 0; j < *(int*)object; ++j)
+        {
+            concat(buffer, objectsStr[i]);
+        }
+        object += sizeof(int);
+    }
+    return (buffer);
 }

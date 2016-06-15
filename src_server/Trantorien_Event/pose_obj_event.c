@@ -8,6 +8,7 @@
 ** Last update Tue Jun 14 16:59:35 2016 Victor Gouet
 */
 
+#include "monitor_event.h"
 #include "object.h"
 #include "../../include_server/trantorien_event.h"
 
