@@ -5,9 +5,10 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:49:13 2016 Victor Gouet
-** Last update Wed Jun 15 11:16:42 2016 Victor Gouet
+** Last update Wed Jun 15 11:17:18 2016 Victor Gouet
 */
 
+#include <stdio.h>
 #include "../../include_server/trantorien_event.h"
 #include "../../include_server/monitor_event.h"
 #include "direction.h"
