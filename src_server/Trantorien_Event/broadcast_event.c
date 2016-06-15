@@ -13,6 +13,19 @@
 int     broadcast_event(t_trantorien *trantorien, t_list *list,
 			t_command_line *command, char **tab)
 {
+//    t_trantorien    *drone;
+//    t_ref   *ref;
+//
+//    ref = list->begin;
+//    while (ref)
+//    {
+//        drone = ref->ref;
+//        if (ref->type == TRANTORIEN)
+//        {
+//
+//        }
+//        ref = ref->next;
+//    }
     (void)trantorien;
     (void)list;
     (void)command;

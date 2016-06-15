@@ -98,7 +98,7 @@ OBJS		= $(SRCS:.c=.o)
 
 OBJSLIB		= $(LIBS:.c=.o)
 
-CFLAGS      =   -Wall -Wextra -W -g
+CFLAGS      =   -W -Wall -Wextra -Werror -g
 
 CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/ -I./stringLib/
 

@@ -87,7 +87,7 @@ typedef struct	s_vector2d
 
 typedef enum	s_trantorien_state
   {
-    EGG,
+    EGG = 0,
     BABY,
     GHOST,
     PLAYER

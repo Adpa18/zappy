@@ -61,4 +61,5 @@ int		plv_event_for_one_trantorien(t_list *list,
       send_msg_to_all_monitor(msg, list);
       free(msg);
     }
+    return (0);
 }
