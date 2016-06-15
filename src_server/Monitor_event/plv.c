@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:40:54 2016 Victor Gouet
-** Last update Tue Jun 14 18:32:38 2016 Victor Gouet
+** Last update Wed Jun 15 15:11:18 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
@@ -38,7 +38,7 @@ int		plv_event_all_monitor(t_list *list)
       if (ref->type == TRANTORIEN)
 	{
 	  trantorien = ref->ref;
-	  msg = STRING("plv %d %d", trantorien->id, trantorien->elevation);
+	  msg = STRING("plv %d %d\n", trantorien->id, trantorien->elevation);
 	  if (msg)
 	    {
 	      send_msg_to_all_monitor(msg, list);
@@ -55,7 +55,7 @@ int		plv_event_for_one_trantorien(t_list *list,
 {
   char		*msg;
 
-  msg = STRING("plv %d %d", trantorien->id, trantorien->elevation);
+  msg = STRING("plv %d %d\n", trantorien->id, trantorien->elevation);
   if (msg)
     {
       send_msg_to_all_monitor(msg, list);

@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 15:07:34 2016 Victor Gouet
-** Last update Mon Jun 13 15:46:14 2016 Victor Gouet
+** Last update Wed Jun 15 15:23:01 2016 Victor Gouet
 */
 
 #include <strings.h>
@@ -34,6 +34,25 @@ int	mct_event(t_monitor *monitor, t_list *list,
 	    free(data[1]);
 	  if (data[2])
 	    free(data[2]);
+	  ++x;
+	}
+      ++y;
+    }
+  return (0);
+}
+
+int	mct_to_all_monitor(t_list *list)
+{
+  int	x;
+  int	y;
+
+  y = 0;
+  while (y < list->map->height)
+    {
+      x = 0;
+      while (x < list->map->width)
+	{
+	  bct_event_to_all_monitor(list, x, y);
 	  ++x;
 	}
       ++y;
