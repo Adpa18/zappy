@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 23:02:11 2016 Victor Gouet
-** Last update Tue Jun  7 12:27:13 2016 Victor Gouet
+** Last update Wed Jun 15 10:39:47 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -34,9 +34,10 @@ int		on_height(t_command_line *command)
 
 int		on_team_name(t_command_line *command, char **av)
 {
-  int		i = optind - 1;
+  int		i;
   t_team_name	*elem;
 
+  i = optind - 1;
   while (av[i] != NULL && av[i][0] != '-')
     {
       if ((elem = add_team_elem(&(command->team_list))) == NULL)

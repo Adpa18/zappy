@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 **
 ** Started on  Tue Jun  7 14:52:48 2016 Victor Gouet
-** Last update Fri Jun 10 16:00:53 2016 Victor Gouet
+** Last update Wed Jun 15 11:16:31 2016 Victor Gouet
 */
 
 #include "direction.h"

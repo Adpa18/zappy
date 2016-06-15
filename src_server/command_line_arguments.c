@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:40:39 2016 Victor Gouet
-** Last update Mon Jun 13 22:51:13 2016 Victor Gouet
+** Last update Wed Jun 15 10:27:20 2016 Victor Gouet
 */
 
 #include <stdlib.h>
@@ -13,7 +13,7 @@
 #include <getopt.h>
 #include "../include_server/command_line_arguments.h"
 
-static t_opt_gestion	opt_gestion[OPTION_NBR] = {
+static const t_opt_gestion	opt_gestion[OPTION_NBR] = {
   {
     &on_port,
     'p'
@@ -80,18 +80,19 @@ static void     constructor_command_line(t_command_line *command)
   command->y = -1;
 }
 
-static int     is_command_line_valid(t_command_line *command)
+static int	is_command_line_valid(t_command_line *command)
 {
   t_team_name	*team;
 
-  if (command->nb_client == -1
-      || command->port == -1
+  if (command->nb_client <= 0
+      || command->port <= 0
       || command->team_list.begin == NULL
-      || command->x == -1
-      || command->y == -1)
+      || command->x <= 0
+      || command->y <= 0
+      || command->time <= 0)
     {
-      fprintf(stderr, "Usage: -p port -x width -y height -n name_of_team");
-      fprintf(stderr, " -c client\'s number [-t] time delay\n");
+      fprintf(stderr, USAGE);
+      fprintf(stderr, USAGE_END);
       return (FAILURE);
     }
   team = command->team_list.begin;
@@ -125,8 +126,8 @@ int	on_command_line_server(int ac, char **av,
 	}
       if (idx == OPTION_NBR)
 	{
-	  fprintf(stderr, "Usage: -p port -x width -y height -n name_of_team");
-	  fprintf(stderr, " -c client\'s number [-t] time delay\n");
+	  fprintf(stderr, USAGE);
+	  fprintf(stderr, USAGE_END);
 	  return (FAILURE);
 	}
     }

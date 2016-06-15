@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 10:45:15 2016 Victor Gouet
-** Last update Tue Jun 14 11:53:16 2016 Victor Gouet
+** Last update Wed Jun 15 11:16:18 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -27,9 +27,9 @@ static int	trantorien_eat(t_trantorien *trantorien,
       trantorien->time_left_food = getTimeSeconds();
       --(trantorien->inventaire.food);
       if (trantorien->inventaire.food == 0)
-	{
-	  return (-1);
-	}
+      	{
+      	  return (-1);
+      	}
     }
   return (0);
 }
