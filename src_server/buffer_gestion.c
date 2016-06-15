@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 14:14:09 2016 Victor Gouet
-** Last update Fri Jun 10 11:49:47 2016 Victor Gouet
+** Last update Wed Jun 15 17:39:33 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -22,6 +22,7 @@ void		buffer_push_back(t_ref *ref, char *buffer,
   elem->next = NULL;
   ++(ref->buffer_size);
   elem->buffer = buffer;
+  printf("data receive: %s\n", buffer);
   if (ref->begin == NULL && ref->end == NULL)
     {
       ref->begin = elem;

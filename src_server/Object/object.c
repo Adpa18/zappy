@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 **
 ** Started on  Wed Jun  8 07:52:46 2016 Victor Gouet
-** Last update Mon Jun 13 12:18:36 2016 Victor Gouet
+** Last update Wed Jun 15 17:27:38 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -78,7 +78,7 @@ char    *get_all_objects(t_inventories **map, t_vector2d pos)
 
     buffer = NULL;
     object = &map[pos.y][pos.x];
-    for (i = 1; i < 7; ++i)
+    for (i = 0; i < 7; ++i)
     {
         for (j = 0; j < *(int*)object; ++j)
         {
