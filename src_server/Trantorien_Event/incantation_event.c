@@ -5,11 +5,11 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:59 2016 Victor Gouet
-** Last update Tue Jun 14 18:37:19 2016 Victor Gouet
+** Last update Wed Jun 15 15:24:18 2016 Victor Gouet
 */
 
 #include <stdbool.h>
-#include "player.h"
+#include "../../include_server/player.h"
 #include "incantation.h"
 #include "../../include_server/trantorien_event.h"
 #include "../../include_server/monitor_event.h"
@@ -21,46 +21,56 @@ static const incantationPtr incantationFunc[] = {
 
 bool     incantation_six(t_trantorien *trantorien, t_list *list, bool end)
 {
-    if (count_players_by_pos(list, trantorien) >= 6
-        && trantorien->inventaire.linemate >= 1
-        && trantorien->inventaire.deraumere >= 2
-        && trantorien->inventaire.sibur >= 3
-        && trantorien->inventaire.phiras >= 1)
+  int	x;
+  int	y;
+
+  y = trantorien->pos.y;
+  x = trantorien->pos.x;
+  if (count_players_by_pos_for_elevation(list, trantorien) == 6
+      && list->map->map[y][x].linemate == 1
+      && list->map->map[y][x].deraumere == 2
+      && list->map->map[y][x].sibur == 3
+      && list->map->map[y][x].phiras == 1)
     {
-        if (end)
+      if (end)
         {
-            trantorien->inventaire.linemate -= 1;
-            trantorien->inventaire.deraumere -= 2;
-            trantorien->inventaire.sibur -= 3;
-            trantorien->inventaire.phiras -= 1;
+	  list->map->map[y][x].linemate -= 1;
+	  list->map->map[y][x].deraumere -= 2;
+	  list->map->map[y][x].sibur -= 3;
+	  list->map->map[y][x].phiras -= 1;
         }
-        return (true);
+      return (true);
     }
-    return (false);
+  return (false);
 }
 
 bool     incantation_seven(t_trantorien *trantorien, t_list *list, bool end)
 {
-    if (count_players_by_pos(list, trantorien) >= 6
-        && trantorien->inventaire.linemate >= 2
-        && trantorien->inventaire.deraumere >= 2
-        && trantorien->inventaire.sibur >= 2
-        && trantorien->inventaire.mendiane >= 2
-        && trantorien->inventaire.phiras >= 2
-        && trantorien->inventaire.thystame >= 1)
+  int	x;
+  int	y;
+
+  y = trantorien->pos.y;
+  x = trantorien->pos.x;
+  if (count_players_by_pos_for_elevation(list, trantorien) == 6
+      && list->map->map[y][x].linemate == 2
+      && list->map->map[y][x].deraumere == 2
+      && list->map->map[y][x].sibur == 2
+      && list->map->map[y][x].mendiane == 2
+      && list->map->map[y][x].phiras == 2
+      && list->map->map[y][x].thystame == 1)
     {
-        if (end)
+      if (end)
         {
-            trantorien->inventaire.linemate -= 2;
-            trantorien->inventaire.deraumere -= 2;
-            trantorien->inventaire.sibur -= 2;
-            trantorien->inventaire.mendiane -= 2;
-            trantorien->inventaire.phiras -= 2;
-            trantorien->inventaire.thystame -= 1;
+	  list->map->map[y][x].linemate -= 2;
+	  list->map->map[y][x].deraumere -= 2;
+	  list->map->map[y][x].sibur -= 2;
+	  list->map->map[y][x].mendiane -= 2;
+	  list->map->map[y][x].phiras -= 2;
+	  list->map->map[y][x].thystame -= 1;
         }
-        return (true);
+      return (true);
     }
-    return (false);
+  return (false);
 }
 
 bool    can_elevate(t_trantorien *trantorien, t_list *list)
@@ -69,7 +79,29 @@ bool    can_elevate(t_trantorien *trantorien, t_list *list)
             (trantorien, list, false));
 }
 
-int     incantation_event(t_trantorien *trantorien, t_list *list,
+static void	send_msg_to_finish_elevation_ko(t_list *list,
+						int x,
+						int y)
+{
+  t_ref		*ref;
+  t_trantorien	*trantorien;
+
+  ref = list->begin;
+  while (ref)
+    {
+      if (ref->type == TRANTORIEN)
+	{
+	  trantorien = ref->ref;
+	  if (trantorien->pos.x == x && trantorien->pos.y == y)
+	    {
+	      sendf_message(&(ref->client->sock), "ko\n");
+	    }
+	}
+      ref = ref->next;
+    }
+}
+
+int	incantation_event(t_trantorien *trantorien, t_list *list,
 			  t_command_line *command, char **tab)
 {
   (void)command;
@@ -77,14 +109,19 @@ int     incantation_event(t_trantorien *trantorien, t_list *list,
   if (incantationFunc[trantorien->elevation - 1]
       (trantorien, list, true))
     {
-        ++trantorien->elevation;
+      elevate_players_at_pos(list, trantorien->pos.x, trantorien->pos.y);
       pie_event(trantorien, list, 1);
       plv_event_all_monitor(list);
+      mct_to_all_monitor(list);
+      send_msg_to_finish_elevation(list, trantorien->pos.x,
+				   trantorien->pos.y);
     }
   else
     {
+      send_msg_to_finish_elevation_ko(list, trantorien->pos.x,
+				      trantorien->pos.y);
       pie_event(trantorien, list, 0);
       plv_event_all_monitor(list);
     }
-    return (0);
+  return (0);
 }
