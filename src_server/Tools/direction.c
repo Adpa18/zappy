@@ -11,7 +11,7 @@
 #include "direction.h"
 
 static t_vector2d vectorDir[5] = {
-        {0, 0}, {1, 0}, {0, -1}, {-1, 0}, {0, 1}
+        {0, 0}, {0, -1}, {1, 0}, {0, 1}, {-1, 0}
 };
 
 t_vector2d  getVectorDir(t_orientation orientation)
@@ -33,9 +33,7 @@ void    move_by_dir(t_trantorien *trantorien, t_command_line *command,
 {
     trantorien->pos.x += dir.x;
     trantorien->pos.y += dir.y;
-    if (trantorien->pos.x <= 0 || trantorien->pos.x > command->x)
-        trantorien->pos.x = 0;
-    if (trantorien->pos.y <= 0 || trantorien->pos.y > command->y)
-        trantorien->pos.y = 0;
+    trantorien->pos.x = modulo(trantorien->pos.x, command->x);
+    trantorien->pos.y = modulo(trantorien->pos.y, command->y);
 }
 

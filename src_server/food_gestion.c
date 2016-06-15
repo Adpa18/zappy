@@ -25,11 +25,11 @@ static int	trantorien_eat(t_trantorien *trantorien,
   if (is_time_out_in(trantorien->time_left_food, time_left))
     {
       trantorien->time_left_food = getTimeSeconds();
-      --(trantorien->inventaire.food);
-      if (trantorien->inventaire.food == 0)
-      	{
-      	  return (-1);
-      	}
+//      --(trantorien->inventaire.food);
+//      if (trantorien->inventaire.food == 0)
+//	{
+//	  return (-1);
+//	}
     }
   return (0);
 }
