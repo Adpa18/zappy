@@ -53,10 +53,12 @@ int		getObject(const char *object_str)
     return (-1);
 }
 
-char    *concat(char *tmp_buffer, const char *add)
+char    *concat_object(char *tmp_buffer, const char *add)
 {
     char    *buffer;
 
+    if (!add)
+        return (tmp_buffer);
     if (tmp_buffer)
     {
         buffer = STRING("%s %s", tmp_buffer, add);
@@ -80,7 +82,7 @@ char    *get_all_objects(t_inventories **map, t_vector2d pos)
     {
         for (j = 0; j < *(int*)object; ++j)
         {
-            concat(buffer, objectsStr[i]);
+            buffer = concat_object(buffer, objectsStr[i]);
         }
         object += sizeof(int);
     }

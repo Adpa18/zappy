@@ -27,7 +27,7 @@ enum ObjectType {
 };
 
 int getObject(const char *object_str);
-char    *concat(char *tmp_buffer, const char *add);
+char    *concat_object(char *tmp_buffer, const char *add);
 char    *get_all_objects(t_inventories **map, t_vector2d pos);
 int takeObject(int *object_inventaire, int *object_ground);
 int leaveObject(int *object_inventaire, int *object_ground);

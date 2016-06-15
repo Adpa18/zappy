@@ -15,6 +15,7 @@
 # include "command_line_arguments.h"
 # include "../socketlib/include/my_sock.h"
 
+# define UNUSED		__attribute__((__unused__))
 # define EVENTSIZE	25
 # define GRAPHIC	"GRAPHIC"
 # define BIENVENUE	"BIENVENUE\n"

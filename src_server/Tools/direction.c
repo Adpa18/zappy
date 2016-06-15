@@ -37,3 +37,20 @@ void    move_by_dir(t_trantorien *trantorien, t_command_line *command,
     trantorien->pos.y = modulo(trantorien->pos.y, command->y);
 }
 
+t_vector2d   calc_pos(t_vector2d pos, t_vector2d dir, int j,
+                             t_command_line *cmd)
+{
+    t_vector2d  cur_pos;
+
+    if (dir.y == 1 || dir.x == -1)
+    {
+        cur_pos.x = modulo(pos.x - ((dir.y == 0) ? 0 : j), cmd->x);
+        cur_pos.y = modulo(pos.y - ((dir.x == 0) ? 0 : j), cmd->y);
+    }
+    else
+    {
+        cur_pos.x = modulo(pos.x + ((dir.y == 0) ? 0 : j), cmd->x);
+        cur_pos.y = modulo(pos.y + ((dir.x == 0) ? 0 : j), cmd->y);
+    }
+    return (cur_pos);
+}

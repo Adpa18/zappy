@@ -70,24 +70,3 @@ t_trantorien	*get_trantorien_from_id(t_list *list, int id)
     }
   return (NULL);
 }
-
-t_trantorien	*get_trantorien_in_x_y(t_list *list, int x, int y)
-{
-  t_ref		*ref;
-  t_trantorien	*trantorien;
-
-  ref = list->begin;
-  while (ref)
-    {
-      if (ref->type == TRANTORIEN)
-	{
-	  trantorien = ref->ref;
-	  if (trantorien->pos.x == x && trantorien->pos.y == y)
-	    {
-	      
-	    }
-	}
-      ref = ref->next;
-    }
-  return (NULL);
-}

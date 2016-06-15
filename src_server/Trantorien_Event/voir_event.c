@@ -34,7 +34,7 @@ char    *get_all_players(t_team_list *team_list, t_vector2d pos, int id)
             if (drone->id != id && drone->pos.x == pos.x
                 && drone->pos.y == pos.y)
             {
-                concat(buffer, state_str[drone->state]);
+                buffer = concat_object(buffer, state_str[drone->state]);
             }
             drone = drone->next_on_team;
         }
@@ -43,16 +43,29 @@ char    *get_all_players(t_team_list *team_list, t_vector2d pos, int id)
     return (buffer);
 }
 
-static char     *do_voir(t_inventories **map, t_vector2d pos, char *buffer)
+char    *get_all(t_inventories **map, t_team_list *team_list,
+                 t_vector2d pos, int id)
 {
-    char    *tmp;
+    char    *objects;
+    char    *tmp_objects;
+    char    *tmp_players;
+
+    tmp_objects = get_all_objects(map, pos);
+    tmp_players = get_all_players(team_list, pos, id);
+    objects = concat_object(tmp_objects, tmp_players);
+    if (tmp_players)
+        free(tmp_players);
+    return (objects);
+}
+
+static char     *do_voir(char *buffer, char *objects)
+{
     char    *ret;
 
-    tmp = get_all_objects(map, pos);
-    if (tmp)
+    if (objects)
     {
-        ret = STRING("%s,%s", buffer, tmp);
-        free(tmp);
+        ret = STRING("%s,%s", buffer, objects);
+        free(objects);
     }
     else
     {
@@ -62,31 +75,32 @@ static char     *do_voir(t_inventories **map, t_vector2d pos, char *buffer)
     return (ret);
 }
 
-static char    *init_voir(t_inventories **map, t_vector2d pos)
+static char    *init_voir(char *objects)
 {
     char    *buffer;
-    char    *tmp;
 
-    tmp = get_all_objects(map, pos);
-    if (tmp)
-        buffer = STRING("{%s", tmp);
+    if (objects)
+    {
+        buffer = STRING("{%s", objects);
+        free(objects);
+    }
     else
         buffer = strdup("{");
     return (buffer);
 }
 
 int     voir_event(t_trantorien *trantorien, t_list *list,
-                   t_command_line *command, char **tab)
+                   t_command_line *cmd, char UNUSED**tab)
 {
     int     i;
     int     j;
     char    *buffer;
     t_vector2d  dir;
     t_vector2d  pos;
-    t_vector2d  cur_pos;
 
     pos = trantorien->pos;
-    buffer = init_voir(list->map->map, pos);
+    buffer = init_voir(get_all(list->map->map, &(cmd->team_list), pos,
+                               trantorien->id));
     dir = getVectorDir(trantorien->orientation);
     for (i = 1; i <= trantorien->elevation; ++i)
     {
@@ -94,14 +108,12 @@ int     voir_event(t_trantorien *trantorien, t_list *list,
         pos.y += dir.y;
         for (j = -i; j <= i; ++j)
         {
-            cur_pos = pos;
-            cur_pos.x = modulo(cur_pos.x + (dir.x == 0) ? j : 0, command->x);
-            cur_pos.y = modulo(cur_pos.y + (dir.y == 0) ? j : 0, command->y);
-            buffer = do_voir(list->map->map, cur_pos, buffer);
+
+            buffer = do_voir(buffer, get_all(list->map->map, &(cmd->team_list),
+                                            calc_pos(pos, dir, j, cmd),
+                                             trantorien->id));
         }
     }
-    // TODO maybe add players
     sendf_message(&(trantorien->ref->client->sock), "%s}\n", buffer);
-    (void)tab;
     return (0);
 }
