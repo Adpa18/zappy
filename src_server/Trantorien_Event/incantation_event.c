@@ -77,12 +77,13 @@ int     incantation_event(t_trantorien *trantorien, t_list *list,
   if (incantationFunc[trantorien->elevation - 1]
       (trantorien, list, true))
     {
+        ++trantorien->elevation;
       pie_event(trantorien, list, 1);
       plv_event_all_monitor(list);
     }
   else
     {
-      pie_event(trantorien, list, 1);
+      pie_event(trantorien, list, 0);
       plv_event_all_monitor(list);
     }
     return (0);
