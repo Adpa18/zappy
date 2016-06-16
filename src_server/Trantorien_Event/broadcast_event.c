@@ -9,6 +9,7 @@
 */
 
 #include <math.h>
+#include "monitor_event.h"
 #include "direction.h"
 #include "../../include_server/trantorien_event.h"
 
@@ -115,6 +116,7 @@ int     broadcast_event(t_trantorien *trantorien, t_list *list,
         }
         ref = ref->next;
     }
+    pbc_event(trantorien, list, text);
     send_message("ok\n", &(trantorien->ref->client->sock));
     (void)tab;
   return (0);
