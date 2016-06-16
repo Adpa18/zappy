@@ -98,9 +98,9 @@ int IAClient::Update(void)
     return 0;
 }
 
-void IAClient::Receive()
+void IAClient::Receive(ZappyRequest::Request received, std::string const &answer)
 {
-    script.Handler()->Select(IAClient::OnReceive).Call();
+    script.Handler()->Select(IAClient::OnReceive).Call(static_cast<int>(received), answer.c_str());
 }
 
 void IAClient::Die(void)
@@ -198,4 +198,9 @@ int IAClient::SetParameter(Lua::LuaScript const &script)
 {
     reqParam = script.GetString();
     return 0;
+}
+
+void IAClient::ReceiveMessage(const std::string &message)
+{
+    Receive(ZappyRequest::BROADCAST, message);
 }

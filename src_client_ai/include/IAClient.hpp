@@ -37,6 +37,7 @@ public:
     void Die(void);
     bool IsDead(void) const;
     void Upgrade(const std::string &);
+    void ReceiveMessage(const std::string &);
     bool IsIncanting(void) const;
     void Incant(void);
     void Moved(void);
@@ -53,8 +54,8 @@ public:
 
 public:
     virtual void Connect(const std::string &ip, const uint16_t port, std::string const &teamName);
-    int Update(void);
-    void Receive(void);
+    int         Update(void);
+    void        Receive(ZappyRequest::Request received, std::string const &answer);
     Inventory   &Bag(void);
     void        RefreshMap(std::vector<std::vector<std::string> > const &data);
 

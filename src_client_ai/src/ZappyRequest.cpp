@@ -63,7 +63,8 @@ ZappyRequest::ZappyRequest(IAClient *client) :
     client(client),
     watcher({
                     {"mort", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string), std::string>(*client, (void (IAClient::*)(std::string))&IAClient::Die)},
-                    {"niveau actuel : ", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(*client, &IAClient::Upgrade)}
+                    {"niveau actuel : ", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(*client, &IAClient::Upgrade)},
+                    {"message", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(*client, &IAClient::ReceiveMessage)}
             }),
     lastRequest(DEFAULT),
     status(false),
@@ -178,7 +179,7 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
         it = callbacks.find(request);
         if (it != callbacks.end())
             (*this.*it->second)(answer, param);
-        client->Receive();
+        client->Receive(request, answer);
     }
     catch (std::exception &exception)
     {
