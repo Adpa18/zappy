@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Tue Jun 14 11:23:07 2016 Victor Gouet
+** Last update Thu Jun 16 15:41:55 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -125,6 +125,12 @@ typedef struct	s_list
   int		nbr_client;
   t_map		*map;
 }		t_list;
+
+/*
+**	get_buffer.c
+*/
+
+char	*get_buffer_from_client_without_cammand(t_ref *ref);
 
 /*
 **	monitor_connection.c
