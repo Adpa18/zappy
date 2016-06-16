@@ -16,7 +16,8 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
         {
                 {"GetInventory", (int (IAClient::*)(lua_State *))&IAClient::GetInventory},
                 {"GetSightAt", (int (IAClient::*)(lua_State *))&IAClient::GetSightAt},
-                {"SetParameter", (int (IAClient::*)(lua_State *))&IAClient::SetParameter}
+                {"SetParameter", (int (IAClient::*)(lua_State *))&IAClient::SetParameter},
+		{"GetLevel", (int (IAClient::*)(lua_State *))&IAClient::GetLevel}
         }
 };
 
@@ -171,6 +172,12 @@ void IAClient::RefreshMap(std::vector<std::vector<std::string> > const &data)
 void IAClient::Moved(void)
 {
     moved = true;
+}
+
+int IAClient::GetLevel(Lua::LuaScript const &script)
+{
+  script.PushVar(lvl);
+  return 1;
 }
 
 int IAClient::GetInventory(Lua::LuaScript const &script)
