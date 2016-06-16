@@ -86,6 +86,11 @@ typedef struct	s_vector2d
   int		y;
 }		t_vector2d;
 
+typedef struct	s_vector2f
+{
+    double		x;
+    double		y;
+}		t_vector2f;
 typedef enum	s_trantorien_state
   {
     EGG = 0,

@@ -103,7 +103,7 @@ CFLAGS      =   -W -Wall -Wextra -Werror -g
 
 CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/ -I./stringLib/
 
-LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket
+LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket -lm
 
 all:		$(NAME) $(NAMEAI)
 
