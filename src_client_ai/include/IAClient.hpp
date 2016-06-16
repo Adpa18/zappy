@@ -47,9 +47,10 @@ public:
     void TurnLeft(void);
 
 public:
-    int     GetInventory(Lua::LuaScript const &script);
-    int     GetSightAt(Lua::LuaScript const &script);
-    int     SetParameter(Lua::LuaScript const &script);
+  int     GetInventory(Lua::LuaScript const &script);
+  int     GetSightAt(Lua::LuaScript const &script);
+  int     SetParameter(Lua::LuaScript const &script);
+  int     GetLevel(Lua::LuaScript const &script);
 
 public:
     virtual void Connect(const std::string &ip, const uint16_t port, std::string const &teamName);
