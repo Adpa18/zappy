@@ -9,7 +9,6 @@
 */
 
 #include <math.h>
-#include <stdio.h>
 #include "direction.h"
 #include "../../include_server/trantorien_event.h"
 
