@@ -6,7 +6,6 @@
 Queue = {};
 actionList = Queue.new()
 canAct = true;
-teamName = GetTeamName();
 
 function Queue.new()
    return {first = 0, last = -1};
@@ -35,49 +34,8 @@ function Queue.pop(list)
    return value;
 end
 
-function CreatePath(case)
-   local path = Queue.new();
-   local n = 1;
-   local i = 1;
-   local y = 0;
-   if case == 0 then
-      return path;
-   end
-   while n <= 7 do
-      if i <= case && case <= i + n * 2 then
-	 for j = 0, n , +1 do
-	    path:pushBack("MOVE");
-	    y = y + (j + 1) * 2;
-	    if GetSightAt(y):HasObject(FOOD) == true then
-	       path:pushBack("TAKE nourriture");
-	    end
-	 end
-	 if case == (i + (i + n * 2)) / 2 then
-	    return path;
-	 elseif case < (i + (i + n * 2)) / 2 then
-	    path:pushBack("LEFT");
-	    for j = 0, (i + (i + n * 2)) / 2 - case, +1 do
-	       path:pushBack("MOVE");
-	       y = y - 1;
-	       if GetSightAt(y):HasObject(FOOD) == true then
-		  path:pushBack("TAKE nourriture");
-	    end
-	 else
-	    path:pushBack("RIGHT")
-	    for j = 0, case - (i + (i + n * 2)) / 2, +1 do
-	       path:pushBack("MOVE");
-	       y = y + 1;
-	       if GetSightAt(y):HasObject(FOOD) == true then
-		  path:pushBack("TAKE nourriture");
-	    end
-	 end
-	 return path;
-      end
-      n = n + 1;
-   end
-end
-
 function OnStart()
+   print("start toto");
 end
 
 function OnUpdate()
@@ -157,13 +115,8 @@ function OnUpdate()
 	       actionList:pushBack(MOVE);
 	    end
 	 end
-      end
-      if -- jai les ressources pour mélever
-      then
-	 -- envoie message de regroupement
-      else
-	 --recherche des ressources nécessaires
-      end
+      end   
+      return (LAYEGG);
    end
    return NONE;
 end
@@ -176,32 +129,4 @@ function OnReceive(request, rep)
       end
       return ;
    end
-   if request == INCANTATION then
-      if rep == "ko" then
-	 canAct = true;
-	 actionList = Queue.new();
-	 return ;
-      elseif rep == "elevation en cours" then
-	 return ;
-      else
-	 canAct = true;
-	 return ;
-      end
-   end
-   if request == BROADCAST then
-      if string.find(rep, "On fait l'appel!") != nil then
-	 -- message de présence
-      end
-      if -- message de présence
-      then
-	 -- ajout de l'id dans le tableau d'équipe si id pas présente dedans
-      end
-      if -- message de regroupement && lvl requis
-      then
-      -- se diriger vers l'origine du son
-      end
-   end
 end
-
--- BROADCAST --
--- On se regroupe! Equipe nom_de_team! Level lvl_ia

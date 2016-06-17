@@ -5,7 +5,7 @@
 // Login   <tavern_d@epitech.net>
 // 
 // Started on  Wed Jun  8 11:40:42 2016 Matthieu Tavernier
-// Last update Mon Jun 13 13:44:39 2016 Matthieu Tavernier
+// Last update Fri Jun 17 16:42:34 2016 Matthieu Tavernier
 //
 
 #include "Core.hpp"
@@ -116,6 +116,7 @@ int    Core::parseArg(int ac, char **av) throw(std::runtime_error)
     if (this->teamName == "" || this->ip == "" || this->port == -1)
         throw ParsingError(av[0], usage);
     this->client.Connect(this->ip, this->port, this->teamName);
+    this->client.SetScript(this->fileIA);
     return (0);
 }
 

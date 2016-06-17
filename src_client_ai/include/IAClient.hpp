@@ -28,7 +28,7 @@ public:
     static const Lua::LuaClass<IAClient>::LuaPrototype      prototype;
 
 public:
-    explicit IAClient(std::string const &scriptname = Default);
+    explicit IAClient();
     virtual ~IAClient();
     IAClient(IAClient const &ref) = delete;
     IAClient    &operator=(IAClient const &ref) = delete;
@@ -46,10 +46,12 @@ public:
     void See(std::vector<std::vector<std::string>> const &vision);
     void TurnRight(void);
     void TurnLeft(void);
+  void SetScript(const std::string &script);
 
 public:
   int     GetInventory(Lua::LuaScript const &script);
   int     GetSightAt(Lua::LuaScript const &script);
+  int     GetTeamName(Lua::LuaScript const &script);
   int     SetParameter(Lua::LuaScript const &script);
   int     GetLevel(Lua::LuaScript const &script);
 
@@ -74,6 +76,7 @@ private:
     bool                        incanting;
     bool                        moved;
     size_t                      missing;
+  std::string			teamName;
 };
 
 #endif //PSU_2015_ZAPPY_IACLIENT_HPP

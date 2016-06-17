@@ -21,7 +21,7 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
         }
 };
 
-IAClient::IAClient(const std::string &scriptname) :
+IAClient::IAClient() :
     script(),
     inventory(&request),
     request(this),
@@ -36,7 +36,6 @@ IAClient::IAClient(const std::string &scriptname) :
     moved(false),
     missing(0)
 {
-    script.LoadFile(scriptname);
     script.SetGlobalValue(this, "IA");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::DEFAULT), "NONE");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::MOVE), "MOVE");
@@ -57,10 +56,16 @@ IAClient::~IAClient()
         delete(map);
 }
 
+void IAClient::SetScript(const std::string &script)
+{
+  this->script.LoadFile(script);
+}
+
 void IAClient::Connect(const std::string &ip, const uint16_t port, std::string const &teamName)
 {
     std::string answer;
 
+    this->teamName = teamName;
     Client::Connect(ip, port);
     if (getCRLFLine(answer) && answer == "BIENVENUE")
     {
@@ -199,6 +204,12 @@ int IAClient::GetSightAt(Lua::LuaScript const &script)
         return 0;
     script.PushVar(&sight[index]);
     return 1;
+}
+
+int IAClient::GetTeamName(Lua::LuaScript const &script)
+{
+  script.PushVar(teamName.c_str());
+  return 1;
 }
 
 int IAClient::SetParameter(Lua::LuaScript const &script)
