@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 17:41:28 2016 Victor Gouet
-** Last update Tue Jun  7 20:14:34 2016 Victor Gouet
+** Last update Fri Jun 17 11:57:39 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
@@ -30,6 +30,8 @@ t_trantorien	*remove_client_to_team(t_team_name *list,
     list->begin = ((t_trantorien *)list->begin)->next_on_team;
   if (list->end == ref)
     list->end = elem;
+  free(ref->team);
+  free(ref);
   --(list->nbr_client);
   return (elem != NULL ? elem->next_on_team : NULL);
 }
@@ -53,4 +55,36 @@ t_trantorien		*remove_client_to_unknown_team(t_team_list *list,
       team = team->next;
     }
   return (NULL);
+}
+
+void		remove_all_team(t_team_list *list)
+{
+  t_team_name	*team;
+  t_team_name	*tmp;
+  t_trantorien	*trantorien;
+
+  team = list->begin;
+  tmp = NULL;
+  while (team)
+    {
+      trantorien = team->begin;
+      while (trantorien)
+	{
+	  trantorien = remove_client_to_team(team, trantorien);
+	}
+      if (tmp)
+	{
+	  if (tmp->name)
+	    free(tmp->name);
+	  free(tmp);
+	}
+      tmp = team;
+      team = team->next;
+    }
+  if (tmp)
+    {
+      if (tmp->name)
+	free(tmp->name);
+      free(tmp);
+    }
 }

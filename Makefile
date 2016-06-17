@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ##
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Thu Jun 16 15:43:01 2016 Victor Gouet
+## Last update Fri Jun 17 12:11:49 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -45,6 +45,7 @@ SRCS		= src_server/main.c \
 		  src_server/end_of_game.c \
 		  src_server/monitor_connection.c \
 		  src_server/get_buffer.c \
+		  src_server/remove_map.c \
 		  src_server/trantorien_connection.c \
 		  src_server/Trantorien_Event/die_event.c \
 		  src_server/Trantorien_Event/avance_event.c \
@@ -99,9 +100,15 @@ OBJS		= $(SRCS:.c=.o)
 
 OBJSLIB		= $(LIBS:.c=.o)
 
+GRAPHIC_SERVER		= no
+
 CFLAGS      =   -W -Wall -Wextra -Werror -g
 
 CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/ -I./stringLib/
+
+ifeq ($(GRAPHIC_SERVER),true)
+	CFLAGS		+= -D GRAPHIC_SERVER=true
+endif
 
 LDFLAGS		= -L $(STRINGLIB) -lstringLib -L $(SOCKETLIB) -lmy_socket -lm
 
