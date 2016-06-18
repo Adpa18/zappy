@@ -24,16 +24,24 @@ function Neuron.compute(this)
     return this.value;
 end
 
-function Neuron.setWeights(this, targetneuron, weights)
-    for i=1, #this.synapses do
-        print("set synapse weight "..weights[i]);
-        this.synapses[i] = {neuron = targetneuron, weight = weights[i]};
+function Neuron.setWeights(this, prevneurons, weights)
+    for i=1, #weights do
+        this.synapses[i] = {neuron = prevneurons[i], weight = weights[i]};
     end
 end
 
 function Neuron.activate(this, actFunc)
     this.value = actFunc(this.value);
     return this.value;
+end
+
+function Neuron.getWeights(this)
+    local weights = {};
+
+    for i=1, #this.synapses do
+        weights[i] = this.synapses[i].weight;
+    end
+    return weights;
 end
 
 return Neuron;

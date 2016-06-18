@@ -46,7 +46,7 @@ end
 
 function Layer.SetSynapsesWeight(this, neurons, prevlayer)
     for i=1, #this.neurons do
-        Neuron.setWeights(this.neurons[i], prevlayer[i], neurons[i]);
+        neuron.setWeights(this.neurons[i], prevlayer.neurons, neurons[i]);
     end
 end
 
@@ -54,6 +54,15 @@ function Layer.copy(this, tocopy)
     for i=1, #tocopy do
         this.neurons[i].value = tocopy[i];
     end
+end
+
+function Layer.getNeuronsWeight(this)
+    local   weights = {};
+
+    for i=1, #this.neurons do
+        weights[i] = neuron.getWeights(this.neurons[i]);
+    end
+    return weights;
 end
 
 return Layer;

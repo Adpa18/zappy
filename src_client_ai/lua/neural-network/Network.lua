@@ -11,6 +11,12 @@ json = require "json/json";
 
 local NeuralNetwork = {}
 
+--[[
+--Neural Network constructor
+-- nbInput  Number of inputs present in the network
+-- nbOutput Number of outputs of the Network
+-- layersNb Array with the number of neurons in each layers of the network
+ ]]
 function NeuralNetwork.new(nbInput, nbOutput, layersNb)
     local toret = {input = {}, output = {}, layers = {}};
 
@@ -47,16 +53,33 @@ function NeuralNetwork.compute(this, inputs)
 end
 
 function NeuralNetwork.deserialize(filename)
-    local neur = json.decode(filename);
+    local file = assert(io.open(filename, "r"))
+    local neur = json.decode(file:read("*all"));
     local toret = NeuralNetwork.new(neur.inputs, #neur.output);
     local prevLayer = toret.input;
 
-    for i=1, #toret.layers do
-        toret.layers[i] = Layer.new(neur.layers[i]);
-        Layer.SetSynapsesWeight(toret.layers[i], neur.layers[i], prevLayer);
+    for i=1, #neur.layers do
+        toret.layers[i] = layer.new(#neur.layers[i]);
+        layer.SetSynapsesWeight(toret.layers[i], neur.layers[i], prevLayer);
         prevLayer = toret.layers[i];
     end
+    layer.SetSynapsesWeight(toret.output, neur.output, prevLayer);
+    file:close();
     return toret;
+end
+
+function NeuralNetwork.serialize(this, filename)
+    local file = assert(io.open(filename, "w"));
+    local toEncode = {};
+
+    toEncode.output = layer.getNeuronsWeight(this.output);
+    toEncode.layers = {};
+    for i=1, #this.layers do
+        toEncode.layers[i] = layer.getNeuronsWeight(this.layers[i]);
+    end
+    toEncode.inputs = #this.input.neurons;
+    file:write(json.encode(toEncode));
+    file:close();
 end
 
 return NeuralNetwork;
