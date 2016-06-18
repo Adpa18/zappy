@@ -115,8 +115,8 @@ int    Core::parseArg(int ac, char **av) throw(std::runtime_error)
     }
     if (this->teamName == "" || this->ip == "" || this->port == -1)
         throw ParsingError(av[0], usage);
-    this->client.Connect(this->ip, this->port, this->teamName);
     this->client.SetScript(this->fileIA);
+    this->client.Connect(this->ip, this->port, this->teamName);
     return (0);
 }
 

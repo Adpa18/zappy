@@ -5,37 +5,43 @@
 #include "IAClient.hpp"
 #include "LuaHandler.hpp"
 
-const std::string    IAClient::Default = "./lua/default.lua";
-const std::string    IAClient::OnStart = "OnStart";
-const std::string    IAClient::OnUpdate = "OnUpdate";
+const std::string    IAClient::Default   = "./lua/default.lua";
+const std::string    IAClient::OnStart   = "OnStart";
+const std::string    IAClient::OnUpdate  = "OnUpdate";
 const std::string    IAClient::OnReceive = "OnReceive";
 
-const std::string    IAClient::className = typeid(IAClient).name();
+const std::string                              IAClient::className = typeid(IAClient).name();
 const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
         {},
         {
-                {"GetInventory", (int (IAClient::*)(lua_State *))&IAClient::GetInventory},
-                {"GetSightAt", (int (IAClient::*)(lua_State *))&IAClient::GetSightAt},
-                {"SetParameter", (int (IAClient::*)(lua_State *))&IAClient::SetParameter},
-		{"GetLevel", (int (IAClient::*)(lua_State *))&IAClient::GetLevel}
+                {
+                        "GetInventory", (int (IAClient::*)(lua_State *)) &IAClient::GetInventory
+                },
+                {
+                           "GetSightAt", (int (IAClient::*)(lua_State *)) &IAClient::GetSightAt
+                   },
+                {
+                              "SetParameter", (int (IAClient::*)(lua_State *)) &IAClient::SetParameter
+                },{"GetLevel", (int (IAClient::*)(lua_State *)) &IAClient::GetLevel}
         }
 };
 
 IAClient::IAClient() :
-    script(),
-    inventory(&request),
-    request(this),
-    map(NULL),
-    position(Vector2::Zero),
-    orientation(Vector2::UP),
-    sight(),
-    reqParam(),
-    dead(false),
-    lvl(0),
-    incanting(false),
-    moved(false),
-    missing(0)
+        script(), inventory(&request), request(this), map(NULL), position(Vector2::Zero), orientation(Vector2::UP),
+        sight(), reqParam(), dead(false), lvl(0), incanting(false), moved(false), missing(0)
 {
+}
+
+IAClient::~IAClient()
+{
+    if (map)
+        delete (map);
+}
+
+void IAClient::SetScript(const std::string &scriptname)
+{
+    std::cout << "Loading script: " << scriptname << std::endl;
+    script.LoadFile(scriptname);
     script.SetGlobalValue(this, "IA");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::DEFAULT), "NONE");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::MOVE), "MOVE");
@@ -48,17 +54,6 @@ IAClient::IAClient() :
     script.SetGlobalValue(static_cast<int>(ZappyRequest::INCANTATION), "INCANTATION");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::LAYEGG), "LAYEGG");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::CONNECTNBR), "CONNECTNBR");
-}
-
-IAClient::~IAClient()
-{
-    if (map)
-        delete(map);
-}
-
-void IAClient::SetScript(const std::string &script)
-{
-  this->script.LoadFile(script);
 }
 
 void IAClient::Connect(const std::string &ip, const uint16_t port, std::string const &teamName)
@@ -78,7 +73,8 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
                 unsigned long i = answer.find(' ');
                 if (i > 0 && i != std::string::npos && i < answer.length() - 1)
                 {
-                    map = new ZappyMap(Vector2(atoi(answer.substr(0, i - 1).c_str()), atoi(answer.substr(i + 1, answer.length() - i).c_str())), &request);
+                    map = new ZappyMap(Vector2(atoi(answer.substr(0, i - 1).c_str()),
+                                               atoi(answer.substr(i + 1, answer.length() - i).c_str())), &request);
                     script.Handler()->Select(IAClient::OnStart).Call();
                     return;
                 }
@@ -91,7 +87,8 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
 int IAClient::Update(void)
 {
     reqParam = "";
-    request.MakeRequest(static_cast<ZappyRequest::Request >(script.Handler()->Select(IAClient::OnUpdate).Call()), reqParam);
+    request.MakeRequest(static_cast<ZappyRequest::Request >(script.Handler()->Select(IAClient::OnUpdate).Call()),
+                        reqParam);
     try
     {
         request.Update();
@@ -164,7 +161,7 @@ void IAClient::TurnRight(void)
 
 void IAClient::TurnLeft(void)
 {
-    orientation = static_cast<Vector2::DIR >(orientation - 1);
+    orientation     = static_cast<Vector2::DIR >(orientation - 1);
     if (orientation < 0)
         orientation = Vector2::LEFT;
 }
@@ -181,8 +178,8 @@ void IAClient::Moved(void)
 
 int IAClient::GetLevel(Lua::LuaScript const &script)
 {
-  script.PushVar(lvl);
-  return 1;
+    script.PushVar(lvl);
+    return 1;
 }
 
 int IAClient::GetInventory(Lua::LuaScript const &script)
@@ -208,8 +205,8 @@ int IAClient::GetSightAt(Lua::LuaScript const &script)
 
 int IAClient::GetTeamName(Lua::LuaScript const &script)
 {
-  script.PushVar(teamName.c_str());
-  return 1;
+    script.PushVar(teamName.c_str());
+    return 1;
 }
 
 int IAClient::SetParameter(Lua::LuaScript const &script)
