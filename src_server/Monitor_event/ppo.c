@@ -5,17 +5,19 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:41:02 2016 Victor Gouet
-** Last update Tue Jun 14 01:30:42 2016 Victor Gouet
+** Last update Tue Jun 14 16:25:52 2016 Victor Gouet
 */
 
 #include <stdlib.h>
 #include "../../include_server/monitor_event.h"
+#include "../../stringLib/storage.h"
 
 int		ppo_event(t_monitor *monitor, t_list *list,
 			  t_command_line *command, char **tab)
 {
   t_trantorien	*trantorien;
 
+  (void)command;
   if (!tab[1])
     return (sbp_event(monitor));
   if (!(trantorien = get_trantorien_from_id(list, atoi(tab[1]))))
@@ -23,5 +25,21 @@ int		ppo_event(t_monitor *monitor, t_list *list,
   sendf_message(&(monitor->ref->client->sock),
 		"ppo %d %d %d %d\n", trantorien->id, trantorien->pos.x,
 		trantorien->pos.y, trantorien->orientation);
+  return (0);
+}
+
+int		ppo_event_to_all_monitor(t_trantorien *trantorien,
+					 t_list *list)
+{
+  char		*msg;
+
+  msg = STRING("ppo %d %d %d %d\n",
+	       trantorien->id, trantorien->pos.x,
+	       trantorien->pos.y, trantorien->orientation);
+  if (msg)
+    {
+      send_msg_to_all_monitor(msg, list);
+      free(msg);
+    }
   return (0);
 }

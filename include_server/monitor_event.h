@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:36:07 2016 Victor Gouet
-** Last update Tue Jun 14 12:26:36 2016 Victor Gouet
+** Last update Wed Jun 15 15:22:59 2016 Victor Gouet
 */
 
 #ifndef MONITOR_EVENT_H_
@@ -13,6 +13,14 @@
 
 # include "server.h"
 
+int	mct_to_all_monitor(t_list *list);
+int	plv_event_for_one_trantorien(t_list *list,
+				     t_trantorien *trantorien);
+int	plv_event_all_monitor(t_list *list);
+int     pin_event_to_all_monitor(t_list *list, t_trantorien *trantorien);
+int	bct_event_to_all_monitor(t_list *list, int x, int y);
+int	ppo_event_to_all_monitor(t_trantorien *trantorien,
+				 t_list *list);
 int	pnw_event_all_to_monitor(t_monitor *monitor,
 				 t_command_line *command);
 int	enw_event_all_to_monitor(t_monitor *monitor, t_command_line *);
@@ -29,20 +37,17 @@ int	enw_event(t_trantorien *player, t_trantorien *egg,
 		  t_list *list);
 int	msz_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab);
-int	pbc_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab);
+int     pbc_event(t_trantorien *trantorien, t_list *list, char *);
 int     pdi_event(t_trantorien *trantorien, t_list *list);
 int	pdr_event(t_trantorien *trantorien, t_list *list,
 		  int id_ressource);
-int	pex_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab);
+int	pex_event(t_trantorien *trantorien, t_list *list);
 int	pfk_event(t_trantorien *trantorien, t_list *list);
 int     pgt_event(t_trantorien *trantorien, t_list *list,
 		  int id_ressource);
-int	pic_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab);
-int	pie_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab);
+int	pic_event(t_trantorien *trantorien, t_list *list);
+int	pie_event(t_trantorien *trantorien, t_list *list,
+		  int succes);
 int	pin_event(t_monitor *monitor, t_list *list,
 		  t_command_line *command, char **tab);
 int	plv_event(t_monitor *monitor, t_list *list,

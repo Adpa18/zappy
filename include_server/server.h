@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Tue Jun 14 11:23:07 2016 Victor Gouet
+** Last update Fri Jun 17 11:06:19 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -15,6 +15,7 @@
 # include "command_line_arguments.h"
 # include "../socketlib/include/my_sock.h"
 
+# define UNUSED		__attribute__((__unused__))
 # define EVENTSIZE	25
 # define GRAPHIC	"GRAPHIC"
 # define BIENVENUE	"BIENVENUE\n"
@@ -85,9 +86,15 @@ typedef struct	s_vector2d
   int		y;
 }		t_vector2d;
 
+typedef struct	s_vector2f
+{
+    double		x;
+    double		y;
+}		t_vector2f;
+
 typedef enum	s_trantorien_state
   {
-    EGG,
+    EGG = 0,
     BABY,
     GHOST,
     PLAYER
@@ -124,6 +131,12 @@ typedef struct	s_list
   int		nbr_client;
   t_map		*map;
 }		t_list;
+
+/*
+**	get_buffer.c
+*/
+
+char	*get_buffer_from_client_without_cammand(t_ref *ref);
 
 /*
 **	monitor_connection.c
@@ -172,6 +185,12 @@ void		buffer_push_back(t_ref *ref, char *buffer,
 				 char **);
 
 /*
+**	remove_map.c
+*/
+
+void		remove_map(t_map *map);
+
+/*
 **	map.c
 */
 
@@ -203,6 +222,7 @@ t_trantorien	*remove_client_to_team(t_team_name *list,
 				       t_trantorien *ref);
 t_trantorien	*remove_client_to_unknown_team(t_team_list *list,
 					       t_trantorien *ref);
+void		remove_all_team(t_team_list *list);
 
 /*
 **	add_client_to_team.c
@@ -240,6 +260,7 @@ t_ref	*remove_client_if_trantorien_change_state(t_list *list,
 						  t_command_line *command,
 						  t_server *server,
 						  t_ref *ref);
+void    remove_all_list(t_list *list);
 
 /*
 **	event_client.c

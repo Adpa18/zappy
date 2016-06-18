@@ -5,38 +5,39 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:53:39 2016 Victor Gouet
-** Last update Wed Jun  8 11:21:30 2016 Victor Gouet
+** Last update Tue Jun 14 17:10:56 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
 #include "direction.h"
+#include "../../include_server/monitor_event.h"
 
 int     expulse_event(t_trantorien *trantorien, t_list *list,
-		      t_command_line *command, char **tab)
+                      t_command_line *command, char **tab)
 {
     t_trantorien  *drone;
     t_ref   *ref;
-    t_vector2d  dir;
+    t_orientation   inv_dir;
 
+    inv_dir = trantorien->orientation + 2;
+    if (inv_dir > 4)
+        inv_dir %= 4;
     drone = NULL;
-    dir = getVectorDir(trantorien->orientation);
     ref = list->begin;
+    pex_event(trantorien, list);
     while (ref)
     {
-        if (ref->type == TRANTORIEN)
+        if (ref->type == TRANTORIEN && (drone = ref->ref)
+            && drone->id != trantorien->id && drone->pos.x == trantorien->pos.x
+            && drone->pos.y == trantorien->pos.y)
         {
-            drone = ref->ref;
-            move_by_dir(drone, command, dir);
+            move_by_dir(drone, command, getVectorDir(trantorien->orientation));
             sendf_message(&(drone->ref->client->sock), "deplacement: %c\n",
-                          modulo(trantorien->orientation + 2, 4));
+                          (char)(inv_dir + 48));
+            ppo_event_to_all_monitor(drone, list);
         }
         ref = ref->next;
     }
-    if (drone)
-        send_message("ok\n", &(trantorien->ref->client->sock));
-    else
-        send_message("ko\n", &(trantorien->ref->client->sock));
-    (void)list;
-    (void)tab;
-  return (0);
+    sendf_message(&(trantorien->ref->client->sock), "%s\n", drone ? "ok" : "ko");
+    return ((void)tab, 0);
 }

@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 21:37:18 2016 Victor Gouet
-** Last update Tue Jun 14 12:32:26 2016 Victor Gouet
+** Last update Tue Jun 14 16:00:52 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -39,6 +39,7 @@ static void	send_corect_event_to_monitor(t_trantorien *trantorien,
   if (trantorien->state == BABY)
     {
       ebo_event(trantorien, list);
+      pnw_event(trantorien, list);
     }
   else if (trantorien->state == PLAYER || trantorien->state == GHOST)
     {

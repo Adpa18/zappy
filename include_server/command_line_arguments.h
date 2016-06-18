@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:40:45 2016 Victor Gouet
-** Last update Mon Jun 13 22:47:50 2016 Victor Gouet
+** Last update Wed Jun 15 10:27:18 2016 Victor Gouet
 */
 
 #ifndef COMMAND_LINE_ARGUMENTS_H_
@@ -15,6 +15,9 @@
 # define FAILURE	0
 # define OPTION_NBR	6
 # define DEFAULTTIME	100
+
+# define USAGE		"Usage: -p port -x width -y height -n team"
+# define USAGE_END	" -c client\'s number [-t] [time > 0]\n"
 
 typedef struct		s_team_name
 {

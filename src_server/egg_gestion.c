@@ -17,7 +17,7 @@ void		on_gestion_egg(t_command_line *command, t_list *list)
   t_trantorien	*trantorien;
   t_team_name	*team;
   long long	time_left;
-  
+
   time_left = ((double)600 / (command->time == 0 ? 1 : command->time)) * 1000;
   team = command->team_list.begin;
   while (team)

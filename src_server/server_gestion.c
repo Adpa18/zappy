@@ -5,9 +5,10 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Fri Jun 10 17:44:40 2016 Victor Gouet
+** Last update Fri Jun 17 12:15:03 2016 Victor Gouet
 */
 
+#include <signal.h>
 #include <sys/select.h>
 #include <stdio.h>
 #include "../include_server/server.h"
@@ -31,7 +32,6 @@ static int		init_select(fd_set *fds,
     }
   if (select(list->max_fd + 1, fds, NULL, NULL, &timeout) == -1)
     {
-      fprintf(stderr, "select failed\n");
       return (-1);
     }
   return (0);
@@ -52,6 +52,21 @@ static int	init_all(t_list *list, t_server **server,
   return (0);
 }
 
+void		on_catch_sigint(int signal)
+{
+  (void)signal;
+}
+
+static void	delete_all(t_server *server,
+			   t_command_line *command,
+			   t_list *list)
+{
+  remove_all_team(&(command->team_list));
+  remove_map(list->map);
+  remove_all_list(list);
+  delete_server(server);
+}
+
 void		server_run(t_command_line *command)
 {
   t_server	*server;
@@ -59,11 +74,13 @@ void		server_run(t_command_line *command)
   fd_set	fds;
   t_list	list;
 
+  signal(SIGINT, on_catch_sigint);
   if (init_all(&list, &server, command) == -1)
     return ;
   while (server)
     {
-      init_select(&fds, server->socket.sock, &list);
+      if (init_select(&fds, server->socket.sock, &list) == -1)
+        break;
       if (FD_ISSET(server->socket.sock, &fds))
 	{
 	  if ((client = get_client_connection(server)) == NULL)
@@ -74,7 +91,6 @@ void		server_run(t_command_line *command)
 	}
       else
 	event_client(&list, command, &fds, server);
-      /* display_team(&(command->team_list)); */
     }
-  delete_server(server);
+  delete_all(server, command, &list);
 }

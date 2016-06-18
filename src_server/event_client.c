@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Tue Jun 14 10:36:56 2016 Victor Gouet
+** Last update Tue Jun 14 18:46:33 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -14,6 +14,7 @@
 #include "../include_server/trantorien_event.h"
 #include "../include_server/time_gestion.h"
 #include "../include_server/monitor_event.h"
+#include "../include_server/incantation.h"
 
 static const t_event		event_player[2] = {
   {
@@ -198,6 +199,33 @@ static int	event_gestion(t_list *list, t_command_line *command,
   return (0);
 }
 
+static void	push_to_buffer(t_list *list, t_ref *ref,
+			       char *data)
+{
+  char		**tab;
+
+  if (ref->buffer_size < 10 && data[0])
+    {
+      tab = str_to_word_tab(data);
+      if (tab && tab[0] && strcmp("incantation", tab[0]) == 0
+	  && ref->type == TRANTORIEN && !can_elevate(ref->ref, list))
+	{
+	  send_message("ko\n", &(ref->client->sock));
+	  return ;
+	}
+      else if (tab && tab[0] && strcmp("incantation", tab[0]) == 0
+	       && ref->type == TRANTORIEN && can_elevate(ref->ref, list))
+	{
+	  pic_event(ref->ref, list);
+	}
+      else if (tab && tab[0] && strcmp("fork", tab[0]) == 0)
+	{
+	  pfk_event(ref->ref, list);
+	}
+      buffer_push_back(ref, data, tab);
+    }
+}
+
 int	event_client(t_list *list, t_command_line *command,
 		     fd_set *fds, t_server *server)
 {
@@ -215,8 +243,7 @@ int	event_client(t_list *list, t_command_line *command,
 							     server, ref);
 	      continue;
 	    }
-	  if (ref->buffer_size < 10 && data[0])
-	    buffer_push_back(ref, data, str_to_word_tab(data));
+	  push_to_buffer(list, ref, data);
 	}
       ref = ref->next;
     }

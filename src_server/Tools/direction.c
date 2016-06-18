@@ -5,13 +5,13 @@
 ** Login   <gouet_v@epitech.net>
 **
 ** Started on  Tue Jun  7 14:52:48 2016 Victor Gouet
-** Last update Fri Jun 10 16:00:53 2016 Victor Gouet
+** Last update Wed Jun 15 11:16:31 2016 Victor Gouet
 */
 
 #include "direction.h"
 
 static t_vector2d vectorDir[5] = {
-        {0, 0}, {1, 0}, {0, -1}, {-1, 0}, {0, 1}
+        {0, 0}, {0, -1}, {1, 0}, {0, 1}, {-1, 0}
 };
 
 t_vector2d  getVectorDir(t_orientation orientation)
@@ -33,8 +33,24 @@ void    move_by_dir(t_trantorien *trantorien, t_command_line *command,
 {
     trantorien->pos.x += dir.x;
     trantorien->pos.y += dir.y;
-    if (trantorien->pos.x <= 0 || trantorien->pos.x > command->x)
-        trantorien->pos.x = 0;
-    if (trantorien->pos.y <= 0 || trantorien->pos.y > command->y)
-        trantorien->pos.y = 0;
+    trantorien->pos.x = modulo(trantorien->pos.x, command->x);
+    trantorien->pos.y = modulo(trantorien->pos.y, command->y);
+}
+
+t_vector2d   calc_pos(t_vector2d pos, t_vector2d dir, int j,
+                             t_command_line *cmd)
+{
+    t_vector2d  cur_pos;
+
+    if (dir.y == 1 || dir.x == -1)
+    {
+        cur_pos.x = modulo(pos.x - ((dir.y == 0) ? 0 : j), cmd->x);
+        cur_pos.y = modulo(pos.y - ((dir.x == 0) ? 0 : j), cmd->y);
+    }
+    else
+    {
+        cur_pos.x = modulo(pos.x + ((dir.y == 0) ? 0 : j), cmd->x);
+        cur_pos.y = modulo(pos.y + ((dir.x == 0) ? 0 : j), cmd->y);
+    }
+    return (cur_pos);
 }

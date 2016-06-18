@@ -5,13 +5,21 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:40:33 2016 Victor Gouet
-** Last update Mon Jun 13 14:02:41 2016 Victor Gouet
+** Last update Tue Jun 14 12:59:17 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
+#include "../../stringLib/storage.h"
 
-int	pex_event(t_monitor *monitor, t_list *list,
-		  t_command_line *command, char **tab)
+int     pex_event(t_trantorien *trantorien, t_list *list)
 {
+  char	*msg;
+
+  msg = STRING("pex %d\n", trantorien->id);
+  if (msg)
+    {
+      send_msg_to_all_monitor(msg, list);
+      free(msg);
+    }
   return (0);
 }

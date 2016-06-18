@@ -5,11 +5,12 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:52:46 2016 Victor Gouet
-** Last update Wed Jun  8 11:22:03 2016 Victor Gouet
+** Last update Tue Jun 14 16:56:47 2016 Victor Gouet
 */
 
 #include "object.h"
 #include "../../include_server/trantorien_event.h"
+#include "../../include_server/monitor_event.h"
 
 static const objectPtr takeObjectFunc[] = {
         takeFood, takeLinemate, takeDeraumere, takeSibure,
@@ -28,7 +29,12 @@ int     prend_obj_event(t_trantorien *trantorien, t_list *list,
                                           &(list->map->map[trantorien->pos.y]
                                           [trantorien->pos.x]));
     if (ret == 0)
+      {
         send_message("ok\n", &(trantorien->ref->client->sock));
+	pgt_event(trantorien, list, object_type);
+	pin_event_to_all_monitor(list, trantorien);
+	bct_event_to_all_monitor(list, trantorien->pos.x, trantorien->pos.y);
+      }
     else
         send_message("ko\n", &(trantorien->ref->client->sock));
     (void)command;

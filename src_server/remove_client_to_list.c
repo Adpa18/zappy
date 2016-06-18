@@ -5,10 +5,18 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:01:02 2016 Victor Gouet
-** Last update Mon Jun 13 23:02:45 2016 Victor Gouet
+** Last update Fri Jun 17 11:53:52 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
+
+static void	free_client_on_list(t_ref *ref)
+{  
+  if (ref->type == MONITOR)
+    {
+      free(ref->ref);
+    }
+}
 
 t_ref	*remove_client_to_list(t_list *list, t_ref *ref)
 {
@@ -30,6 +38,7 @@ t_ref	*remove_client_to_list(t_list *list, t_ref *ref)
   if (list->end == ref)
     list->end = elem;
   --(list->nbr_client);
+  free_client_on_list(ref);
   free(ref);
   return (elem != NULL ? elem->next : NULL);
 }
@@ -68,4 +77,15 @@ t_ref	*remove_client_if_trantorien_change_state(t_list *list,
     }
   ref = remove_client_to_list(list, ref);
   return (ref);
+}
+
+void    remove_all_list(t_list *list)
+{
+  t_ref	*ref;
+
+  ref = list->begin;
+  while (ref)
+    {
+      ref = remove_client_to_list(list, ref);
+    }
 }

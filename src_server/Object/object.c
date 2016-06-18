@@ -5,11 +5,17 @@
 ** Login   <gouet_v@epitech.net>
 **
 ** Started on  Wed Jun  8 07:52:46 2016 Victor Gouet
-** Last update Mon Jun 13 12:18:36 2016 Victor Gouet
+** Last update Wed Jun 15 17:27:38 2016 Victor Gouet
 */
 
 #include <string.h>
+#include "storage.h"
 #include "object.h"
+
+static const char	*objectsStr[7] = {
+        "nourriture", "linemate", "deraumere", "sibur",
+        "mendiane", "phiras", "thystame"
+};
 
 int leaveObject(int *object_inventaire, int *object_ground)
 {
@@ -45,4 +51,40 @@ int		getObject(const char *object_str)
             return (i);
     }
     return (-1);
+}
+
+char    *concat_object(char *tmp_buffer, const char *add)
+{
+    char    *buffer;
+
+    if (!add)
+        return (tmp_buffer);
+    if (tmp_buffer)
+    {
+        buffer = STRING("%s %s", tmp_buffer, add);
+        free(tmp_buffer);
+    }
+    else
+        buffer = strdup(add);
+    return (buffer);
+}
+
+char    *get_all_objects(t_inventories **map, t_vector2d pos)
+{
+    int     i;
+    int     j;
+    char    *buffer;
+    void    *object;
+
+    buffer = NULL;
+    object = &map[pos.y][pos.x];
+    for (i = 0; i < 7; ++i)
+    {
+        for (j = 0; j < *(int*)object; ++j)
+        {
+            buffer = concat_object(buffer, objectsStr[i]);
+        }
+        object += sizeof(int);
+    }
+    return (buffer);
 }
