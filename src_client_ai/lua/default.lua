@@ -12,6 +12,7 @@ received = true;
 
 function OnStart()
     print("start");
+    print(IA:GetInventory());
 end
 
 function OnUpdate()

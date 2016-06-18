@@ -15,14 +15,17 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
         {},
         {
                 {
-                        "GetInventory", (int (IAClient::*)(lua_State *)) &IAClient::GetInventory
+                        "GetInventory", &IAClient::GetInventory
                 },
                 {
-                           "GetSightAt", (int (IAClient::*)(lua_State *)) &IAClient::GetSightAt
-                   },
+                        "GetSightAt", &IAClient::GetSightAt
+                },
                 {
-                              "SetParameter", (int (IAClient::*)(lua_State *)) &IAClient::SetParameter
-                },{"GetLevel", (int (IAClient::*)(lua_State *)) &IAClient::GetLevel}
+                        "SetParameter", &IAClient::SetParameter
+                },
+                {
+                        "GetLevel", &IAClient::GetLevel
+                }
         }
 };
 
@@ -42,6 +45,7 @@ void IAClient::SetScript(const std::string &scriptname)
 {
     std::cout << "Loading script: " << scriptname << std::endl;
     script.LoadFile(scriptname);
+    script.RegisterClass<IAClient>();
     script.SetGlobalValue(this, "IA");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::DEFAULT), "NONE");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::MOVE), "MOVE");
@@ -176,19 +180,19 @@ void IAClient::Moved(void)
     moved = true;
 }
 
-int IAClient::GetLevel(Lua::LuaScript const &script)
+int IAClient::GetLevel(lua_State *state)
 {
-    script.PushVar(lvl);
+    Lua::LuaScript(state).PushVar(lvl);
     return 1;
 }
 
-int IAClient::GetInventory(Lua::LuaScript const &script)
+int IAClient::GetInventory(lua_State *state)
 {
-    script.PushVar(&inventory);
+    Lua::LuaScript(state).PushVar(&inventory);
     return 1;
 }
 
-int IAClient::GetSightAt(Lua::LuaScript const &script)
+int IAClient::GetSightAt(lua_State *state)
 {
     if (moved)
     {
@@ -199,19 +203,19 @@ int IAClient::GetSightAt(Lua::LuaScript const &script)
 
     if (index >= sight.size())
         return 0;
-    script.PushVar(&sight[index]);
+    Lua::LuaScript(state).PushVar(&sight[index]);
     return 1;
 }
 
-int IAClient::GetTeamName(Lua::LuaScript const &script)
+int IAClient::GetTeamName(lua_State *state)
 {
-    script.PushVar(teamName.c_str());
+    Lua::LuaScript(state).PushVar(teamName.c_str());
     return 1;
 }
 
-int IAClient::SetParameter(Lua::LuaScript const &script)
+int IAClient::SetParameter(lua_State *state)
 {
-    reqParam = script.GetString();
+    reqParam = Lua::LuaScript(state).GetString();
     return 0;
 }
 

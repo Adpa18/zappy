@@ -49,11 +49,11 @@ public:
   void SetScript(const std::string &script);
 
 public:
-  int     GetInventory(Lua::LuaScript const &script);
-  int     GetSightAt(Lua::LuaScript const &script);
-  int     GetTeamName(Lua::LuaScript const &script);
-  int     SetParameter(Lua::LuaScript const &script);
-  int     GetLevel(Lua::LuaScript const &script);
+  int     GetInventory(lua_State *script);
+  int     GetSightAt(lua_State *script);
+  int     GetTeamName(lua_State *script);
+  int     SetParameter(lua_State *script);
+  int     GetLevel(lua_State *script);
 
 public:
     virtual void Connect(const std::string &ip, const uint16_t port, std::string const &teamName);

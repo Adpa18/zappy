@@ -6,6 +6,7 @@
 # define CPP_INDIE_STUDIO_LUASCRIPT_HPP
 
 # include <vector>
+# include <iostream>
 # include "LuaClass.hpp"
 
 namespace Lua
@@ -39,9 +40,10 @@ namespace Lua
 
     public:
         template <typename toRegister>
-        void RegisterClass(typename Lua::LuaClass<toRegister>::LuaPrototype const &proto)
+        void RegisterClass(/*typename Lua::LuaClass<toRegister>::LuaPrototype const &proto*/)
         {
-            proto.Register(state);
+            toRegister::prototype.Register(state);
+//            proto.Register(state);
             registeredClasses.push_back(toRegister::className);
         }
         template <typename toInstantiate>

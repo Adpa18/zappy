@@ -57,7 +57,7 @@ public:
     void Reset(void);
 
 public:
-    int GetNbOf(Lua::LuaScript const &script);
+    int GetNbOf(lua_State *state);
 
 public:
     size_t operator[](Object object) const;

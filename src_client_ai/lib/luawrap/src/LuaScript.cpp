@@ -8,10 +8,11 @@
 Lua::LuaScript::LuaScript(lua_State *state) :
     state(state),
     handler(new LuaHandler(*this)),
-    close(true)
+    close(false)
 {
     if (state == NULL)
     {
+        close = true;
         this->state = luaL_newstate();
         luaL_openlibs(this->state);
     }
