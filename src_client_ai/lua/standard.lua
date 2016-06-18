@@ -169,7 +169,7 @@ function OnUpdate()
 end
 
 function OnReceive(request, rep)
-   if request == MOVE || request == LEFT || request == RIGHT || request == TAKE || request ==DROP || request == FORK || request == SEE || request == STOCK then
+   if request == MOVE || request == LEFT || request == RIGHT || request == TAKE || request == DROP || request == FORK || request == SEE || request == STOCK then
       canAct = true;
       if rep == "ko" then
 	 actionList = Queue.new();
