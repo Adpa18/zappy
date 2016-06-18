@@ -27,6 +27,9 @@ public:
     NetworkWatcher &Update(Client &from);
 
 private:
+    std::map<std::string, NetworkCallback>::const_iterator  GetException(std::string const &key) const;
+
+private:
     const std::map<std::string, NetworkCallback> exceptions;
     std::map<Client *, CallbackQueue> callBacks;
 };
