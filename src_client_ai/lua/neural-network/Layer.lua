@@ -11,23 +11,29 @@ neuron = require "Neuron";
 local Layer = {}
 
 function Layer.setNbNeurons(this, nbNeurons)
+    print("of "..nbNeurons.." neurons");
     this.neurons = {};
-    for i=1, nbNeurons + 1 do
+    for i=1, nbNeurons do
         this.neurons[i] = neuron.new();
     end
 end
 
 function Layer.link(this, prevLayer)
+    print("linked to ");
+    print(prevLayer);
     for i=1, #this.neurons do
-        for j=1, #prevLayer.neurons + 1 do
+        print("i: "..i);
+        for j=1, #prevLayer.neurons do
             neuron.link(this.neurons[i], prevLayer.neurons[j], math.random(0, 100) / 100);
         end
+        print("===>ok");
     end
 end
 
 function Layer.new(nbNeuron, prevLayer)
     local lay = {neurons = {}};
 
+    print("creating a layer");
     if (nbNeuron ~= nil) then
         Layer.setNbNeurons(lay, nbNeuron);
     end
@@ -38,20 +44,15 @@ function Layer.new(nbNeuron, prevLayer)
 end
 
 function Layer.compute(this, actFunc)
-    for i=1, #this.neurons + 1 do
+    for i=1, #this.neurons do
         neuron.compute(this.neurons[i]);
         neuron.activate(this.neurons[i], actFunc);
     end
 end
 
 function Layer.copy(this, tocopy)
-    print("this: ");
-    print(this);
-    print("to copy: ");
-    print(tocopy);
-    for i=1, #tocopy.neurons + 1 do
-        print("i: "..i);
-        this.neurons[i].value = tocopy.neurons[i].value;
+    for i=1, #tocopy do
+        this.neurons[i].value = tocopy[i];
     end
 end
 

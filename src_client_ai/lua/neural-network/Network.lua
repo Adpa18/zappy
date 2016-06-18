@@ -20,9 +20,11 @@ function NeuralNetwork.new(nbInput, nbOutput, layersNb)
 
     local prevLayer = {ref = toret.input};
 
-    for i=1, #layersNb + 1 do
+    for i=1, #layersNb do
         toret.layers[i] = layer.new(layersNb[i], prevLayer.ref);
-        prevLayer.ref = toret[i];
+        print("created")
+        print(toret.layers[i]);
+        prevLayer.ref = toret.layers[i];
     end
     toret.output = layer.new(nbOutput, prevLayer.ref);
     return toret;
@@ -37,6 +39,7 @@ function NeuralNetwork.compute(this, inputs)
         layer.copy(this.input, inputs);
     end
     for i=1, #this.layers do
+        print("compute of layer "..i);
         layer.compute(this.layers[i], function (x)
             return  1.0 / (1.0 + math.exp(-x));
         end);

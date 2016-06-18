@@ -21,7 +21,7 @@ public:
     ObjectArray &operator=(ObjectArray const &ref);
 
 public:
-    int HasObject(Lua::LuaScript const &script);
+    int HasObject(lua_State *state);
 };
 
 #endif //PSU_2015_ZAPPY_OBJECTARRAY_HPP

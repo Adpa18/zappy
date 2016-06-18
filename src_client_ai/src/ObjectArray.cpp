@@ -30,9 +30,9 @@ ObjectArray &ObjectArray::operator=(ObjectArray const &ref)
     return *this;
 }
 
-int ObjectArray::HasObject(Lua::LuaScript const &script)
+int ObjectArray::HasObject(lua_State *state)
 {
-    Inventory::Object toCheck = static_cast<Inventory::Object >(script.GetInteger());
+    Inventory::Object toCheck = static_cast<Inventory::Object >(Lua::LuaScript(state).GetInteger());
     bool has = false;
 
     for (Inventory::Object &curr : *this)
@@ -40,6 +40,6 @@ int ObjectArray::HasObject(Lua::LuaScript const &script)
         if (toCheck == curr)
             has = true;
     }
-    script.PushVar(has);
+    Lua::LuaScript(state).PushVar(has);
     return 1;
 }
