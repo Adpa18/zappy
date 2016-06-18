@@ -11,7 +11,6 @@ neuron = require "Neuron";
 local Layer = {}
 
 function Layer.setNbNeurons(this, nbNeurons)
-    print("of "..nbNeurons.." neurons");
     this.neurons = {};
     for i=1, nbNeurons do
         this.neurons[i] = neuron.new();
@@ -19,21 +18,16 @@ function Layer.setNbNeurons(this, nbNeurons)
 end
 
 function Layer.link(this, prevLayer)
-    print("linked to ");
-    print(prevLayer);
     for i=1, #this.neurons do
-        print("i: "..i);
         for j=1, #prevLayer.neurons do
-            neuron.link(this.neurons[i], prevLayer.neurons[j], math.random(0, 100) / 100);
+            neuron.link(this.neurons[i], prevLayer.neurons[j], math.random(1, 100) / 100.0);
         end
-        print("===>ok");
     end
 end
 
 function Layer.new(nbNeuron, prevLayer)
     local lay = {neurons = {}};
 
-    print("creating a layer");
     if (nbNeuron ~= nil) then
         Layer.setNbNeurons(lay, nbNeuron);
     end
@@ -47,6 +41,12 @@ function Layer.compute(this, actFunc)
     for i=1, #this.neurons do
         neuron.compute(this.neurons[i]);
         neuron.activate(this.neurons[i], actFunc);
+    end
+end
+
+function Layer.SetSynapsesWeight(this, neurons, prevlayer)
+    for i=1, #this.neurons do
+        Neuron.setWeights(this.neurons[i], prevlayer[i], neurons[i]);
     end
 end
 

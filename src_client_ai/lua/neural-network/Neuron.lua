@@ -13,21 +13,22 @@ function Neuron.new()
 end
 
 function Neuron.link(this, neuronToLink, weight)
-    print("link")
-    print(this);
-    print("with")
-    print(neuronToLink);
-    this[#this.synapses + 1] = {neuron = neuronToLink, weight = weight};
+    this.synapses[#this.synapses + 1] = {neuron = neuronToLink, weight = weight};
 end
 
 function Neuron.compute(this)
-    print("neuron : ");
-    print(this);
     this.value = 0;
-    for obj in pairs(this.synapses) do
-        this.value = this.value + obj.neuron.value * obj.weight;
+    for i=1, #this.synapses do
+        this.value = this.value + this.synapses[i].neuron.value * this.synapses[i].weight;
     end
     return this.value;
+end
+
+function Neuron.setWeights(this, targetneuron, weights)
+    for i=1, #this.synapses do
+        print("set synapse weight "..weights[i]);
+        this.synapses[i] = {neuron = targetneuron, weight = weights[i]};
+    end
 end
 
 function Neuron.activate(this, actFunc)

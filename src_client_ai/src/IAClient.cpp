@@ -221,5 +221,6 @@ int IAClient::SetParameter(lua_State *state)
 
 void IAClient::ReceiveMessage(const std::string &message)
 {
+    std::cout << "Receive broadcast: " << message << std::endl;
     Receive(ZappyRequest::BROADCAST, message);
 }

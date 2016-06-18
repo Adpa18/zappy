@@ -2,6 +2,7 @@
 // Created by gaspar_q on 6/8/16.
 //
 
+#include <iostream>
 #include "NetworkWatcher.hpp"
 
 /**
@@ -67,22 +68,28 @@ NetworkWatcher &NetworkWatcher::RequestServer(std::string const &request, Networ
  */
 NetworkWatcher &NetworkWatcher::Update(Client &from)
 {
-    if (!callBacks[&from].empty())
-    {
-        std::string line;
-        NetworkCallback func = callBacks[&from].front();
-        std::map<std::string, NetworkCallback>::const_iterator  it;
+    std::map<std::string, NetworkCallback>::const_iterator  it;
+    std::string line;
 
-        if (from.getCRLFLine(line, {0, 0}))
+    if (from.getCRLFLine(line, {0, 50}))
+    {
+        if ((it = GetException(line)) != exceptions.end())
+            it->second(line);
+        else if ((!callBacks[&from].empty()))
         {
-            if ((it = exceptions.find(line)) != exceptions.end())
-                it->second(line);
-            else
-            {
-                func(line);
-                callBacks[&from].pop();
-            }
+            callBacks[&from].front()(line);
+            callBacks[&from].pop();
         }
     }
     return *this;
+}
+
+std::map<std::string, NetworkWatcher::NetworkCallback>::const_iterator NetworkWatcher::GetException(std::string const &key) const
+{
+    for (std::map<std::string, NetworkCallback>::const_iterator  it = exceptions.begin(), end = exceptions.end(); it != end; ++it)
+    {
+        if (key.find(it->first) != std::string::npos)
+            return it;
+    }
+    return exceptions.end();
 }

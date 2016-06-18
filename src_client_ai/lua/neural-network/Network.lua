@@ -7,6 +7,7 @@
 --
 
 layer = require "Layer";
+json = require "json/json";
 
 local NeuralNetwork = {}
 
@@ -22,8 +23,6 @@ function NeuralNetwork.new(nbInput, nbOutput, layersNb)
 
     for i=1, #layersNb do
         toret.layers[i] = layer.new(layersNb[i], prevLayer.ref);
-        print("created")
-        print(toret.layers[i]);
         prevLayer.ref = toret.layers[i];
     end
     toret.output = layer.new(nbOutput, prevLayer.ref);
@@ -39,13 +38,25 @@ function NeuralNetwork.compute(this, inputs)
         layer.copy(this.input, inputs);
     end
     for i=1, #this.layers do
-        print("compute of layer "..i);
         layer.compute(this.layers[i], function (x)
             return  1.0 / (1.0 + math.exp(-x));
         end);
     end
     layer.compute(this.output, function (x) return x; end);
     return this.output;
+end
+
+function NeuralNetwork.deserialize(filename)
+    local neur = json.decode(filename);
+    local toret = NeuralNetwork.new(neur.inputs, #neur.output);
+    local prevLayer = toret.input;
+
+    for i=1, #toret.layers do
+        toret.layers[i] = Layer.new(neur.layers[i]);
+        Layer.SetSynapsesWeight(toret.layers[i], neur.layers[i], prevLayer);
+        prevLayer = toret.layers[i];
+    end
+    return toret;
 end
 
 return NeuralNetwork;
