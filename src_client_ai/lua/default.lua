@@ -18,11 +18,13 @@ end
 function OnUpdate()
     if (received) then
         received = false;
-        return MOVE;
+        IA:SetParameter("coucou");
+        return BROADCAST;
     end
     return NONE;
 end
 
-function OnReceive()
+function OnReceive(code, response)
+    print(code..": "..response);
     received = true;
 end
