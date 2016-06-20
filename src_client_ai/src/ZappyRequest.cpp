@@ -222,7 +222,10 @@ void ZappyRequest::Req_connectNbr(const std::string &answer, const std::string &
 void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
 {
     if (status)
+    {
         client->Bag().Add(Inventory::getObjectFromName(param));
+        client->Map().TakeObjAt(client->Pos(), Inventory::getObjectFromName(param));
+    }
 }
 
 /**
@@ -232,7 +235,10 @@ void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
 void ZappyRequest::Req_dropObj(const std::string &, const std::string &param)
 {
     if (status)
+    {
         client->Bag().Remove(Inventory::getObjectFromName(param));
+        client->Map().DropObjAt(client->Pos(), Inventory::getObjectFromName(param));
+    }
 }
 
 /**

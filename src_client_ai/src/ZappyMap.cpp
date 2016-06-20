@@ -131,3 +131,18 @@ std::vector<ObjectArray> ZappyMap::getIaSight(Vector2 const &from, Vector2 const
     }
     return sight;
 }
+
+void ZappyMap::TakeObjAt(Vector2 const &pos, Inventory::Object obj)
+{
+    ObjectArray     &objects = map[pos];
+    std::vector<Inventory::Object>::iterator  it = std::find(objects.begin(), objects.end(), obj);
+
+    if (it == objects.end())
+        return;
+    objects.erase(it);
+}
+
+void ZappyMap::DropObjAt(Vector2 const &pos, Inventory::Object obj)
+{
+    map[pos].push_back(obj);
+}

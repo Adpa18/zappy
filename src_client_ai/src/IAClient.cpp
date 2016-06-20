@@ -234,3 +234,13 @@ void IAClient::ReceiveMessage(const std::string &message)
     std::cout << "Receive broadcast: " << message << std::endl;
     Receive(ZappyRequest::BROADCAST, message);
 }
+
+ZappyMap &IAClient::Map()
+{
+    return *map;
+}
+
+Vector2 const &IAClient::Pos(void) const
+{
+    return position;
+}

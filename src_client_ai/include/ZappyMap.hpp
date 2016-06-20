@@ -23,6 +23,8 @@ public:
     void Refresh(Vector2 const &from, Vector2 const &direction, std::vector<std::vector<std::string> > const &objects);
     ObjectArray getObjectsAt(Vector2 const &pos) const;
     std::vector<ObjectArray> getIaSight(Vector2 const &from, Vector2 const &direction, int lvl) const;
+    void TakeObjAt(Vector2 const &pos, Inventory::Object obj);
+    void DropObjAt(Vector2 const &pos, Inventory::Object obj);
 
 private:
     const Vector2 dimmensions;
