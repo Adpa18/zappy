@@ -24,7 +24,9 @@
  ]]
 
 function OnStart()
-    IA:GetInventory();
+    print(IA);
+    print(IA:GetSightAt(0):HasObject(FOOD));
+    print(IA:GetInventory():GetNbOf(FOOD));
 end
 
 function OnUpdate()

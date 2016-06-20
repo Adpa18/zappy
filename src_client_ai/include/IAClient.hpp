@@ -64,8 +64,8 @@ public:
 
 private:
     Lua::LuaScript              script;
-    Inventory                   inventory;
     ZappyRequest                request;
+    Inventory                   inventory;
     ZappyMap                    *map;
     Vector2                     position;
     Vector2::DIR                orientation;

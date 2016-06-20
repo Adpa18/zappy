@@ -69,19 +69,9 @@ ZappyRequest::ZappyRequest(IAClient *client) :
     lastRequest(DEFAULT),
     status(false),
     nbRequest(0),
-    nextRequest({
-                        {ZappyRequest::Request::MOVE, std::clock()},
-                        {ZappyRequest::Request::RIGHT, std::clock()},
-                        {ZappyRequest::Request::LEFT, std::clock()},
-                        {ZappyRequest::Request::STOCK, std::clock()},
-                        {ZappyRequest::Request::TAKE, std::clock()},
-                        {ZappyRequest::Request::DROP, std::clock()},
-                        {ZappyRequest::Request::EXPULSE, std::clock()},
-                        {ZappyRequest::Request::BROADCAST, std::clock()},
-                        {ZappyRequest::Request::INCANTATION, std::clock()},
-                        {ZappyRequest::Request::LAYEGG, std::clock()},
-                        {ZappyRequest::Request::CONNECTNBR, std::clock()}
-                }),
+    lastReqOf(),
+    timers(),
+    requestQueue(),
     serverT(100),
     lastAnswer(std::clock())
 {
@@ -118,7 +108,7 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
 
     std::string req = ZappyRequest::requests.find(request)->second + (toConcat.empty() ? "" : " " + toConcat);
 
-    nextRequest[request] = std::clock() + static_cast<std::clock_t >((static_cast<double>(getRequTimer(request)) / serverT) * CLOCKS_PER_SEC);
+    lastReqOf[request] = std::clock();
     requestQueue.push(std::make_pair(request, std::clock()));
     watcher.RequestServer(req, [this, request, toConcat] (std::string const &s) { ReceiveServerPong(request, s, toConcat); }, *client);
     ++nbRequest;
@@ -203,7 +193,6 @@ void ZappyRequest::Req_seeForward(const std::string &answer, const std::string &
  */
 void ZappyRequest::Req_stockInventory(const std::string &answer, const std::string &)
 {
-    std::cout << "inventory: " << answer << std::endl;
     client->Bag().Refresh(ZappyData::deserialize(answer));
 }
 
@@ -273,7 +262,17 @@ std::clock_t ZappyRequest::getRequTimer(const ZappyRequest::Request &request)
  * \param request The request you want to check
  * \return If you can make an unstacked request
  */
-bool ZappyRequest::CanMakeUnStackedRequest(const ZappyRequest::Request &request) const
+bool ZappyRequest::IsTimerFinished(const ZappyRequest::Request &request) const
 {
-    return std::clock() >= nextRequest.find(request)->second;
+    std::map<Request, size_t >::const_iterator reqT = timers.find(request);
+    std::map<Request, std::clock_t>::const_iterator lastR = lastReqOf.find(request);
+
+    if (reqT == timers.end() || lastR == lastReqOf.end())
+        return true;
+    return std::clock() >= lastR->second + ((reqT->second * CLOCKS_PER_SEC) / serverT);
+}
+
+void ZappyRequest::AddTimer(Request request, size_t timer)
+{
+    timers[request] = timer;
 }

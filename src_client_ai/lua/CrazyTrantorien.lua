@@ -46,7 +46,7 @@ function OnUpdate()
    end
 
    canAct = false
---   IA:SetParameter("toto")
+   IA:SetParameter("toto")
    return BROADCAST;
 end
 
