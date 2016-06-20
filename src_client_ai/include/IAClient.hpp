@@ -87,6 +87,8 @@ public:
 
     Vector2 const &Pos(void) const;
 
+    ZappyRequest    &Request(void);
+
     void          RefreshMap(std::vector<std::vector<std::string> > const &data);
 
 private:

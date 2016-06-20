@@ -62,7 +62,8 @@ public:
 
 public:
     void MakeRequest(Request request, std::string const &toConcat = "") throw(BadRequestException);
-    void Update();
+    void MakeBlockedRequest(Request request, std::string const &toContat = "");
+    void Update(struct timeval timeout = {0, 50});
     bool IsARequest(Request request) const;
     bool IsTimerFinished(Request const &request) const;
     void AddTimer(Request request, size_t timer);

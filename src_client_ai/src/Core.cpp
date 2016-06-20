@@ -122,10 +122,12 @@ int    Core::parseArg(int ac, char **av) throw(std::runtime_error)
 
 int Core::run(void)
 {
-  while (this->client.IsDead() != true)
-  {
-      if (this->client.Update() != 0)
-          return 1;
-  }
-  return 0;
+    client.Request().MakeBlockedRequest(ZappyRequest::STOCK);
+    client.Request().MakeBlockedRequest(ZappyRequest::SEE);
+    while (this->client.IsDead() != true)
+    {
+        if (this->client.Update() != 0)
+            return 1;
+    }
+    return 0;
 }

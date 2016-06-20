@@ -117,9 +117,9 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
 /**
  * \brief Will call NetworkWatcher update function with to corresponding client
  */
-void ZappyRequest::Update()
+void ZappyRequest::Update(struct timeval timeout)
 {
-    watcher.Update(*client);
+    watcher.Update(*client, timeout);
 }
 
 /**
@@ -281,4 +281,11 @@ bool ZappyRequest::IsTimerFinished(const ZappyRequest::Request &request) const
 void ZappyRequest::AddTimer(Request request, size_t timer)
 {
     timers[request] = timer;
+}
+
+void ZappyRequest::MakeBlockedRequest(Request request, const std::string &toContat)
+{
+    MakeRequest(request, toContat);
+    if (client->canRead())
+        Update();
 }

@@ -66,12 +66,12 @@ NetworkWatcher &NetworkWatcher::RequestServer(std::string const &request, Networ
  * \brief Will update the watcher for a specific client
  * \param from The client to which update the action queue
  */
-NetworkWatcher &NetworkWatcher::Update(Client &from)
+NetworkWatcher &NetworkWatcher::Update(Client &from, struct timeval timeout)
 {
     std::map<std::string, NetworkCallback>::const_iterator  it;
     std::string line;
 
-    if (from.getCRLFLine(line, {0, 50}))
+    if (from.getCRLFLine(line, timeout))
     {
         if ((it = GetException(line)) != exceptions.end())
             it->second(line);

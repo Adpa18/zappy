@@ -24,7 +24,7 @@ public:
 
 public:
     NetworkWatcher &RequestServer(std::string const &request, NetworkCallback callBack, Client &from, size_t nbAnswers = 1);
-    NetworkWatcher &Update(Client &from);
+    NetworkWatcher &Update(Client &from, struct timeval timeout = {0, 50});
 
 private:
     std::map<std::string, NetworkCallback>::const_iterator  GetException(std::string const &key) const;

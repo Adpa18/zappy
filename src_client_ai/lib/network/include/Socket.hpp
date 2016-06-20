@@ -91,7 +91,8 @@ public:
     Socket  &operator<<(std::string const &towrite);
     Socket  &operator>>(std::string &dest);
     int getCRLFLine(std::string &dest, struct timeval timeout = {1, 0}, int flags = 0) const;
-    bool canRead(struct timeval timeout = {0, 0}) const;
+    bool canRead(struct timeval timeout) const;
+    bool canRead(void) const;
 
 private:
     const std::string   protocol;

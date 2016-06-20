@@ -244,3 +244,8 @@ Vector2 const &IAClient::Pos(void) const
 {
     return position;
 }
+
+ZappyRequest &IAClient::Request(void)
+{
+    return request;
+}

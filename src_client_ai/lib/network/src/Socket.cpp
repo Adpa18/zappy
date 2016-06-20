@@ -161,3 +161,12 @@ bool Socket::canRead(struct timeval timeout) const
     FD_SET(fd, &set);
     return select(fd + 1, &set, NULL, NULL, &timeout) != 0;
 }
+
+bool Socket::canRead(void) const
+{
+    fd_set  set;
+
+    FD_ZERO(&set);
+    FD_SET(fd, &set);
+    return select(fd + 1, &set, NULL, NULL, NULL) != 0;
+}
