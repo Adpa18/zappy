@@ -189,7 +189,7 @@ function OnUpdate()
 
       etableIsCreated = true
 
-      IA:SetParameter(broadCastMsg[(math.random % #broadCastMsg) + 1] .. objSell) -- a modifier
+      IA:SetParameter(broadCastMsg[(math.random(1, #broadCastMsg))] .. objSell) -- a modifier
       canAct = false
 
       return BROADCAST
@@ -215,6 +215,14 @@ function OnUpdate()
       else
 	 -- On en a pas
 	 canAct = false
+
+	 local mv = math.random(1, 4)
+	 print(mv)
+	 if mv == 2 then
+	    return LEFT
+	 elseif mv == 1 then
+	    return RIGHT
+	 end
 	 return MOVE
       end
       -- end phase de récuperation des objs
