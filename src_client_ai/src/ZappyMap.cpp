@@ -11,12 +11,12 @@ ZappyMap::ZappyMap(Vector2 const &dimensions, ZappyRequest *request, std::map<Ve
     request(request),
     updated(true)
 {
-
 }
 
 ZappyMap::ZappyMap(ZappyMap const &ref) :
     ZappyMap(ref.dimmensions, ref.request, ref.map)
 {
+    request->AddTimer(ZappyRequest::SEE, 10);
 }
 
 ZappyMap::~ZappyMap()
@@ -67,16 +67,6 @@ void ZappyMap::Refresh(Vector2 const &from, Vector2 const &direction,
     size_t  currLine = 0;
     Vector2 lineIterator = {direction.y, -direction.x};
 
-    size_t i = 0;
-    for (std::vector<std::string> const &curr : objects)
-    {
-        std::cout << "at " << i << std::endl;
-        for (std::string const &currStr : curr)
-        {
-            std::cout << "\tobj: " << currStr << std::endl;
-        }
-        ++i;
-    }
     for (std::vector<std::string> const &curr : objects)
     {
         if (currLine == lineLength)
@@ -113,14 +103,9 @@ std::vector<ObjectArray> ZappyMap::getIaSight(Vector2 const &from, Vector2 const
     std::vector<ObjectArray>   sight;
     Vector2 decalIterator = {direction.x - direction.y, direction.x + direction.y};
     Vector2 lineIterator = {direction.y, -direction.x};
+    bool hasNoObject = false;
 
-    if (updated)
-    {
-        std::cout << "making request" << std::endl;
-        updated = false;
-        request->MakeRequest(ZappyRequest::SEE);
-    }
-    for (int range = 0, lineLength = 1; range < lvl; ++range, lineLength += 2)
+    for (int range = 0, lineLength = 1; range < lvl + 1; ++range, lineLength += 2)
     {
         for (int currLine = 0; currLine < lineLength; ++currLine)
         {
@@ -132,15 +117,17 @@ std::vector<ObjectArray> ZappyMap::getIaSight(Vector2 const &from, Vector2 const
 
             if (it == map.end())
             {
-                if (request->CanMakeUnStackedRequest(ZappyRequest::SEE))
-                {
-                    request->MakeRequest(ZappyRequest::SEE);
-                }
+                hasNoObject = true;
                 sight.push_back(ObjectArray());
             }
             else
                 sight.push_back(it->second);
         }
+    }
+    if ((hasNoObject && updated) || request->IsTimerFinished(ZappyRequest::SEE))
+    {
+        updated = false;
+        request->MakeRequest(ZappyRequest::SEE);
     }
     return sight;
 }

@@ -238,7 +238,7 @@ namespace Lua
                     lua_pushcclosure(state, Call, 1);
                     lua_settable(state, meth);
                 }
-                lua_pop(state, 2);
+                lua_pop(state, -1);
             }
 
         private:

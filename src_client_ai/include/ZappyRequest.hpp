@@ -64,7 +64,8 @@ public:
     void MakeRequest(Request request, std::string const &toConcat = "") throw(BadRequestException);
     void Update();
     bool IsARequest(Request request) const;
-    bool CanMakeUnStackedRequest(Request const &request) const;
+    bool IsTimerFinished(Request const &request) const;
+    void AddTimer(Request request, size_t timer);
 
 private:
     void ReceiveServerPong(Request request, std::string const &answer, std::string const &param);
@@ -85,7 +86,8 @@ private:
     Request                                         lastRequest;
     bool                                            status;
     int                                             nbRequest;
-    std::map<Request, std::clock_t >                nextRequest;
+    std::map<Request, std::clock_t >                lastReqOf;
+    std::map<Request, size_t>                       timers;
     std::queue<std::pair<Request, std::clock_t > >  requestQueue;
     double                                          serverT;
     std::clock_t                                    lastAnswer;

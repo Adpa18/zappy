@@ -125,3 +125,9 @@ size_t Vector2::length(void) const
 {
     return static_cast<size_t >(sqrt(x * x + y * y));
 }
+
+std::ostream    &operator<<(std::ostream &output, Vector2 const &ref)
+{
+    output << "(" << ref.x << ", " << ref.y << ")";
+    return output;
+}

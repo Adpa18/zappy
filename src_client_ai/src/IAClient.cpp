@@ -30,7 +30,7 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
 };
 
 IAClient::IAClient() :
-        script(), inventory(&request), request(this), map(NULL), position(Vector2::Zero), orientation(Vector2::UP),
+        script(), request(this), inventory(&request), map(NULL), position(Vector2::Zero), orientation(Vector2::UP),
         sight(), reqParam(), dead(false), lvl(0), incanting(false), moved(true), missing(0)
 {
 }
@@ -46,6 +46,8 @@ void IAClient::SetScript(const std::string &scriptname)
     std::cout << "Loading script: " << scriptname << std::endl;
     script.LoadFile(scriptname);
     script.RegisterClass<IAClient>();
+    script.RegisterClass<Inventory>();
+    script.RegisterClass<ObjectArray>();
     script.SetGlobalValue(this, "IA");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::DEFAULT), "NONE");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::MOVE), "MOVE");
@@ -85,7 +87,7 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
                 unsigned long i = answer.find(' ');
                 if (i > 0 && i != std::string::npos && i < answer.length() - 1)
                 {
-                    map = new ZappyMap(Vector2(atoi(answer.substr(0, i - 1).c_str()),
+                    map = new ZappyMap(Vector2(atoi(answer.substr(0, i).c_str()),
                                                atoi(answer.substr(i + 1, answer.length() - i).c_str())), &request);
                     script.Handler()->Select(IAClient::OnStart).Call();
                     return;
@@ -204,7 +206,6 @@ int IAClient::GetSightAt(lua_State *state)
 {
     if (moved)
     {
-        std::cout << "getIaSight" << std::endl;
         moved = false;
         sight = map->getIaSight(position, Vector2::Directions[orientation], lvl);
     }

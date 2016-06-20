@@ -6,6 +6,7 @@
 #define PSU_2015_ZAPPY_VECTOR2_HPP
 
 #include <stddef.h>
+#include <iostream>
 
 class Vector2
 {
@@ -52,5 +53,7 @@ public:
     int x;
     int y;
 };
+
+std::ostream    &operator<<(std::ostream &output, Vector2 const &ref);
 
 #endif //PSU_2015_ZAPPY_VECTOR2_HPP
