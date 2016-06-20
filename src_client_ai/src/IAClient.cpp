@@ -31,7 +31,7 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
 
 IAClient::IAClient() :
         script(), inventory(&request), request(this), map(NULL), position(Vector2::Zero), orientation(Vector2::UP),
-        sight(), reqParam(), dead(false), lvl(0), incanting(false), moved(false), missing(0)
+        sight(), reqParam(), dead(false), lvl(0), incanting(false), moved(true), missing(0)
 {
 }
 
@@ -58,6 +58,14 @@ void IAClient::SetScript(const std::string &scriptname)
     script.SetGlobalValue(static_cast<int>(ZappyRequest::INCANTATION), "INCANTATION");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::LAYEGG), "LAYEGG");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::CONNECTNBR), "CONNECTNBR");
+    script.SetGlobalValue(static_cast<int>(Inventory::NONE), "NOOBJ");
+    script.SetGlobalValue(static_cast<int>(Inventory::FOOD), "FOOD");
+    script.SetGlobalValue(static_cast<int>(Inventory::LINEMATE), "LINEMATE");
+    script.SetGlobalValue(static_cast<int>(Inventory::DERAUMERE), "DERAUMERE");
+    script.SetGlobalValue(static_cast<int>(Inventory::SIBUR), "SIBUR");
+    script.SetGlobalValue(static_cast<int>(Inventory::MENDIANE), "MENDIANE");
+    script.SetGlobalValue(static_cast<int>(Inventory::PHIRAS), "PHIRAS");
+    script.SetGlobalValue(static_cast<int>(Inventory::THYSTAME), "THYSTAME");
 }
 
 void IAClient::Connect(const std::string &ip, const uint16_t port, std::string const &teamName)
@@ -196,6 +204,7 @@ int IAClient::GetSightAt(lua_State *state)
 {
     if (moved)
     {
+        std::cout << "getIaSight" << std::endl;
         moved = false;
         sight = map->getIaSight(position, Vector2::Directions[orientation], lvl);
     }

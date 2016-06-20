@@ -6,8 +6,10 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-layer = require "Layer";
-json = require "json/json";
+local path = debug.getinfo(1).source:match("@?(.*/)")
+
+local layer = require(path.."Layer");
+local json = require(path.."json/json");
 
 local NeuralNetwork = {}
 

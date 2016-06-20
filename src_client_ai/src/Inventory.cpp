@@ -191,6 +191,9 @@ std::string const &Inventory::getNameFromObject(Inventory::Object object)
 
 int Inventory::GetNbOf(lua_State *state)
 {
-    Lua::LuaScript(state).PushVar(static_cast<int>(stuff[static_cast<Object >(Lua::LuaScript(state).GetInteger())]));
+    Lua::LuaScript  script(state);
+    std::map<Inventory::Object, size_t >::const_iterator    it = getStuff().find(static_cast<Object >(script.GetInteger()));
+
+    script.PushVar(static_cast<int>(it->second));
     return 1;
 }

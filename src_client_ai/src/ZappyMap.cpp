@@ -67,6 +67,16 @@ void ZappyMap::Refresh(Vector2 const &from, Vector2 const &direction,
     size_t  currLine = 0;
     Vector2 lineIterator = {direction.y, -direction.x};
 
+    size_t i = 0;
+    for (std::vector<std::string> const &curr : objects)
+    {
+        std::cout << "at " << i << std::endl;
+        for (std::string const &currStr : curr)
+        {
+            std::cout << "\tobj: " << currStr << std::endl;
+        }
+        ++i;
+    }
     for (std::vector<std::string> const &curr : objects)
     {
         if (currLine == lineLength)
@@ -106,6 +116,7 @@ std::vector<ObjectArray> ZappyMap::getIaSight(Vector2 const &from, Vector2 const
 
     if (updated)
     {
+        std::cout << "making request" << std::endl;
         updated = false;
         request->MakeRequest(ZappyRequest::SEE);
     }

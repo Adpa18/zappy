@@ -23,3 +23,15 @@
 --      -   Broadcast pour incantation
  ]]
 
+function OnStart()
+    IA:GetInventory();
+end
+
+function OnUpdate()
+    return NONE;
+end
+
+function OnReceive()
+end
+
+--local net = require "lua/neural-network/Network"

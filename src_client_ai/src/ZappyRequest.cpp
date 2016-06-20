@@ -203,6 +203,7 @@ void ZappyRequest::Req_seeForward(const std::string &answer, const std::string &
  */
 void ZappyRequest::Req_stockInventory(const std::string &answer, const std::string &)
 {
+    std::cout << "inventory: " << answer << std::endl;
     client->Bag().Refresh(ZappyData::deserialize(answer));
 }
 

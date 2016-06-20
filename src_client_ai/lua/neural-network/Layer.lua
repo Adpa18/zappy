@@ -6,7 +6,9 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-neuron = require "Neuron";
+local path = debug.getinfo(1).source:match("@?(.*/)")
+
+neuron = require(path.."Neuron");
 
 local Layer = {}
 
