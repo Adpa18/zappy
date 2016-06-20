@@ -36,11 +36,9 @@ end
 actionList = Queue.new();
 
 function OnStart()
-    print("start toto");
 end
 
 function OnUpdate()
-    print("update");
     if (canAct) then
         local food = IA:GetInventory():GetNbOf(FOOD);
         local lvl = IA:GetLevel();
@@ -48,9 +46,10 @@ function OnUpdate()
         for n = 2, lvl + 1 do
             i = i + (n * 2 + 1);
         end
-
+        --print(i);
         -- vider la queue
-        local action = actionList:pop();
+
+        local action = Queue.pop(actionList);
         if action ~= nil then
             if string.find(action, "MOVE") ~= nil then
                 canAct = false;
@@ -99,7 +98,16 @@ function OnUpdate()
             local n = 0;
             local find = false;
             while n <= i and find == false do
-                if IA:GetSightAt(n):HasObject(FOOD) == true then
+                print("n");
+                print(n);
+                local ncase = IA:GetSightAt(n);
+                if ncase == nil then
+                    print("null");
+                    return;
+                end
+                if ncase:HasObject(FOOD) == true then
+                    print("find");
+                    find = true;
                     actionList = IA:CreatePath(n);
                     return;
                 end
@@ -110,15 +118,15 @@ function OnUpdate()
                     actionList:pushBack(MOVE);
                 end
             end
+        else
+            canAct = false;
             return (LAYEGG);
         end
-        return NONE;
     end
 end
 
 function OnReceive(request, rep)
-    if request == MOVE or request == LEFT or request == RIGHT or request == TAKE or request == DROP or request == ForK or request == STOCK then
-        canAct = true;
+    if request == MOVE or request == LEFT or request == RIGHT or request == TAKE or request == DROP or request == LAYEGG then
         if rep == "ko" then
             actionList = Queue.new();
         end
