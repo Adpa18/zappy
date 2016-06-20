@@ -14,6 +14,9 @@ local path = "src_client_ai/lua/"
 
 queue = require (path.."Queue")
 
+-- object on map
+local objectOnMap = {}
+
 function OnStart()
    serverAnswer[MOVE] = onCallMove
    serverAnswer[LEFT] = onCallMove
@@ -21,9 +24,17 @@ function OnStart()
    serverAnswer[TAKE] = onTakeObj
    serverAnswer[DROP] = onDropObj
    serverAnswer[LAYEGG] = nil
-   serverAnswer[4] = onCallSee
+ --  serverAnswer[4] = onCallSee
    serverAnswer[BROADCAST] = onReceiveBroadCast
    queue.new()
+   objectOnMap[FOOD] = "nourriture"
+   objectOnMap[LINEMATE] = "linemate"
+   objectOnMap[DERAUMERE] = "deraumere"
+   objectOnMap[SIBUR] = "sibur"
+   objectOnMap[MENDIANE] = "mendiane"
+   objectOnMap[PHIRAS] = "phiras"
+   objectOnMap[THYSTAME] = "thystame"
+   
 end
 
 function onReceiveBroadCast(requestCode, responseServer)
@@ -61,11 +72,19 @@ function onCallMove(requestCode, responseServer)
    canAct = true
 end
 
-function onCallSee(requestCode, responseServer)
-   canAct = true
+function takeObj()
+   local i = 0
+   for i, v in pairs(objectOnMap) do
+      if (IA:GetSightAt(0):HasObject(i)) then
+	 IA:SetParameter(v)
+	 return (true)
+      end
+   end
+   return (false)
 end
 
 function onTakeObj(requestCode, responseServer)
+   print(requestCode, responseServer)
    canAct = true
 end
 
@@ -80,17 +99,19 @@ function OnUpdate()
    end
 
    if (IA:GetSightAt(0)) then
-      print("TOTO")
-      print(IA:GetSightAt(0))
-      -- print(IA:GetSightAt(0):HasObject(FOOD))
+      if (takeObj()) then
+	 canAct = false
+	 return TAKE
+      else
+	 canAct = false
+	 return MOVE
+      end
    else
       canAct = false
       return MOVE
    end
 
    return (NONE)
-   --IA:SetParameter("toto")
-   --return msg;
 end
 
 function OnReceive(requestCode, responseServer)

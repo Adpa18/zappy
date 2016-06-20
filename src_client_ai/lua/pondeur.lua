@@ -50,7 +50,7 @@ function OnUpdate()
         end
 
         -- vider la queue
-        local action = IA:actionList:pop();
+        local action = actionList:pop();
         if action ~= nil then
             if string.find(action, "MOVE") ~= nil then
                 canAct = false;
