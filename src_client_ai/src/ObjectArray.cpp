@@ -8,7 +8,7 @@ const std::string                                ObjectArray::className = typeid
 const Lua::LuaClass<ObjectArray>::LuaPrototype      ObjectArray::prototype = {
         {},
         {
-                {"HasObject", (int (ObjectArray::*)(lua_State *))&ObjectArray::HasObject},
+                {"HasObject", &ObjectArray::HasObject},
         }
 };
 
@@ -42,4 +42,27 @@ int ObjectArray::HasObject(lua_State *state)
     }
     Lua::LuaScript(state).PushVar(has);
     return 1;
+}
+
+std::ostream    &operator<<(std::ostream &output, ObjectArray const &ref)
+{
+    size_t i = 0, max = ref.size();
+
+    output << "{";
+    for (Inventory::Object const &curr : ref)
+    {
+        try
+        {
+            output << Inventory::getNameFromObject(curr);
+        }
+        catch (std::logic_error &error)
+        {
+            output << curr;
+        }
+        ++i;
+        if (i < max)
+            output << ", ";
+    }
+    output << "}";
+    return output;
 }

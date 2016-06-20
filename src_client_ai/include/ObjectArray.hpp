@@ -6,6 +6,7 @@
 #define PSU_2015_ZAPPY_OBJECTARRAY_HPP
 
 #include <vector>
+#include <iostream>
 #include <Inventory.hpp>
 #include <LuaScript.hpp>
 
@@ -23,5 +24,7 @@ public:
 public:
     int HasObject(lua_State *state);
 };
+
+std::ostream    &operator<<(std::ostream &output, ObjectArray const &ref);
 
 #endif //PSU_2015_ZAPPY_OBJECTARRAY_HPP

@@ -61,6 +61,10 @@ public:
 
     void   TurnLeft(void);
 
+    void   TakeObj(Inventory::Object obj);
+
+    void   DropObj(Inventory::Object obj);
+
     void   SetScript(const std::string &script);
 
 public:
@@ -90,6 +94,8 @@ public:
     ZappyRequest    &Request(void);
 
     void          RefreshMap(std::vector<std::vector<std::string> > const &data);
+
+    void        RefreshSight(bool canUpdate = true);
 
 private:
     Lua::LuaScript           script;

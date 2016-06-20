@@ -5,16 +5,16 @@
 #include <algorithm>
 #include "ZappyMap.hpp"
 
-ZappyMap::ZappyMap(Vector2 const &dimensions, ZappyRequest *request, std::map<Vector2, ObjectArray> const &map) :
+ZappyMap::ZappyMap(Vector2 const &dimensions, ZappyRequest *request) :
     dimmensions(dimensions),
-    map(map),
+    map(),
     request(request),
     updated(true)
 {
 }
 
 ZappyMap::ZappyMap(ZappyMap const &ref) :
-    ZappyMap(ref.dimmensions, ref.request, ref.map)
+    ZappyMap(ref.dimmensions, ref.request)
 {
     request->AddTimer(ZappyRequest::SEE, 10);
 }
@@ -56,7 +56,6 @@ ZappyMap &ZappyMap::operator=(ZappyMap const &ref)
  *
  * range        += 1
  * lineLength   += 2
- * todo check if this works well
  */
 void ZappyMap::Refresh(Vector2 const &from, Vector2 const &direction,
                        std::vector<std::vector<std::string> > const &objects)
@@ -78,6 +77,7 @@ void ZappyMap::Refresh(Vector2 const &from, Vector2 const &direction,
         Vector2 position = decalIterator * range + lineIterator * currLine + from;
 
         position.limit(Vector2::Zero, dimmensions);
+        map[position].clear();
         for (std::string const &string : curr)
         {
             map[position].push_back(Inventory::getObjectFromName(string));
@@ -89,23 +89,25 @@ void ZappyMap::Refresh(Vector2 const &from, Vector2 const &direction,
 
 ObjectArray ZappyMap::getObjectsAt(Vector2 const &pos) const
 {
-    std::map<Vector2, ObjectArray>::const_iterator  it;
-
-    it = map.find(pos);
-    if (it == map.end())
+    try
+    {
+        return map[pos];
+    }
+    catch (std::exception &)
+    {
         return ObjectArray();
-    return it->second;
+    }
 }
 
 std::vector<ObjectArray> ZappyMap::getIaSight(Vector2 const &from, Vector2 const &direction,
-                                                                  int lvl) const
+                                                                  int lvl, bool canupdate) const
 {
     std::vector<ObjectArray>   sight;
     Vector2 decalIterator = {direction.x - direction.y, direction.x + direction.y};
     Vector2 lineIterator = {direction.y, -direction.x};
     bool hasNoObject = false;
 
-    for (int range = 0, lineLength = 1; range < lvl + 1; ++range, lineLength += 2)
+    for (int range = 0, lineLength = 1; range < lvl + 2; ++range, lineLength += 2)
     {
         for (int currLine = 0; currLine < lineLength; ++currLine)
         {
@@ -113,18 +115,18 @@ std::vector<ObjectArray> ZappyMap::getIaSight(Vector2 const &from, Vector2 const
 
             position.limit(Vector2::Zero, dimmensions);
 
-            std::map<Vector2, ObjectArray>::const_iterator it = map.find(position);
-
-            if (it == map.end())
+            try
+            {
+                sight.push_back(map[position]);
+            }
+            catch (std::out_of_range &)
             {
                 hasNoObject = true;
                 sight.push_back(ObjectArray());
             }
-            else
-                sight.push_back(it->second);
         }
     }
-    if ((hasNoObject && updated) || request->IsTimerFinished(ZappyRequest::SEE))
+    if (canupdate && ((hasNoObject && updated) || request->IsTimerFinished(ZappyRequest::SEE)))
     {
         updated = false;
         request->MakeRequest(ZappyRequest::SEE);
@@ -145,4 +147,14 @@ void ZappyMap::TakeObjAt(Vector2 const &pos, Inventory::Object obj)
 void ZappyMap::DropObjAt(Vector2 const &pos, Inventory::Object obj)
 {
     map[pos].push_back(obj);
+}
+
+bool ZappyMap::IsUpdated(void) const
+{
+    return updated;
+}
+
+Vector2 const &ZappyMap::Dimmensions(void) const
+{
+    return dimmensions;
 }

@@ -77,6 +77,8 @@ private:
     void Req_stockInventory(const std::string &answer, const std::string &param);
     void Req_incantation(const std::string &answer, const std::string &param);
     void Req_connectNbr(const std::string &answer, const std::string &param);
+    void Req_turnRight(const std::string &answer, const std::string &param);
+    void Req_turnLeft(const std::string &answer, const std::string &param);
 
 private:
     void ResolveState(const std::string answer);

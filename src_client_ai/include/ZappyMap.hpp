@@ -10,11 +10,15 @@
 #include "Vector2.hpp"
 #include "ZappyRequest.hpp"
 #include "ObjectArray.hpp"
+#include "UnsortMap.hpp"
 
 class ZappyMap
 {
 public:
-    explicit ZappyMap(Vector2 const &dimensions, ZappyRequest *request, std::map<Vector2, ObjectArray> const &map = {});
+    typedef UnsortMap<Vector2, ObjectArray >  ObjectMap;
+
+public:
+    explicit ZappyMap(Vector2 const &dimensions, ZappyRequest *request);
     ZappyMap(ZappyMap const &ref);
     ~ZappyMap();
     ZappyMap    &operator=(ZappyMap const &ref);
@@ -22,13 +26,15 @@ public:
 public:
     void Refresh(Vector2 const &from, Vector2 const &direction, std::vector<std::vector<std::string> > const &objects);
     ObjectArray getObjectsAt(Vector2 const &pos) const;
-    std::vector<ObjectArray> getIaSight(Vector2 const &from, Vector2 const &direction, int lvl) const;
+    std::vector<ObjectArray> getIaSight(Vector2 const &from, Vector2 const &direction, int lvl, bool canUpdate = true) const;
     void TakeObjAt(Vector2 const &pos, Inventory::Object obj);
     void DropObjAt(Vector2 const &pos, Inventory::Object obj);
+    bool IsUpdated(void) const;
+    Vector2 const &Dimmensions(void) const;
 
 private:
-    const Vector2 dimmensions;
-    std::map<Vector2, ObjectArray>  map;
+    const Vector2   dimmensions;
+    ObjectMap       map;
     ZappyRequest    *request;
     mutable bool    updated;
 };

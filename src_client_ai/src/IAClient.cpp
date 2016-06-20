@@ -43,7 +43,6 @@ IAClient::~IAClient()
 
 void IAClient::SetScript(const std::string &scriptname)
 {
-    std::cout << "Loading script: " << scriptname << std::endl;
     script.LoadFile(scriptname);
     script.RegisterClass<IAClient>();
     script.RegisterClass<Inventory>();
@@ -100,9 +99,6 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
 
 int IAClient::Update(void)
 {
-    reqParam = "";
-    request.MakeRequest(static_cast<ZappyRequest::Request >(script.Handler()->Select(IAClient::OnUpdate).Call()),
-                        reqParam);
     try
     {
         request.Update();
@@ -111,6 +107,12 @@ int IAClient::Update(void)
     {
         std::cerr << exception.what() << std::endl;
         return 1;
+    }
+    if (map->IsUpdated())
+    {
+        reqParam = "";
+        request.MakeRequest(static_cast<ZappyRequest::Request >(script.Handler()->Select(IAClient::OnUpdate).Call()),
+                            reqParam);
     }
     return 0;
 }
@@ -183,10 +185,13 @@ void IAClient::TurnLeft(void)
 void IAClient::RefreshMap(std::vector<std::vector<std::string> > const &data)
 {
     map->Refresh(position, Vector2::Directions[orientation], data);
+    RefreshSight(false);
 }
 
 void IAClient::Moved(void)
 {
+    position += Vector2::Directions[orientation];
+    position.limit(Vector2::Zero, map->Dimmensions());
     moved = true;
 }
 
@@ -207,7 +212,7 @@ int IAClient::GetSightAt(lua_State *state)
     if (moved)
     {
         moved = false;
-        sight = map->getIaSight(position, Vector2::Directions[orientation], lvl);
+        RefreshSight();
     }
     size_t index = static_cast<size_t >(script.GetInteger());
 
@@ -248,4 +253,23 @@ Vector2 const &IAClient::Pos(void) const
 ZappyRequest &IAClient::Request(void)
 {
     return request;
+}
+
+void IAClient::TakeObj(Inventory::Object obj)
+{
+    inventory.Add(obj);
+    map->TakeObjAt(position, obj);
+    RefreshSight(false);
+}
+
+void IAClient::DropObj(Inventory::Object obj)
+{
+    inventory.Remove(obj);
+    map->DropObjAt(position, obj);
+    RefreshSight(false);
+}
+
+void IAClient::RefreshSight(bool canUpdate)
+{
+    sight = map->getIaSight(position, Vector2::Directions[orientation], lvl, canUpdate);
 }

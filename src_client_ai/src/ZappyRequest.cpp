@@ -36,7 +36,9 @@ const std::map<ZappyRequest::Request, ZappyRequest::ZappyCallback> ZappyRequest:
         {ZappyRequest::INCANTATION, &ZappyRequest::Req_incantation},
         {ZappyRequest::CONNECTNBR, &ZappyRequest::Req_connectNbr},
         {ZappyRequest::TAKE, &ZappyRequest::Req_takeObj},
-        {ZappyRequest::DROP, &ZappyRequest::Req_dropObj}
+        {ZappyRequest::DROP, &ZappyRequest::Req_dropObj},
+        {ZappyRequest::RIGHT, &ZappyRequest::Req_turnRight},
+        {ZappyRequest::LEFT, &ZappyRequest::Req_turnLeft}
 };
 
 const std::map<ZappyRequest::Request, std::clock_t> ZappyRequest::requTimer = {
@@ -222,10 +224,7 @@ void ZappyRequest::Req_connectNbr(const std::string &answer, const std::string &
 void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
 {
     if (status)
-    {
-        client->Bag().Add(Inventory::getObjectFromName(param));
-        client->Map().TakeObjAt(client->Pos(), Inventory::getObjectFromName(param));
-    }
+        client->TakeObj(Inventory::getObjectFromName(param));
 }
 
 /**
@@ -235,10 +234,7 @@ void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
 void ZappyRequest::Req_dropObj(const std::string &, const std::string &param)
 {
     if (status)
-    {
-        client->Bag().Remove(Inventory::getObjectFromName(param));
-        client->Map().DropObjAt(client->Pos(), Inventory::getObjectFromName(param));
-    }
+        client->DropObj(Inventory::getObjectFromName(param));
 }
 
 /**
@@ -247,6 +243,22 @@ void ZappyRequest::Req_dropObj(const std::string &, const std::string &param)
 void ZappyRequest::Req_move(const std::string &, const std::string &)
 {
     client->Moved();
+}
+
+/**
+ * \brief Resolve turn right
+ */
+void ZappyRequest::Req_turnRight(const std::string &, const std::string &)
+{
+    client->TurnRight();
+}
+
+/**
+ * \brief Resolve turn left
+ */
+void ZappyRequest::Req_turnLeft(const std::string &, const std::string &)
+{
+    client->TurnLeft();
 }
 
 /**
@@ -287,5 +299,5 @@ void ZappyRequest::MakeBlockedRequest(Request request, const std::string &toCont
 {
     MakeRequest(request, toContat);
     if (client->canRead())
-        Update();
+        Update({0, 0});
 }

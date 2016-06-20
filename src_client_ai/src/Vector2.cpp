@@ -101,29 +101,29 @@ bool Vector2::operator!=(Vector2 const &ref) const
     return !(*this == ref);
 }
 
+size_t Vector2::length(void) const
+{
+    return static_cast<size_t >(sqrt(x * x + y * y));
+}
+
 bool Vector2::operator<(Vector2 const &ref) const
 {
-    return length() < ref.length();
+    return x < ref.x;
 }
 
 bool Vector2::operator>(Vector2 const &ref) const
 {
-    return length() > ref.length();
+    return x > ref.x;
 }
 
 bool Vector2::operator<=(Vector2 const &ref) const
 {
-    return length() <= ref.length();
+    return x < ref.x || (*this == ref);
 }
 
 bool Vector2::operator>=(Vector2 const &ref) const
 {
-    return length() >= ref.length();
-}
-
-size_t Vector2::length(void) const
-{
-    return static_cast<size_t >(sqrt(x * x + y * y));
+    return x > ref.x || (*this == ref);
 }
 
 std::ostream    &operator<<(std::ostream &output, Vector2 const &ref)
