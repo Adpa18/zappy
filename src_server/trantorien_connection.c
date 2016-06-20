@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 21:37:18 2016 Victor Gouet
-** Last update Tue Jun 14 16:00:52 2016 Victor Gouet
+** Last update Mon Jun 20 12:35:54 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -24,7 +24,7 @@ void	init_trantorien(t_trantorien *trantorien,
   trantorien->egg_id = 0;
   trantorien->orientation = (rand() % 4) + 1;
   trantorien->inventaire.food = 10;
-  trantorien->time_left_food = getTimeSeconds();
+  trantorien->time_left_food = 0;
   trantorien->elevation = 1;
   trantorien->spawn = getTimeSeconds();
   trantorien->pos.x = x;
