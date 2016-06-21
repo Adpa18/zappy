@@ -33,6 +33,7 @@ SRCS		=	Core.cpp		\
 			Vector2.cpp         \
 			ZappyMap.cpp        \
 			ObjectArray.cpp     \
+			Recipee.cpp         \
 			main.cpp
 
 OBJS		=	$(addprefix $(SRCDIR), $(SRCS:.cpp=.o))

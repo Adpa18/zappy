@@ -2,6 +2,7 @@
 // Created by gaspar_q on 6/7/16.
 //
 
+#include <Recipee.hpp>
 #include "IAClient.hpp"
 #include "LuaHandler.hpp"
 
@@ -25,6 +26,15 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                 },
                 {
                         "GetLevel", &IAClient::GetLevel
+                },
+                {
+                        "CanElevate", &IAClient::CanElevate
+                },
+                {
+                        "NeedRessources", &IAClient::NeedRessources
+                },
+                {
+                        "ElevationPercentage", &IAClient::ElevationPercentage
                 }
         }
 };
@@ -274,12 +284,24 @@ void IAClient::RefreshSight(bool canUpdate)
     sight = map->getIaSight(position, Vector2::Directions[orientation], lvl, canUpdate);
 }
 
-int IAClient::CanElevate(lua_State *)
+int IAClient::CanElevate(lua_State *script)
 {
-    return 0;
+    Lua::LuaScript(script).PushVar(Recipee::recipeesPerLevel[lvl].CanBeMade(inventory));
+    return 1;
 }
 
-int IAClient::NeedRessources(lua_State *)
+int IAClient::NeedRessources(lua_State *state)
 {
-    return 0;
+    Lua::LuaScript  script(state);
+    Inventory::Object obj = static_cast<Inventory::Object >(script.GetInteger());
+
+    script.PushVar(Recipee::recipeesPerLevel[lvl].NeedRessource(obj));
+    return 1;
 }
+
+int IAClient::ElevationPercentage(lua_State *script)
+{
+    Lua::LuaScript(script).PushVar(Recipee::recipeesPerLevel[lvl].GetMissingPercentage(inventory));
+    return 1;
+}
+

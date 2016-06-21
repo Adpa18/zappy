@@ -126,7 +126,7 @@ std::vector<ObjectArray> ZappyMap::getIaSight(Vector2 const &from, Vector2 const
             }
         }
     }
-    if (canupdate && ((hasNoObject && updated) || request->IsTimerFinished(ZappyRequest::SEE)))
+    if (canupdate && (updated && (hasNoObject || request->IsTimerFinished(ZappyRequest::SEE))))
     {
         updated = false;
         request->MakeRequest(ZappyRequest::SEE);

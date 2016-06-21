@@ -81,6 +81,8 @@ public:
 
     int NeedRessources(lua_State *script);
 
+    int ElevationPercentage(lua_State *script);
+
 public:
     virtual void  Connect(const std::string &ip, const uint16_t port, std::string const &teamName);
 
