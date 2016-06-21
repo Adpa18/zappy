@@ -6,7 +6,7 @@
 #include "IAClient.hpp"
 #include "LuaHandler.hpp"
 
-const std::string    IAClient::Default   = "./lua/default.lua";
+const std::string    IAClient::Default   = "./src_client_ai/lua/default.lua";
 const std::string    IAClient::OnStart   = "OnStart";
 const std::string    IAClient::OnUpdate  = "OnUpdate";
 const std::string    IAClient::OnReceive = "OnReceive";

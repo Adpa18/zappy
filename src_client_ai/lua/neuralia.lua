@@ -23,6 +23,11 @@
 --      -   Broadcast pour incantation
  ]]
 
+local path = debug.getinfo(1).source:match("@?(.*/)");
+
+local net = require(path.."neural-network/Network");
+local neuralNet = {}
+
 function OnStart()
     print(IA);
     print(IA:GetSightAt(0):HasObject(FOOD));
