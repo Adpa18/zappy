@@ -12,9 +12,6 @@
 #include "ZappyMap.hpp"
 #include "ZappyRequest.hpp"
 
-/**
- * TODO: Méthodes de l'ia client pour le lua (Pour l'incantation)
- */
 class IAClient : public Client
 {
 public:
@@ -80,6 +77,8 @@ public:
     int CanElevate(lua_State *script);
 
     int NeedRessources(lua_State *script);
+
+    int ElevationPercentage(lua_State *script);
 
 public:
     virtual void  Connect(const std::string &ip, const uint16_t port, std::string const &teamName);
