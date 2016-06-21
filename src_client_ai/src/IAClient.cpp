@@ -77,6 +77,7 @@ void IAClient::SetScript(const std::string &scriptname)
     script.SetGlobalValue(static_cast<int>(Inventory::MENDIANE), "MENDIANE");
     script.SetGlobalValue(static_cast<int>(Inventory::PHIRAS), "PHIRAS");
     script.SetGlobalValue(static_cast<int>(Inventory::THYSTAME), "THYSTAME");
+    script.SetGlobalValue(0, "PLAYER");
 }
 
 void IAClient::Connect(const std::string &ip, const uint16_t port, std::string const &teamName)

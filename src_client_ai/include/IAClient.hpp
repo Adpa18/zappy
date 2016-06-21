@@ -12,9 +12,6 @@
 #include "ZappyMap.hpp"
 #include "ZappyRequest.hpp"
 
-/**
- * TODO: Méthodes de l'ia client pour le lua (Pour l'incantation)
- */
 class IAClient : public Client
 {
 public:
