@@ -2,10 +2,11 @@
 // Created by gaspar_q on 6/7/16.
 //
 
+#include <Recipee.hpp>
 #include "IAClient.hpp"
 #include "LuaHandler.hpp"
 
-const std::string    IAClient::Default   = "./lua/default.lua";
+const std::string    IAClient::Default   = "./src_client_ai/lua/default.lua";
 const std::string    IAClient::OnStart   = "OnStart";
 const std::string    IAClient::OnUpdate  = "OnUpdate";
 const std::string    IAClient::OnReceive = "OnReceive";
@@ -21,10 +22,25 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                         "GetSightAt", &IAClient::GetSightAt
                 },
                 {
+                        "GetFullSight", &IAClient::GetFullSight
+                },
+                {
                         "SetParameter", &IAClient::SetParameter
                 },
                 {
                         "GetLevel", &IAClient::GetLevel
+                },
+                {
+                        "CanElevate", &IAClient::CanElevate
+                },
+                {
+                        "NeedRessources", &IAClient::NeedRessources
+                },
+                {
+                        "ElevationPercentage", &IAClient::ElevationPercentage
+                },
+                {
+                        "GetNbNeededPlayers", &IAClient::GetNbNeededPlayers
                 }
         }
 };
@@ -67,6 +83,7 @@ void IAClient::SetScript(const std::string &scriptname)
     script.SetGlobalValue(static_cast<int>(Inventory::MENDIANE), "MENDIANE");
     script.SetGlobalValue(static_cast<int>(Inventory::PHIRAS), "PHIRAS");
     script.SetGlobalValue(static_cast<int>(Inventory::THYSTAME), "THYSTAME");
+    script.SetGlobalValue(0, "PLAYER");
 }
 
 void IAClient::Connect(const std::string &ip, const uint16_t port, std::string const &teamName)
@@ -209,7 +226,7 @@ int IAClient::GetInventory(lua_State *state)
 
 int IAClient::GetSightAt(lua_State *state)
 {
-    if (moved)
+    if (moved || request.IsTimerFinished(ZappyRequest::SEE))
     {
         moved = false;
         RefreshSight();
@@ -219,6 +236,24 @@ int IAClient::GetSightAt(lua_State *state)
     if (index >= sight.size())
         return 0;
     Lua::LuaScript(state).PushVar(&sight[index]);
+    return 1;
+}
+
+int IAClient::GetFullSight(lua_State *state)
+{
+    Lua::LuaScript  script(state);
+    ObjectArray     fullSight;
+
+    if (moved || request.IsTimerFinished(ZappyRequest::SEE))
+    {
+        moved = false;
+        RefreshSight();
+    }
+    for (ObjectArray const &curr : sight)
+    {
+        fullSight += curr;
+    }
+    script.PushVar(fullSight);
     return 1;
 }
 
@@ -272,4 +307,36 @@ void IAClient::DropObj(Inventory::Object obj)
 void IAClient::RefreshSight(bool canUpdate)
 {
     sight = map->getIaSight(position, Vector2::Directions[orientation], lvl, canUpdate);
+}
+
+int IAClient::CanElevate(lua_State *script)
+{
+    Lua::LuaScript(script).PushVar(Recipee::recipeesPerLevel[lvl].CanBeMade(inventory));
+    return 1;
+}
+
+int IAClient::NeedRessources(lua_State *state)
+{
+    Lua::LuaScript  script(state);
+    Inventory::Object obj = static_cast<Inventory::Object >(script.GetInteger());
+
+    script.PushVar(Recipee::recipeesPerLevel[lvl].NeedRessource(obj));
+    return 1;
+}
+
+int IAClient::ElevationPercentage(lua_State *script)
+{
+    Lua::LuaScript(script).PushVar(Recipee::recipeesPerLevel[lvl].GetMissingPercentage(inventory));
+    return 1;
+}
+
+int IAClient::GetNbNeededPlayers(lua_State *state)
+{
+    Lua::LuaScript  script(state);
+
+    if (lvl == 0)
+        script.PushVar(1);
+    else
+        script.PushVar(lvl + 1 - (lvl + 1) % 2);
+    return 1;
 }

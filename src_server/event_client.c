@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Tue Jun 14 18:46:33 2016 Victor Gouet
+** Last update Tue Jun 21 16:02:15 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -235,6 +235,8 @@ int	event_client(t_list *list, t_command_line *command,
   ref = list->begin;
   while (ref)
     {
+      ref->client->sock.is_writable = FD_ISSET(ref->client->sock.sock,
+					       &(list->fds_wri));
       if (FD_ISSET(ref->client->sock.sock, fds))
 	{
 	  if ((data = get_crlf_line(ref->client)) == NULL)

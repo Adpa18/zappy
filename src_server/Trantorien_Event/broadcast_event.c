@@ -10,6 +10,7 @@
 
 #include <math.h>
 #include <stdio.h>
+#include "broadcast.h"
 #include "monitor_event.h"
 #include "direction.h"
 #include "../../include_server/trantorien_event.h"
@@ -30,10 +31,28 @@ t_vector2f  get_closest_point(t_vector2f from, t_vector2f x1, t_vector2f x2)
     return (x2);
 }
 
+void        get_bm(t_vector2f from, t_vector2f to, double *m, double *b)
+{
+    if (from.x == to.x)
+    {
+        *m = 1;
+        *b = 0;
+    }
+    else if (from.y == to.y)
+    {
+        *m = 0;
+        *b = from.y;
+    }
+    else
+    {
+        *m = (from.y - to.y) / (from.x - to.x);
+        *b = from.y - *m * from.x;
+    }
+}
+
 t_vector2d  get_case(t_vector2f from, t_vector2f to, t_command_line *command)
 {
-    double  m;
-    double  b;
+    double  mb[2];
     double  a[4];
     t_vector2f  x1;
     t_vector2f  x2;
@@ -41,71 +60,23 @@ t_vector2d  get_case(t_vector2f from, t_vector2f to, t_command_line *command)
     t_vector2d  xy_d;
 
     // TODO error on position over
-    if (from.x == to.x)
-    {
-        m = 1;
-        b = 0;
-    }
-    else if (from.y == to.y)
-    {
-        m = 0;
-        b = from.y;
-    }
-    else
-    {
-        m = (from.y - to.y) / (from.x - to.x);
-        b = from.y - m * from.x;
-    }
-    printf("to [%f][%f]\n", to.x, to.y);
-    printf("y = %f * x + %f\n", m, b);
-    a[0] = 1 + m * m;
-    a[1] = -2.0 * to.x + 2.0 * b * m - 2.0 * m * to.y;
-    a[2] = to.x * to.x - 2.0 * b * to.y + b * b + to.y * to.y - 1.0;
+//    printf("to [%f][%f]\n", to.x, to.y);
+//    printf("y = %f * x + %f\n", m, b);
+    get_bm(from, to, &mb[0], &mb[1]);
+    a[0] = 1 + mb[0] * mb[0];
+    a[1] = -2.0 * to.x + 2.0 * mb[1] * mb[0] - 2.0 * mb[0] * to.y;
+    a[2] = to.x * to.x - 2.0 * mb[1] * to.y + mb[1] * mb[1] + to.y * to.y - 1.0;
     a[3] = a[1] * a[1] - 4.0 * a[0] * a[2];
     x1.x = (-a[1] - sqrt(a[3])) / (2.0 * a[0]);
     x2.x = (-a[1] + sqrt(a[3])) / (2.0 * a[0]);
-    x1.y = m * x1.x + b;
-    x2.y = m * x2.x + b;
-    printf("a = %f\tb = %f\tc = %f\td = %f\n", a[0], a[1], a[2], a[3]);
-    printf("x1 = [%f][%f]\tx2 = [%f][%f]\n", x1.x, x1.y, x2.x, x2.y);
+    x1.y = mb[0] * x1.x + mb[1];
+    x2.y = mb[0] * x2.x + mb[1];
+//    printf("a = %f\tb = %f\tc = %f\td = %f\n", a[0], a[1], a[2], a[3]);
+//    printf("x1 = [%f][%f]\tx2 = [%f][%f]\n", x1.x, x1.y, x2.x, x2.y);
     xy = get_closest_point(from, x1, x2);
-//    xy_d.x = (int)round(xy.x);
-//    xy_d.y = (int)round(xy.y);
     xy_d.x = modulo((int)round(xy.x), command->x);
     xy_d.y = modulo((int)round(xy.y), command->y);
-    (void)command;
     return (xy_d);
-}
-
-t_vector2f  vec_int_to_double(t_vector2d vec_d)
-{
-    t_vector2f  vec_f;
-
-    vec_f.x = vec_d.x;
-    vec_f.y = vec_d.y;
-    return (vec_f);
-}
-
-double      get_fast_pt(int from, int to, int length)
-{
-    if (from > to && abs(from - to) > abs(length - from + to))
-    {
-        return (length + to);
-    }
-    else if (abs(from - to) > abs(length - to + from))
-    {
-        return (to - length);
-    }
-    return (to);
-}
-
-t_vector2f  get_fast_way(t_vector2d from, t_vector2d to, t_command_line *command)
-{
-    t_vector2f  pt;
-
-    pt.x = get_fast_pt(from.x, to.x, command->x);
-    pt.y = get_fast_pt(from.y, to.y, command->y);
-    return (pt);
 }
 
 int broadcast(t_trantorien *trantorien, t_vector2d from, t_vector2d to,
@@ -122,19 +93,19 @@ int broadcast(t_trantorien *trantorien, t_vector2d from, t_vector2d to,
 
     if (from.x == to.x && from.y == to.y)
         return (0);
-    xy = get_case(vec_int_to_double(from), get_fast_way(from, to, command), command);
-//    xy = get_case(vec_int_to_double(from), vec_int_to_double(to), command);
+//    xy = get_case(vec_int_to_double(from), get_fast_way(from, to, command), command);
+    xy = get_case(vec_int_to_double(from), vec_int_to_double(to), command);
     dir = getVectorDir(trantorien->orientation);
     dir.x = (dir.x == 0) ? 1 : dir.x;
     dir.y = (dir.y == 0) ? 1 : dir.y;
-    printf("\nxy [%d][%d]\n", xy.x, xy.y);
+//    printf("\nxy [%d][%d]\n", xy.x, xy.y);
     for (i = 0; i < 8; ++i)
     {
         pos.x = trantorien->pos.x + dir.x * dir_pos[i].y;
         pos.y = trantorien->pos.y + dir.y * dir_pos[i].x;
         pos.x = modulo(pos.x, command->x);
         pos.y = modulo(pos.y, command->y);
-        printf("pos [%d][%d] = %d\n", pos.x, pos.y, i);
+//        printf("pos [%d][%d] = %d\n", pos.x, pos.y, i);
         if (xy.x == pos.x && xy.y == pos.y)
             return (++i);
     }

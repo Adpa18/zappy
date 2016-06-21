@@ -54,3 +54,12 @@ t_vector2d   calc_pos(t_vector2d pos, t_vector2d dir, int j,
     }
     return (cur_pos);
 }
+
+t_vector2f  vec_int_to_double(t_vector2d vec_d)
+{
+    t_vector2f  vec_f;
+
+    vec_f.x = vec_d.x;
+    vec_f.y = vec_d.y;
+    return (vec_f);
+}

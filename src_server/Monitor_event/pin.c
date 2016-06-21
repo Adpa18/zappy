@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:38:05 2016 Victor Gouet
-** Last update Tue Jun 14 17:11:34 2016 Victor Gouet
+** Last update Tue Jun 21 13:01:15 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
@@ -22,7 +22,8 @@ int			pin_event(t_monitor *monitor, t_list *list,
   if (!(trantorien = get_trantorien_from_id(list, atoi(tab[1]))))
     return (sbp_event(monitor));
   sendf_message(&(monitor->ref->client->sock),
-		"pin %d %d %d %d %d %d %d %d %d\n",
+		"pin %d %d %d %d %d %d %d %d %d %d\n",
+		trantorien->id,
 		trantorien->pos.x, trantorien->pos.y,
 	        trantorien->inventaire.food,
 		trantorien->inventaire.linemate,
@@ -38,15 +39,16 @@ int     pin_event_to_all_monitor(t_list *list, t_trantorien *trantorien)
 {
   char	*msg;
 
-  msg = STRING("pin %d %d %d %d %d %d %d %d %d\n",
-		trantorien->pos.x, trantorien->pos.y,
-	        trantorien->inventaire.food,
-		trantorien->inventaire.linemate,
-	        trantorien->inventaire.deraumere,
-	        trantorien->inventaire.sibur,
-	        trantorien->inventaire.mendiane,
-	        trantorien->inventaire.phiras,
-	        trantorien->inventaire.thystame);
+  msg = STRING("pin %d %d %d %d %d %d %d %d %d %d\n",
+	       trantorien->id,
+	       trantorien->pos.x, trantorien->pos.y,
+	       trantorien->inventaire.food,
+	       trantorien->inventaire.linemate,
+	       trantorien->inventaire.deraumere,
+	       trantorien->inventaire.sibur,
+	       trantorien->inventaire.mendiane,
+	       trantorien->inventaire.phiras,
+	       trantorien->inventaire.thystame);
   if (msg)
     {
       send_msg_to_all_monitor(msg, list);

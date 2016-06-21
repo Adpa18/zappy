@@ -33,6 +33,7 @@ SRCS		=	Core.cpp		\
 			Vector2.cpp         \
 			ZappyMap.cpp        \
 			ObjectArray.cpp     \
+			Recipee.cpp         \
 			main.cpp
 
 OBJS		=	$(addprefix $(SRCDIR), $(SRCS:.cpp=.o))
@@ -67,6 +68,7 @@ endif
 
 $(NAME):	$(DLLS) $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+	make clean -C $(LUADIR)
 
 $(DLLS):
 	@unzip -q -o $(WINLIB) -d $(WINDIR)

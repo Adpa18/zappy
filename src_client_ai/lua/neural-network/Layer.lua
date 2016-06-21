@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local path = debug.getinfo(1).source:match("@?(.*/)")
+local path = debug.getinfo(1).source:match("@?(.*/)") or "";
 
 neuron = require(path.."Neuron");
 

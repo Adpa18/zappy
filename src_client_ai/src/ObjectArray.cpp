@@ -9,6 +9,7 @@ const Lua::LuaClass<ObjectArray>::LuaPrototype      ObjectArray::prototype = {
         {},
         {
                 {"HasObject", &ObjectArray::HasObject},
+                {"GetNbOf", &ObjectArray::GetNbOf}
         }
 };
 
@@ -43,6 +44,30 @@ int ObjectArray::HasObject(lua_State *state)
     Lua::LuaScript(state).PushVar(has);
     return 1;
 }
+
+int ObjectArray::GetNbOf(lua_State *state)
+{
+    Inventory::Object toCheck = static_cast<Inventory::Object >(Lua::LuaScript(state).GetInteger());
+    int nb = 0;
+
+    for (Inventory::Object &curr : *this)
+    {
+        if (curr == toCheck)
+            ++nb;
+    }
+    Lua::LuaScript(state).PushVar(nb);
+    return 1;
+}
+
+ObjectArray &ObjectArray::operator+=(ObjectArray const &ref)
+{
+    for (Inventory::Object const &curr : ref)
+    {
+        push_back(curr);
+    }
+    return *this;
+}
+
 
 std::ostream    &operator<<(std::ostream &output, ObjectArray const &ref)
 {

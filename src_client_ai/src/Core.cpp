@@ -11,12 +11,12 @@
 #include "Core.hpp"
 #include "IAClient.hpp"
 
-const std::string Core::usage = "-n team_name -p port -h hostname [-s script_name]";
+const std::string Core::usage = "-n team_name -p port [-h hostname=127.0.0.1] [-s script_name=./src_client_ai/lua/default.lua]";
 
 Core::Core()
 {
     this->teamName = "";
-    this->ip       = "";
+    this->ip       = "127.0.0.1";
     this->port     = -1;
     this->fileIA   = IAClient::Default;
 #ifdef _WIN32
