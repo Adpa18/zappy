@@ -44,12 +44,12 @@ function OnStart()
    broadCastMsg[3] = "Et toi ! VIENS DONC QUE J'TE... VENDS DU "
    broadCastMsg[4] = "Je vends pas chère "
 
-   objToSend[0] = "linemate"
    objToSend[1] = "deraumere"
    objToSend[2] = "sibur"
    objToSend[3] = "mendiane"
    objToSend[4] = "phiras"
    objToSend[5] = "thystame"
+   objToSend[6] = "linemate"
 end
 
 function onReceiveBroadCast(requestCode, responseServer)
@@ -140,28 +140,27 @@ function OnUpdate()
       -- On drop OBJ car on a pu vendre l OBJ
       IA:SetParameter(objDrop)
       objDrop = nil
+      objSell = nil
+
       return DROP
    end
 
    -- On essaye de voir si on peut passer en mode vente
    if (IA:GetInventory():GetNbOf(FOOD) > nbrFoodForBuy) then
+
       -- On est dans la phase de vente
-      
       nbrFoodForBuy = 5
       local obj = takeObj()
       if (obj) then
 	 if (etableIsCreated and obj == "nourriture") then
 
 	    -- On a vendu notre merde
-	    print("merci")
 	    msgOnAction = "merci Johny !"
 	    objDrop = objSell
-
 	 elseif (etableIsCreated) then
 
 	    -- Le mec essaye de nous arnaquer
 	    msgOnAction = "Tu m'as cru pour une bourrique ?"
-	    print("tu m'as cru pour une bourrique ?")
 	 end
 
 	 -- On créer notre étable
@@ -173,7 +172,8 @@ function OnUpdate()
       -- On commence à vendre
       local i = 0
       while (objSell == nil and i < 10) do
-	 objSell = objToSend[(math.random % #objToSend) + 1]
+	 local i = math.random(1, #objToSend)
+	 objSell = objToSend[i]
 	 if getObjFromString(objSell) then
 	    if (IA:GetInventory():GetNbOf(getObjFromString(objSell)) == 0) then
 	       objSell = nil
@@ -183,7 +183,6 @@ function OnUpdate()
       end
 
       if (objSell == nil) then
-	 print("objSell == nil")
 	 return NONE
       end
 
@@ -201,6 +200,7 @@ function OnUpdate()
    -- On se déplace pour trouver des objs rares
    etableIsCreated = false
    nbrFoodForBuy = 10
+   objSell = nil
 
    if (IA:GetSightAt(0)) then
 
