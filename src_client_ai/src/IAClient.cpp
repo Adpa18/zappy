@@ -22,6 +22,9 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                         "GetSightAt", &IAClient::GetSightAt
                 },
                 {
+                        "GetFullSight", &IAClient::GetFullSight
+                },
+                {
                         "SetParameter", &IAClient::SetParameter
                 },
                 {
@@ -35,6 +38,9 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                 },
                 {
                         "ElevationPercentage", &IAClient::ElevationPercentage
+                },
+                {
+                        "GetNbNeededPlayers", &IAClient::GetNbNeededPlayers
                 }
         }
 };
@@ -233,6 +239,24 @@ int IAClient::GetSightAt(lua_State *state)
     return 1;
 }
 
+int IAClient::GetFullSight(lua_State *state)
+{
+    Lua::LuaScript  script(state);
+    ObjectArray     fullSight;
+
+    if (moved || request.IsTimerFinished(ZappyRequest::SEE))
+    {
+        moved = false;
+        RefreshSight();
+    }
+    for (ObjectArray const &curr : sight)
+    {
+        fullSight += curr;
+    }
+    script.PushVar(fullSight);
+    return 1;
+}
+
 int IAClient::GetTeamName(lua_State *state)
 {
     Lua::LuaScript(state).PushVar(teamName.c_str());
@@ -306,3 +330,13 @@ int IAClient::ElevationPercentage(lua_State *script)
     return 1;
 }
 
+int IAClient::GetNbNeededPlayers(lua_State *state)
+{
+    Lua::LuaScript  script(state);
+
+    if (lvl == 0)
+        script.PushVar(1);
+    else
+        script.PushVar(lvl + 1 - (lvl + 1) % 2);
+    return 1;
+}

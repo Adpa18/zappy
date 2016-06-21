@@ -68,6 +68,8 @@ public:
 
     int GetSightAt(lua_State *script);
 
+    int GetFullSight(lua_State *script);
+
     int GetTeamName(lua_State *script);
 
     int SetParameter(lua_State *script);
@@ -79,6 +81,8 @@ public:
     int NeedRessources(lua_State *script);
 
     int ElevationPercentage(lua_State *script);
+
+    int GetNbNeededPlayers(lua_State *script);
 
 public:
     virtual void  Connect(const std::string &ip, const uint16_t port, std::string const &teamName);

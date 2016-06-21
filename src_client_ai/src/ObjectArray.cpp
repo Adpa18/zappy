@@ -59,6 +59,16 @@ int ObjectArray::GetNbOf(lua_State *state)
     return 1;
 }
 
+ObjectArray &ObjectArray::operator+=(ObjectArray const &ref)
+{
+    for (Inventory::Object const &curr : ref)
+    {
+        push_back(curr);
+    }
+    return *this;
+}
+
+
 std::ostream    &operator<<(std::ostream &output, ObjectArray const &ref)
 {
     size_t i = 0, max = ref.size();

@@ -22,6 +22,9 @@ public:
     ObjectArray &operator=(ObjectArray const &ref);
 
 public:
+    ObjectArray &operator+=(ObjectArray const &ref);
+
+public:
     int HasObject(lua_State *state);
     int GetNbOf(lua_State *state);
 };
