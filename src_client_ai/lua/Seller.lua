@@ -140,6 +140,8 @@ function OnUpdate()
       -- On drop OBJ car on a pu vendre l OBJ
       IA:SetParameter(objDrop)
       objDrop = nil
+      objSell = nil
+
       return DROP
    end
 
@@ -153,14 +155,12 @@ function OnUpdate()
 	 if (etableIsCreated and obj == "nourriture") then
 
 	    -- On a vendu notre merde
-	    print("merci")
 	    msgOnAction = "merci Johny !"
 	    objDrop = objSell
 	 elseif (etableIsCreated) then
 
 	    -- Le mec essaye de nous arnaquer
 	    msgOnAction = "Tu m'as cru pour une bourrique ?"
-	    print("tu m'as cru pour une bourrique ?")
 	 end
 
 	 -- On créer notre étable
@@ -174,9 +174,7 @@ function OnUpdate()
       while (objSell == nil and i < 10) do
 	 local i = math.random(1, #objToSend)
 	 objSell = objToSend[i]
-	 print(objSell, i)
 	 if getObjFromString(objSell) then
-	    print("pass")
 	    if (IA:GetInventory():GetNbOf(getObjFromString(objSell)) == 0) then
 	       objSell = nil
 	    end
@@ -185,7 +183,6 @@ function OnUpdate()
       end
 
       if (objSell == nil) then
-	 --print("objSell == nil")
 	 return NONE
       end
 
