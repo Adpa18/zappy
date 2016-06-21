@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Thu May 12 19:21:36 2016 Quentin Gasparotto
-** Last update Tue Jun 21 16:21:32 2016 Victor Gouet
+** Last update Tue Jun 21 17:09:41 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -97,7 +97,6 @@ char	*get_crlf_line(t_client *client)
   length = 0;
   toreturn = NULL;
   index = 0;
-  printf("on read ...\n");
   while (recv(client->sock.sock, &c, 1, MSG_DONTWAIT) > 0)
     {
       if (index == length &&
@@ -108,15 +107,11 @@ char	*get_crlf_line(t_client *client)
 	{
 	  if (index - 1 >= 0 && toreturn[index - 1] == '\r')
 	    toreturn[index - 1] = '\0';
-	  {
-	    printf("c est fini\n");
-	    return (toreturn[index] = '\0', toreturn);
-	  }
+	  return (toreturn[index] = '\0', toreturn);
 	}
       ++index;
     }
   if (toreturn)
     toreturn[index] = '\0';
-  printf("c est fini %s\n", toreturn);
   return (toreturn);
 }
