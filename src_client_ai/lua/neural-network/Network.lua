@@ -6,12 +6,16 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local path = debug.getinfo(1).source:match("@?(.*/)")
+local path = debug.getinfo(1).source:match("@?(.*/)") or "";
 
 local layer = require(path.."Layer");
 local json = require(path.."json/json");
 
 local NeuralNetwork = {}
+
+local function sigmoid(x)
+    return  1.0 / (1.0 + math.exp(-x));
+end
 
 --[[
 --Neural Network constructor
@@ -46,11 +50,9 @@ function NeuralNetwork.compute(this, inputs)
         layer.copy(this.input, inputs);
     end
     for i=1, #this.layers do
-        layer.compute(this.layers[i], function (x)
-            return  1.0 / (1.0 + math.exp(-x));
-        end);
+        layer.compute(this.layers[i], sigmoid);
     end
-    layer.compute(this.output, function (x) return x; end);
+    layer.compute(this.output, sigmoid);
     return this.output;
 end
 
