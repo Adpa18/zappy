@@ -1,4 +1,3 @@
 TODO:
-	-Classe Core qui gère le core du projet (finaliser le link complet)
-	-Classe Prototocle Zappy qui va implémenter toutes les commandes du serveur
-	-Class ZappyMap pour faire un cache de la map du zappy où (0, 0) correspond à la toute première position du trantorien
+	-Méthodes pour l'incantation du trantorien
+	-IA neuronale

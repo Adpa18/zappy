@@ -209,7 +209,7 @@ int IAClient::GetInventory(lua_State *state)
 
 int IAClient::GetSightAt(lua_State *state)
 {
-    if (moved)
+    if (moved || request.IsTimerFinished(ZappyRequest::SEE))
     {
         moved = false;
         RefreshSight();
@@ -272,4 +272,14 @@ void IAClient::DropObj(Inventory::Object obj)
 void IAClient::RefreshSight(bool canUpdate)
 {
     sight = map->getIaSight(position, Vector2::Directions[orientation], lvl, canUpdate);
+}
+
+int IAClient::CanElevate(lua_State *)
+{
+    return 0;
+}
+
+int IAClient::NeedRessources(lua_State *)
+{
+    return 0;
 }

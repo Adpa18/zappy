@@ -67,6 +67,7 @@ endif
 
 $(NAME):	$(DLLS) $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+	make clean -C $(LUADIR)
 
 $(DLLS):
 	@unzip -q -o $(WINLIB) -d $(WINDIR)
