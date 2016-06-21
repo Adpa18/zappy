@@ -57,31 +57,6 @@ function onReceiveBroadCast(requestCode, responseServer)
    if (responseServer == "ok") then
       canAct = true
    end
-   -- else
---      local idx1, idx2 = string.find(responseServer, "message ")
-  --    if (idx1 and idx2) then
---	 local substr = string.sub(responseServer, idx2 + 1, idx2 + 1)
---	 if (substr == prevBroadCast) then
---	    msg = MOVE
---	    return
---	 end
---
---	 if (substr == "1") then
---	  --  print("AVANCE")
---	  --  msg = MOVE
-----	    return
---	   -- msgNext = BROADCAST
---	   -- msgNext = BROADCAST
---	 elseif (substr == "6" or substr == "7" or substr == "8" or substr == "5") then
----	 --   msg = RIGHT
---	 --   print("RIGHT")
----	 else
---	 --   print("GO BACK")
---	 --   msg = LEFT
---	 end
---
-  --    end
-   --end
 end
 
 function onCallMove(requestCode, responseServer)
