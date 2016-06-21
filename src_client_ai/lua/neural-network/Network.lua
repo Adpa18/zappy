@@ -62,11 +62,14 @@ function NeuralNetwork.deserialize(filename)
     local toret = NeuralNetwork.new(neur.inputs, #neur.output);
     local prevLayer = toret.input;
 
+    print("nb inputs: "..neur.inputs);
     for i=1, #neur.layers do
         toret.layers[i] = layer.new(#neur.layers[i]);
         layer.SetSynapsesWeight(toret.layers[i], neur.layers[i], prevLayer);
         prevLayer = toret.layers[i];
+        print("layer nb "..i.." has "..#neur.layers[i].." neurons");
     end
+    print("nb output "..#neur.output);
     layer.SetSynapsesWeight(toret.output, neur.output, prevLayer);
     file:close();
     return toret;

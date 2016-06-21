@@ -25,6 +25,7 @@ function Neuron.compute(this)
 end
 
 function Neuron.setWeights(this, prevneurons, weights)
+    this.synapses = {};
     for i=1, #weights do
         this.synapses[i] = {neuron = prevneurons[i], weight = weights[i]};
     end

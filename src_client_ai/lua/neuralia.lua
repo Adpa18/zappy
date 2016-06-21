@@ -29,7 +29,7 @@ local path = debug.getinfo(1).source:match("@?(.*/)") or "";
 local net = require(path.."neural-network/Network");
 local queue = require(path.."Queue");
 
-local neuralNet = net.new(6, 6, {2, 5, 2});
+local neuralNet;
 local netActions = {};
 local actionQueue = queue.new();
 local pendingActions = queue.new();
@@ -43,6 +43,15 @@ function OnStart()
     netActions[4] = TAKE;
     netActions[5] = DROP;
     netActions[6] = BROADCAST;
+    local filename = io.read();
+    if (filename == "") then
+        neuralNet = net.new(6, 6, {2, 5, 2});
+        net.serialize(neuralNet, "lala.json");
+    else
+        print("deserializing: "..filename);
+        neuralNet = net.deserialize(filename);
+        net.serialize(neuralNet, "tem.json");
+    end
     --load a neural network from a filename
 end
 
