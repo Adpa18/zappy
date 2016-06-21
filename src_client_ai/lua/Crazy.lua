@@ -35,7 +35,12 @@ function OnUpdate()
    end
 
    canAct = false
-   while (IA:GetSightAt(0)) do
+   local i = 0
+   while (IA:GetSightAt(i)) do
+      if (IA:GetSightAt(i):GetNbOf(PLAYER) > 1) then
+	 print("ENTER")
+      end
+      i = i + 1
    end
    --if (IA:GetSightAt(0):GetNbOf(FOOD) == 0 
    return EXPULSE

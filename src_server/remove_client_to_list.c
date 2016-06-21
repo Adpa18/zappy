@@ -5,13 +5,13 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:01:02 2016 Victor Gouet
-** Last update Fri Jun 17 11:53:52 2016 Victor Gouet
+** Last update Tue Jun 21 13:16:10 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
 
 static void	free_client_on_list(t_ref *ref)
-{  
+{
   if (ref->type == MONITOR)
     {
       free(ref->ref);
