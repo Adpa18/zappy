@@ -6,7 +6,8 @@
 
 const std::string                                ObjectArray::className = typeid(ObjectArray).name();
 const Lua::LuaClass<ObjectArray>::LuaPrototype      ObjectArray::prototype = {
-        {},
+        {
+        },
         {
                 {"HasObject", &ObjectArray::HasObject},
                 {"GetNbOf", &ObjectArray::GetNbOf}

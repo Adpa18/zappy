@@ -29,6 +29,7 @@ Core::~Core()
 #ifdef  _WIN32
     Socket::WinSocket(Socket::STOP);
 #endif
+    Lua::LuaScript::freeGarbage();
 }
 
 std::string    Core::getIp() const
