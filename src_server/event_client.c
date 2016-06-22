@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Tue Jun 21 16:02:15 2016 Victor Gouet
+** Last update Wed Jun 22 13:56:01 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -75,7 +75,7 @@ static const t_event		event_player[2] = {
   {
     {"bct",
      "sst",
-     NULL,
+     "time",
      NULL,
      NULL,
      "msz",
@@ -102,7 +102,7 @@ static const t_event		event_player[2] = {
     {
       bct_event,
       sst_event,
-      NULL,
+      time_event,
       NULL,
       NULL,
       msz_event,
