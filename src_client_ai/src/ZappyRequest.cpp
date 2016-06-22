@@ -171,12 +171,12 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
         it = callbacks.find(request);
         if (it != callbacks.end())
             (*this.*it->second)(answer, param);
-        client->Receive(request, answer);
     }
     catch (std::exception &exception)
     {
         std::cerr << "Receive server pong: " << exception.what() << std::endl;
     }
+    client->Receive(request, answer);
     --nbRequest;
 }
 
