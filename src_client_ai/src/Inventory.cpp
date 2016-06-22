@@ -237,7 +237,7 @@ Inventory       Inventory::operator+(Inventory const &ref) const
             {Inventory::THYSTAME, false},
     };
 
-    for (std::pair<Object, size_t> &curr : toreturn.stuff)
+    for (std::pair<const Object, size_t> &curr : toreturn.stuff)
     {
         curr.second += ref[curr.first];
         checked[curr.first] = true;
