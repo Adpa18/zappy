@@ -40,10 +40,9 @@ namespace Lua
 
     public:
         template <typename toRegister>
-        void RegisterClass(/*typename Lua::LuaClass<toRegister>::LuaPrototype const &proto*/)
+        void RegisterLuaClass()
         {
             toRegister::prototype.Register(state);
-//            proto.Register(state);
             registeredClasses.push_back(toRegister::className);
         }
         template <typename toInstantiate>

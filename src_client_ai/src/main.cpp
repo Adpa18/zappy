@@ -5,6 +5,9 @@
 
 int main(int ac, char **av)
 {
+#ifdef _WIN32
+    Socket::WinSocket(Socket::START);
+#endif
     Core core;
 
     try
@@ -21,5 +24,9 @@ int main(int ac, char **av)
     std::cout << "port : " << core.getPort() << std::endl;
     std::cout << "team name : " << core.getTeamName() << std::endl;
     std::cout << "IA : " << core.getFileIA() << std::endl;
-    return (core.run());
+    int status = core.run();
+#ifdef  _WIN32
+    Socket::WinSocket(Socket::STOP);
+#endif
+    return (status);
 }
