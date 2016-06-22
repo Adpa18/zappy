@@ -61,7 +61,7 @@ public:
     ZappyRequest    &operator=(ZappyRequest const &ref) = delete;
 
 public:
-    void MakeRequest(Request request, std::string const &toConcat = "") throw(BadRequestException);
+    void MakeRequest(Request request, std::string const &toConcat = "");
     void MakeBlockedRequest(Request request, std::string const &toContat = "");
     void Update(struct timeval timeout = {0, 50});
     bool IsARequest(Request request) const;
