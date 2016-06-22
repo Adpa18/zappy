@@ -58,6 +58,7 @@ public:
 
 public:
     int GetNbOf(lua_State *state);
+    static int GetNameOf(lua_State *state);
 
 public:
     size_t operator[](Object object) const;

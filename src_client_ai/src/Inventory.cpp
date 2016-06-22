@@ -6,11 +6,13 @@
 #include <algorithm>
 #include "Inventory.hpp"
 
-const std::string    Inventory::className = typeid(Inventory).name();
+const std::string    Inventory::className("Inventory");
 const Lua::LuaClass<Inventory>::LuaPrototype Inventory::prototype = {
-        {},
         {
-                {"GetNbOf", (int (Inventory::*)(lua_State *))&Inventory::GetNbOf}
+                {"GetNameOf", &Inventory::GetNameOf}
+        },
+        {
+                {"GetNbOf", &Inventory::GetNbOf}
         }
 };
 
@@ -195,5 +197,14 @@ int Inventory::GetNbOf(lua_State *state)
     std::map<Inventory::Object, size_t >::const_iterator    it = getStuff().find(static_cast<Object >(script.GetInteger()));
 
     script.PushVar(static_cast<int>(it->second));
+    return 1;
+}
+
+int Inventory::GetNameOf(lua_State *state)
+{
+    Lua::LuaScript  script(state);
+    Object obj = static_cast<Object >(script.GetInteger());
+
+    script.PushVar(getNameFromObject(obj).c_str());
     return 1;
 }

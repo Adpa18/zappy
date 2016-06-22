@@ -46,13 +46,12 @@ function OnStart()
     local filename = io.read();
     if (filename == "") then
         neuralNet = net.new(6, 6, {2, 5, 2});
-        net.serialize(neuralNet, "lala.json");
+--        net.serialize(neuralNet, "lala.json");
     else
         print("deserializing: "..filename);
         neuralNet = net.deserialize(filename);
-        net.serialize(neuralNet, "tem.json");
+--        net.serialize(neuralNet, "tem.json");
     end
-    --load a neural network from a filename
 end
 
 local function GetNbOfNeededRessources(fullSight)
@@ -68,13 +67,25 @@ local function GetNbOfNeededRessources(fullSight)
     return nb;
 end
 
+function CanTakeDropRessource(takeordrop)
+    local sigthAtPos = IA:GetSightAt(0);
+
+    for i=LINEMATE, THYSTAME do
+        if (IA:NeedRessources(i) and takeordrop(sigthAtPos, i)) then
+            return Inventory.GetNameOf(i);
+        end
+    end
+    return nil;
+end
+
 function OnUpdate()
     local todo;
     local fullSight = IA:GetFullSight();
+    local param;
 
     todo = queue.pop(actionQueue);
     if (todo == nil and doingAction == false) then
-        print("[-------------nothing-------------]");
+--        print("[-------------nothing-------------]");
         net.compute(neuralNet, {
             GetNbOfNeededRessources(fullSight),
             IA:GetInventory():GetNbOf(FOOD),
@@ -83,23 +94,35 @@ function OnUpdate()
             1.0 - IA:ElevationPercentage(),
             searching
         });
-        print("------outputs------");
+--        print("------outputs------");
         for i=1, #neuralNet.output.neurons do
             if (neuralNet.output.neurons[i].value > 0.75) then
-                print("pushing "..netActions[i]);
+--                print("pushing "..netActions[i]);
                 queue.push(actionQueue, netActions[i]);
             end
-            print("for action "..netActions[i].." has value "..neuralNet.output.neurons[i].value);
+--            print("for action "..netActions[i].." has value "..neuralNet.output.neurons[i].value);
         end
-        print("-------------------");
+--        print("-------------------");
         todo = queue.pop(actionQueue);
     end
     if (todo == nil) then
         return NONE;
     end
-    print("todo =====> "..todo);
+--    print("todo =====> "..todo);
     if (todo == BROADCAST) then
-        IA:SetParameter("Come incant modafukas");
+        param = "Incant "..IA:GetLevel();
+
+    elseif (todo == TAKE) then
+        param = CanTakeDropRessource(function (sightAtPos, ressource)
+            return (sightAtPos:HasObject(ressource));
+        end);
+    elseif (todo == DROP) then
+        param = CanTakeDropRessource(function (_, ressource)
+            return (IA:GetInventory():GetNbOf(ressource));
+        end);
+    end
+    if (param ~= nil) then
+        IA:SetParameter(param);
     end
     doingAction = true;
     queue.push(pendingActions, todo);
@@ -107,7 +130,7 @@ function OnUpdate()
 end
 
 function OnReceive(reqCode, answer)
-    print("code: "..reqCode.." => '"..answer.."'");
+--    print("code: "..reqCode.." => '"..answer.."'");
     if (reqCode == pendingActions[pendingActions.last]) then
         if (reqCode == BROADCAST) then
             if (answer == "ok") then
@@ -122,11 +145,23 @@ function OnReceive(reqCode, answer)
         end
     else
         if (reqCode == BROADCAST) then
-            if (answer == "Come incant modafukas") then
+            print("answer: '"..answer.."'");
+            local lvl = answer:match("Incant (%d+)");
+            if (lvl ~= nil) then
+                print("string lvl: "..lvl);
+                print("int lvl: "..IA:GetLevel());
+            end
+            if (lvl ~= nil and tonumber(lvl) == IA:GetLevel()) then
+                print("Extracted level '"..lvl.."'");
                 searching = 1.0;
             else
                 searching = 0.0;
             end
+--            if (s:match("Incant (%d+)") == IA:GetLvl()) then
+--                searching = 1.0;
+--            else
+--                searching = 0.0;
+--            end
         end
     end
     if (doingAction == false) then
