@@ -41,6 +41,9 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                 },
                 {
                         "GetNbNeededPlayers", &IAClient::GetNbNeededPlayers
+                },
+                {
+                        "GetTeamName", &IAClient::GetNbNeededPlayers
                 }
         }
 };

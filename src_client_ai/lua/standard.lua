@@ -5,7 +5,7 @@
 
 Queue = {};
 canAct = true;
-teamName = IA:GetTeamName();
+teamName = "";
 
 function Queue.new()
     return { first = 0, last = -1 };
@@ -38,164 +38,240 @@ actionList = Queue.new()
 
 function CreatePath(case)
     local path = Queue.new();
+    local f = 3;
     local n = 1;
     local i = 1;
     local y = 0;
     if case == 0 then
+        for w = 0, (IA:GetSightAt(y):GetNbOf(FOOD) - 1) do
+            Queue.pushBack(path, "TAKE nourriture");
+        end
         return path;
     end
-    while n <= 7 do
+    while n <= (IA:GetLevel() + 1) do
         if i <= case and case <= i + n * 2 then
-            for j = 0, n, 1 do
-                path:pushBack("MOVE");
+            for j = 0, n - 1, 1 do
+                Queue.pushBack(path, "MOVE");
                 y = y + (j + 1) * 2;
                 if IA:GetSightAt(y):HasObject(FOOD) == true then
-                    path:pushBack("TAKE nourriture");
+                    for w = 0, (IA:GetSightAt(y):GetNbOf(FOOD) - 1) do
+                        Queue.pushBack(path, "TAKE nourriture");
+                    end
                 end
             end
-            if case == (i + (i + n * 2)) / 2 then
+            if case == y then
                 return path;
-            elseif case < (i + (i + n * 2)) / 2 then
-                path:pushBack("LEFT");
-                for j = 0, (i + (i + n * 2)) / 2 - case, 1 do
-                    path:pushBack("MOVE");
+            elseif case < y then
+                Queue.pushBack(path, "LEFT");
+                while y > case do
+                    Queue.pushBack(path, "MOVE");
                     y = y - 1;
                     if IA:GetSightAt(y):HasObject(FOOD) == true then
-                        path:pushBack("TAKE nourriture");
+                        for w = 0, (IA:GetSightAt(y):GetNbOf(FOOD) - 1) do
+                            Queue.pushBack(path, "TAKE nourriture");
+                        end
                     end
+                end
+                return path;
             else
-                path:pushBack("RIGHT")
-                for j = 0, case - (i + (i + n * 2)) / 2, 1 do
-                    path:pushBack("MOVE");
+                Queue.pushBack(path, "RIGHT")
+                while y < case do
+                    Queue.pushBack(path, "MOVE");
                     y = y + 1;
                     if IA:GetSightAt(y):HasObject(FOOD) == true then
-                        path:pushBack("TAKE nourriture");
+                        for w = 0, (IA:GetSightAt(y):GetNbOf(FOOD) - 1) do
+                            Queue.pushBack(path, "TAKE nourriture");
+                        end
                     end
                 end
                 return path;
             end
             n = n + 1;
         end
+        i = i + f;
+        f = f + 2;
     end
+end
 
-    function OnStart()
-    end
+function OnStart()
+    teamName = IA:GetTeamName();
+end
 
-    function OnUpdate()
-        if (canAct) then
-            local food = IA:GetInventory():GetNbOf(FOOD);
-            local lvl = IA:GetLevel();
-            local i = 3;
-            for n = 2, lvl + 1, 1 do
-                i = i + (n * 2 + 1);
-            end
-
-            -- vider la queue
-            local action = actionList:pop();
-            if action ~= nil then
-                if string.find(action, "MOVE") ~= nil then
-                    canAct = false;
-                    return MOVE;
-                elseif string.find(action, "RIGHT") ~= nil then
-                    canAct = false;
-                    return RIGHT;
-                elseif string.find(action, "LEFT") ~= nil then
-                    canAct = false;
-                    return LEFT;
-                elseif string.find(action, "RIGHT") ~= nil then
-                    canAct = false;
-                    return RIGHT;
-                elseif string.find(action, "INCANTATION") ~= nil then
-                    canAct = false;
-                    return INCANTATION;
-                elseif string.find(action, "LAYEGG") ~= nil then
-                    canAct = false;
-                    return LAYEGG;
-                elseif string.find(action, "TAKE") ~= nil then
-                    if string.find(action, "nourriture") ~= nil then
-                        SetParameter("nourriture");
-                    elseif string.find(action, "linemate") ~= nil then
-                        SetParameter("linemate");
-                    elseif string.find(action, "deraumere") ~= nil then
-                        SetParameter("deraumere");
-                    elseif string.find(action, "sibur") ~= nil then
-                        SetParameter("sibur");
-                    elseif string.find(action, "mendiane") ~= nil then
-                        SetParameter("mendiane");
-                    elseif string.find(action, "phiras") ~= nil then
-                        SetParameter("phiras");
-                    elseif string.find(action, "thystame") ~= nil then
-                        SetParameter("thystame");
-                    end
-                    canAct = false;
-                    return TAKE;
-                elseif string.find(action, "DROP") ~= nil then
-                    canAct = false;
-                    return DROP;
+function FindRessources(ressource)
+    local n = 0;
+    local i = 3;
+    local find = false;
+    while n <= i and find == false do
+        local ncase = IA:GetSightAt(n);
+        if ncase == nil then
+            return;
+        end
+        if ncase:HasObject(ressource) == true then
+            find = true;
+            actionList = CreatePath(n);
+            for w = 0, (IA:GetSightAt(n):GetNbOf(ressource) - 1) do
+                if ressource == LINEMATE then
+                    Queue.pushBack(actionList, "TAKE linemate");
+                elseif ressource == DERAUMERE then
+                    Queue.pushBack(actionList, "TAKE deraumere");
+                elseif ressource == SIBUR then
+                    Queue.pushBack(actionList, "TAKE sibur");
+                elseif ressource == MENDIANE then
+                    Queue.pushBack(actionList, "TAKE mendiane");
+                elseif ressource == PHIRAS then
+                    Queue.pushBack(actionList, "TAKE phiras");
+                else
+                    Queue.pushBack(actionList, "TAKE thystame");
                 end
-            end
-
-            if food < 7 then
-                -- recherche de food
-                local n = 0;
-                local find = false;
-                while n <= i and find == false do
-                    if IA:GetSightAt(n):HasObject(FOOD) == true then
-                        actionList = CreatePath(n);
-                        return;
-                    end
-                    n = n + 1;
-                end
-                if n > i then
-                    for j = 0, lvl, 1 do
-                        actionList:pushBack(MOVE);
-                    end
-                end
-            end
-            if -- jai les ressources pour mélever
-            then
-                -- envoie message de regroupement
-            else
-                --recherche des ressources nécessaires
+                return;
             end
         end
-        return NONE;
+        n = n + 1;
     end
+    if n > i then
+        local ran = math.random(0, 2);
+        if ran == 0 then
+            Queue.pushBack(actionList, "LEFT");
+        elseif ran == 1 then
+            Queue.pushBack(actionList, "RIGHT");
+        else
+            for j = 0, (IA:GetLevel() + 1) do
+                Queue.pushBack(actionList, "MOVE");
+            end
+        end
+    end
+end
 
-    function OnReceive(request, rep)
-        if request == MOVE or request == LEFT or request == RIGHT or request == TAKE or request == DROP or request == ForK or request == STOCK then
-            canAct = true;
-            if rep == "ko" then
-                actionList = Queue.new();
+function OnUpdate()
+    if (canAct) then
+        local food = IA:GetInventory():GetNbOf(FOOD);
+        local lvl = IA:GetLevel() + 1;
+        local i = 3;
+        for n = 2, lvl + 1 do
+            i = i + (n * 2 + 1);
+        end
+        -- vider la queue
+
+        local action = Queue.pop(actionList);
+        if action ~= nil then
+            if string.find(action, "MOVE") ~= nil then
+                canAct = false;
+                return MOVE;
+            elseif string.find(action, "RIGHT") ~= nil then
+                canAct = false;
+                return RIGHT;
+            elseif string.find(action, "LEFT") ~= nil then
+                canAct = false;
+                return LEFT;
+            elseif string.find(action, "RIGHT") ~= nil then
+                canAct = false;
+                return RIGHT;
+            elseif string.find(action, "INCANTATION") ~= nil then
+                canAct = false;
+                return INCANTATION;
+            elseif string.find(action, "LAYEGG") ~= nil then
+                canAct = false;
+                return LAYEGG;
+            elseif string.find(action, "TAKE") ~= nil then
+                if string.find(action, "nourriture") ~= nil then
+                    IA:SetParameter("nourriture");
+                elseif string.find(action, "linemate") ~= nil then
+                    IA:SetParameter("linemate");
+                elseif string.find(action, "deraumere") ~= nil then
+                    IA:SetParameter("deraumere");
+                elseif string.find(action, "sibur") ~= nil then
+                    IA:SetParameter("sibur");
+                elseif string.find(action, "mendiane") ~= nil then
+                    IA:SetParameter("mendiane");
+                elseif string.find(action, "phiras") ~= nil then
+                    IA:SetParameter("phiras");
+                elseif string.find(action, "thystame") ~= nil then
+                    IA:SetParameter("thystame");
+                end
+                canAct = false;
+                return TAKE;
+            elseif string.find(action, "DROP") ~= nil then
+                canAct = false;
+                return DROP;
+            end
+        end
+
+        if food < 7 then
+            -- recherche de food
+            local n = 0;
+            local find = false;
+            while n <= i and find == false do
+                local ncase = IA:GetSightAt(n);
+                if ncase == nil then
+                    return;
+                end
+                if ncase:HasObject(FOOD) == true then
+                    find = true;
+                    actionList = CreatePath(n);
+                    return;
+                end
+                n = n + 1;
+            end
+            if n > i then
+                local ran = math.random(0, 2);
+                if ran == 0 then
+                    Queue.pushBack(actionList, "LEFT");
+                elseif ran == 1 then
+                    Queue.pushBack(actionList, "RIGHT");
+                else
+                    for j = 0, lvl do
+                        Queue.pushBack(actionList, "MOVE");
+                    end
+                end
             end
             return;
         end
-        if request == INCANTATION then
-            if rep == "ko" then
-                canAct = true;
-                actionList = Queue.new();
-                return;
-            elseif rep == "elevation en cours" then
-                return;
+        if IA:CanElevate() == true then
+            if IA:GetSightAt(0):GetNbOf(PLAYER) == IA:GetNbNeededPlayers() then
+                return INCANTATION;
             else
-                canAct = true;
-                return;
+                return EXPULSE;
             end
-        end
-        if request == BROADCAST then
-            if string.find(rep, "On fait l'appel!") ~= nil then
-                -- message de présence
-            end
-            if -- message de présence
-            then
-                -- ajout de l'id dans le tableau d'équipe si id pas présente dedans
-            end
-            if -- message de regroupement and lvl requis
-            then
-                -- se diriger vers l'origine du son
+        else
+            --recherche des ressources nécessaires
+            for ressource = 2, 7 do
+                if IA:NeedRessources(ressource) == true then
+                    FindRessources(ressource);
+                    return;
+                end
             end
         end
     end
+    return NONE;
+end
 
-    -- BROADCAST --
-    -- On se regroupe! Equipe nom_de_team! Level lvl_ia
+function OnReceive(request, rep)
+    if request == MOVE or request == LEFT or request == RIGHT or request == TAKE or request == DROP or request == LAYEGG then
+        canAct = true;
+        if rep == "ko" then
+            actionList = Queue.new();
+        end
+        return;
+    end
+    if request == INCANTATION then
+        if rep == "ko" then
+            canAct = true;
+            actionList = Queue.new();
+            return;
+        elseif rep == "elevation en cours" then
+            return;
+        else
+            canAct = true;
+            return;
+        end
+    end
+    --[[if request == BROADCAST then
+        if -- message de regroupement and lvl requis
+        then
+            -- se diriger vers l'origine du son
+        end
+    end]]
+end
+
+-- BROADCAST --
+-- On se regroupe! Equipe nom_de_team! Level lvl_ia
