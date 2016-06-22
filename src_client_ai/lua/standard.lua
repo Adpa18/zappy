@@ -104,7 +104,7 @@ function FindRessources(ressource)
     while n <= i and find == false do
         local ncase = IA:GetSightAt(n);
         if ncase == nil then
-            return;
+            return NONE;
         end
         if ncase:HasObject(ressource) == true then
             find = true;
@@ -123,7 +123,7 @@ function FindRessources(ressource)
                 else
                     Queue.pushBack(actionList, "TAKE thystame");
                 end
-                return;
+                return NONE;
             end
         end
         n = n + 1;
@@ -215,12 +215,12 @@ function OnUpdate()
             while n <= i and find == false do
                 local ncase = IA:GetSightAt(n);
                 if ncase == nil then
-                    return;
+                    return NONE;
                 end
                 if ncase:HasObject(FOOD) == true then
                     find = true;
                     actionList = CreatePath(n);
-                    return;
+                    return NONE;
                 end
                 n = n + 1;
             end
@@ -236,7 +236,7 @@ function OnUpdate()
                     end
                 end
             end
-            return;
+            return NONE;
         end
         if IA:GetEnoughRessources() == true then
             local canElevate = true;
@@ -298,7 +298,7 @@ function OnUpdate()
             for ressource = 2, 8 do
                 if IA:GetInventory():GetNbOf(ressource) < IA:GetNbNeededRessources(ressource) then
                     FindRessources(ressource);
-                    return;
+                    return NONE;
                 end
             end
         end
@@ -312,18 +312,18 @@ function OnReceive(request, rep)
         if rep == "ko" then
             actionList = Queue.new();
         end
-        return;
+        return NONE;
     end
     if request == INCANTATION then
         if rep == "ko" then
             canAct = true;
             actionList = Queue.new();
-            return;
+            return NONE;
         elseif rep == "elevation en cours" then
-            return;
+            return NONE;
         else
             canAct = true;
-            return;
+            return NONE;
         end
     end
     --[[if request == BROADCAST then
