@@ -19,5 +19,6 @@ void        move_by_dir(t_trantorien *trantorien, t_command_line *command,
                         t_vector2d dir);
 t_vector2d  calc_pos(t_vector2d pos, t_vector2d dir, int j,
                      t_command_line *cmd);
+t_vector2f  vec_int_to_double(t_vector2d vec_d);
 
 #endif //ZAPPY_DIRECTION_H

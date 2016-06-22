@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Fri Jun 17 11:06:19 2016 Victor Gouet
+** Last update Tue Jun 21 15:43:58 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -130,6 +130,7 @@ typedef struct	s_list
   int		max_fd;
   int		nbr_client;
   t_map		*map;
+  fd_set	fds_wri;
 }		t_list;
 
 /*

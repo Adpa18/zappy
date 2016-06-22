@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Fri Jun 17 12:15:03 2016 Victor Gouet
+** Last update Tue Jun 21 16:12:10 2016 Victor Gouet
 */
 
 #include <signal.h>
@@ -15,22 +15,25 @@
 
 static int		init_select(fd_set *fds,
 				    int const server,
-				    t_list *list)
+				    t_list *list,
+				    fd_set *fds_writable)
 {
   t_ref			*elem;
   struct timeval	timeout;
 
   FD_ZERO(fds);
+  FD_ZERO(fds_writable);
   timeout.tv_sec = 0;
   timeout.tv_usec = 1000;
   FD_SET(server, fds);
   elem = list->begin;
   while (elem)
     {
+      FD_SET(elem->client->sock.sock, fds_writable);
       FD_SET(elem->client->sock.sock, fds);
       elem = elem->next;
     }
-  if (select(list->max_fd + 1, fds, NULL, NULL, &timeout) == -1)
+  if (select(list->max_fd + 1, fds, fds_writable, NULL, &timeout) == -1)
     {
       return (-1);
     }
@@ -52,8 +55,11 @@ static int	init_all(t_list *list, t_server **server,
   return (0);
 }
 
+static int	on_sigint = false;
+
 void		on_catch_sigint(int signal)
 {
+  on_sigint = true;
   (void)signal;
 }
 
@@ -77,9 +83,9 @@ void		server_run(t_command_line *command)
   signal(SIGINT, on_catch_sigint);
   if (init_all(&list, &server, command) == -1)
     return ;
-  while (server)
+  while (server && !on_sigint)
     {
-      if (init_select(&fds, server->socket.sock, &list) == -1)
+      if (init_select(&fds, server->socket.sock, &list, &list.fds_wri) == -1)
         break;
       if (FD_ISSET(server->socket.sock, &fds))
 	{

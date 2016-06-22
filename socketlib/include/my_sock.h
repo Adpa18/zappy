@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon May  2 11:10:07 2016 Quentin Gasparotto
-** Last update Mon May 23 10:57:02 2016 Quentin Gasparotto
+** Last update Tue Jun 21 15:58:54 2016 Victor Gouet
 */
 
 #ifndef MY_SOCK_LIB_H_
@@ -34,6 +34,7 @@ typedef struct		s_socket
 {
   struct sockaddr_in	sockaddr;
   int			sock;
+  bool			is_writable;
   t_sockmode		mode;
 }			t_socket;
 
@@ -53,7 +54,7 @@ typedef struct		s_server
 }			t_server;
 
 # define DEF_CO		((struct sockaddr_in){0, 0, {0}, {0}})
-# define DEF_SOCKET	((t_socket){DEF_CO, -1, NOMODE})
+# define DEF_SOCKET	((t_socket){DEF_CO, -1, true, NOMODE})
 # define DEF_CLIENT	((t_client){DEF_SOCKET, sizeof(DEF_CO), -1, NULL})
 
 /*

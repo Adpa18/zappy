@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Thu May 12 19:21:36 2016 Quentin Gasparotto
-** Last update Thu May 19 14:42:10 2016 Quentin Gasparotto
+** Last update Tue Jun 21 17:09:41 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -97,7 +97,7 @@ char	*get_crlf_line(t_client *client)
   length = 0;
   toreturn = NULL;
   index = 0;
-  while (read(client->sock.sock, &c, 1) > 0)
+  while (recv(client->sock.sock, &c, 1, MSG_DONTWAIT) > 0)
     {
       if (index == length &&
 	  (toreturn = realloc(toreturn, length += BUFSIZ)) == NULL)
