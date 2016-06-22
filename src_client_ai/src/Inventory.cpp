@@ -157,7 +157,7 @@ void Inventory::Refresh(std::vector<std::vector<std::string> > const &content)
             stuff[getObjectFromName(curr[0])] = strtoul(curr[1].c_str(), NULL, 10);
         }
     }
-    catch (std::exception &exception)
+    catch (std::runtime_error &exception)
     {
         stuff = save;
         throw(exception);

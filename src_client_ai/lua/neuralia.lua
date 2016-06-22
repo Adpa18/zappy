@@ -19,9 +19,14 @@
 --      -   Avance
 --      -   Tourne à droite
 --      -   Tourne à gauche
---      -   Prendre
---      -   Poser
+--      -   Se Nourrir
 --      -   Broadcast pour incantation
+--
+--  todo modification sur les outputs au niveau de 'se nourrir'
+--  todo ajouter des actions automatiques:
+--      'prendre ressource necessaire'
+--      'poser ressource pour incantation' (si nb players sur la case suffisant)
+--      'incantation' si les conditions sont ok
  ]]
 
 local path = debug.getinfo(1).source:match("@?(.*/)") or "";
