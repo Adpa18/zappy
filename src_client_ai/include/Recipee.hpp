@@ -22,7 +22,7 @@ public:
     using std::map<Inventory::Object, size_t>::operator=;
 
 public:
-    size_t const &operator[](Inventory::Object const &ref) const;
+    size_t operator[](Inventory::Object const &ref) const;
 
     using std::map<Inventory::Object, size_t >::operator[];
 

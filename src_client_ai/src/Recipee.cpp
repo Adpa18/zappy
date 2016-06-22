@@ -62,12 +62,12 @@ Recipee::~Recipee()
 
 }
 
-size_t const &Recipee::operator[](Inventory::Object const &ref) const
+size_t Recipee::operator[](Inventory::Object const &ref) const
 {
     std::map<Inventory::Object, size_t >::const_iterator it = find(ref);
 
     if (it == end())
-        throw std::logic_error("No object at this index");
+        return 0;
     return it->second;
 }
 
