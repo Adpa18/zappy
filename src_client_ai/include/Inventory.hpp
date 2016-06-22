@@ -10,6 +10,9 @@
 #include <vector>
 #include <LuaScript.hpp>
 #include "ZappyRequest.hpp"
+//#include "ObjectArray.hpp"
+
+class ObjectArray;
 
 class Inventory
 {
@@ -29,7 +32,7 @@ public:
     static const Lua::LuaClass<Inventory>::LuaPrototype prototype;
 
 public:
-    Inventory(ZappyRequest *request, std::map<Object, size_t> const &stuff = {
+    Inventory(ZappyRequest *request = NULL, std::map<Object, size_t> const &stuff = {
             {FOOD, 0},
             {LINEMATE, 0},
             {DERAUMERE, 0},
@@ -39,6 +42,7 @@ public:
             {THYSTAME, 0}
       });
   Inventory(Inventory const &ref);
+    Inventory(ObjectArray const &ref);
     ~Inventory();
     Inventory   &operator=(Inventory const &ref);
 
@@ -63,6 +67,7 @@ public:
 public:
     size_t operator[](Object object) const;
     size_t &operator[](Object object);
+    Inventory operator+(Inventory const &ref) const;
 
 private:
   std::map<Object, size_t>	stuff;

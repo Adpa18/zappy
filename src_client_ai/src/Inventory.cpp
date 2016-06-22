@@ -5,6 +5,7 @@
 #include <climits>
 #include <algorithm>
 #include "Inventory.hpp"
+#include "ObjectArray.hpp"
 
 const std::string    Inventory::className("Inventory");
 const Lua::LuaClass<Inventory>::LuaPrototype Inventory::prototype = {
@@ -37,6 +38,20 @@ Inventory::Inventory(ZappyRequest *request, std::map<Object, size_t> const &stuf
   stuff(stuff), request(request)
 {
     request->AddTimer(ZappyRequest::STOCK, 126);
+}
+
+/**
+ * \brief Implicit constructor with ObjectArray for Inventory
+ * \param ref The reference on an object array
+ */
+Inventory::Inventory(ObjectArray const &ref) :
+    stuff(),
+    request(NULL)
+{
+    for (Object const &curr : ref)
+    {
+        ++stuff[curr];
+    }
 }
 
 /**
@@ -207,4 +222,30 @@ int Inventory::GetNameOf(lua_State *state)
 
     script.PushVar(getNameFromObject(obj).c_str());
     return 1;
+}
+
+Inventory       Inventory::operator+(Inventory const &ref) const
+{
+    Inventory   toreturn(*this);
+    std::map<Object, bool>  checked {
+            {Inventory::FOOD, false},
+            {Inventory::LINEMATE, false},
+            {Inventory::DERAUMERE, false},
+            {Inventory::SIBUR, false},
+            {Inventory::MENDIANE, false},
+            {Inventory::PHIRAS, false},
+            {Inventory::THYSTAME, false},
+    };
+
+    for (std::pair<const Object, size_t> &curr : toreturn.stuff)
+    {
+        curr.second += ref[curr.first];
+        checked[curr.first] = true;
+    }
+    for (std::pair<Object, size_t> const &curr : ref.stuff)
+    {
+        if (checked[curr.first] == false)
+            toreturn[curr.first] += curr.second;
+    }
+    return toreturn;
 }
