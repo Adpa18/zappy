@@ -5,9 +5,10 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun 22 13:54:15 2016 Victor Gouet
-** Last update Wed Jun 22 14:44:58 2016 Victor Gouet
+** Last update Wed Jun 22 14:58:53 2016 Victor Gouet
 */
 
+#include <string.h>
 #include "../../include_server/monitor_event.h"
 #include "../../stringLib/storage.h"
 
