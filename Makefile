@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ##
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Fri Jun 17 12:11:49 2016 Victor Gouet
+## Last update Wed Jun 22 14:07:25 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -62,6 +62,7 @@ SRCS		= src_server/main.c \
 		  src_server/Trantorien_Event/prend_obj_event.c \
 		  src_server/Trantorien_Event/voir_event.c \
 		  src_server/Monitor_event/bct.c \
+		  src_server/Monitor_event/time_event.c \
 		  src_server/Monitor_event/ebo.c \
 		  src_server/Monitor_event/edi.c \
 		  src_server/Monitor_event/eht.c \
