@@ -101,7 +101,7 @@ ZappyRequest::~ZappyRequest()
  * \brief Make a Zappy Request you can set 'toConcat' parameter to insert a request parameter
  * \param toConcat Allow user to add a request parameter
  */
-void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string &toConcat) throw(BadRequestException)
+void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string &toConcat)
 {
     if (request == DEFAULT || nbRequest == ZappyRequest::maxRequest)
         return;
@@ -170,13 +170,15 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
     {
         it = callbacks.find(request);
         if (it != callbacks.end())
+        {
             (*this.*it->second)(answer, param);
+        }
+        client->Receive(request, answer);
     }
     catch (std::exception &exception)
     {
         std::cerr << "Receive server pong: " << exception.what() << std::endl;
     }
-    client->Receive(request, answer);
     --nbRequest;
 }
 
