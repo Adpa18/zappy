@@ -60,6 +60,18 @@ int ObjectArray::GetNbOf(lua_State *state)
     return 1;
 }
 
+int ObjectArray::GetNbOf(Inventory::Object obj)
+{
+    int nb = 0;
+
+    for (Inventory::Object &curr : *this)
+    {
+        if (curr == obj)
+            ++nb;
+    }
+    return (nb);
+}
+
 ObjectArray &ObjectArray::operator+=(ObjectArray const &ref)
 {
     for (Inventory::Object const &curr : ref)

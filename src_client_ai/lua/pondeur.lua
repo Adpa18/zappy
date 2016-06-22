@@ -51,7 +51,7 @@ function CreatePath(case)
         end
         return path;
     end
-    while n <= (IA:GetLevel() + 1) do
+    while n <= IA:GetLevel() do
         if i <= case and case <= i + n * 2 then
             for j = 0, n - 1, 1 do
                 Queue.pushBack(path, "MOVE");
@@ -104,7 +104,7 @@ function OnUpdate()
         local food = IA:GetInventory():GetNbOf(FOOD);
         local lvl = IA:GetLevel();
         local i = 3;
-        for n = 2, lvl + 1 do
+        for n = 2, lvl do
             i = i + (n * 2 + 1);
         end
         -- vider la queue
@@ -176,7 +176,7 @@ function OnUpdate()
                 elseif ran == 1 then
                     Queue.pushBack(actionList, "RIGHT");
                 else
-                    for j = 0, lvl do
+                    for j = 0, (lvl - 1) do
                         Queue.pushBack(actionList, "MOVE");
                     end
                 end
