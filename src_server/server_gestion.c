@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Tue Jun 21 16:12:10 2016 Victor Gouet
+** Last update Wed Jun 22 16:57:33 2016 Victor Gouet
 */
 
 #include <signal.h>
@@ -37,6 +37,7 @@ static int		init_select(fd_set *fds,
     {
       return (-1);
     }
+  usleep(1000);
   return (0);
 }
 
