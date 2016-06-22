@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:40:39 2016 Victor Gouet
-** Last update Wed Jun 22 14:05:00 2016 Victor Gouet
+** Last update Wed Jun 22 14:18:12 2016 Victor Gouet
 */
 
 #include <stdlib.h>
@@ -72,7 +72,6 @@ int		on_time(t_command_line *command)
 static void     constructor_command_line(t_command_line *command)
 {
   command->time_launch = time(NULL);
-  command->time_launch = 
   command->nb_client = -1;
   command->port = -1;
   command->team_list.begin = NULL;
