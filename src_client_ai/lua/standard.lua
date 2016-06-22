@@ -163,9 +163,6 @@ function OnUpdate()
             elseif string.find(action, "LEFT") ~= nil then
                 canAct = false;
                 return LEFT;
-            elseif string.find(action, "RIGHT") ~= nil then
-                canAct = false;
-                return RIGHT;
             elseif string.find(action, "INCANTATION") ~= nil then
                 canAct = false;
                 return INCANTATION;
@@ -191,6 +188,21 @@ function OnUpdate()
                 canAct = false;
                 return TAKE;
             elseif string.find(action, "DROP") ~= nil then
+                if string.find(action, "nourriture") ~= nil then
+                    IA:SetParameter("nourriture");
+                elseif string.find(action, "linemate") ~= nil then
+                    IA:SetParameter("linemate");
+                elseif string.find(action, "deraumere") ~= nil then
+                    IA:SetParameter("deraumere");
+                elseif string.find(action, "sibur") ~= nil then
+                    IA:SetParameter("sibur");
+                elseif string.find(action, "mendiane") ~= nil then
+                    IA:SetParameter("mendiane");
+                elseif string.find(action, "phiras") ~= nil then
+                    IA:SetParameter("phiras");
+                elseif string.find(action, "thystame") ~= nil then
+                    IA:SetParameter("thystame");
+                end
                 canAct = false;
                 return DROP;
             end
@@ -226,16 +238,65 @@ function OnUpdate()
             end
             return;
         end
-        if IA:CanElevate() == true then
-            if IA:GetSightAt(0):GetNbOf(PLAYER) == IA:GetNbNeededPlayers() then
-                return INCANTATION;
-            else
-                return EXPULSE;
+        if IA:GetEnoughRessources() == true then
+            local canElevate = true;
+            if IA:GetSightAt(0):GetNbOf(FOOD) ~= 0 then
+                for w = 1, IA:GetSightAt(0):GetNbOf(FOOD) do
+                    Queue.pushBack(actionList, "TAKE nourriture");
+                end
+                canElevate = false;
+            end
+            for ressource = 2, 8 do
+                if IA:GetSightAt(0):GetNbOf(ressource) < IA:GetNbNeededRessources(ressource) then
+                    for w = 1, (IA:GetNbNeededRessources(ressource) - IA:GetSightAt(0):GetNbOf(ressource)) do
+                        if ressource == LINEMATE then
+                            Queue.pushBack(actionList, "DROP linemate");
+                        elseif ressource == DERAUMERE then
+                            Queue.pushBack(actionList, "DROP deraumere");
+                        elseif ressource == SIBUR then
+                            Queue.pushBack(actionList, "DROP sibur");
+                        elseif ressource == MENDIANE then
+                            Queue.pushBack(actionList, "DROP mendiane");
+                        elseif ressource == PHIRAS then
+                            Queue.pushBack(actionList, "DROP phiras");
+                        else
+                            Queue.pushBack(actionList, "DROP thystame");
+                        end
+                    end
+                    canElevate = false;
+                end
+                if IA:GetSightAt(0):GetNbOf(ressource) > IA:GetNbNeededRessources(ressource) then
+                    for w = 1, (IA:GetSightAt(0):GetNbOf(ressource) - IA:GetNbNeededRessources(ressource)) do
+                        if ressource == LINEMATE then
+                            Queue.pushBack(actionList, "TAKE linemate");
+                        elseif ressource == DERAUMERE then
+                            Queue.pushBack(actionList, "TAKE deraumere");
+                        elseif ressource == SIBUR then
+                            Queue.pushBack(actionList, "TAKE sibur");
+                        elseif ressource == MENDIANE then
+                            Queue.pushBack(actionList, "TAKE mendiane");
+                        elseif ressource == PHIRAS then
+                            Queue.pushBack(actionList, "TAKE phiras");
+                        else
+                            Queue.pushBack(actionList, "TAKE thystame");
+                        end
+                    end
+                    canElevate = false;
+                end
+            end
+            if canElevate == true then
+                if IA:GetSightAt(0):GetNbOf(PLAYER) == (IA:GetNbNeededPlayers() - 1) then
+                    canAct = false;
+                    return INCANTATION;
+                else
+                    canAct = false;
+                    return EXPULSE;
+                end
             end
         else
             --recherche des ressources nécessaires
-            for ressource = 2, 7 do
-                if IA:NeedRessources(ressource) == true then
+            for ressource = 2, 8 do
+                if IA:GetInventory():GetNbOf(ressource) < IA:GetNbNeededRessources(ressource) then
                     FindRessources(ressource);
                     return;
                 end
@@ -246,7 +307,7 @@ function OnUpdate()
 end
 
 function OnReceive(request, rep)
-    if request == MOVE or request == LEFT or request == RIGHT or request == TAKE or request == DROP or request == LAYEGG then
+    if request == MOVE or request == LEFT or request == RIGHT or request == TAKE or request == DROP or request == LAYEGG or request == EXPULSE then
         canAct = true;
         if rep == "ko" then
             actionList = Queue.new();
