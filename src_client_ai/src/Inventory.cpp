@@ -223,3 +223,29 @@ int Inventory::GetNameOf(lua_State *state)
     script.PushVar(getNameFromObject(obj).c_str());
     return 1;
 }
+
+Inventory       Inventory::operator+(Inventory const &ref) const
+{
+    Inventory   toreturn(*this);
+    std::map<Object, bool>  checked {
+            {Inventory::FOOD, false},
+            {Inventory::LINEMATE, false},
+            {Inventory::DERAUMERE, false},
+            {Inventory::SIBUR, false},
+            {Inventory::MENDIANE, false},
+            {Inventory::PHIRAS, false},
+            {Inventory::THYSTAME, false},
+    };
+
+    for (std::pair<Object, size_t> &curr : toreturn.stuff)
+    {
+        curr.second += ref[curr.first];
+        checked[curr.first] = true;
+    }
+    for (std::pair<Object, size_t> const &curr : ref.stuff)
+    {
+        if (checked[curr.first] == false)
+            toreturn[curr.first] += curr.second;
+    }
+    return toreturn;
+}
