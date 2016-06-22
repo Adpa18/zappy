@@ -63,9 +63,9 @@ IAClient::~IAClient()
 void IAClient::SetScript(const std::string &scriptname)
 {
     script.LoadFile(scriptname);
-    script.RegisterClass<IAClient>();
-    script.RegisterClass<Inventory>();
-    script.RegisterClass<ObjectArray>();
+    script.RegisterLuaClass<IAClient>();
+    script.RegisterLuaClass<Inventory>();
+    script.RegisterLuaClass<ObjectArray>();
     script.SetGlobalValue(this, "IA");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::DEFAULT), "NONE");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::MOVE), "MOVE");
