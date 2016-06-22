@@ -40,6 +40,7 @@ end
 
 function onBroadCast(requestCode, responseServer)
    if responseServer == "ok" then
+      canAct = true
       return
    end
    local dir, level = responseServer:match("message ([0-9]), elevate ([0-9])")
@@ -50,9 +51,36 @@ function onBroadCast(requestCode, responseServer)
    print(dir, level)
    if IA:GetLevel() == tonumber(level) and IA:CanElevate() then
       if dir == "1" then
-	 
+	 Queue.push(dataQueue, {MOVE, nil})
+      elseif dir == "2" then
+ 	Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(dataQueue, {LEFT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
+      elseif dir == "3" then
+	 Queue.push(dataQueue, {LEFT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
+      elseif dir == "4" then
+	 Queue.push(dataQueue, {LEFT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(dataQueue, {LEFT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
+      elseif dir == "5" then
+	 Queue.push(dataQueue, {LEFT, nil})
+	 Queue.push(dataQueue, {LEFT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
+      elseif dir == "6" then
+	 Queue.push(dataQueue, {RIGHT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(dataQueue, {RIGHT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
+      elseif dir == "7" then
+	 Queue.push(dataQueue, {RIGHT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
+      elseif dir == "8" then
+	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(dataQueue, {RIGHT, nil})
+	 Queue.push(dataQueue, {MOVE, nil})
       end
-      Queue.push(dataQueue, {MOVE, ressourcesString})
    end
 end
 
@@ -91,6 +119,12 @@ function elevateDarracq()
 end
 
 function moveDarracq()
+   local move = math.random(0, 3)
+   if (move == 0) then
+      Queue.push(dataQueue, {RIGHT, nil})
+   elseif (move == 1) then
+      Queue.push(dataQueue, {MOVE, nil})
+   end
    Queue.push(dataQueue, {MOVE, nil})
 end
 
@@ -98,8 +132,8 @@ function onElevate()
    if IA:CanElevate() == false then
       return false
    end
-   if IA:GetNbNeededPlayers() ~= IA:GetSightAt(0):GetNbOf(PLAYER) then
-      -- BROADCAST
+   print("GetNbNeededPlayers  "..IA:GetNbNeededPlayers())
+   if IA:GetNbNeededPlayers() ~= IA:GetSightAt(0):GetNbOf(PLAYER) + 1 then
       Queue.push(dataQueue, { BROADCAST, "elevate "..IA:GetLevel() })
       return false
    end
@@ -157,6 +191,9 @@ function OnUpdate()
       end
 
       print(value[2])
+      if value[1] == INCANTATION then
+	 canAct = true
+      end
       return value[1]
    end
 
