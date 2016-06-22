@@ -10,6 +10,9 @@
 #include <vector>
 #include <LuaScript.hpp>
 #include "ZappyRequest.hpp"
+//#include "ObjectArray.hpp"
+
+class ObjectArray;
 
 class Inventory
 {
@@ -39,6 +42,7 @@ public:
             {THYSTAME, 0}
       });
   Inventory(Inventory const &ref);
+    Inventory(ObjectArray const &ref);
     ~Inventory();
     Inventory   &operator=(Inventory const &ref);
 

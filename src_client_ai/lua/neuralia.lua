@@ -46,11 +46,8 @@ function OnStart()
     local filename = io.read();
     if (filename == "") then
         neuralNet = net.new(6, 6, {2, 5, 2});
---        net.serialize(neuralNet, "lala.json");
     else
-        print("deserializing: "..filename);
         neuralNet = net.deserialize(filename);
---        net.serialize(neuralNet, "tem.json");
     end
 end
 
@@ -85,7 +82,6 @@ function OnUpdate()
 
     todo = queue.pop(actionQueue);
     if (todo == nil and doingAction == false) then
---        print("[-------------nothing-------------]");
         net.compute(neuralNet, {
             GetNbOfNeededRessources(fullSight),
             IA:GetInventory():GetNbOf(FOOD),
@@ -94,21 +90,16 @@ function OnUpdate()
             1.0 - IA:ElevationPercentage(),
             searching
         });
---        print("------outputs------");
         for i=1, #neuralNet.output.neurons do
             if (neuralNet.output.neurons[i].value > 0.75) then
---                print("pushing "..netActions[i]);
                 queue.push(actionQueue, netActions[i]);
             end
---            print("for action "..netActions[i].." has value "..neuralNet.output.neurons[i].value);
-        end
---        print("-------------------");
+        end;
         todo = queue.pop(actionQueue);
     end
     if (todo == nil) then
         return NONE;
     end
---    print("todo =====> "..todo);
     if (todo == BROADCAST) then
         param = "Incant "..IA:GetLevel();
 
@@ -130,7 +121,6 @@ function OnUpdate()
 end
 
 function OnReceive(reqCode, answer)
---    print("code: "..reqCode.." => '"..answer.."'");
     if (reqCode == pendingActions[pendingActions.last]) then
         if (reqCode == BROADCAST) then
             if (answer == "ok") then
@@ -145,23 +135,11 @@ function OnReceive(reqCode, answer)
         end
     else
         if (reqCode == BROADCAST) then
-            print("answer: '"..answer.."'");
             local lvl = answer:match("Incant (%d+)");
-            if (lvl ~= nil) then
-                print("string lvl: "..lvl);
-                print("int lvl: "..IA:GetLevel());
-            end
+
             if (lvl ~= nil and tonumber(lvl) == IA:GetLevel()) then
-                print("Extracted level '"..lvl.."'");
-                searching = 1.0;
-            else
-                searching = 0.0;
+                searching = tonumber(answer:match("message (%d)"));
             end
---            if (s:match("Incant (%d+)") == IA:GetLvl()) then
---                searching = 1.0;
---            else
---                searching = 0.0;
---            end
         end
     end
     if (doingAction == false) then

@@ -78,6 +78,8 @@ public:
 
     int CanElevate(lua_State *script);
 
+    int CanMakeElevation(lua_State *state);
+
     int NeedRessources(lua_State *script);
 
     int ElevationPercentage(lua_State *script);

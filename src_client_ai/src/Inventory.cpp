@@ -5,6 +5,7 @@
 #include <climits>
 #include <algorithm>
 #include "Inventory.hpp"
+#include "ObjectArray.hpp"
 
 const std::string    Inventory::className("Inventory");
 const Lua::LuaClass<Inventory>::LuaPrototype Inventory::prototype = {
@@ -37,6 +38,20 @@ Inventory::Inventory(ZappyRequest *request, std::map<Object, size_t> const &stuf
   stuff(stuff), request(request)
 {
     request->AddTimer(ZappyRequest::STOCK, 126);
+}
+
+/**
+ * \brief Implicit constructor with ObjectArray for Inventory
+ * \param ref The reference on an object array
+ */
+Inventory::Inventory(ObjectArray const &ref) :
+    stuff(),
+    request(NULL)
+{
+    for (Object const &curr : ref)
+    {
+        ++stuff[curr];
+    }
 }
 
 /**

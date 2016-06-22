@@ -43,7 +43,7 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                         "GetNbNeededPlayers", &IAClient::GetNbNeededPlayers
                 },
                 {
-                        "GetTeamName", &IAClient::GetNbNeededPlayers
+                        "GetTeamName", &IAClient::GetTeamName
                 }
         }
 };
@@ -340,5 +340,15 @@ int IAClient::GetNbNeededPlayers(lua_State *state)
         script.PushVar(1);
     else
         script.PushVar(lvl + 1 - (lvl + 1) % 2);
+    return 1;
+}
+
+int IAClient::CanMakeElevation(lua_State *)
+{
+//    if (Recipee::recipeesPerLevel[lvl].CanBeMade(sight[0]) &&
+//        sight[0])
+//        Lua::LuaScript(state).PushVar(true);
+//    else
+//        Lua::LuaScript(state).PushVar(false);
     return 1;
 }
