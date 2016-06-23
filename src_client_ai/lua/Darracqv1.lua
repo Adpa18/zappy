@@ -52,7 +52,8 @@ function onBroadCast(requestCode, responseServer)
       return
    end
    print(dir, level)
-   if IA:GetLevel() == tonumber(level) then--and IA:CanElevate() then
+   if IA:GetLevel() == tonumber(level)
+      and Queue.empty(priorityQueue) then--and IA:CanElevate() then
       if dir == "0" then
 	 idle = true
 	 Queue.clear(priorityQueue)
@@ -114,15 +115,11 @@ function elevateDarracq()
    for ressources, ressourcesString in ipairs(objectOnMap) do
       local i = 0
       while i < IA:GetNbNeededRessources(ressources) do
---	 if IA:GetInventory():GetNbOf(ressources) == 0 then
---	    return false
---	 end
 	 Queue.push(dataQueue, {DROP, ressourcesString})
 	 i = i + 1
       end
    end
    Queue.push(dataQueue, {INCANTATION, nil})
-   return true
 end
 
 function moveDarracq()
@@ -142,7 +139,7 @@ function onElevate()
 
    if IA:GetNbNeededPlayers() ~= IA:GetSightAt(0):GetNbOf(PLAYER) + 1 then
       --Queue.clear(dataQueue)
-      Queue.push(priorityQueue, { BROADCAST, "elevate "..IA:GetLevel() })
+      Queue.push(dataQueue, { BROADCAST, "elevate "..IA:GetLevel() })
       return false
    end
    return true
@@ -160,15 +157,18 @@ function onSeeAndAct()
    end
 
    if onElevate() then
+      -- on clear toute la case
+
       for ressources, ressourcesString in ipairs(objectOnMap) do
 	 if IA:GetSightAt(0):HasObject(ressources) then
 	    Queue.push(dataQueue, {TAKE, ressourcesString})
 	    hasTakeSomething = true
 	 end
       end
-      if elevateDarracq() == false then
-	 moveDarracq()
-      end
+
+      -- on s'eleve
+      elevateDarracq()
+
    elseif (hasTakeSomething == false) then
       moveDarracq()
    end
@@ -206,11 +206,15 @@ function OnUpdate()
    if value then
       canAct = false
       if (value[2]) then
+	 print("data send:: -- "..value[2])
 	 IA:SetParameter(value[2])
+      else
+	 print("data send:: -- nil")
       end
       if value[1] == INCANTATION then
 	 canAct = true
       end
+      
       return value[1]
    end
 
