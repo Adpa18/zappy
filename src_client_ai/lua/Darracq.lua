@@ -45,6 +45,7 @@ function onBroadCast(requestCode, responseServer)
       canAct = true
       return
    end
+   print(responseServer)
    local dir, level = responseServer:match("message ([0-9]), elevate ([0-9])")
    if dir == nil or level == nil then
       print("failed")
@@ -140,8 +141,8 @@ function onElevate()
    end
 
    if IA:GetNbNeededPlayers() ~= IA:GetSightAt(0):GetNbOf(PLAYER) + 1 then
-      Queue.clear(dataQueue)
-      Queue.push(dataQueue, { BROADCAST, "elevate "..IA:GetLevel() })
+      --Queue.clear(dataQueue)
+      Queue.push(priorityQueue, { BROADCAST, "elevate "..IA:GetLevel() })
       return false
    end
    return true
@@ -207,7 +208,6 @@ function OnUpdate()
       if (value[2]) then
 	 IA:SetParameter(value[2])
       end
-
       if value[1] == INCANTATION then
 	 canAct = true
       end
