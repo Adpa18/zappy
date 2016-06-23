@@ -117,6 +117,8 @@ void IAClient::Connect(const std::string &ip, const uint16_t port, std::string c
                 {
                     map = new ZappyMap(Vector2(atoi(answer.substr(0, i).c_str()),
                                                atoi(answer.substr(i + 1, answer.length() - i).c_str())), &request);
+                    script.SetGlobalValue(map->Dimmensions().x, "MAPW");
+                    script.SetGlobalValue(map->Dimmensions().y, "MAPH");
                     script.Handler()->Select(IAClient::OnStart).Call();
                     return;
                 }
