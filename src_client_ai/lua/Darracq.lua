@@ -11,15 +11,17 @@ local path = "src_client_ai/lua/"
 canAct = true;
 Queue = require (path.."Queue")
 
+--local toto = false
+local idle = false
+
 dataQueue = {}
+priorityQueue = {}
 serverAnswer = {}
 local objectOnMap = {}
 
-toto = 0
-
-
 function OnStart()
    dataQueue = Queue.new()
+   priorityQueue = Queue.new()
 
    objectOnMap[FOOD] = "nourriture"
    objectOnMap[LINEMATE] = "linemate"
@@ -49,37 +51,41 @@ function onBroadCast(requestCode, responseServer)
       return
    end
    print(dir, level)
-   if IA:GetLevel() == tonumber(level) and IA:CanElevate() then
-      if dir == "1" then
-	 Queue.push(dataQueue, {MOVE, nil})
+   if IA:GetLevel() == tonumber(level) then--and IA:CanElevate() then
+      if dir == "0" then
+	 idle = true
+	 Queue.clear(priorityQueue)
+	 Queue.clear(dataQueue)
+      elseif dir == "1" then
+	 Queue.push(priorityQueue, {MOVE, nil})
       elseif dir == "2" then
- 	Queue.push(dataQueue, {MOVE, nil})
-	 Queue.push(dataQueue, {LEFT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {LEFT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
       elseif dir == "3" then
-	 Queue.push(dataQueue, {LEFT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {LEFT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
       elseif dir == "4" then
-	 Queue.push(dataQueue, {LEFT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
-	 Queue.push(dataQueue, {LEFT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {LEFT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {LEFT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
       elseif dir == "5" then
-	 Queue.push(dataQueue, {LEFT, nil})
-	 Queue.push(dataQueue, {LEFT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {LEFT, nil})
+	 Queue.push(priorityQueue, {LEFT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
       elseif dir == "6" then
-	 Queue.push(dataQueue, {RIGHT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
-	 Queue.push(dataQueue, {RIGHT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {RIGHT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {RIGHT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
       elseif dir == "7" then
-	 Queue.push(dataQueue, {RIGHT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {RIGHT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
       elseif dir == "8" then
-	 Queue.push(dataQueue, {MOVE, nil})
-	 Queue.push(dataQueue, {RIGHT, nil})
-	 Queue.push(dataQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
+	 Queue.push(priorityQueue, {RIGHT, nil})
+	 Queue.push(priorityQueue, {MOVE, nil})
       end
    end
 end
@@ -107,9 +113,9 @@ function elevateDarracq()
    for ressources, ressourcesString in ipairs(objectOnMap) do
       local i = 0
       while i < IA:GetNbNeededRessources(ressources) do
-	 if IA:GetInventory():GetNbOf(ressources) == 0 then
-	    return false
-	 end
+--	 if IA:GetInventory():GetNbOf(ressources) == 0 then
+--	    return false
+--	 end
 	 Queue.push(dataQueue, {DROP, ressourcesString})
 	 i = i + 1
       end
@@ -132,8 +138,9 @@ function onElevate()
    if IA:CanElevate() == false then
       return false
    end
-   print("GetNbNeededPlayers  "..IA:GetNbNeededPlayers())
+
    if IA:GetNbNeededPlayers() ~= IA:GetSightAt(0):GetNbOf(PLAYER) + 1 then
+      Queue.clear(dataQueue)
       Queue.push(dataQueue, { BROADCAST, "elevate "..IA:GetLevel() })
       return false
    end
@@ -163,8 +170,6 @@ function onSeeAndAct()
       end
    elseif (hasTakeSomething == false) then
       moveDarracq()
-   else
-      moveDarracq()
    end
 
    --local i = 1
@@ -176,13 +181,26 @@ end
 
 function OnUpdate()
    
-   if canAct == false then
+   if canAct == false or idle then
       return NONE
    end
 
-   local value = Queue.pop(dataQueue)
+   local valuePriority = Queue.pop(priorityQueue)
 
-   onSeeAndAct()
+   if valuePriority then
+      canAct = false
+      if (valuePriority[2]) then
+	 IA:SetParameter(valuePriority[2])
+      end
+
+      if valuePriority[1] == INCANTATION then
+	 canAct = true
+      end
+      Queue.clear(dataQueue)
+      return valuePriority[1]
+   end
+
+   local value = Queue.pop(dataQueue)
 
    if value then
       canAct = false
@@ -190,12 +208,13 @@ function OnUpdate()
 	 IA:SetParameter(value[2])
       end
 
-      print(value[2])
       if value[1] == INCANTATION then
 	 canAct = true
       end
       return value[1]
    end
+
+   onSeeAndAct()
 
    return NONE
 end

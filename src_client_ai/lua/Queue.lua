@@ -29,4 +29,9 @@ function Queue.pop(list)
     return value;
 end
 
+function Queue.clear(list)
+   while (Queue.pop(list)) do
+   end
+end
+
 return Queue;
