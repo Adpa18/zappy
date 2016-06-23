@@ -61,6 +61,7 @@ t_vector2d  get_case(t_vector2f from, t_vector2f to, t_command_line *command)
 
     // TODO error on position over
     get_bm(from, to, &mb[0], &mb[1]);
+    printf("from [%f][%f]\n", from.x, from.y);
     printf("to [%f][%f]\n", to.x, to.y);
     printf("y = %f * x + %f\n", mb[0], mb[1]);
     a[0] = 1 + mb[0] * mb[0];
