@@ -98,9 +98,23 @@ int broadcast(t_trantorien *trantorien, t_vector2d from, t_vector2d to,
     t_vector2d  dir;
     t_vector2d  pos;
     int         i;
-    static const t_vector2d dir_pos[8] = {
-            {0, 1}, {1, 1}, {1, 0}, {1, -1},
-            {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}
+    static const t_vector2d dir_pos[4][8] = {
+            {
+                    {0, -1}, {-1, -1}, {-1, 0}, {-1, 1},
+                    {0, 1}, {1, 1}, {1, 0}, {1, -1}
+            },
+            {
+                    {1, 0}, {1, -1}, {0, -1}, {-1, -1},
+                    {-1, 0}, {-1, 1}, {0, 1}, {1, 1}
+            },
+            {
+                    {0, 1}, {1, 1}, {1, 0}, {1, -1},
+                    {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}
+            },
+            {
+                    {-1, 0}, {-1, 1}, {0, 1}, {1, 1},
+                    {1, 0}, {1, -1}, {0, -1}, {-1, -1}
+            }
     };
 
     if (from.x == to.x && from.y == to.y)
@@ -111,10 +125,11 @@ int broadcast(t_trantorien *trantorien, t_vector2d from, t_vector2d to,
     dir.x = (dir.x == 0) ? 1 : dir.x;
     dir.y = (dir.y == 0) ? 1 : dir.y;
     printf("xy [%d][%d]\n", xy.x, xy.y);
+    printf("dir = %d (%d;%d)\n", trantorien->orientation, dir.x, dir.y);
     for (i = 0; i < 8; ++i)
     {
-        pos.x = trantorien->pos.x + dir.x * dir_pos[i].y;
-        pos.y = trantorien->pos.y + dir.y * dir_pos[i].x;
+        pos.x = trantorien->pos.x + dir_pos[trantorien->orientation - 1][i].x;
+        pos.y = trantorien->pos.y + dir_pos[trantorien->orientation - 1][i].y;
         pos.x = modulo(pos.x, command->x);
         pos.y = modulo(pos.y, command->y);
         printf("pos [%d][%d] = %d\n", pos.x, pos.y, i);
