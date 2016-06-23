@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:59 2016 Victor Gouet
-** Last update Wed Jun 15 15:24:18 2016 Victor Gouet
+** Last update Thu Jun 23 17:15:21 2016 Victor Gouet
 */
 
 #include <stdbool.h>
@@ -115,6 +115,7 @@ int	incantation_event(t_trantorien *trantorien, t_list *list,
       mct_to_all_monitor(list);
       send_msg_to_finish_elevation(list, trantorien->pos.x,
 				   trantorien->pos.y);
+      ressources_generation(list, list->map, 5, 10);
     }
   else
     {
