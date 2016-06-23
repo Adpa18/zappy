@@ -45,7 +45,7 @@ void			generate_random_ressources(t_map *map)
       x = 0;
       while (x < map->width)
 	{
-	  map->map[y][x].food += rand() % 10;
+	  map->map[y][x].food += rand() % 30;
 	  map->map[y][x].linemate += rand() % 2;
 	  map->map[y][x].deraumere += rand() % 2;
 	  map->map[y][x].sibur += rand() % 2;

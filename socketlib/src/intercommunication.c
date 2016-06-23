@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon May  2 12:44:39 2016 Quentin Gasparotto
-** Last update Tue Jun 21 16:14:53 2016 Victor Gouet
+** Last update Thu Jun 23 16:38:08 2016 Victor Gouet
 */
 
 #include <stdarg.h>
@@ -54,7 +54,7 @@ int	send_message(const char *message, t_socket *interlocutor)
   int	stat;
 
   i = 0;
-  printf("- send : %s - \n", message);
+  printf("- send : - %s\n", message);
   if (interlocutor->is_writable == false)
     {
       printf("send ko. false\n");
@@ -63,8 +63,8 @@ int	send_message(const char *message, t_socket *interlocutor)
   len = strlen(message);
   while (i < len)
     {
-      if ((stat = write(interlocutor->sock, &message[i],
-			strlen(&message[i]))) == -1)
+      if ((stat = send(interlocutor->sock, &message[i],
+		       strlen(&message[i]), MSG_NOSIGNAL)) == -1)
 	{
 	  printf("send ko.\n");
 	  return (-1);

@@ -98,7 +98,7 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
                 exit(-1);
             serial << curr.second;
             serial.close();
-            if (execl("/bin/bash", "bash", "-c", ("echo " + filename + " | ./zappy_ai -p 4242 -n toto -s ./lua/neuralia.lua > " + output).c_str(), NULL) == -1)
+            if (execl("/bin/bash", "bash", "-c", ("echo " + filename + " | ./zappy_ai -p 4242 -h 192.168.1.11 -n toto -s ./lua/neuralia.lua > " + output).c_str(), NULL) == -1)
                 exit(1);
             exit(0);
         }

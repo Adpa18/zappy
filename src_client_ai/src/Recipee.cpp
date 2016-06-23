@@ -10,7 +10,8 @@ const Recipee   Recipee::recipeesPerLevel[7] = {
                 }),
         Recipee({
                         {Inventory::LINEMATE, 1},
-                        {Inventory::DERAUMERE, 1}
+                        {Inventory::DERAUMERE, 1},
+                        {Inventory::SIBUR, 1}
                 }),
         Recipee({
                         {Inventory::LINEMATE, 2},

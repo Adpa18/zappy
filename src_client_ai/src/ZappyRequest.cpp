@@ -168,6 +168,7 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
     ResolveState(answer);
     try
     {
+        std::cout << "Request : " << request << "Reponse : " << answer << std::endl;
         it = callbacks.find(request);
         if (it != callbacks.end())
         {
