@@ -9,7 +9,7 @@
  * \brief Constructor with a prepared queue and default
  * \param actionsQueue A queue of actions already prepared
  */
-NetworkWatcher::NetworkWatcher(std::map<std::string, NetworkWatcher::NetworkCallback> const &exception, std::map<Client *, NetworkWatcher::CallbackQueue> const &actionsQueue) :
+NetworkWatcher::NetworkWatcher(std::map<std::string, NetworkWatcher::NetworkException> const &exception, std::map<Client *, NetworkWatcher::CallbackQueue> const &actionsQueue) :
         exceptions(exception),
         callBacks(actionsQueue)
 {
@@ -68,7 +68,7 @@ NetworkWatcher &NetworkWatcher::RequestServer(std::string const &request, Networ
  */
 NetworkWatcher &NetworkWatcher::Update(Client &from, struct timeval timeout)
 {
-    std::map<std::string, NetworkCallback>::const_iterator  it;
+    std::map<std::string, NetworkException>::const_iterator  it;
     std::string line;
 
     if (from.getCRLFLine(line, timeout))
@@ -77,16 +77,16 @@ NetworkWatcher &NetworkWatcher::Update(Client &from, struct timeval timeout)
             it->second(line);
         else if ((!callBacks[&from].empty()))
         {
-            callBacks[&from].front()(line);
-            callBacks[&from].pop();
+            if (callBacks[&from].front()(line))
+                callBacks[&from].pop();
         }
     }
     return *this;
 }
 
-std::map<std::string, NetworkWatcher::NetworkCallback>::const_iterator NetworkWatcher::GetException(std::string const &key) const
+std::map<std::string, NetworkWatcher::NetworkException>::const_iterator NetworkWatcher::GetException(std::string const &key) const
 {
-    for (std::map<std::string, NetworkCallback>::const_iterator  it = exceptions.begin(), end = exceptions.end(); it != end; ++it)
+    for (std::map<std::string, NetworkException>::const_iterator  it = exceptions.begin(), end = exceptions.end(); it != end; ++it)
     {
         if (key.find(it->first) != std::string::npos)
             return it;

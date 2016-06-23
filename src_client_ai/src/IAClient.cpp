@@ -331,6 +331,8 @@ int IAClient::CanElevate(lua_State *script)
 
 int IAClient::GetEnoughRessources(lua_State *script)
 {
+    if (sight.size() == 0)
+        return 0;
     Lua::LuaScript(script).PushVar(Recipee::recipeesPerLevel[lvl].CanBeMade(inventory + sight[0]));
     return 1;
 }

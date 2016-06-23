@@ -112,7 +112,16 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
 
     lastReqOf[request] = std::clock();
     requestQueue.push(std::make_pair(request, std::clock()));
-    watcher.RequestServer(req, [this, request, toConcat] (std::string const &s) { ReceiveServerPong(request, s, toConcat); }, *client);
+    watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
+        {
+            if (client->IsIncanting() && s == "KO")
+            {
+                client->Receive(ZappyRequest::INCANTATION, s);
+                return (false);
+            }
+            ReceiveServerPong(request, s, toConcat);
+            return (true);
+        }, *client);
     ++nbRequest;
 }
 
@@ -168,7 +177,7 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
     ResolveState(answer);
     try
     {
-        std::cout << "Request : " << request << "Reponse : " << answer << std::endl;
+        std::cout << "Request : " << request << std::endl << "Reponse : " << answer.substr(0, 30) << std::endl;
         it = callbacks.find(request);
         if (it != callbacks.end())
         {

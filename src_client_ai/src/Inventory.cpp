@@ -152,7 +152,6 @@ void Inventory::Refresh(std::vector<std::vector<std::string> > const &content)
     {
         for (std::vector<std::string> const &curr : content)
         {
-	  std::cout << "Size: " << curr.size() << std::endl;
             if (curr.size() != 2)
                 throw std::runtime_error("Incorrect format");
             stuff[getObjectFromName(curr[0])] = strtoul(curr[1].c_str(), NULL, 10);
