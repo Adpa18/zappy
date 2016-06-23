@@ -206,9 +206,7 @@ function OnUpdate()
                 canAct = false;
                 return DROP;
             end
-        end
-
-        if food < 7 then
+        elseif food < 7 then
             -- recherche de food
             local n = 0;
             local find = false;
@@ -237,8 +235,7 @@ function OnUpdate()
                 end
             end
             return NONE;
-        end
-        if IA:GetEnoughRessources() == true then
+        elseif IA:GetEnoughRessources() == true then
             local canElevate = true;
             if IA:GetSightAt(0):GetNbOf(FOOD) ~= 0 then
                 for w = 1, IA:GetSightAt(0):GetNbOf(FOOD) do
@@ -288,9 +285,13 @@ function OnUpdate()
                 if IA:GetSightAt(0):GetNbOf(PLAYER) == (IA:GetNbNeededPlayers() - 1) then
                     canAct = false;
                     return INCANTATION;
-                else
+                elseif IA:GetSightAt(0):GetNbOf(PLAYER) > (IA:GetNbNeededPlayers() - 1) then
                     canAct = false;
                     return EXPULSE;
+                else
+                    IA:SetParameter("On se regroupe! Equipe " .. teamName .. "! Level " .. lvl);
+                    canAct = false;
+                    return BROADCAST;
                 end
             end
         else
@@ -304,6 +305,44 @@ function OnUpdate()
         end
     end
     return NONE;
+end
+
+function CreatePathSound(case)
+    print(case);
+    if case == 0 then
+        Queue.pushBack(actionList, "INCANTATION");
+    elseif case == 1 then
+        Queue.pushBack(actionList, "MOVE");
+    elseif case == 2 then
+        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(actionList, "LEFT");
+        Queue.pushBack(actionList, "MOVE");
+    elseif case == 3 then
+        Queue.pushBack(actionList, "LEFT");
+        Queue.pushBack(actionList, "MOVE");
+    elseif case == 4 then
+        Queue.pushBack(actionList, "LEFT");
+        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(actionList, "LEFT");
+        Queue.pushBack(actionList, "MOVE");
+    elseif case == 5 then
+        Queue.pushBack(actionList, "LEFT");
+        Queue.pushBack(actionList, "LEFT");
+        Queue.pushBack(actionList, "MOVE");
+    elseif case == 6 then
+        Queue.pushBack(actionList, "RIGHT");
+        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(actionList, "RIGHT");
+        Queue.pushBack(actionList, "MOVE");
+    elseif case == 7 then
+        Queue.pushBack(actionList, "RIGHT");
+        Queue.pushBack(actionList, "MOVE");
+    elseif case == 8 then
+        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(actionList, "RIGHT");
+        Queue.pushBack(actionList, "MOVE");
+    end
+    return;
 end
 
 function OnReceive(request, rep)
@@ -326,12 +365,19 @@ function OnReceive(request, rep)
             return NONE;
         end
     end
-    --[[if request == BROADCAST then
-        if -- message de regroupement and lvl requis
-        then
-            -- se diriger vers l'origine du son
+    if request == BROADCAST then
+        if rep == "ok" then
+            canAct = true;
+            return NONE;
         end
-    end]]
+        print(tonumber(rep:match("! Level ([0-9])")));
+        if string.find(rep, "On se regroupe!") ~= nil and rep:match("On se regroupe! Equipe (.+)!") == teamName and tonumber(rep:match("! Level ([0-9])")) == IA:GetLevel() then
+            -- se diriger vers l'origine du son
+            actionList = Queue.new();
+            print(rep);
+            CreatePathSound(tonumber(rep:match("message (%d+),")));
+        end
+    end
 end
 
 -- BROADCAST --
