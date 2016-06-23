@@ -62,16 +62,12 @@ t_vector2d  get_case(t_vector2f from, t_vector2f to, t_command_line *command)
     // TODO error on position over
     printf("from [%f][%f]\n", from.x, from.y);
     printf("to [%f][%f]\n", to.x, to.y);
+    xy.x = to.x;
+    xy.y = to.y;
     if (from.x == to.x)
-    {
-        xy.x = to.x;
-        xy.y = to.y + (from.y > to.y) ? 1 : -1;
-    }
+        xy.y += (from.y > to.y) ? 1 : -1;
     else if (from.y == to.y)
-    {
-        xy.x = to.x + (from.x > to.x) ? 1 : -1;
-        xy.y = to.y;
-    }
+        xy.x += (from.x > to.x) ? 1 : -1;
     else
     {
         mb[0] = (from.y - to.y) / (from.x - to.x);
