@@ -5,6 +5,8 @@
 #include "LuaScript.hpp"
 #include "LuaHandler.hpp"
 
+std::vector<std::function<void(void)> > Lua::LuaScript::garbage;
+
 Lua::LuaScript::LuaScript(lua_State *state) :
     state(state),
     handler(new LuaHandler(*this)),
@@ -114,4 +116,12 @@ void Lua::LuaScript::LoadFiles(std::vector<std::string> const &filesname) const
 std::string Lua::LuaScript::GetString(int rank) const
 {
     return luaL_checkstring(state, rank);
+}
+
+void Lua::LuaScript::freeGarbage(void)
+{
+    for (std::function<void(void)> &curr : garbage)
+    {
+        curr();
+    }
 }

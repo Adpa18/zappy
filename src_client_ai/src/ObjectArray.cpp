@@ -6,7 +6,8 @@
 
 const std::string                                ObjectArray::className = typeid(ObjectArray).name();
 const Lua::LuaClass<ObjectArray>::LuaPrototype      ObjectArray::prototype = {
-        {},
+        {
+        },
         {
                 {"HasObject", &ObjectArray::HasObject},
                 {"GetNbOf", &ObjectArray::GetNbOf}
@@ -57,6 +58,18 @@ int ObjectArray::GetNbOf(lua_State *state)
     }
     Lua::LuaScript(state).PushVar(nb);
     return 1;
+}
+
+int ObjectArray::GetNbOf(Inventory::Object obj)
+{
+    int nb = 0;
+
+    for (Inventory::Object &curr : *this)
+    {
+        if (curr == obj)
+            ++nb;
+    }
+    return (nb);
 }
 
 ObjectArray &ObjectArray::operator+=(ObjectArray const &ref)

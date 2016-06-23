@@ -27,6 +27,7 @@ public:
 public:
     int HasObject(lua_State *state);
     int GetNbOf(lua_State *state);
+    int GetNbOf(Inventory::Object);
 };
 
 std::ostream    &operator<<(std::ostream &output, ObjectArray const &ref);

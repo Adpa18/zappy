@@ -40,10 +40,9 @@ namespace Lua
 
     public:
         template <typename toRegister>
-        void RegisterClass(/*typename Lua::LuaClass<toRegister>::LuaPrototype const &proto*/)
+        void RegisterLuaClass()
         {
             toRegister::prototype.Register(state);
-//            proto.Register(state);
             registeredClasses.push_back(toRegister::className);
         }
         template <typename toInstantiate>
@@ -88,8 +87,13 @@ namespace Lua
         int          PushVar(classtype topush) const
         {
             LuaClass<classtype> luaconv(state, topush);
+            classtype *obj = &*luaconv;
 
             luaconv.dontDelete();
+            if (!classtype::prototype.HasSymbol("__gc"))
+                garbage.push_back([obj] {
+                        delete(obj);
+                    });
             return 0;
         }
 
@@ -111,11 +115,17 @@ namespace Lua
     public:
         lua_State   *operator*(void);
 
+    public:
+        static void freeGarbage(void);
+
     private:
         lua_State                   *state;
         LuaHandler                  *handler;
         bool                        close;
         std::vector<std::string>    registeredClasses;
+
+    private:
+        static std::vector<std::function<void(void)> > garbage;
     };
 };
 

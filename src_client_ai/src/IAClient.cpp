@@ -41,6 +41,18 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                 },
                 {
                         "GetNbNeededPlayers", &IAClient::GetNbNeededPlayers
+                },
+                {
+                        "GetTeamName", &IAClient::GetTeamName
+                },
+                {
+                        "GetNbNeededPlayers", &IAClient::GetNbNeededPlayers
+                },
+                {
+                        "GetNbNeededRessources", &IAClient::GetNbNeededRessources
+                },
+                {
+                        "GetEnoughRessources", &IAClient::GetEnoughRessources
                 }
         }
 };
@@ -60,9 +72,9 @@ IAClient::~IAClient()
 void IAClient::SetScript(const std::string &scriptname)
 {
     script.LoadFile(scriptname);
-    script.RegisterClass<IAClient>();
-    script.RegisterClass<Inventory>();
-    script.RegisterClass<ObjectArray>();
+    script.RegisterLuaClass<IAClient>();
+    script.RegisterLuaClass<Inventory>();
+    script.RegisterLuaClass<ObjectArray>();
     script.SetGlobalValue(this, "IA");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::DEFAULT), "NONE");
     script.SetGlobalValue(static_cast<int>(ZappyRequest::MOVE), "MOVE");
@@ -155,6 +167,7 @@ void IAClient::Upgrade(const std::string &string)
     std::cout << "You have been upgraded: '" << string << "'" << std::endl;
     ++lvl;
     incanting = false;
+    Receive(ZappyRequest::INCANTATION, string);
 }
 
 bool IAClient::IsIncanting(void) const
@@ -214,7 +227,7 @@ void IAClient::Moved(void)
 
 int IAClient::GetLevel(lua_State *state)
 {
-    Lua::LuaScript(state).PushVar(lvl);
+    Lua::LuaScript(state).PushVar(lvl + 1);
     return 1;
 }
 
@@ -271,7 +284,6 @@ int IAClient::SetParameter(lua_State *state)
 
 void IAClient::ReceiveMessage(const std::string &message)
 {
-    std::cout << "Receive broadcast: " << message << std::endl;
     Receive(ZappyRequest::BROADCAST, message);
 }
 
@@ -315,6 +327,12 @@ int IAClient::CanElevate(lua_State *script)
     return 1;
 }
 
+int IAClient::GetEnoughRessources(lua_State *script)
+{
+    Lua::LuaScript(script).PushVar(Recipee::recipeesPerLevel[lvl].CanBeMade(inventory + sight[0]));
+    return 1;
+}
+
 int IAClient::NeedRessources(lua_State *state)
 {
     Lua::LuaScript  script(state);
@@ -338,5 +356,25 @@ int IAClient::GetNbNeededPlayers(lua_State *state)
         script.PushVar(1);
     else
         script.PushVar(lvl + 1 - (lvl + 1) % 2);
+    return 1;
+}
+
+int IAClient::GetNbNeededRessources(lua_State *state)
+{
+    int obj;
+    Lua::LuaScript  script(state);
+
+    obj = script.GetInteger();
+    script.PushVar(static_cast<int>(Recipee::recipeesPerLevel[lvl][static_cast<Inventory::Object>(obj)]));
+    return 1;
+}
+
+int IAClient::CanMakeElevation(lua_State *)
+{
+//    if (Recipee::recipeesPerLevel[lvl].CanBeMade(sight[0]) &&
+//        sight[0])
+//        Lua::LuaScript(state).PushVar(true);
+//    else
+//        Lua::LuaScript(state).PushVar(false);
     return 1;
 }

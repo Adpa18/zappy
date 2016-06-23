@@ -25,7 +25,8 @@ const std::string Socket::LF = "\n";
         {
             WSADATA  tofill;
 
-            WSAStartup(MAKEWORD(2, 0), &tofill);
+            if (WSAStartup(MAKEWORD(2, 2), &tofill) != 0)
+                throw SocketException("Start up fail");
         }
         else if (todo == Action::STOP)
         {
@@ -42,13 +43,20 @@ Socket::Socket(std::string const &protocol, const sa_family_t domain, int option
         fd(static_cast<SOCKET>(-1)),
         type(Socket::NOMODE)
 {
+#ifdef __linux__
     struct protoent	*proto = getprotobyname(protocol.c_str());
 
     if (proto == NULL)
-        throw Socket::SocketException(strerror(errno));
+        throw Socket::SocketException("Prototype not found");
     fd = socket(domain, SOCK_STREAM, proto->p_proto);
     if (fd == static_cast<SOCKET>(-1))
         throw Socket::SocketException(strerror(errno));
+#elif _WIN32
+    fd = socket(domain, SOCK_STREAM, IPPROTO_TCP);
+    if (fd == INVALID_SOCKET)
+        throw Socket::SocketException(strerror(errno));
+#endif
+
 #ifdef  __linux__
     if (setsockopt(fd, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char *)&option, sizeof(option)) == -1)
         throw Socket::SocketException(strerror(errno));
@@ -57,7 +65,11 @@ Socket::Socket(std::string const &protocol, const sa_family_t domain, int option
 
 Socket::~Socket()
 {
+#ifdef  __linux__
     close(fd);
+#elif _WIN32
+    closesocket(fd);
+#endif
 }
 
 Socket::Socket(Socket const &ref) :

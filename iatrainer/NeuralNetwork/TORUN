@@ -1,0 +1,5 @@
+faites un g++ *.cpp -std=c++11
+ajoutez zappy_ai au même endroit que le a.out
+ajoutez le dossier lua/ du src_client_ai/ au même endroit que a.out
+créez les dossiers log/ et neural/
+lancez le a.out

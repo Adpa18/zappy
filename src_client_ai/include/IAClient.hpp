@@ -78,11 +78,17 @@ public:
 
     int CanElevate(lua_State *script);
 
+    int GetEnoughRessources(lua_State *script);
+
+    int CanMakeElevation(lua_State *state);
+
     int NeedRessources(lua_State *script);
 
     int ElevationPercentage(lua_State *script);
 
     int GetNbNeededPlayers(lua_State *script);
+
+    int GetNbNeededRessources(lua_State *state);
 
 public:
     virtual void  Connect(const std::string &ip, const uint16_t port, std::string const &teamName);

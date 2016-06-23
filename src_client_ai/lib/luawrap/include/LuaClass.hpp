@@ -174,19 +174,15 @@ namespace Lua
              * \brief Convert the map into a luaL_Reg array needed by luaL_setfuncs
              * \return A unique ptr (for garbage collection) of luaL_Reg[] that can be used for metatable registration
              */
-            std::unique_ptr<luaL_Reg[]>    getRegs(void) const
+            std::vector<luaL_Reg>       getRegs(void) const
             {
-                luaL_Reg    *regs;
-                size_t      i = 0;
+                std::vector<luaL_Reg>   regs;
 
-                regs = new luaL_Reg[symbols.size() + 1];
-                for (std::map<std::string, lua_CFunction>::const_iterator it = symbols.begin(), end = symbols.end(); it != end; ++it, ++i)
+                for (std::pair<std::string, lua_CFunction> const &curr : symbols)
                 {
-                    regs[i].func = it->second;
-                    regs[i].name = it->first.c_str();
+                    regs.push_back({curr.first.c_str(), curr.second});
                 }
-                regs[i].name = NULL, regs[i].func = NULL;
-                return (std::unique_ptr<luaL_Reg[]>(regs));
+                return (regs);
             }
             /**
              * \brief The access operator for assiging a new function to the prototype
@@ -206,6 +202,15 @@ namespace Lua
             {
                 return (symbols.find(name)->second);
             }
+            /**
+             * \brief Method for checking if the prototype have the 'name' symbol
+             * \param name The name of the symbol
+             * \return true if the prototype have the symbol
+             */
+            bool HasSymbol(const std::string &name) const
+            {
+                return (symbols.find(name) != symbols.end());
+            }
 
             /**
              * \brief Will register the prototype into a lua metatable, it will allow you to use the LuaClass into lua script
@@ -219,7 +224,7 @@ namespace Lua
                 int metatable = lua_gettop(state);
 
                 lua_pushvalue(state, meth);
-                Set(state, -1, classType::className);
+                lua_setglobal(state, classType::className.c_str());
 
                 lua_pushvalue(state, meth);
                 Set(state, metatable, "__metatable");
@@ -227,10 +232,18 @@ namespace Lua
                 lua_pushvalue(state, meth);
                 Set(state, metatable, "__index");
 
-                lua_newtable(state);
                 lua_setmetatable(state, meth);
+                lua_newtable(state);
 
-                luaL_setfuncs(state, &getRegs()[0], 1);
+                std::vector<luaL_Reg>   regs = getRegs();
+
+                for (std::pair<std::string, lua_CFunction> const &curr : symbols)
+                {
+                    lua_pushcfunction(state, curr.second);
+                    Set(state, meth, curr.first);
+                }
+
+                //never change in 'for ( : )' because it doesn't work mystically
                 for (typename std::map<std::string, classMethods>::const_iterator it = methods.begin(), end = methods.end(); it != end; ++it)
                 {
                     lua_pushstring(state, it->first.c_str());
@@ -238,7 +251,7 @@ namespace Lua
                     lua_pushcclosure(state, Call, 1);
                     lua_settable(state, meth);
                 }
-                lua_pop(state, -1);
+                lua_pop(state, 2);
             }
 
         private:

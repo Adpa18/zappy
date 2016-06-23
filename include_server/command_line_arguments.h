@@ -5,11 +5,13 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:40:45 2016 Victor Gouet
-** Last update Wed Jun 15 10:27:18 2016 Victor Gouet
+** Last update Wed Jun 22 14:04:57 2016 Victor Gouet
 */
 
 #ifndef COMMAND_LINE_ARGUMENTS_H_
 # define COMMAND_LINE_ARGUMENTS_H_
+
+# include <time.h>
 
 # define SUCCESS	1
 # define FAILURE	0
@@ -43,6 +45,7 @@ typedef struct	s_command_line
   int		nb_client;
   t_team_list	team_list;
   int		time;
+  time_t	time_launch;
 }		t_command_line;
 
 typedef struct	s_opt_gestion
