@@ -8,15 +8,15 @@
 
 local path = "src_client_ai/lua/"
 
-canAct = true;
-Queue = require (path.."Queue")
+local canAct = true;
+local Queue = require (path.."Queue")
 
 --local toto = false
 local idle = false
 
-dataQueue = {}
-priorityQueue = {}
-serverAnswer = {}
+local dataQueue = {}
+local priorityQueue = {}
+local serverAnswer = {}
 local objectOnMap = {}
 
 function OnStart()
