@@ -57,7 +57,7 @@ function onBroadCast(requestCode, responseServer)
     end
     print(dir, level)
     if IA:GetLevel() == tonumber(level) then--and IA:CanElevate() then
-        boss = false
+    boss = false
     if dir == "0" then
         idle = true
         Queue.clear(dataQueue)

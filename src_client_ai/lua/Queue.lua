@@ -29,6 +29,18 @@ function Queue.pop(list)
     return value;
 end
 
+function Queue.empty(list)
+   local last = list.last;
+   if list.first > last then
+      return true;
+   end
+   local value = list[last];
+   if value then
+      return false
+   end
+   return true
+end
+
 function Queue.clear(list)
    while (Queue.pop(list)) do
    end
