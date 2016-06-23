@@ -60,21 +60,35 @@ t_vector2d  get_case(t_vector2f from, t_vector2f to, t_command_line *command)
     t_vector2d  xy_d;
 
     // TODO error on position over
-    get_bm(from, to, &mb[0], &mb[1]);
-    printf("from [%f][%f]\n", from.x, from.y);
-    printf("to [%f][%f]\n", to.x, to.y);
-    printf("y = %f * x + %f\n", mb[0], mb[1]);
-    a[0] = 1 + mb[0] * mb[0];
-    a[1] = -2.0 * to.x + 2.0 * mb[1] * mb[0] - 2.0 * mb[0] * to.y;
-    a[2] = to.x * to.x - 2.0 * mb[1] * to.y + mb[1] * mb[1] + to.y * to.y - 1.0;
-    a[3] = a[1] * a[1] - 4.0 * a[0] * a[2];
-    x1.x = (-a[1] - sqrt(a[3])) / (2.0 * a[0]);
-    x2.x = (-a[1] + sqrt(a[3])) / (2.0 * a[0]);
-    x1.y = mb[0] * x1.x + mb[1];
-    x2.y = mb[0] * x2.x + mb[1];
-    printf("a = %f\tb = %f\tc = %f\td = %f\n", a[0], a[1], a[2], a[3]);
-    printf("x1 = [%f][%f]\tx2 = [%f][%f]\n", x1.x, x1.y, x2.x, x2.y);
-    xy = get_closest_point(from, x1, x2);
+    if (from.x == to.x)
+    {
+        xy.x = to.x;
+        xy.y = to.y + (from.y > to.y) ? 1 : -1;
+    }
+    else if (from.y == to.y)
+    {
+        xy.x = to.x + (from.x > to.x) ? 1 : -1;
+        xy.y = to.y;
+    }
+    else
+    {
+        mb[0] = (from.y - to.y) / (from.x - to.x);
+        mb[1] = from.y - mb[0] * from.x;
+        printf("from [%f][%f]\n", from.x, from.y);
+        printf("to [%f][%f]\n", to.x, to.y);
+        printf("y = %f * x + %f\n", mb[0], mb[1]);
+        a[0] = 1 + mb[0] * mb[0];
+        a[1] = -2.0 * to.x + 2.0 * mb[1] * mb[0] - 2.0 * mb[0] * to.y;
+        a[2] = to.x * to.x - 2.0 * mb[1] * to.y + mb[1] * mb[1] + to.y * to.y - 1.0;
+        a[3] = a[1] * a[1] - 4.0 * a[0] * a[2];
+        x1.x = (-a[1] - sqrt(a[3])) / (2.0 * a[0]);
+        x2.x = (-a[1] + sqrt(a[3])) / (2.0 * a[0]);
+        x1.y = mb[0] * x1.x + mb[1];
+        x2.y = mb[0] * x2.x + mb[1];
+        printf("a = %f\tb = %f\tc = %f\td = %f\n", a[0], a[1], a[2], a[3]);
+        printf("x1 = [%f][%f]\tx2 = [%f][%f]\n", x1.x, x1.y, x2.x, x2.y);
+        xy = get_closest_point(from, x1, x2);
+    }
     xy_d.x = modulo((int)round(xy.x), command->x);
     xy_d.y = modulo((int)round(xy.y), command->y);
     return (xy_d);
