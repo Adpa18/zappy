@@ -6,6 +6,7 @@
 Queue = {};
 canAct = true;
 teamName = "";
+takePriority = true;
 
 function Queue.new()
     return { first = 0, last = -1 };
@@ -35,6 +36,7 @@ function Queue.pop(list)
 end
 
 actionList = Queue.new()
+priorityQueue = Queue.new();
 
 function CreatePath(case)
     local path = Queue.new();
@@ -153,6 +155,63 @@ function OnUpdate()
         -- vider la queue
 
         local action = Queue.pop(actionList);
+        local priority = Queue.pop(priorityQueue);
+        if priority ~= nil then
+            if string.find(priority, "MOVE") ~= nil then
+                canAct = false;
+                return MOVE;
+            elseif string.find(priority, "RIGHT") ~= nil then
+                canAct = false;
+                return RIGHT;
+            elseif string.find(priority, "LEFT") ~= nil then
+                canAct = false;
+                return LEFT;
+            elseif string.find(priority, "INCANTATION") ~= nil then
+                canAct = false;
+                return INCANTATION;
+            elseif string.find(priority, "LAYEGG") ~= nil then
+                canAct = false;
+                return LAYEGG;
+            elseif string.find(priority, "TAKE") ~= nil then
+                if string.find(priority, "nourriture") ~= nil then
+                    IA:SetParameter("nourriture");
+                elseif string.find(priority, "linemate") ~= nil then
+                    IA:SetParameter("linemate");
+                elseif string.find(priority, "deraumere") ~= nil then
+                    IA:SetParameter("deraumere");
+                elseif string.find(priority, "sibur") ~= nil then
+                    IA:SetParameter("sibur");
+                elseif string.find(priority, "mendiane") ~= nil then
+                    IA:SetParameter("mendiane");
+                elseif string.find(priority, "phiras") ~= nil then
+                    IA:SetParameter("phiras");
+                elseif string.find(priority, "thystame") ~= nil then
+                    IA:SetParameter("thystame");
+                end
+                canAct = false;
+                return TAKE;
+            elseif string.find(priority, "DROP") ~= nil then
+                if string.find(priority, "nourriture") ~= nil then
+                    IA:SetParameter("nourriture");
+                elseif string.find(priority, "linemate") ~= nil then
+                    IA:SetParameter("linemate");
+                elseif string.find(priority, "deraumere") ~= nil then
+                    IA:SetParameter("deraumere");
+                elseif string.find(priority, "sibur") ~= nil then
+                    IA:SetParameter("sibur");
+                elseif string.find(priority, "mendiane") ~= nil then
+                    IA:SetParameter("mendiane");
+                elseif string.find(priority, "phiras") ~= nil then
+                    IA:SetParameter("phiras");
+                elseif string.find(priority, "thystame") ~= nil then
+                    IA:SetParameter("thystame");
+                end
+                canAct = false;
+                return DROP;
+            end
+        else
+            takePriority = true;
+        end
         if action ~= nil then
             if string.find(action, "MOVE") ~= nil then
                 canAct = false;
@@ -310,37 +369,37 @@ end
 function CreatePathSound(case)
     print(case);
     if case == 0 then
-        Queue.pushBack(actionList, "INCANTATION");
+        Queue.pushBack(priorityQueue, "INCANTATION");
     elseif case == 1 then
-        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 2 then
-        Queue.pushBack(actionList, "MOVE");
-        Queue.pushBack(actionList, "LEFT");
-        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(priorityQueue, "MOVE");
+        Queue.pushBack(priorityQueue, "LEFT");
+        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 3 then
-        Queue.pushBack(actionList, "LEFT");
-        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(priorityQueue, "LEFT");
+        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 4 then
-        Queue.pushBack(actionList, "LEFT");
-        Queue.pushBack(actionList, "MOVE");
-        Queue.pushBack(actionList, "LEFT");
-        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(priorityQueue, "LEFT");
+        Queue.pushBack(priorityQueue, "MOVE");
+        Queue.pushBack(priorityQueue, "LEFT");
+        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 5 then
-        Queue.pushBack(actionList, "LEFT");
-        Queue.pushBack(actionList, "LEFT");
-        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(priorityQueue, "LEFT");
+        Queue.pushBack(priorityQueue, "LEFT");
+        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 6 then
-        Queue.pushBack(actionList, "RIGHT");
-        Queue.pushBack(actionList, "MOVE");
-        Queue.pushBack(actionList, "RIGHT");
-        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(priorityQueue, "RIGHT");
+        Queue.pushBack(priorityQueue, "MOVE");
+        Queue.pushBack(priorityQueue, "RIGHT");
+        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 7 then
-        Queue.pushBack(actionList, "RIGHT");
-        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(priorityQueue, "RIGHT");
+        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 8 then
-        Queue.pushBack(actionList, "MOVE");
-        Queue.pushBack(actionList, "RIGHT");
-        Queue.pushBack(actionList, "MOVE");
+        Queue.pushBack(priorityQueue, "MOVE");
+        Queue.pushBack(priorityQueue, "RIGHT");
+        Queue.pushBack(priorityQueue, "MOVE");
     end
     return;
 end
@@ -371,11 +430,11 @@ function OnReceive(request, rep)
             return NONE;
         end
         print(tonumber(rep:match("! Level ([0-9])")));
-        if string.find(rep, "On se regroupe!") ~= nil and rep:match("On se regroupe! Equipe (.+)!") == teamName and tonumber(rep:match("! Level ([0-9])")) == IA:GetLevel() then
+        if takePriority == true and string.find(rep, "On se regroupe!") ~= nil and rep:match("On se regroupe! Equipe (.+)!") == teamName and tonumber(rep:match("! Level ([0-9])")) == IA:GetLevel() then
             -- se diriger vers l'origine du son
             actionList = Queue.new();
-            print(rep);
             CreatePathSound(tonumber(rep:match("message (%d+),")));
+            takePriority = false;
         end
     end
 end
