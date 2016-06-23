@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Tue Jun 21 15:43:58 2016 Victor Gouet
+** Last update Thu Jun 23 17:14:02 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -132,6 +132,13 @@ typedef struct	s_list
   t_map		*map;
   fd_set	fds_wri;
 }		t_list;
+
+/*
+**	ressources_generation.c
+*/
+
+int		ressources_generation(t_list *list, t_map *map,
+				      int proba, int proba_food);
 
 /*
 **	get_buffer.c

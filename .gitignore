@@ -27,3 +27,4 @@ src_client_ai/lib/luawrap/lua-5.3.2/zappy_ia
 *.a
 zappy_server
 zappy_ai
+ia.sh
