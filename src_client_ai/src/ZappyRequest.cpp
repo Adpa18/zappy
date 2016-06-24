@@ -116,7 +116,7 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
         {
             if (client->IsIncanting() && s == "KO")
             {
-                client->Receive(ZappyRequest::INCANTATION, s);
+                client->IncantationFailure(s);
                 return (false);
             }
             ReceiveServerPong(request, s, toConcat);
@@ -177,7 +177,6 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
     ResolveState(answer);
     try
     {
-        std::cout << "Request : " << request << std::endl << "Reponse : " << answer.substr(0, 30) << std::endl;
         it = callbacks.find(request);
         if (it != callbacks.end())
         {

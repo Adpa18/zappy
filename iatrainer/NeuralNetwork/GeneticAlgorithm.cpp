@@ -105,7 +105,15 @@ GeneticAlgorithm::Generation GeneticAlgorithm::GeneratePopulation(const Generati
         else
         {
             std::cout << "Creating" << std::endl;
-            generation[i] = NeuralNetwork(inputNb, layerSchema, outputNb);
+            std::ifstream   input("neural/neural_" + std::to_string(i) + ".json");
+
+            if (input.is_open())
+            {
+                input >> generation[i];
+                input.close();
+            }
+            else
+                generation[i] = NeuralNetwork(inputNb, layerSchema, outputNb);
         }
         std::cout << "generation[" << i << "] = " << generation[i] << std::endl;
     }

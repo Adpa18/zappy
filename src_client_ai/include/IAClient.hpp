@@ -45,6 +45,8 @@ public:
 
     void   Incant(void);
 
+    void   IncantationFailure(std::string const &answer);
+
     void   Moved(void);
 
     void   setMissingPeople(size_t miss);
@@ -89,6 +91,8 @@ public:
     int GetNbNeededPlayers(lua_State *script);
 
     int GetNbNeededRessources(lua_State *state);
+
+    int IsIncanting(lua_State *state);
 
 public:
     virtual void  Connect(const std::string &ip, const uint16_t port, std::string const &teamName);

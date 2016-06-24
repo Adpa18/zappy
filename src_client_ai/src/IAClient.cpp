@@ -53,6 +53,9 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                 },
                 {
                         "GetEnoughRessources", &IAClient::GetEnoughRessources
+                },
+                {
+                        "IsIncanting", &IAClient::IsIncanting
                 }
         }
 };
@@ -168,8 +171,8 @@ void IAClient::Upgrade(const std::string &string)
 {
     std::cout << "You have been upgraded: '" << string << "'" << std::endl;
     ++lvl;
-    incanting = false;
     Receive(ZappyRequest::INCANTATION, string);
+    incanting = false;
 }
 
 bool IAClient::IsIncanting(void) const
@@ -382,3 +385,16 @@ int IAClient::CanMakeElevation(lua_State *)
 //        Lua::LuaScript(state).PushVar(false);
     return 1;
 }
+
+int IAClient::IsIncanting(lua_State *state)
+{
+    Lua::LuaScript(state).PushVar(incanting);
+    return 1;
+}
+
+void IAClient::IncantationFailure(std::string const &answer)
+{
+    Receive(ZappyRequest::INCANTATION, answer);
+    incanting = false;
+}
+
