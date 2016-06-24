@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Fri Jun 24 15:06:16 2016 Victor Gouet
+** Last update Fri Jun 24 15:26:17 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -166,11 +166,12 @@ static int	event_call(t_list *list, t_command_line *command,
     {
       if (ref->buffer_size > 0 && ref->time_ref == 0)
 	ref->time_ref = getTimeSeconds();
-      if (ref->buffer_size > 0 && ref->begin)
+      if (ref->buffer_size > 0 && ref->begin && ref->begin->first_time)
 	command_input_for(ref, list);
-      if (ref->buffer_size > 0
-	  && ref->begin
-	  && is_time_out_for(ref->begin->tab[0], command->time, ref->time_ref))
+      else if (ref->buffer_size > 0
+	       && ref->begin
+	       && is_time_out_for(ref->begin->tab[0],
+				  command->time, ref->time_ref))
 	{
 	  if (convert_data_to_command(list, ref, command) == -1)
 	    {

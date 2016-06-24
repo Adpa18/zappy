@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun 24 14:56:15 2016 Victor Gouet
-** Last update Fri Jun 24 15:09:42 2016 Victor Gouet
+** Last update Fri Jun 24 15:22:12 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -26,6 +26,7 @@ int	command_input_for(t_ref *ref, t_list *list)
       && ref->type == TRANTORIEN && !can_elevate(ref->ref, list))
     {
       send_message("ko\n", &(ref->client->sock));
+      ref->time_ref = 0;
       buffer_pop_front(ref);
     }
   else if (tab && tab[0] && strcmp("incantation", tab[0]) == 0
