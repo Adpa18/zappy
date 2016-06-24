@@ -142,7 +142,7 @@ int IAClient::Update(void)
         std::cerr << exception.what() << std::endl;
         return 1;
     }
-    if (map->IsUpdated())
+    if (map->IsUpdated() && !IsDead())
     {
         reqParam = "";
         request.MakeRequest(static_cast<ZappyRequest::Request >(script.Handler()->Select(IAClient::OnUpdate).Call()),
@@ -396,5 +396,28 @@ void IAClient::IncantationFailure(std::string const &answer)
 {
     Receive(ZappyRequest::INCANTATION, answer);
     incanting = false;
+}
+
+void IAClient::PushedTo(const std::string &answer)
+{
+    size_t i = answer.find(": ");
+
+    if (i != std::string::npos)
+    {
+        std::string nb = answer.substr(i + 2, answer.size() - i - 2);
+
+        if (nb.size() > 0)
+        {
+            int ori = atoi(nb.c_str());
+
+            if (ori >= 1 && ori <= 4)
+            {
+                position += Vector2::Directions[ori - 1];
+                position.limit(Vector2::Zero, map->Dimmensions());
+                moved = true;
+                std::cout << "\e[32mPushed\e[0m" << std::endl;
+            }
+        }
+    }
 }
 

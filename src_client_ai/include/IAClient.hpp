@@ -65,6 +65,8 @@ public:
 
     void   SetScript(const std::string &script);
 
+    void   PushedTo(const std::string &answer);
+
 public:
     int GetInventory(lua_State *script);
 

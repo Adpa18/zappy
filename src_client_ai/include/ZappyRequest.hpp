@@ -32,18 +32,18 @@ public:
     enum    Request
     {
         DEFAULT,
-        MOVE,
-        RIGHT,
-        LEFT,
-        SEE,
-        STOCK,
-        TAKE,
-        DROP,
-        EXPULSE,
-        BROADCAST,
-        INCANTATION,
-        LAYEGG,
-        CONNECTNBR
+        MOVE = 1,
+        RIGHT = 2,
+        LEFT = 3,
+        SEE = 4,
+        STOCK = 5,
+        TAKE = 6,
+        DROP = 7,
+        EXPULSE = 8,
+        BROADCAST = 9,
+        INCANTATION = 10,
+        LAYEGG = 11,
+        CONNECTNBR = 12
     };
     typedef void (ZappyRequest::*ZappyCallback)(std::string const &, std::string const &);
 
