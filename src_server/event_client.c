@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Wed Jun 22 18:40:07 2016 Victor Gouet
+** Last update Fri Jun 24 15:06:16 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -166,6 +166,8 @@ static int	event_call(t_list *list, t_command_line *command,
     {
       if (ref->buffer_size > 0 && ref->time_ref == 0)
 	ref->time_ref = getTimeSeconds();
+      if (ref->buffer_size > 0 && ref->begin)
+	command_input_for(ref, list);
       if (ref->buffer_size > 0
 	  && ref->begin
 	  && is_time_out_for(ref->begin->tab[0], command->time, ref->time_ref))
@@ -199,30 +201,29 @@ static int	event_gestion(t_list *list, t_command_line *command,
   return (0);
 }
 
-static void	push_to_buffer(t_list *list, t_ref *ref,
-			       char *data)
+static void	push_to_buffer(t_ref *ref, char *data)
 {
   char		**tab;
 
   if (ref->buffer_size < 10 && data[0])
     {
       tab = str_to_word_tab(data);
-      if (tab && tab[0] && strcmp("incantation", tab[0]) == 0
-	  && ref->type == TRANTORIEN && !can_elevate(ref->ref, list))
-	{
-	  send_message("ko\n", &(ref->client->sock));
-	  return ;
-	}
-      else if (tab && tab[0] && strcmp("incantation", tab[0]) == 0
-	       && ref->type == TRANTORIEN && can_elevate(ref->ref, list))
-	{
-	  send_message("elevation en cours\n", &(ref->client->sock));
-	  pic_event(ref->ref, list);
-	}
-      else if (tab && tab[0] && strcmp("fork", tab[0]) == 0)
-	{
-	  pfk_event(ref->ref, list);
-	}
+      /* if (tab && tab[0] && strcmp("incantation", tab[0]) == 0 */
+      /* 	  && ref->type == TRANTORIEN && !can_elevate(ref->ref, list)) */
+      /* 	{ */
+      /* 	  send_message("ko\n", &(ref->client->sock)); */
+      /* 	  return ; */
+      /* 	} */
+      /* else if (tab && tab[0] && strcmp("incantation", tab[0]) == 0 */
+      /* 	       && ref->type == TRANTORIEN && can_elevate(ref->ref, list)) */
+      /* 	{ */
+      /* 	  send_message("elevation en cours\n", &(ref->client->sock)); */
+      /* 	  pic_event(ref->ref, list); */
+      /* 	} */
+      /* else if (tab && tab[0] && strcmp("fork", tab[0]) == 0) */
+      /* 	{ */
+      /* 	  pfk_event(ref->ref, list); */
+      /* 	} */
       buffer_push_back(ref, data, tab);
     }
 }
@@ -245,8 +246,8 @@ int	event_client(t_list *list, t_command_line *command,
 	      ref = remove_client_if_trantorien_change_state(list, command,
 							     server, ref);
 	      continue;
-	    }
-	  push_to_buffer(list, ref, data);
+	    }	  
+	  push_to_buffer(ref, data);
 	}
       ref = ref->next;
     }

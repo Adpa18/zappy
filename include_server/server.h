@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Thu Jun 23 17:14:02 2016 Victor Gouet
+** Last update Fri Jun 24 15:05:36 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -65,6 +65,7 @@ typedef struct	s_buffer
 {
   char		*buffer;
   char		**tab;
+  bool		first_time;
   struct s_buffer	*next;
 }		t_buffer;
 
@@ -132,6 +133,12 @@ typedef struct	s_list
   t_map		*map;
   fd_set	fds_wri;
 }		t_list;
+
+/*
+**	command_input.c
+*/
+
+int	command_input_for(t_ref *ref, t_list *list);
 
 /*
 **	ressources_generation.c
