@@ -418,6 +418,7 @@ void IAClient::PushedTo(const std::string &answer)
                 position += Vector2::Directions[ori - 1];
                 position.limit(Vector2::Zero, map->Dimmensions());
                 moved = true;
+                Receive(ZappyRequest::EXPULSE, answer);
                 std::cout << "\e[32mPushed\e[0m" << std::endl;
             }
         }

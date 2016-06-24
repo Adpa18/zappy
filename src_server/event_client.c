@@ -148,7 +148,7 @@ static int	convert_data_to_command(t_list *list,
 	    && strcmp(event_player[ref->type].event_name[idx],
 		      ref->begin->tab[0]) == 0)
     {
-        printf("\e[0;31m command===%s\e[0;30m\n", ref->begin->tab[0]);
+        printf("\e[0;31m command===%s\e[0m\n", ref->begin->tab[0]);
         return (event_player[ref->type].callBack[idx](ref->ref, list, command, ref->begin->tab));
     }
       }

@@ -33,7 +33,7 @@ size_t  resolvePoints(std::string const &filename, size_t num)
         {
             size_t off = i + upmsg.size();
 
-            score += 5;
+            score += 2;
             filecontent = filecontent.substr(off, filecontent.size() - off);
         }
     }
@@ -80,7 +80,18 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
     UnsortMap<size_t , size_t> pointsPerNetwork;
     std::map<pid_t, size_t >::const_iterator it;
     size_t rank = 0;
+    pid_t server;
+    std::clock_t serverlaunch;
 
+    if ((server = fork()) == -1)
+        return (1);
+    if (server == 0)
+    {
+        if (execl("/bin/bash", "bash", "-c", "./zappy_server -p 4242 -n toto -c 100 -t 300 -x 10 -y 10") == -1)
+            exit(1);
+        exit(0);
+    }
+    serverlaunch = std::clock();
     std::cout << "starting" << std::endl;
     for (std::pair<const size_t, NeuralNetwork> &curr : generation)
     {
@@ -105,6 +116,7 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
                 exit(1);
             exit(0);
         }
+        usleep(1000);
         pids[pid] = curr.first;
         ++rank;
     }
@@ -122,20 +134,23 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
         }
         else
             ++it;
+        if ((std::clock() - serverlaunch) / CLOCKS_PER_SEC > 60)
+            kill(server, SIGKILL);
     }
+    kill(server, SIGKILL);
     generation = rankPlayers(pointsPerNetwork, generation);
     return 0;
 }
 
 int main(int ac, char **av)
 {
-    GeneticAlgorithm    geneticAlgorithm(10, 50, 1, 10, 6, getLayerSchema(ac, av), 6);
+    GeneticAlgorithm    geneticAlgorithm(90, 25, 1, 10, 6, getLayerSchema(ac, av), 6);
     std::ofstream       finalNetwork("final" + std::to_string(time(NULL)) + ".json");
 
     if (finalNetwork.is_open())
     {
         std::cout << "on passe ici" << std::endl;
-        finalNetwork << geneticAlgorithm.Run(zappyIaGeneration);
+        finalNetwork << geneticAlgorithm.Run(zappyIaGeneration, 2000);
     }
     else
     {
