@@ -21,20 +21,10 @@ local nbClients = 1
 
 local wait = false
 local idle = false
--- local boss = {true, true, true, true, true, true, true, true}
 
 local dataQueue = {}
 local serverAnswer = {}
 local objectOnMap = {}
-
-function getNbNeededClients()
-    local lvl = IA:GetLevel()
-
-    if lvl == 0 then
-        return 1
-    end
-    return  (lvl + 1 - (lvl + 1) % 2)
-end
 
 function OnStart()
     dataQueue = Queue.new()
@@ -59,22 +49,66 @@ function OnStart()
 
     math.randomseed(os.time())
     name = genToken()
-    init_broadcast()
+    reset()
+    reset_broadcast()
     print("debug name => "..name)
 end
 
-function init_broadcast()
-    channel = 0
-    nbClients = 1
+function OnUpdate()
+    if canAct == false then
+        return NONE
+    end
+    local value = Queue.pop(dataQueue)
+
+    if value then
+        canAct = false
+        if (value[2]) then
+            IA:SetParameter(value[2])
+        end
+        return value[1]
+    else
+        wait = false
+    end
+
+    if wait == false and idle == false then
+        onSeeAndAct()
+    end
+
+    return NONE
+end
+
+-- Callback Start
+
+function OnReceive(requestCode, responseServer)
+    if (serverAnswer[requestCode]) then
+        serverAnswer[requestCode](requestCode, responseServer)
+    else
+        print(requestCode)
+        print(responseServer)
+    end
+end
+
+function onCallDrop(requestCode, responseServer)
+    reset()
+end
+
+function onExpulse(requestCode, responseServer)
+    reset()
+end
+
+function onCallTake(requestCode, responseServer)
+    reset()
+end
+
+function onCallMove(requestCode, responseServer)
+    reset()
 end
 
 function onIncantation(requestCode, responseServer)
     local level = responseServer:match("niveau actuel : ([0-9])")
     if level or responseServer == "ko" then
-        canAct = true
-        idle = false
-        wait = false
-        init_broadcast()
+        reset()
+        reset_broadcast()
         Queue.clear(dataQueue)
     end
     if level then
@@ -82,49 +116,9 @@ function onIncantation(requestCode, responseServer)
     end
 end
 
-function follow_dir(dir)
-    if dir == "0" then
-        idle = true
-        Queue.clear(dataQueue)
-    elseif dir == "1" then
-        Queue.push(dataQueue, {MOVE, nil})
-    elseif dir == "2" then
-        Queue.push(dataQueue, {MOVE, nil})
-        Queue.push(dataQueue, {LEFT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-    elseif dir == "3" then
-        Queue.push(dataQueue, {LEFT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-    elseif dir == "4" then
-        Queue.push(dataQueue, {LEFT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-        Queue.push(dataQueue, {LEFT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-    elseif dir == "5" then
-        Queue.push(dataQueue, {LEFT, nil})
-        Queue.push(dataQueue, {LEFT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-    elseif dir == "6" then
-        Queue.push(dataQueue, {RIGHT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-        Queue.push(dataQueue, {RIGHT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-    elseif dir == "7" then
-        Queue.push(dataQueue, {RIGHT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-    elseif dir == "8" then
-        Queue.push(dataQueue, {MOVE, nil})
-        Queue.push(dataQueue, {RIGHT, nil})
-        Queue.push(dataQueue, {MOVE, nil})
-    end
-end
-
 function onBroadCast(requestCode, responseServer)
     if responseServer == "ok" then
         canAct = true
-        return
-    end
-    if wait then
         return
     end
     local dir, type, _name, _channel = responseServer:match("message ([0-9]), (.*) #(.*) #(.*)")
@@ -135,11 +129,11 @@ function onBroadCast(requestCode, responseServer)
     -- print("debug OK "..name.." => "..responseServer)
     if type == "JOIN" then
         if tonumber(_channel) == name and nbClients < getNbNeededClients() then
-            Queue.clear(dataQueue)
             Queue.push(dataQueue, { BROADCAST, "FOLLOW #".._name.." #"..name })
             nbClients = nbClients + 1;
         end
     elseif type == "FOLLOW" then
+        Queue.clear(dataQueue)
         if tonumber(_name) == name then
             channel = tonumber(_channel)
         end
@@ -149,27 +143,33 @@ function onBroadCast(requestCode, responseServer)
             if channel == 0 and nbClients == 1 then
                 Queue.push(dataQueue, { BROADCAST, "JOIN #"..name.." #".._name })
             elseif channel == tonumber(_name) then
+                Queue.clear(dataQueue)
                 follow_dir(dir)
             end
         end
     end
-    wait = true
 end
 
-function onCallDrop(requestCode, responseServer)
+-- Callback End
+
+function reset()
     canAct = true
+    idle = false
+    wait = false
 end
 
-function onExpulse(requestCode, responseServer)
-    canAct = true
+function reset_broadcast()
+    channel = 0
+    nbClients = 1
 end
 
-function onCallTake(requestCode, responseServer)
-    canAct = true
-end
+function getNbNeededClients()
+    local lvl = IA:GetLevel()
 
-function onCallMove(requestCode, responseServer)
-    canAct = true
+    if lvl == 0 then
+        return 1
+    end
+    return (lvl + 1 - (lvl + 1) % 2)
 end
 
 function needRessource(ressource)
@@ -247,34 +247,43 @@ function onSeeAndAct()
     end
 end
 
-function OnUpdate()
-    if canAct == false then
-        return NONE
+function follow_dir(dir)
+    if wait then
+        return
     end
-    local value = Queue.pop(dataQueue)
-
-    if value then
-        canAct = false
-        if (value[2]) then
-            IA:SetParameter(value[2])
-        end
-        return value[1]
-    else
-        wait = false
+    if dir == "0" then
+        idle = true
+        Queue.clear(dataQueue)
+    elseif dir == "1" then
+        Queue.push(dataQueue, {MOVE, nil})
+    elseif dir == "2" then
+        Queue.push(dataQueue, {MOVE, nil})
+        Queue.push(dataQueue, {LEFT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
+    elseif dir == "3" then
+        Queue.push(dataQueue, {LEFT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
+    elseif dir == "4" then
+        Queue.push(dataQueue, {LEFT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
+        Queue.push(dataQueue, {LEFT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
+    elseif dir == "5" then
+        Queue.push(dataQueue, {LEFT, nil})
+        Queue.push(dataQueue, {LEFT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
+    elseif dir == "6" then
+        Queue.push(dataQueue, {RIGHT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
+        Queue.push(dataQueue, {RIGHT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
+    elseif dir == "7" then
+        Queue.push(dataQueue, {RIGHT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
+    elseif dir == "8" then
+        Queue.push(dataQueue, {MOVE, nil})
+        Queue.push(dataQueue, {RIGHT, nil})
+        Queue.push(dataQueue, {MOVE, nil})
     end
-
-    if wait == false and idle == false then
-        onSeeAndAct()
-    end
-
-    return NONE
-end
-
-function OnReceive(requestCode, responseServer)
-    if (serverAnswer[requestCode]) then
-        serverAnswer[requestCode](requestCode, responseServer)
-    else
-        print(requestCode)
-        print(responseServer)
-    end
+    wait = true
 end
