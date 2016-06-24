@@ -66,7 +66,8 @@ ZappyRequest::ZappyRequest(IAClient *client) :
     watcher({
                     {"mort", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string), std::string>(*client, (void (IAClient::*)(std::string))&IAClient::Die)},
                     {"niveau actuel : ", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(*client, &IAClient::Upgrade)},
-                    {"message", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(*client, &IAClient::ReceiveMessage)}
+                    {"message", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(*client, &IAClient::ReceiveMessage)},
+                    {"deplacement", ActionHandler<IAClient>::MethodToFunction<void (IAClient::*)(std::string const &), std::string>(*client, &IAClient::PushedTo)}
             }),
     lastRequest(DEFAULT),
     status(false),
@@ -114,8 +115,10 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
     requestQueue.push(std::make_pair(request, std::clock()));
     watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
         {
-            if (client->IsIncanting() && s == "KO")
+            std::cout << "request: '" << ZappyRequest::requests.find(request)->second << " " << toConcat << "', answer: " << s.substr(0, 20) << std::endl;
+            if (client->IsIncanting() && s == "ko")
             {
+                std::cout << "incant failure" << std::endl;
                 client->IncantationFailure(s);
                 return (false);
             }
@@ -186,7 +189,8 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
     }
     catch (std::exception &exception)
     {
-        std::cerr << "Receive server pong: " << exception.what() << std::endl;
+        std::cerr << "\e[31mReceive server pong:\e[0m " << exception.what() << std::endl;
+//        throw(exception);
     }
     --nbRequest;
 }
