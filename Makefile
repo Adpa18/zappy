@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ##
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Thu Jun 23 17:15:46 2016 Victor Gouet
+## Last update Fri Jun 24 15:05:57 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -23,6 +23,7 @@ SOCKETLIB	= ./socketlib/
 STRINGLIB	= ./stringLib/
 
 SRCS		= src_server/main.c \
+		  src_server/command_input.c \
 		  src_server/command_line_arguments.c \
 		  src_server/command_line_opt.c \
 		  src_server/server_gestion.c \
