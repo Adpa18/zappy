@@ -181,14 +181,6 @@ function TakeNeedRessource()
     end
 end
 
---todo finish
---function IsPossibleToIncant()
---    if (IA:IsPossibleToElevate()) then
---        return true;
---    end
---    return false;
---end
-
 function doAction(action, param)
     param = param or "";
 
@@ -200,6 +192,10 @@ end
 
 function OnUpdate()
 
+    if (IA:IsSaturated()) then
+        return NONE;
+    end
+
     if (askForElevation or IA:IsIncanting()) then
         return NONE;
     end
@@ -209,15 +205,7 @@ function OnUpdate()
         return doAction(INCANTATION);
     end
 
-    if (IA:IsSaturated()) then
-        return NONE;
-    end
-
-    --Check if there is a ressource at position that is needed for incantation and take it
-    --If everything is ok for incantation, incant
-
     local todo;
---    local param;
 
     todo = queue.pop(actionQueue);
     if (todo == nil and pendingSize == 0) then
@@ -241,25 +229,6 @@ function OnUpdate()
     if (todo == nil) then
         return NONE;
     end
---    if (todo == BROADCAST) then
---        param = "Incant "..IA:GetLevel();
---
---    elseif (todo == TAKE) then
---        if (IA:GetSightAt(0):HasObject(FOOD)) then
---            param = Inventory.GetNameOf(FOOD);
---        end
-----        param = CanTakeDropRessource(function (sightAtPos, ressource)
-----            return (sightAtPos:HasObject(ressource));
-----        end);
---    elseif (todo == DROP) then
---        param = CanTakeDropRessource(function (_, ressource)
---            return (IA:GetInventory():GetNbOf(ressource));
---        end);
---    end
---    if (param ~= nil) then
---        IA:SetParameter(param);
--- end
-    print("doing "..todo);
     return doAction(todo, queue.pop(paramQueu));
 end
 
