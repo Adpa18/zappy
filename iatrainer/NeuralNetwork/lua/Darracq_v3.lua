@@ -8,16 +8,33 @@
 
 local path = "src_client_ai/lua/"
 
-local canAct = true;
 local Queue = require (path.."Queue")
+local canAct = true;
+
+function genToken()
+    return math.ceil(os.time() * math.random())
+end
+
+local name = 0
+local channel = 0
+local nbClients = 1
 
 local wait = false
 local idle = false
-local boss = {true, true, true, true, true, true, true, true}
+-- local boss = {true, true, true, true, true, true, true, true}
 
 local dataQueue = {}
 local serverAnswer = {}
 local objectOnMap = {}
+
+function getNbNeededClients()
+    local lvl = IA:GetLevel()
+
+    if lvl == 0 then
+        return 1
+    end
+    return  (lvl + 1 - (lvl + 1) % 2)
+end
 
 function OnStart()
     dataQueue = Queue.new()
@@ -38,36 +55,34 @@ function OnStart()
     serverAnswer[LAYEGG] = nil
     serverAnswer[BROADCAST] = onBroadCast
     serverAnswer[INCANTATION] = onIncantation
+    serverAnswer[EXPULSE] = onExpulse
+
+    math.randomseed(os.time())
+    name = genToken()
+    init_broadcast()
+    print("debug name => "..name)
+end
+
+function init_broadcast()
+    channel = 0
+    nbClients = 1
 end
 
 function onIncantation(requestCode, responseServer)
     local level = responseServer:match("niveau actuel : ([0-9])")
-    if level then
+    if level or responseServer == "ko" then
         canAct = true
         idle = false
         wait = false
+        init_broadcast()
         Queue.clear(dataQueue)
+    end
+    if level then
         print("debug UP_niveau "..level)
     end
 end
 
-function onBroadCast(requestCode, responseServer)
-    if responseServer == "ok" then
-        canAct = true
-        return
-    end
-    if wait then
-        return
-    end
-    print(responseServer)
-    local dir, level = responseServer:match("message ([0-9]), elevate ([0-9])")
-    if dir == nil or level == nil then
-        print("failed")
-        return
-    end
-    print(dir, level)
-    if IA:GetLevel() == tonumber(level) then
-    boss[IA:GetLevel() - 1] = false
+function follow_dir(dir)
     if dir == "0" then
         idle = true
         Queue.clear(dataQueue)
@@ -102,11 +117,50 @@ function onBroadCast(requestCode, responseServer)
         Queue.push(dataQueue, {RIGHT, nil})
         Queue.push(dataQueue, {MOVE, nil})
     end
+end
+
+function onBroadCast(requestCode, responseServer)
+    if responseServer == "ok" then
+        canAct = true
+        return
+    end
+    if wait then
+        return
+    end
+    local dir, type, _name, _channel = responseServer:match("message ([0-9]), (.*) #(.*) #(.*)")
+    if dir == nil or type == nil or _name == nil then
+        print("failed")
+        return
+    end
+    -- print("debug OK "..name.." => "..responseServer)
+    if type == "JOIN" then
+        if tonumber(_channel) == name and nbClients < getNbNeededClients() then
+            Queue.clear(dataQueue)
+            Queue.push(dataQueue, { BROADCAST, "FOLLOW #".._name.." #"..name })
+            nbClients = nbClients + 1;
+        end
+    elseif type == "FOLLOW" then
+        if tonumber(_name) == name then
+            channel = tonumber(_channel)
+        end
+    else
+        local level = type:match("ELEVATE ([0-9])")
+        if tonumber(level) == IA:GetLevel() then
+            if channel == 0 and nbClients == 1 then
+                Queue.push(dataQueue, { BROADCAST, "JOIN #"..name.." #".._name })
+            elseif channel == tonumber(_name) then
+                follow_dir(dir)
+            end
+        end
     end
     wait = true
 end
 
 function onCallDrop(requestCode, responseServer)
+    canAct = true
+end
+
+function onExpulse(requestCode, responseServer)
     canAct = true
 end
 
@@ -126,9 +180,6 @@ function needRessource(ressource)
 end
 
 function elevateDarracq()
-    if boss[IA:GetLevel() - 1] == false then
-        return
-    end
     for ressources, ressourcesString in ipairs(objectOnMap) do
         local i = 0
         while i < IA:GetNbNeededRessources(ressources) do
@@ -154,9 +205,14 @@ function onElevate()
         return false
     end
 
-    if IA:GetNbNeededPlayers() ~= IA:GetSightAt(0):GetNbOf(PLAYER) + 1 then
-        if boss[IA:GetLevel() - 1] then
-            Queue.push(dataQueue, { BROADCAST, "elevate "..IA:GetLevel() })
+    if IA:GetSightAt(0):GetNbOf(PLAYER) + 1 > IA:GetNbNeededPlayers() then
+        if channel == 0 then
+            Queue.push(dataQueue, { EXPULSE, nil})
+        end
+        return false
+    elseif IA:GetSightAt(0):GetNbOf(PLAYER) + 1 < IA:GetNbNeededPlayers() then
+        if channel == 0 then
+            Queue.push(dataQueue, { BROADCAST, "ELEVATE "..IA:GetLevel().." #"..name.." #"..name })
         end
         return false
     end
@@ -173,7 +229,6 @@ end
 
 function onSeeAndAct()
     local hasTakeSomething = false
-
     for ressources, ressourcesString in ipairs(objectOnMap) do
         if (ressources == FOOD or needRessource(ressources))
         and IA:GetSightAt(0):HasObject(ressources) then
@@ -183,8 +238,10 @@ function onSeeAndAct()
     end
 
     if onElevate() then
-        clearCase()
-        elevateDarracq()
+        if channel == 0 then
+            clearCase()
+            elevateDarracq()
+        end
     elseif (hasTakeSomething == false) then
         moveDarracq()
     end

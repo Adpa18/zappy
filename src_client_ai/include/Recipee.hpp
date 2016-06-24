@@ -34,6 +34,8 @@ public:
     double GetMissingPercentage(Inventory const &ref) const;
 
     bool NeedRessource(Inventory::Object const &obj) const;
+
+    static int GetNbOfNeededPlayers(int lvl);
 };
 
 #endif //PSU_2015_ZAPPY_RECIPEE_HPP

@@ -42,6 +42,7 @@ local paramQueu = queue.new();
 local pendingActions = queue.new();
 local pendingSize = 0;
 local searching = 0.0;
+local askForElevation = false;
 
 FORWARD = 1
 TURN_R = 2
@@ -181,25 +182,34 @@ function TakeNeedRessource()
 end
 
 --todo finish
-function IsPossibleToIncant()
-    if (IA:CanElevate() and IA:GetSightAt(0):GetNbOf(PLAYER) == IA:GetNbNeededPlayers()) then
-        return true;
-    end
-    return false;
+--function IsPossibleToIncant()
+--    if (IA:IsPossibleToElevate()) then
+--        return true;
+--    end
+--    return false;
+--end
+
+function doAction(action, param)
+    param = param or "";
+
+    queue.push(pendingActions, action);
+    IA:SetParameter(param);
+    pendingSize = pendingSize + 1;
+    return action;
 end
 
 function OnUpdate()
 
-    if (IA:IsIncanting()) then
+    if (askForElevation or IA:IsIncanting()) then
         return NONE;
     end
 
-    if (IsPossibleToIncant()) then
-        pendingSize = pendingSize + 1;
-        return INCANTATION;
+    if (IA:IsPossibleToElevate()) then
+        askForElevation = true;
+        return doAction(INCANTATION);
     end
 
-    if (pendingSize == 10) then
+    if (IA:IsSaturated()) then
         return NONE;
     end
 
@@ -250,10 +260,7 @@ function OnUpdate()
 --        IA:SetParameter(param);
 -- end
     print("doing "..todo);
-    queue.push(pendingActions, todo);
-    IA:SetParameter(queue.pop(paramQueu));
-    pendingSize = pendingSize + 1;
-    return todo;
+    return doAction(todo, queue.pop(paramQueu));
 end
 
 function OnReceive(reqCode, answer)
@@ -270,6 +277,7 @@ function OnReceive(reqCode, answer)
             else
                 doing = false;
                 searching = 0.0;
+                askForElevation = false;
                 if (answer ~= "ko") then
                     actionQueue = queue.new();
                 end

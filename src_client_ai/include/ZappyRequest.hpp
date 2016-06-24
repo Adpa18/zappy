@@ -67,6 +67,7 @@ public:
     bool IsARequest(Request request) const;
     bool IsTimerFinished(Request const &request) const;
     void AddTimer(Request request, size_t timer);
+    bool IsSaturated(void) const;
 
 private:
     void ReceiveServerPong(Request request, std::string const &answer, std::string const &param);

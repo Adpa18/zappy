@@ -56,6 +56,12 @@ const Lua::LuaClass<IAClient>::LuaPrototype    IAClient::prototype = {
                 },
                 {
                         "IsIncanting", &IAClient::IsIncanting
+                },
+                {
+                        "IsSaturated", &IAClient::IsSaturated
+                },
+                {
+                        "IsPossibleToElevate", &IAClient::IsPossibleToElevate
                 }
         }
 };
@@ -359,10 +365,7 @@ int IAClient::GetNbNeededPlayers(lua_State *state)
 {
     Lua::LuaScript  script(state);
 
-    if (lvl == 0)
-        script.PushVar(1);
-    else
-        script.PushVar(lvl + 1 - (lvl + 1) % 2);
+    script.PushVar(Recipee::GetNbOfNeededPlayers(lvl + 1));
     return 1;
 }
 
@@ -419,5 +422,23 @@ void IAClient::PushedTo(const std::string &answer)
             }
         }
     }
+}
+
+int IAClient::IsSaturated(lua_State *state)
+{
+    Lua::LuaScript(state).PushVar(request.IsSaturated());
+    return 1;
+}
+
+//todo repair
+int IAClient::IsPossibleToElevate(lua_State *state)
+{
+    Lua::LuaScript  script(state);
+
+    if (sight.size() > 0 && Recipee::recipeesPerLevel[lvl].CanBeMade(sight[0]) && sight[0].GetNbOf(Inventory::NONE) == Recipee::GetNbOfNeededPlayers(lvl + 1))
+        script.PushVar(true);
+    else
+        script.PushVar(false);
+    return 1;
 }
 

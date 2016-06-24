@@ -128,3 +128,10 @@ bool Recipee::NeedRessource(Inventory::Object const &obj) const
     catch (std::exception &){}
     return false;
 }
+
+int Recipee::GetNbOfNeededPlayers(int lvl)
+{
+    if (lvl == 0)
+        return 1;
+    return  (lvl - lvl % 2);
+}

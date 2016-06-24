@@ -104,7 +104,7 @@ ZappyRequest::~ZappyRequest()
  */
 void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string &toConcat)
 {
-    if (request == DEFAULT || nbRequest == ZappyRequest::maxRequest)
+    if (request == DEFAULT || IsSaturated())
         return;
     if (!IsARequest(request))
         throw BadRequestException("No request found");
@@ -190,7 +190,6 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
     catch (std::exception &exception)
     {
         std::cerr << "\e[31mReceive server pong:\e[0m " << exception.what() << std::endl;
-//        throw(exception);
     }
     --nbRequest;
 }
@@ -315,4 +314,9 @@ void ZappyRequest::MakeBlockedRequest(Request request, const std::string &toCont
     MakeRequest(request, toContat);
     if (client->canRead())
         Update({0, 0});
+}
+
+bool ZappyRequest::IsSaturated(void) const
+{
+    return nbRequest == ZappyRequest::maxRequest;
 }

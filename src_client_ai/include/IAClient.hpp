@@ -82,6 +82,8 @@ public:
 
     int CanElevate(lua_State *script);
 
+    int IsPossibleToElevate(lua_State *state);
+
     int GetEnoughRessources(lua_State *script);
 
     int CanMakeElevation(lua_State *state);
@@ -95,6 +97,8 @@ public:
     int GetNbNeededRessources(lua_State *state);
 
     int IsIncanting(lua_State *state);
+
+    int IsSaturated(lua_State *state);
 
 public:
     virtual void  Connect(const std::string &ip, const uint16_t port, std::string const &teamName);

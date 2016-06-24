@@ -37,7 +37,8 @@ const std::map<Inventory::Object, std::string>  Inventory::objectsName = {
 Inventory::Inventory(ZappyRequest *request, std::map<Object, size_t> const &stuff) :
   stuff(stuff), request(request)
 {
-    request->AddTimer(ZappyRequest::STOCK, 126);
+    if (request)
+        request->AddTimer(ZappyRequest::STOCK, 126);
 }
 
 /**
@@ -134,7 +135,7 @@ void Inventory::Remove(Inventory::Object object)
  */
 std::map<Inventory::Object, size_t> const &Inventory::getStuff(void) const
 {
-    if (request->IsTimerFinished(ZappyRequest::STOCK))
+    if (request && request->IsTimerFinished(ZappyRequest::STOCK))
         this->request->MakeRequest(ZappyRequest::STOCK);
     return stuff;
 }
