@@ -147,9 +147,10 @@ static int	convert_data_to_command(t_list *list,
 	    && event_player[ref->type].callBack[idx]
 	    && strcmp(event_player[ref->type].event_name[idx],
 		      ref->begin->tab[0]) == 0)
-	  return (event_player[ref->type].callBack[idx](ref->ref, list,
-							command,
-							ref->begin->tab));
+    {
+        printf("\e[0;31m command===%s\e[0;30m\n", ref->begin->tab[0]);
+        return (event_player[ref->type].callBack[idx](ref->ref, list, command, ref->begin->tab));
+    }
       }
   if (ref->type == MONITOR)
     suc_event(ref->ref);

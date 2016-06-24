@@ -70,7 +70,7 @@ public:
     bool IsSaturated(void) const;
 
 private:
-    void ReceiveServerPong(Request request, std::string const &answer, std::string const &param);
+    bool ReceiveServerPong(Request request, std::string const &answer, std::string const &param);
     void Req_move(const std::string &answer, const std::string &param);
     void Req_takeObj(const std::string &answer, const std::string &param);
     void Req_dropObj(const std::string &answer, const std::string &param);

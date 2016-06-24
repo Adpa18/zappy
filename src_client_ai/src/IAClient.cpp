@@ -430,7 +430,6 @@ int IAClient::IsSaturated(lua_State *state)
     return 1;
 }
 
-//todo repair
 int IAClient::IsPossibleToElevate(lua_State *state)
 {
     Lua::LuaScript  script(state);
@@ -441,4 +440,3 @@ int IAClient::IsPossibleToElevate(lua_State *state)
         script.PushVar(false);
     return 1;
 }
-

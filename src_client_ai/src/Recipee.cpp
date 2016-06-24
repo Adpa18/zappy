@@ -131,7 +131,7 @@ bool Recipee::NeedRessource(Inventory::Object const &obj) const
 
 int Recipee::GetNbOfNeededPlayers(int lvl)
 {
-    if (lvl == 0)
+    if (lvl == 1)
         return 1;
     return  (lvl - lvl % 2);
 }

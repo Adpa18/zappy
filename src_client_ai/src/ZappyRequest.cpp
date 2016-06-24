@@ -115,15 +115,14 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
     requestQueue.push(std::make_pair(request, std::clock()));
     watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
         {
-            std::cout << "request: '" << ZappyRequest::requests.find(request)->second << " " << toConcat << "', answer: " << s.substr(0, 20) << std::endl;
+//            std::cout << "request: '" << ZappyRequest::requests.find(request)->second << " " << toConcat << "', answer: " << s.substr(0, 20) << std::endl;
             if (client->IsIncanting() && s == "ko")
             {
-                std::cout << "incant failure" << std::endl;
+//                std::cout << "incant failure" << std::endl;
                 client->IncantationFailure(s);
                 return (false);
             }
-            ReceiveServerPong(request, s, toConcat);
-            return (true);
+            return (ReceiveServerPong(request, s, toConcat));
         }, *client);
     ++nbRequest;
 }
@@ -164,7 +163,7 @@ void ZappyRequest::ResolveState(const std::string answer)
  * \param request The request to which the command is linked
  * \param answer The answer of the server
  */
-void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string const &answer, const std::string &param)
+bool ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string const &answer, const std::string &param)
 {
     std::map<Request, ZappyCallback>::const_iterator    it;
     std::clock_t duration = std::clock();
@@ -176,7 +175,6 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
         duration -= requestQueue.front().second;
     serverT = static_cast<double >(getRequTimer(requestQueue.front().first) * CLOCKS_PER_SEC) / static_cast<double>(duration);
     lastAnswer = std::clock();
-    requestQueue.pop();
     ResolveState(answer);
     try
     {
@@ -190,8 +188,11 @@ void ZappyRequest::ReceiveServerPong(ZappyRequest::Request request, std::string 
     catch (std::exception &exception)
     {
         std::cerr << "\e[31mReceive server pong:\e[0m " << exception.what() << std::endl;
+        return false;
     }
     --nbRequest;
+    requestQueue.pop();
+    return (true);
 }
 
 /**
