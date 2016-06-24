@@ -81,6 +81,7 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
     std::map<pid_t, size_t >::const_iterator it;
     size_t rank = 0;
 
+    std::cout << "starting" << std::endl;
     for (std::pair<const size_t, NeuralNetwork> &curr : generation)
     {
         pid_t pid;
@@ -90,20 +91,24 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
         if (pid == 0)
         {
             //todo implement a system to associate the curr neural network to a iaclient script
-            std::string     filename("neural/neural_" + std::to_string(getpid()) + ".json");
-            std::string     output("log/output_" + std::to_string(getpid()) + ".log");
+            std::string     filename("neural/neural_" + std::to_string(rank) + ".json");
+            std::string     output("log/output_" + std::to_string(rank) + ".log");
             std::ofstream   serial(filename);
 
+            std::cout << "\e[32mprocess launched\e[0m" << std::endl;
             if (!serial.is_open())
                 exit(-1);
             serial << curr.second;
             serial.close();
-            if (execl("/bin/bash", "bash", "-c", ("echo " + filename + " | ./zappy_ai -p 4242 -h 192.168.1.11 -n toto -s ./lua/neuralia.lua > " + output).c_str(), NULL) == -1)
+            std::cout << "\e[31mlaunched\e[0m" << std::endl;
+            if (execl("/bin/bash", "bash", "-c", ("echo " + filename + " | ./zappy_ai -p 4242 -n toto -s ./lua/neuralia.lua > " + output).c_str(), NULL) == -1)
                 exit(1);
             exit(0);
         }
         pids[pid] = curr.first;
+        ++rank;
     }
+    rank = 0;
     it = pids.begin();
     while (!pids.empty())
     {

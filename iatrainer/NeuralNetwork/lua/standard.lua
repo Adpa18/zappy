@@ -7,7 +7,6 @@ Queue = {};
 canAct = true;
 teamName = "";
 takePriority = true;
-isElevating = false;
 
 function Queue.new()
     return { first = 0, last = -1 };
@@ -146,7 +145,7 @@ function FindRessources(ressource)
 end
 
 function OnUpdate()
-    if (canAct == true and isElevating == false) then
+    if (canAct) then
         local food = IA:GetInventory():GetNbOf(FOOD);
         local lvl = IA:GetLevel();
         local i = 3;
@@ -368,6 +367,7 @@ function OnUpdate()
 end
 
 function CreatePathSound(case)
+    print(case);
     if case == 0 then
         Queue.pushBack(priorityQueue, "INCANTATION");
     elseif case == 1 then
@@ -414,16 +414,12 @@ function OnReceive(request, rep)
     end
     if request == INCANTATION then
         if rep == "ko" then
-            isElevating = false;
             canAct = true;
             actionList = Queue.new();
             return NONE;
         elseif rep == "elevation en cours" then
-            isElevating = true;
-            canAct = true;
             return NONE;
         else
-            isElevating = false;
             canAct = true;
             return NONE;
         end
@@ -433,6 +429,7 @@ function OnReceive(request, rep)
             canAct = true;
             return NONE;
         end
+        print(tonumber(rep:match("! Level ([0-9])")));
         if takePriority == true and string.find(rep, "On se regroupe!") ~= nil and rep:match("On se regroupe! Equipe (.+)!") == teamName and tonumber(rep:match("! Level ([0-9])")) == IA:GetLevel() then
             -- se diriger vers l'origine du son
             actionList = Queue.new();
