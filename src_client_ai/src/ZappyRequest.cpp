@@ -219,7 +219,7 @@ void ZappyRequest::Req_stockInventory(const std::string &answer, const std::stri
  * \brief Resolve the request Incantation
  * \param answer The answer received from the server
  */
-void ZappyRequest::Req_incantation(const std::string &answer, const std::string &)
+void ZappyRequest::Req_incantation(const std::string &answer, const std::string &s)
 {
     if (answer == "elevation en cours")
     {
@@ -230,7 +230,7 @@ void ZappyRequest::Req_incantation(const std::string &answer, const std::string 
             });
     }
     else if (answer != "ko")
-        throw BadRequestException("Bad answer received");
+        throw BadRequestException("Bad answer received for incantation" + s);
 }
 
 /**
@@ -261,37 +261,37 @@ void ZappyRequest::Req_dropObj(const std::string &answer, const std::string &par
     if (status)
         client->DropObj(Inventory::getObjectFromName(param));
     if (answer != "ok" && answer != "ko")
-        throw BadRequestException("Bad answer received");
+        throw BadRequestException("Bad answer received drop" + param);
 }
 
 /**
  * \brief Resolve the request move
  */
-void ZappyRequest::Req_move(const std::string &a, const std::string &)
+void ZappyRequest::Req_move(const std::string &a, const std::string &s)
 {
     client->Moved();
     if (a != "ok")
-        throw BadRequestException("Bad answer received");
+        throw BadRequestException("Bad answer received move" + s);
 }
 
 /**
  * \brief Resolve turn right
  */
-void ZappyRequest::Req_turnRight(const std::string &a, const std::string &)
+void ZappyRequest::Req_turnRight(const std::string &a, const std::string &s)
 {
     client->TurnRight();
     if (a != "ok")
-        throw BadRequestException("Bad answer received");
+        throw BadRequestException("Bad answer received right" + s);
 }
 
 /**
  * \brief Resolve turn left
  */
-void ZappyRequest::Req_turnLeft(const std::string &a, const std::string &)
+void ZappyRequest::Req_turnLeft(const std::string &a, const std::string &s)
 {
     client->TurnLeft();
     if (a != "ok")
-        throw BadRequestException("Bad answer received");
+        throw BadRequestException("Bad answer received left" + s);
 }
 
 /**

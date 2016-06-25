@@ -46,21 +46,17 @@ function CreatePath(case)
     local y = 0;
     if case == 0 then
         for w = 0, (IA:GetSightAt(y):GetNbOf(FOOD) - 1) do
-            print("L");
             Queue.pushBack(path, "TAKE nourriture");
         end
         return path;
     end
     while n <= IA:GetLevel() do
-        print("B");
         if i <= case and case <= i + n * 2 then
             for j = 0, n - 1, 1 do
-                print("M");
                 Queue.pushBack(path, "MOVE");
                 y = y + (j + 1) * 2;
                 if IA:GetSightAt(y):HasObject(FOOD) == true then
                     for w = 0, (IA:GetSightAt(y):GetNbOf(FOOD) - 1) do
-                        print("N");
                         Queue.pushBack(path, "TAKE nourriture");
                     end
                 end
@@ -70,12 +66,10 @@ function CreatePath(case)
             elseif case < y then
                 Queue.pushBack(path, "LEFT");
                 while y > case do
-                    print("C");
                     Queue.pushBack(path, "MOVE");
                     y = y - 1;
                     if IA:GetSightAt(y):HasObject(FOOD) == true then
                         for w = 0, (IA:GetSightAt(y):GetNbOf(FOOD) - 1) do
-                            print("O");
                             Queue.pushBack(path, "TAKE nourriture");
                         end
                     end
@@ -84,12 +78,10 @@ function CreatePath(case)
             else
                 Queue.pushBack(path, "RIGHT")
                 while y < case do
-                    print("D");
                     Queue.pushBack(path, "MOVE");
                     y = y + 1;
                     if IA:GetSightAt(y):HasObject(FOOD) == true then
                         for w = 0, (IA:GetSightAt(y):GetNbOf(FOOD) - 1) do
-                            print("P");
                             Queue.pushBack(path, "TAKE nourriture");
                         end
                     end
@@ -111,9 +103,7 @@ function FindRessources(ressource)
     local n = 0;
     local i = 3;
     local find = false;
-    print("toto");
     while n <= i and find == false do
-        print("E");
         local ncase = IA:GetSightAt(n);
         if ncase == nil then
             return NONE;
@@ -122,7 +112,6 @@ function FindRessources(ressource)
             find = true;
             actionList = CreatePath(n);
             for w = 0, (IA:GetSightAt(n):GetNbOf(ressource) - 1) do
-                print("Q");
                 if ressource == LINEMATE then
                     Queue.pushBack(actionList, "TAKE linemate");
                 elseif ressource == DERAUMERE then
@@ -148,7 +137,6 @@ function FindRessources(ressource)
         Queue.pushBack(actionList, "RIGHT");
     else
         for j = 0, IA:GetLevel() do
-            print("R");
             Queue.pushBack(actionList, "MOVE");
         end
     end
@@ -159,15 +147,19 @@ function OnUpdate()
         local food = IA:GetInventory():GetNbOf(FOOD);
         local lvl = IA:GetLevel();
         local i = 3;
+        local GetEnoughRessources = true;
+        for ressource = LINEMATE, THYSTAME do
+            if (IA:GetSightAt(0):GetNbOf(ressource) + IA:GetInventory():GetNbOf(ressource)) < IA:GetNbNeededRessources(ressource) then
+                GetEnoughRessources = false;
+            end
+        end
         for n = 2, lvl do
-            print("S");
             i = i + (n * 2 + 1);
         end
         -- vider la queue
 
         local priority = Queue.pop(priorityQueue);
         if priority ~= nil then
-            print(priority);
             if string.find(priority, "MOVE") ~= nil then
                 canAct = false;
                 return MOVE;
@@ -232,7 +224,6 @@ function OnUpdate()
         end
         local action = Queue.pop(actionList);
         if action ~= nil then
-            print(action);
             if string.find(action, "MOVE") ~= nil then
                 canAct = false;
                 return MOVE;
@@ -297,7 +288,6 @@ function OnUpdate()
             local n = 0;
             local find = false;
             while n <= i and find == false do
-                print("A");
                 local ncase = IA:GetSightAt(n);
                 if ncase == nil then
                     return NONE;
@@ -316,24 +306,20 @@ function OnUpdate()
                 Queue.pushBack(actionList, "RIGHT");
             else
                 for j = 0, (lvl - 1) do
-                    print("F");
                     Queue.pushBack(actionList, "MOVE");
                 end
             end
             return NONE;
-        elseif IA:GetEnoughRessources() == true then
+        elseif GetEnoughRessources == true then
             local canElevate = true;
             if IA:GetSightAt(0):GetNbOf(FOOD) ~= 0 then
                 for w = 1, IA:GetSightAt(0):GetNbOf(FOOD) do
-                    print("G");
                     Queue.pushBack(actionList, "TAKE nourriture");
                 end
             end
             for ressource = LINEMATE, THYSTAME do
-                print("H");
                 if IA:GetSightAt(0):GetNbOf(ressource) < IA:GetNbNeededRessources(ressource) then
                     for w = 1, (IA:GetNbNeededRessources(ressource) - IA:GetSightAt(0):GetNbOf(ressource)) do
-                        print("I");
                         if ressource == LINEMATE then
                             Queue.pushBack(actionList, "DROP linemate");
                         elseif ressource == DERAUMERE then
@@ -352,7 +338,6 @@ function OnUpdate()
                 end
                 if IA:GetSightAt(0):GetNbOf(ressource) > IA:GetNbNeededRessources(ressource) then
                     for w = 1, (IA:GetSightAt(0):GetNbOf(ressource) - IA:GetNbNeededRessources(ressource)) do
-                        print("J");
                         if ressource == LINEMATE then
                             Queue.pushBack(actionList, "TAKE linemate");
                         elseif ressource == DERAUMERE then
@@ -385,17 +370,13 @@ function OnUpdate()
         else
             --recherche des ressources nécessaires
             for ressource = LINEMATE, THYSTAME do
-                print("K");
-                print(IA:GetInventory():GetNbOf(ressource) - IA:GetNbNeededRessources(ressource)) ;
                 if (IA:GetInventory():GetNbOf(ressource) - IA:GetNbNeededRessources(ressource)) < 0 then
-                    print("IN");
                     FindRessources(ressource);
                     return NONE;
                 end
             end
         end
     end
-    print("YOLO");
     return NONE;
 end
 
@@ -459,16 +440,12 @@ function OnReceive(request, rep)
         return NONE;
     end
     if request == INCANTATION then
-        print("BLBLBL");
         if rep == "ko" then
-            print("KO");
             canAct = true;
             return NONE;
         elseif rep == "elevation en cours" then
-            print("ELEVATING");
             return NONE;
         else
-            print("GOOD");
             canAct = true;
             return NONE;
         end
