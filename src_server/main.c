@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 21:45:10 2016 Victor Gouet
-** Last update Tue Jun  7 14:38:45 2016 Victor Gouet
+** Last update Sat Jun 25 12:43:37 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -33,6 +33,7 @@ int			main(int ac, char **av)
 {
   t_command_line	command;
 
+  srand(time(NULL));
   if (on_command_line_server(ac, av, &command) == FAILURE)
     {
       return (1);
