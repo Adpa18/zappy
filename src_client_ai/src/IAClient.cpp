@@ -148,7 +148,7 @@ int IAClient::Update(void)
         std::cerr << exception.what() << std::endl;
         return 1;
     }
-    if (map->IsUpdated() && !IsDead())
+    if (!IsDead()) /*map->IsUpdated() && */
     {
         reqParam = "";
         request.MakeRequest(static_cast<ZappyRequest::Request >(script.Handler()->Select(IAClient::OnUpdate).Call()),
@@ -436,7 +436,7 @@ int IAClient::IsPossibleToElevate(lua_State *state)
 {
     Lua::LuaScript  script(state);
 
-    if (sight.size() > 0 && Recipee::recipeesPerLevel[lvl].CanBeMade(sight[0]) && sight[0].GetNbOf(Inventory::NONE) == Recipee::GetNbOfNeededPlayers(lvl + 1))
+    if (sight.size() > 0 && Recipee::recipeesPerLevel[lvl].CanBeMade(sight[0]) && sight[0].GetNbOf(Inventory::NONE) + 1 == Recipee::GetNbOfNeededPlayers(lvl + 1))
         script.PushVar(true);
     else
         script.PushVar(false);

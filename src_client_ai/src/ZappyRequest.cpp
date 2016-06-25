@@ -113,11 +113,18 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
 
     lastReqOf[request] = std::clock();
     requestQueue.push(std::make_pair(request, std::clock()));
-    watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
-        {
-            return (ReceiveServerPong(request, s, toConcat));
-        }, *client);
-    ++nbRequest;
+    try
+    {
+        watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
+            {
+                return (ReceiveServerPong(request, s, toConcat));
+            }, *client);
+        ++nbRequest;
+    }
+    catch (std::exception &exception)
+    {
+        std::cerr << "Make request: " << exception.what() << std::endl;
+    }
 }
 
 /**
