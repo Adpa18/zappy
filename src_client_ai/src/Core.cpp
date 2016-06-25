@@ -123,6 +123,7 @@ int Core::run(void)
     {
         if (this->client.Update() != 0)
             return 1;
+        usleep(1000);
     }
     return 0;
 }

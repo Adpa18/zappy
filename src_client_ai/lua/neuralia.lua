@@ -64,6 +64,29 @@ function PushAction(action, param, times)
     print("push done");
 end
 
+function doAction(action, param)
+    param = param or "";
+
+    queue.push(pendingActions, action);
+    IA:SetParameter(param);
+    pendingSize = pendingSize + 1;
+    print("doiing '"..action.." "..param.."'");
+    return action;
+end
+
+local function GetNbOfNeededRessources(fullSight)
+    local nb = 0;
+
+    for i=LINEMATE, THYSTAME do
+        local localNb = fullSight:GetNbOf(i);
+
+        if (localNb > 0 and IA:NeedRessources(i)) then
+            nb = nb + localNb;
+        end
+    end
+    return nb;
+end
+
 function OnStart()
     netActions[FORWARD] = function ()
         print("Avance");
@@ -95,7 +118,7 @@ function OnStart()
             local present = sight:GetNbOf(i);
             local have = inventory:GetNbOf(i);
 
-            print("for ressource: "..Inventory.GetNameOf(i));
+            print("for ressource: "..Inventory.GetNameOf(i).."(present: "..present..", need: "..need..", have: "..have..")");
             if (need > 0 and need - present > 0) then
                 if (have >= need - present) then
                     print("Drop "..(need - present).." times");
@@ -109,7 +132,9 @@ function OnStart()
                 PushAction(TAKE, Inventory.GetNameOf(i), present - need);
             end
         end
-        PushAction(BROADCAST, "Incant "..IA:GetLevel(), math.floor(MAPW / 2 + MAPH / 2));
+        if (IA:GetNbNeededPlayers() > 1) then
+            PushAction(BROADCAST, "Incant "..IA:GetLevel(), math.floor(MAPW / 2 + MAPH / 2));
+        end
     end;
     netActions[TAKE_NEED_R] = function ()
         print("Prendre ressource necessaire");
@@ -138,20 +163,7 @@ function OnStart()
     end
 end
 
-local function GetNbOfNeededRessources(fullSight)
-    local nb = 0;
-
-    for i=LINEMATE, THYSTAME do
-        local localNb = fullSight:GetNbOf(i);
-
-        if (localNb > 0 and IA:NeedRessources(i)) then
-            nb = nb + localNb;
-        end
-    end
-    return nb;
-end
-
-function CanTakeDropRessource(takeordrop)
+--[[function CanTakeDropRessource(takeordrop)
     local sigthAtPos = IA:GetSightAt(0);
 
     for i=LINEMATE, THYSTAME do
@@ -179,35 +191,22 @@ function TakeNeedRessource()
             end
         end
     end
-end
-
-function doAction(action, param)
-    param = param or "";
-
-    queue.push(pendingActions, action);
-    IA:SetParameter(param);
-    pendingSize = pendingSize + 1;
-    return action;
-end
+end]]
 
 function OnUpdate()
 
-    if (IA:IsSaturated()) then
-        return NONE;
-    end
-
-    if (askForElevation or IA:IsIncanting()) then
+    if (IA:IsSaturated() or askForElevation or IA:IsIncanting() or pendingSize > 0) then
         return NONE;
     end
 
     if (IA:IsPossibleToElevate()) then
         askForElevation = true;
+        searching = 0.0;
         return doAction(INCANTATION);
     end
 
-    local todo;
+    local todo = queue.pop(actionQueue);
 
-    todo = queue.pop(actionQueue);
     if (todo == nil and pendingSize == 0) then
         local fullSight = IA:GetFullSight();
 
@@ -235,33 +234,36 @@ end
 function OnReceive(reqCode, answer)
     local doing = true;
 
-    if (reqCode == pendingActions[pendingActions.last]) then
+    if (reqCode == BROADCAST and answer ~= "ok") then
+        local lvl = answer:match("Incant (%d+)");
+
+        if (lvl ~= nil and tonumber(lvl) == IA:GetLevel()) then
+            searching = tonumber(answer:match("message (%d)"));
+        end
+        return;
+    end
+
+    --Si l'action reçue est l'action attendue
+    if (reqCode == queue.front(pendingActions)) then
         if (reqCode == BROADCAST) then
             if (answer == "ok") then
                 doing = false;
             end
         elseif (reqCode == INCANTATION) then
-            if (answer == "elevation en cours") then
-                searching = 1.0;
-            else
+            if (answer == "elevation en cours" or answer == "ko") then
                 doing = false;
-                searching = 0.0;
                 askForElevation = false;
-                if (answer ~= "ko") then
-                    actionQueue = queue.new();
-                end
             end
         else
             doing = false;
         end
-    else
-        if (reqCode == BROADCAST) then
-            local lvl = answer:match("Incant (%d+)");
-
-            if (lvl ~= nil and tonumber(lvl) == IA:GetLevel()) then
-                searching = tonumber(answer:match("message (%d)"));
-            end
+    end
+    if (doing and reqCode == INCANTATION) then
+        if (answer:match("niveau actuel : (%d+)") ~= nil) then
+            actionQueue = queue.new();
+            pendingSize = 0;
         end
+        return;
     end
     if (doing == false) then
         queue.pop(pendingActions);

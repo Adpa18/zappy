@@ -46,4 +46,8 @@ function Queue.clear(list)
    end
 end
 
+function Queue.front(list)
+    return list[list.last];
+end
+
 return Queue;
