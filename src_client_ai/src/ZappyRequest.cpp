@@ -115,10 +115,8 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
     requestQueue.push(std::make_pair(request, std::clock()));
     watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
         {
-//            std::cout << "request: '" << ZappyRequest::requests.find(request)->second << " " << toConcat << "', answer: " << s.substr(0, 20) << std::endl;
             if (client->IsIncanting() && s == "ko")
             {
-//                std::cout << "incant failure" << std::endl;
                 client->IncantationFailure(s);
                 return (false);
             }
@@ -221,6 +219,8 @@ void ZappyRequest::Req_incantation(const std::string &answer, const std::string 
 {
     if (answer == "elevation en cours")
         client->Incant();
+    else if (answer != "ko")
+        throw BadRequestException("Bad answer received");
 }
 
 /**
@@ -246,34 +246,42 @@ void ZappyRequest::Req_takeObj(const std::string &, const std::string &param)
  * \brief Resolve the request take object
  * \param param The parameter giver in the request
  */
-void ZappyRequest::Req_dropObj(const std::string &, const std::string &param)
+void ZappyRequest::Req_dropObj(const std::string &answer, const std::string &param)
 {
     if (status)
         client->DropObj(Inventory::getObjectFromName(param));
+    if (answer != "ok" && answer != "ko")
+        throw BadRequestException("Bad answer received");
 }
 
 /**
  * \brief Resolve the request move
  */
-void ZappyRequest::Req_move(const std::string &, const std::string &)
+void ZappyRequest::Req_move(const std::string &a, const std::string &)
 {
     client->Moved();
+    if (a != "ok")
+        throw BadRequestException("Bad answer received");
 }
 
 /**
  * \brief Resolve turn right
  */
-void ZappyRequest::Req_turnRight(const std::string &, const std::string &)
+void ZappyRequest::Req_turnRight(const std::string &a, const std::string &)
 {
     client->TurnRight();
+    if (a != "ok")
+        throw BadRequestException("Bad answer received");
 }
 
 /**
  * \brief Resolve turn left
  */
-void ZappyRequest::Req_turnLeft(const std::string &, const std::string &)
+void ZappyRequest::Req_turnLeft(const std::string &a, const std::string &)
 {
     client->TurnLeft();
+    if (a != "ok")
+        throw BadRequestException("Bad answer received");
 }
 
 /**
