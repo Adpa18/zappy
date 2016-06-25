@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon May  2 11:10:07 2016 Quentin Gasparotto
-** Last update Tue Jun 21 15:58:54 2016 Victor Gouet
+** Last update Sat Jun 25 09:04:30 2016 Victor Gouet
 */
 
 #ifndef MY_SOCK_LIB_H_
