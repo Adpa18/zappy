@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Sat Jun 25 16:00:30 2016 Victor Gouet
+** Last update Sat Jun 25 17:19:30 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -30,19 +30,19 @@ static const t_event		event_player[2] = {
      "incantation",
      "fork",
      "connect_nbr",
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
     },
     {
       avance_event,
@@ -76,26 +76,26 @@ static const t_event		event_player[2] = {
     {"bct",
      "sst",
      "time",
-     NULL,
-     NULL,
+     "",
+     "",
      "msz",
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
-     NULL,
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
      "pin",
      "plv",
-     NULL,
+     "",
      "ppo",
-     NULL,
-     NULL,
+     "",
+     "",
      "sgt",
-     NULL,
-     NULL,
+     "",
+     "",
      "tna",
      "mct",
     },
@@ -143,10 +143,9 @@ static int	convert_data_to_command(t_list *list,
   else
     while (++idx < EVENTSIZE)
       {
-	if (event_player[ref->type].event_name[idx]
-	    && event_player[ref->type].callBack[idx]
-	    && strcmp(event_player[ref->type].event_name[idx],
-		      ref->begin->tab[0]) == 0)
+	if (ref->type < 2 && event_player[ref->type].callBack[idx]
+	    && strncmp(event_player[ref->type].event_name[idx],
+		       ref->begin->tab[0], 20) == 0)
 	  return (event_player[ref->type].callBack[idx](ref->ref, list,
 							command,
 							ref->begin->tab));
@@ -197,7 +196,7 @@ static int	event_gestion(t_list *list, t_command_line *command,
   if ((trantorien = get_trantorien_with_max_elevation(list)))
     {
       if (trantorien->elevation == 8)
-	seg_event(trantorien, list);
+	return (seg_event(trantorien, list), 2);
     }
   return (0);
 }
@@ -234,6 +233,5 @@ int	event_client(t_list *list, t_command_line *command,
 	}
       ref = ref->next;
     }
-  event_gestion(list, command, server);
-  return (0);
+  return (event_gestion(list, command, server));
 }

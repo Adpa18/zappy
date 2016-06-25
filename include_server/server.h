@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Sat Jun 25 10:37:48 2016 Victor Gouet
+** Last update Sat Jun 25 16:56:21 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -58,7 +58,7 @@ typedef struct	s_map
 
 typedef struct	s_event
 {
-  char		*event_name[EVENTSIZE];
+  char		event_name[EVENTSIZE][20];
   int		(*callBack[EVENTSIZE])();
 }		t_event;
 
