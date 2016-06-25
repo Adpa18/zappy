@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Fri Jun 24 15:05:36 2016 Victor Gouet
+** Last update Sat Jun 25 08:58:53 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -14,6 +14,7 @@
 # include <stdbool.h>
 # include "command_line_arguments.h"
 # include "../socketlib/include/my_sock.h"
+# include "../include_server/ring_buffer.h"
 
 # define UNUSED		__attribute__((__unused__))
 # define EVENTSIZE	25
@@ -71,6 +72,7 @@ typedef struct	s_buffer
 
 typedef struct	s_ref
 {
+  t_ring_buffer	ring;
   t_type	type;
   t_client	*client;
   struct s_ref	*next;
@@ -133,6 +135,13 @@ typedef struct	s_list
   t_map		*map;
   fd_set	fds_wri;
 }		t_list;
+
+/*
+**	ring_buffer.c
+*/
+
+void	flush(t_ref *client);
+void	bufferise(t_ref *client, char *data);
 
 /*
 **	command_input.c
