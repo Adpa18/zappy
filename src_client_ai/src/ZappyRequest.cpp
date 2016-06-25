@@ -117,7 +117,6 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
     {
         watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
             {
-                std::cout << "request: " << request << ", answer: '" << s << "'" << std::endl;
                 return (ReceiveServerPong(request, s, toConcat));
             }, *client);
         ++nbRequest;
