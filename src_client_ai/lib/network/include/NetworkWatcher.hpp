@@ -26,12 +26,15 @@ public:
 public:
     NetworkWatcher &RequestServer(std::string const &request, NetworkCallback callBack, Client &from, size_t nbAnswers = 1);
     NetworkWatcher &Update(Client &from, struct timeval timeout = {0, 50});
+    void    AddTempException(std::string const &name, NetworkException const &tocall);
+    void    ClearTempException(void);
 
 private:
     std::map<std::string, NetworkException>::const_iterator  GetException(std::string const &key) const;
 
 private:
     const std::map<std::string, NetworkException> exceptions;
+    std::map<std::string, NetworkException> tempException;
     std::map<Client *, CallbackQueue> callBacks;
 };
 

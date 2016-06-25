@@ -115,11 +115,6 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
     requestQueue.push(std::make_pair(request, std::clock()));
     watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
         {
-            if (client->IsIncanting() && s == "ko")
-            {
-                client->IncantationFailure(s);
-                return (false);
-            }
             return (ReceiveServerPong(request, s, toConcat));
         }, *client);
     ++nbRequest;
@@ -218,7 +213,13 @@ void ZappyRequest::Req_stockInventory(const std::string &answer, const std::stri
 void ZappyRequest::Req_incantation(const std::string &answer, const std::string &)
 {
     if (answer == "elevation en cours")
+    {
         client->Incant();
+        watcher.AddTempException("ko", [this] (std::string const &line)
+            {
+                this->client->IncantationFailure(line);
+            });
+    }
     else if (answer != "ko")
         throw BadRequestException("Bad answer received");
 }
@@ -328,4 +329,9 @@ void ZappyRequest::MakeBlockedRequest(Request request, const std::string &toCont
 bool ZappyRequest::IsSaturated(void) const
 {
     return nbRequest == ZappyRequest::maxRequest;
+}
+
+void ZappyRequest::ClearTempException()
+{
+    watcher.ClearTempException();
 }
