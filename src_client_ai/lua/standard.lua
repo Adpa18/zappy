@@ -7,7 +7,6 @@ Queue = {};
 canAct = true;
 teamName = "";
 takePriority = true;
-isElevating = false;
 
 function Queue.new()
     return { first = 0, last = -1 };
@@ -51,7 +50,7 @@ function CreatePath(case)
         end
         return path;
     end
-    while n <= (IA:GetLevel() + 1) do
+    while n <= IA:GetLevel() do
         if i <= case and case <= i + n * 2 then
             for j = 0, n - 1, 1 do
                 Queue.pushBack(path, "MOVE");
@@ -89,8 +88,8 @@ function CreatePath(case)
                 end
                 return path;
             end
-            n = n + 1;
         end
+        n = n + 1;
         i = i + f;
         f = f + 2;
     end
@@ -131,31 +130,34 @@ function FindRessources(ressource)
         end
         n = n + 1;
     end
-    if n > i then
-        local ran = math.random(0, 2);
-        if ran == 0 then
-            Queue.pushBack(actionList, "LEFT");
-        elseif ran == 1 then
-            Queue.pushBack(actionList, "RIGHT");
-        else
-            for j = 0, IA:GetLevel() do
-                Queue.pushBack(actionList, "MOVE");
-            end
+    local ran = math.random(0, 2);
+    if ran == 0 then
+        Queue.pushBack(actionList, "LEFT");
+    elseif ran == 1 then
+        Queue.pushBack(actionList, "RIGHT");
+    else
+        for j = 0, IA:GetLevel() do
+            Queue.pushBack(actionList, "MOVE");
         end
     end
 end
 
 function OnUpdate()
-    if (canAct == true and isElevating == false) then
+    if canAct == true then
         local food = IA:GetInventory():GetNbOf(FOOD);
         local lvl = IA:GetLevel();
         local i = 3;
+        local GetEnoughRessources = true;
+        for ressource = LINEMATE, THYSTAME do
+            if (IA:GetSightAt(0):GetNbOf(ressource) + IA:GetInventory():GetNbOf(ressource)) < IA:GetNbNeededRessources(ressource) then
+                GetEnoughRessources = false;
+            end
+        end
         for n = 2, lvl do
             i = i + (n * 2 + 1);
         end
         -- vider la queue
 
-        local action = Queue.pop(actionList);
         local priority = Queue.pop(priorityQueue);
         if priority ~= nil then
             if string.find(priority, "MOVE") ~= nil then
@@ -167,9 +169,16 @@ function OnUpdate()
             elseif string.find(priority, "LEFT") ~= nil then
                 canAct = false;
                 return LEFT;
+            elseif string.find(priority, "EXPULSE") ~= nil then
+                canAct = false;
+                return EXPULSE;
             elseif string.find(priority, "INCANTATION") ~= nil then
                 canAct = false;
                 return INCANTATION;
+            elseif string.find(priority, "BROADCAST") ~= nil then
+                IA:SetParameter(action:match("BROADCAST (.*)"));
+                canAct = false;
+                return BROADCAST;
             elseif string.find(priority, "LAYEGG") ~= nil then
                 canAct = false;
                 return LAYEGG;
@@ -213,6 +222,7 @@ function OnUpdate()
         else
             takePriority = true;
         end
+        local action = Queue.pop(actionList);
         if action ~= nil then
             if string.find(action, "MOVE") ~= nil then
                 canAct = false;
@@ -223,12 +233,19 @@ function OnUpdate()
             elseif string.find(action, "LEFT") ~= nil then
                 canAct = false;
                 return LEFT;
+            elseif string.find(action, "EXPULSE") ~= nil then
+                canAct = false;
+                return EXPULSE;
             elseif string.find(action, "INCANTATION") ~= nil then
                 canAct = false;
                 return INCANTATION;
             elseif string.find(action, "LAYEGG") ~= nil then
                 canAct = false;
                 return LAYEGG;
+            elseif string.find(action, "BROADCAST") ~= nil then
+                IA:SetParameter(action:match("BROADCAST (.*)"));
+                canAct = false;
+                return BROADCAST;
             elseif string.find(action, "TAKE") ~= nil then
                 if string.find(action, "nourriture") ~= nil then
                     IA:SetParameter("nourriture");
@@ -282,28 +299,25 @@ function OnUpdate()
                 end
                 n = n + 1;
             end
-            if n > i then
-                local ran = math.random(0, 2);
-                if ran == 0 then
-                    Queue.pushBack(actionList, "LEFT");
-                elseif ran == 1 then
-                    Queue.pushBack(actionList, "RIGHT");
-                else
-                    for j = 0, (lvl - 1) do
-                        Queue.pushBack(actionList, "MOVE");
-                    end
+            local ran = math.random(0, 2);
+            if ran == 0 then
+                Queue.pushBack(actionList, "LEFT");
+            elseif ran == 1 then
+                Queue.pushBack(actionList, "RIGHT");
+            else
+                for j = 0, (lvl - 1) do
+                    Queue.pushBack(actionList, "MOVE");
                 end
             end
             return NONE;
-        elseif IA:GetEnoughRessources() == true then
+        elseif GetEnoughRessources == true then
             local canElevate = true;
             if IA:GetSightAt(0):GetNbOf(FOOD) ~= 0 then
                 for w = 1, IA:GetSightAt(0):GetNbOf(FOOD) do
                     Queue.pushBack(actionList, "TAKE nourriture");
                 end
-                canElevate = false;
             end
-            for ressource = 2, 8 do
+            for ressource = LINEMATE, THYSTAME do
                 if IA:GetSightAt(0):GetNbOf(ressource) < IA:GetNbNeededRessources(ressource) then
                     for w = 1, (IA:GetNbNeededRessources(ressource) - IA:GetSightAt(0):GetNbOf(ressource)) do
                         if ressource == LINEMATE then
@@ -343,21 +357,20 @@ function OnUpdate()
             end
             if canElevate == true then
                 if IA:GetSightAt(0):GetNbOf(PLAYER) == (IA:GetNbNeededPlayers() - 1) then
-                    canAct = false;
-                    return INCANTATION;
+                    Queue.pushBack(actionList, "INCANTATION");
+                    return NONE;
                 elseif IA:GetSightAt(0):GetNbOf(PLAYER) > (IA:GetNbNeededPlayers() - 1) then
-                    canAct = false;
-                    return EXPULSE;
+                    Queue.pushBack(actionList, "EXPULSE");
+                    return NONE;
                 else
-                    IA:SetParameter("On se regroupe! Equipe " .. teamName .. "! Level " .. lvl);
-                    canAct = false;
-                    return BROADCAST;
+                    Queue.pushBack(actionList, "BROADCAST " .. "On se regroupe! Equipe " .. teamName .. "! Level " .. lvl);
+                    return NONE;
                 end
             end
         else
             --recherche des ressources nécessaires
-            for ressource = 2, 8 do
-                if IA:GetInventory():GetNbOf(ressource) < IA:GetNbNeededRessources(ressource) then
+            for ressource = LINEMATE, THYSTAME do
+                if (IA:GetInventory():GetNbOf(ressource) - IA:GetNbNeededRessources(ressource)) < 0 then
                     FindRessources(ressource);
                     return NONE;
                 end
@@ -369,7 +382,7 @@ end
 
 function CreatePathSound(case)
     if case == 0 then
-        Queue.pushBack(priorityQueue, "INCANTATION");
+        Queue.pushBack(priorityQueue, "NONE");
     elseif case == 1 then
         Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 2 then
@@ -406,24 +419,33 @@ end
 
 function OnReceive(request, rep)
     if request == MOVE or request == LEFT or request == RIGHT or request == TAKE or request == DROP or request == LAYEGG or request == EXPULSE then
-        canAct = true;
-        if rep == "ko" then
+        if request == EXPULSE and string.find(rep, "deplacement") ~= nil then
             actionList = Queue.new();
+            takePriority = false;
+            Queue.pushBack(priorityQueue, "MOVE");
+            local ran = math.random(0, 2);
+            if ran == 0 then
+                Queue.pushBack(priorityQueue, "MOVE");
+            elseif ran == 1 then
+                Queue.pushBack(priorityQueue, "LEFT");
+            else
+                Queue.pushBack(priorityQueue, "RIGHT");
+            end
+        end
+        if rep == "ok" then
+            canAct = true;
+        elseif rep == "ko" then
+            canAct = true;
         end
         return NONE;
     end
     if request == INCANTATION then
         if rep == "ko" then
-            isElevating = false;
             canAct = true;
-            actionList = Queue.new();
             return NONE;
         elseif rep == "elevation en cours" then
-            isElevating = true;
-            canAct = true;
             return NONE;
         else
-            isElevating = false;
             canAct = true;
             return NONE;
         end
@@ -441,6 +463,3 @@ function OnReceive(request, rep)
         end
     end
 end
-
--- BROADCAST --
--- On se regroupe! Equipe nom_de_team! Level lvl_ia

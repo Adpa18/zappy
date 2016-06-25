@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:40:54 2016 Victor Gouet
-** Last update Sat Jun 25 10:06:06 2016 Victor Gouet
+** Last update Sat Jun 25 15:48:15 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
@@ -21,8 +21,6 @@ int		plv_event(t_monitor *monitor, t_list *list,
     return (sbp_event(monitor));
   if (!(trantorien = get_trantorien_from_id(list, atoi(tab[1]))))
     return (sbp_event(monitor));
-  /* sendf_message(&(monitor->ref->client->sock), */
-  /* 		"plv %d %d\n", trantorien->id, trantorien->elevation); */
   fbufferise(monitor->ref, "plv %d %d\n",
 	     trantorien->id, trantorien->elevation);
   return (0);

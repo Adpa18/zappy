@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:53:04 2016 Victor Gouet
-** Last update Sat Jun 25 09:22:32 2016 Victor Gouet
+** Last update Sat Jun 25 15:53:55 2016 Victor Gouet
 */
 
 #include "monitor_event.h"
@@ -30,7 +30,6 @@ int     pose_obj_event(t_trantorien *trantorien, t_list *list,
 					 [trantorien->pos.x]));
   if (ret == 0)
     {
-      /* send_message("ok\n", &(trantorien->ref->client->sock)); */
       bufferise(trantorien->ref, "ok\n");
       pdr_event(trantorien, list, object_type);
       pin_event_to_all_monitor(list, trantorien);
@@ -38,7 +37,6 @@ int     pose_obj_event(t_trantorien *trantorien, t_list *list,
     }
   else
     bufferise(trantorien->ref, "ko\n");
-  /* send_message("ko\n", &(trantorien->ref->client->sock)); */
   (void)command;
   return (ret);
 }

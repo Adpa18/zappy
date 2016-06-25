@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 12:06:19 2016 Victor Gouet
-** Last update Sat Jun 25 09:24:15 2016 Victor Gouet
+** Last update Sat Jun 25 15:53:09 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
@@ -13,7 +13,6 @@
 
 int	die_event(t_trantorien *trantorien, t_list *list)
 {
-  /* send_message("mort\n", &(trantorien->ref->client->sock)); */
   bufferise(trantorien->ref, "mort\n");
   if (trantorien->state == BABY)
     {

@@ -85,10 +85,10 @@ NetworkWatcher &NetworkWatcher::Update(Client &from, struct timeval timeout)
             }
             else if ((!callBacks[&from].empty()))
             {
+                ClearTempException();
                 if (callBacks[&from].front()(line))
                     callBacks[&from].pop();
             }
-            ClearTempException();
         }
     }
     return *this;

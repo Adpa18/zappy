@@ -148,8 +148,9 @@ int IAClient::Update(void)
         std::cerr << exception.what() << std::endl;
         return 1;
     }
-    if (!IsDead()) /*map->IsUpdated() && */
+    if (map->IsUpdated() && !IsDead())
     {
+        std::cout << "Dans le script" << std::endl;
         reqParam = "";
         request.MakeRequest(static_cast<ZappyRequest::Request >(script.Handler()->Select(IAClient::OnUpdate).Call()),
                             reqParam);

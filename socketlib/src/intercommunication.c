@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon May  2 12:44:39 2016 Quentin Gasparotto
-** Last update Sat Jun 25 10:38:31 2016 Victor Gouet
+** Last update Sat Jun 25 16:08:40 2016 Victor Gouet
 */
 
 #include <stdarg.h>
@@ -41,11 +41,6 @@ int	get_ip_and_port(char *toparse, char *ip, int *port)
   return (0);
 }
 
-int	send_binary(const char *data, t_socket *interlocutor)
-{
-  return (write(interlocutor->sock, data, strlen(data)));
-}
-
 int	send_message(const char *message, t_socket *interlocutor)
 {
   int	i;
@@ -53,24 +48,16 @@ int	send_message(const char *message, t_socket *interlocutor)
   int	stat;
 
   i = 0;
-  printf("- send : - %s\n", message);
-  /* if (interlocutor->is_writable == false) */
-  /*   { */
-  /*     printf("send ko. false\n"); */
-  /*     return (0); */
-  /*   } */
   len = strlen(message);
   while (i < len)
     {
       if ((stat = send(interlocutor->sock, &message[i],
 		       strlen(&message[i]), MSG_NOSIGNAL)) == -1)
 	{
-	  printf("send ko.\n");
 	  return (-1);
 	}
       i += stat;
     }
-  printf("send ok.\n");
   return (0);
 }
 

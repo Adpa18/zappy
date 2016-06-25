@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:52:46 2016 Victor Gouet
-** Last update Sat Jun 25 09:18:29 2016 Victor Gouet
+** Last update Sat Jun 25 15:51:15 2016 Victor Gouet
 */
 
 #include "object.h"
@@ -20,25 +20,23 @@ static const objectPtr takeObjectFunc[] = {
 int     prend_obj_event(t_trantorien *trantorien, t_list *list,
 			t_command_line *command, char **tab)
 {
-    int     ret;
-    int     object_type;
+  int     ret;
+  int     object_type;
 
-    ret = 1;
-    if ((object_type = getObject(tab[1])) != -1)
-        ret = takeObjectFunc[object_type](&(trantorien->inventaire),
-                                          &(list->map->map[trantorien->pos.y]
-                                          [trantorien->pos.x]));
-    if (ret == 0)
-      {
-        /* send_message("ok\n", &(trantorien->ref->client->sock)); */
-	bufferise(trantorien->ref, "ok\n");
-	pgt_event(trantorien, list, object_type);
-	pin_event_to_all_monitor(list, trantorien);
-	bct_event_to_all_monitor(list, trantorien->pos.x, trantorien->pos.y);
-      }
-    else
-      bufferise(trantorien->ref, "ko\n");
-        /* send_message("ko\n", &(trantorien->ref->client->sock)); */
-    (void)command;
+  ret = 1;
+  if ((object_type = getObject(tab[1])) != -1)
+    ret = takeObjectFunc[object_type](&(trantorien->inventaire),
+				      &(list->map->map[trantorien->pos.y]
+					[trantorien->pos.x]));
+  if (ret == 0)
+    {
+      bufferise(trantorien->ref, "ok\n");
+      pgt_event(trantorien, list, object_type);
+      pin_event_to_all_monitor(list, trantorien);
+      bct_event_to_all_monitor(list, trantorien->pos.x, trantorien->pos.y);
+    }
+  else
+    bufferise(trantorien->ref, "ko\n");
+  (void)command;
   return (ret);
 }
