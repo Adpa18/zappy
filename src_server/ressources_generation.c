@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Thu Jun 23 17:05:18 2016 Victor Gouet
-** Last update Sat Jun 25 16:59:10 2016 Victor Gouet
+** Last update Sat Jun 25 19:25:39 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
@@ -23,10 +23,10 @@ int		ressources_generation(t_list *list, t_map *map,
   while (y < map->height)
     {
       x = 0;
-      while (x < map->width && rand() % proba == 0)
+      while (x < map->width)
 	{
-	  /* if (rand() % proba == 0) */
-	  /*   { */
+	  if (rand() % proba == 0)
+	    {
 	      map->map[y][x].food += rand() % proba_food;
 	      map->map[y][x].linemate += rand() % 2;
 	      map->map[y][x].deraumere += rand() % 2;
@@ -35,7 +35,7 @@ int		ressources_generation(t_list *list, t_map *map,
 	      map->map[y][x].phiras += rand() % 2;
 	      map->map[y][x].thystame += rand() % 2;
 	      bct_event_to_all_monitor(list, x, y);
-	    /* } */
+	    }
 	  ++x;
 	}
       ++y;

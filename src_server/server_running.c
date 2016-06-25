@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Sat Jun 25 18:44:02 2016 Victor Gouet
-** Last update Sat Jun 25 18:49:18 2016 Victor Gouet
+** Last update Sat Jun 25 19:26:49 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -51,7 +51,7 @@ t_ref		*ref;
 	  ((ref = add_client_to_list(list, UNKNOWN, client)) == NULL))
 	return (-1);
       bufferise(ref, BIENVENUE);
-      ressources_generation(list, list->map, 3, 6);
+      ressources_generation(list, list->map, 9, 5);
     }
   else
     if (event_client(list, command, fds, server) == 2)
