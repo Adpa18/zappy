@@ -5,7 +5,7 @@
 ** Login   <gaspar_q@epitech.net>
 **
 ** Started on  Mon May  2 11:10:07 2016 Quentin Gasparotto
-** Last update Sat Jun 25 10:39:47 2016 Victor Gouet
+** Last update Sat Jun 25 15:38:33 2016 Victor Gouet
 */
 
 #ifndef MY_SOCK_LIB_H_
@@ -103,7 +103,6 @@ void		remove_client_from_server(t_server *this,
 int		get_ip_and_port(char *toparse, char *ip, int *port);
 char		*receive_message(t_socket *interlocutor);
 int		send_message(const char *message, t_socket *interlocutor);
-int		send_binary(const char *data, t_socket *interlocutor);
 int		sendf_message(t_socket *interlocutor,
 			      const char *format, ...);
 

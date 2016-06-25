@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:40:15 2016 Victor Gouet
-** Last update Sat Jun 25 10:10:29 2016 Victor Gouet
+** Last update Sat Jun 25 15:49:13 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
@@ -15,8 +15,6 @@ int	msz_event(t_monitor *monitor, t_list *list,
 {
   (void)list;
   (void)tab;
-  /* sendf_message(&(monitor->ref->client->sock), "msz %d %d\n", */
-  /* 		command->x, command->y); */
   fbufferise(monitor->ref, "msz %d %d\n",
 	     command->x, command->y);
   return (0);

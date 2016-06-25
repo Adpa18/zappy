@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 **
 ** Started on  Tue Jun  7 14:52:48 2016 Victor Gouet
-** Last update Sat Jun 25 10:04:43 2016 Victor Gouet
+** Last update Sat Jun 25 15:47:57 2016 Victor Gouet
 */
 
 #include "../../include_server/player.h"
@@ -83,7 +83,6 @@ int		send_msg_to_begin_elevation(t_list *list, int x, int y)
 	  trantorien = ref->ref;
 	  if (trantorien->pos.x == x && trantorien->pos.y == y)
 	    {
-	      /* send_message("elevation en cours\n", &(ref->client->sock)); */
 	      bufferise(ref, "elevation en cours\n");
 	    }
 	}
@@ -106,8 +105,6 @@ int		send_msg_to_finish_elevation(t_list *list, int x, int y)
 	  if (trantorien->pos.x == x && trantorien->pos.y == y)
 	    {
 	      fbufferise(ref, "niveau actuel : %d\n", trantorien->elevation);
-	      /* sendf_message(&(ref->client->sock), */
-	      /* 		    "niveau actuel : %d\n", trantorien->elevation); */
 	    }
 	}
       ref = ref->next;

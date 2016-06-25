@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Sat Jun 25 10:41:23 2016 Victor Gouet
+** Last update Sat Jun 25 16:00:30 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -147,10 +147,9 @@ static int	convert_data_to_command(t_list *list,
 	    && event_player[ref->type].callBack[idx]
 	    && strcmp(event_player[ref->type].event_name[idx],
 		      ref->begin->tab[0]) == 0)
-    {
-        printf("\e[0;31m command===%s\e[0m\n", ref->begin->tab[0]);
-        return (event_player[ref->type].callBack[idx](ref->ref, list, command, ref->begin->tab));
-    }
+	  return (event_player[ref->type].callBack[idx](ref->ref, list,
+							command,
+							ref->begin->tab));
       }
   if (ref->type == MONITOR)
     suc_event(ref->ref);
@@ -210,22 +209,6 @@ static void	push_to_buffer(t_ref *ref, char *data)
   if (ref->buffer_size < 10 && data[0])
     {
       tab = str_to_word_tab(data);
-      /* if (tab && tab[0] && strcmp("incantation", tab[0]) == 0 */
-      /* 	  && ref->type == TRANTORIEN && !can_elevate(ref->ref, list)) */
-      /* 	{ */
-      /* 	  send_message("ko\n", &(ref->client->sock)); */
-      /* 	  return ; */
-      /* 	} */
-      /* else if (tab && tab[0] && strcmp("incantation", tab[0]) == 0 */
-      /* 	       && ref->type == TRANTORIEN && can_elevate(ref->ref, list)) */
-      /* 	{ */
-      /* 	  send_message("elevation en cours\n", &(ref->client->sock)); */
-      /* 	  pic_event(ref->ref, list); */
-      /* 	} */
-      /* else if (tab && tab[0] && strcmp("fork", tab[0]) == 0) */
-      /* 	{ */
-      /* 	  pfk_event(ref->ref, list); */
-      /* 	} */
       buffer_push_back(ref, data, tab);
     }
 }
@@ -246,7 +229,7 @@ int	event_client(t_list *list, t_command_line *command,
 	      ref = remove_client_if_trantorien_change_state(list, command,
 							     server, ref);
 	      continue;
-	    }	  
+	    }
 	  push_to_buffer(ref, data);
 	}
       ref = ref->next;

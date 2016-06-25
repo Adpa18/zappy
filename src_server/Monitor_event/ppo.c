@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:41:02 2016 Victor Gouet
-** Last update Sat Jun 25 10:11:04 2016 Victor Gouet
+** Last update Sat Jun 25 15:49:03 2016 Victor Gouet
 */
 
 #include <stdlib.h>
@@ -22,9 +22,6 @@ int		ppo_event(t_monitor *monitor, t_list *list,
     return (sbp_event(monitor));
   if (!(trantorien = get_trantorien_from_id(list, atoi(tab[1]))))
     return (sbp_event(monitor));
-  /* sendf_message(&(monitor->ref->client->sock), */
-  /* 		"ppo %d %d %d %d\n", trantorien->id, trantorien->pos.x, */
-  /* 		trantorien->pos.y, trantorien->orientation); */
   fbufferise(monitor->ref,
 	     "ppo %d %d %d %d\n", trantorien->id, trantorien->pos.x,
 	     trantorien->pos.y, trantorien->orientation);

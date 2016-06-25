@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:05 2016 Victor Gouet
-** Last update Sat Jun 25 10:16:34 2016 Victor Gouet
+** Last update Sat Jun 25 15:53:04 2016 Victor Gouet
 */
 
 #include <math.h>
@@ -59,7 +59,6 @@ static t_vector2f  calc_case(t_vector2f from, t_vector2f to)
 
     mb[0] = (from.y - to.y) / (from.x - to.x);
     mb[1] = from.y - mb[0] * from.x;
-//        printf("y = %f * x + %f\n", mb[0], mb[1]);
     a[0] = 1 + mb[0] * mb[0];
     a[1] = -2.0 * to.x + 2.0 * mb[1] * mb[0] - 2.0 * mb[0] * to.y;
     a[2] = to.x * to.x - 2.0 * mb[1] * to.y + mb[1] * mb[1] + to.y * to.y - 1.0;
@@ -68,60 +67,52 @@ static t_vector2f  calc_case(t_vector2f from, t_vector2f to)
     x2.x = (-a[1] + sqrt(a[3])) / (2.0 * a[0]);
     x1.y = mb[0] * x1.x + mb[1];
     x2.y = mb[0] * x2.x + mb[1];
-//        printf("a = %f\tb = %f\tc = %f\td = %f\n", a[0], a[1], a[2], a[3]);
-//        printf("x1 = [%f][%f]\tx2 = [%f][%f]\n", x1.x, x1.y, x2.x, x2.y);
     return (get_closest_point(from, x1, x2));
 }
 
 static t_vector2d  get_case(t_vector2f from, t_vector2f to,
                             t_command_line *command)
 {
-    t_vector2f  xy;
-    t_vector2d  xy_d;
+  t_vector2f  xy;
+  t_vector2d  xy_d;
 
-//    printf("from [%f][%f]\n", from.x, from.y);
-//    printf("to [%f][%f]\n", to.x, to.y);
-    xy.x = to.x;
-    xy.y = to.y;
-    if (from.x == to.x)
-        xy.y += (from.y > to.y) ? 1 : -1;
-    else if (from.y == to.y)
-        xy.x += (from.x > to.x) ? 1 : -1;
-    else
-        xy = calc_case(from, to);
-    xy_d.x = modulo((int)round(xy.x), command->x);
-    xy_d.y = modulo((int)round(xy.y), command->y);
-    return (xy_d);
+  xy.x = to.x;
+  xy.y = to.y;
+  if (from.x == to.x)
+    xy.y += (from.y > to.y) ? 1 : -1;
+  else if (from.y == to.y)
+    xy.x += (from.x > to.x) ? 1 : -1;
+  else
+    xy = calc_case(from, to);
+  xy_d.x = modulo((int)round(xy.x), command->x);
+  xy_d.y = modulo((int)round(xy.y), command->y);
+  return (xy_d);
 }
 
 static int  broadcast(t_trantorien *trantorien, t_vector2d from, t_vector2d to,
-              t_command_line *command)
+		      t_command_line *command)
 {
-//    printf("\n");
-    t_vector2d  xy;
-    t_vector2d  dir;
-    t_vector2d  pos;
-    int         i;
+  t_vector2d  xy;
+  t_vector2d  dir;
+  t_vector2d  pos;
+  int         i;
 
-    if (from.x == to.x && from.y == to.y)
-        return (0);
-    xy = get_case(vec_int_to_double(from), vec_int_to_double(to), command);
-    dir = getVectorDir(trantorien->orientation);
-    dir.x = (dir.x == 0) ? 1 : dir.x;
-    dir.y = (dir.y == 0) ? 1 : dir.y;
-//    printf("xy [%d][%d]\n", xy.x, xy.y);
-//    printf("dir = %d (%d;%d)\n", trantorien->orientation, dir.x, dir.y);
-    for (i = 0; i < 8; ++i)
+  if (from.x == to.x && from.y == to.y)
+    return (0);
+  xy = get_case(vec_int_to_double(from), vec_int_to_double(to), command);
+  dir = getVectorDir(trantorien->orientation);
+  dir.x = (dir.x == 0) ? 1 : dir.x;
+  dir.y = (dir.y == 0) ? 1 : dir.y;
+  for (i = 0; i < 8; ++i)
     {
-        pos.x = trantorien->pos.x + dir_pos[trantorien->orientation - 1][i].x;
-        pos.y = trantorien->pos.y + dir_pos[trantorien->orientation - 1][i].y;
-        pos.x = modulo(pos.x, command->x);
-        pos.y = modulo(pos.y, command->y);
-//        printf("pos [%d][%d] = %d\n", pos.x, pos.y, i);
-        if (xy.x == pos.x && xy.y == pos.y)
-            return (++i);
+      pos.x = trantorien->pos.x + dir_pos[trantorien->orientation - 1][i].x;
+      pos.y = trantorien->pos.y + dir_pos[trantorien->orientation - 1][i].y;
+      pos.x = modulo(pos.x, command->x);
+      pos.y = modulo(pos.y, command->y);
+      if (xy.x == pos.x && xy.y == pos.y)
+	return (++i);
     }
-    return (-1);
+  return (-1);
 }
 
 int     broadcast_event(t_trantorien *trantorien, t_list *list,
@@ -141,15 +132,12 @@ int     broadcast_event(t_trantorien *trantorien, t_list *list,
 	  && drone->id != trantorien->id)
         {
 	  case_dir = broadcast(drone, trantorien->pos, drone->pos, command);
-	  /* sendf_message(&(drone->ref->client->sock), "message %d, %s\n", */
-	  /* 		case_dir, text); */
 	  fbufferise(drone->ref, "message %d, %s\n",
 		     case_dir, text);
         }
       ref = ref->next;
     }
   pbc_event(trantorien, list, text);
-  /* send_message("ok\n", &(trantorien->ref->client->sock)); */
   bufferise(trantorien->ref, "ok\n");
   (void)tab;
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Sat Jun 25 12:16:44 2016 Victor Gouet
+** Last update Sat Jun 25 15:55:11 2016 Victor Gouet
 */
 
 #include <signal.h>
@@ -23,14 +23,12 @@ static int		init_select(fd_set *fds,
   struct timeval	timeout;
 
   FD_ZERO(fds);
-  /* FD_ZERO(fds_writable); */
   timeout.tv_sec = 0;
   timeout.tv_usec = 1000;
   FD_SET(server, fds);
   elem = list->begin;
   while (elem)
     {
-      /* FD_SET(elem->client->sock.sock, fds_writable); */
       FD_SET(elem->client->sock.sock, fds);
       elem = elem->next;
     }
@@ -38,7 +36,6 @@ static int		init_select(fd_set *fds,
     {
       return (-1);
     }
-  /* usleep(1000); */
   return (0);
 }
 
@@ -95,7 +92,6 @@ void		server_run(t_command_line *command)
 	    break;
 	  bufferise(ref, BIENVENUE);
 	  ressources_generation(&list, list.map, 3, 6);
-	  /* send_message(BIENVENUE, &(client->sock)); */
 	}
       else
 	event_client(&list, command, &fds, server);
