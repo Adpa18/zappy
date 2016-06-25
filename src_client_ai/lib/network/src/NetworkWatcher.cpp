@@ -73,6 +73,7 @@ NetworkWatcher &NetworkWatcher::Update(Client &from, struct timeval timeout)
 
     if (from.getCRLFLine(line, timeout))
     {
+        std::cout << "LINE : " << line.substr(0, 20) << std::endl;
         if ((it = GetException(line)) != exceptions.end())
             it->second(line);
         else if ((!callBacks[&from].empty()))

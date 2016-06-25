@@ -115,6 +115,7 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
     requestQueue.push(std::make_pair(request, std::clock()));
     watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
         {
+            std::cout << "Is client incanting ? : " << std::boolalpha << client->IsIncanting() << std::endl;
             if (client->IsIncanting() && s == "ko")
             {
                 client->IncantationFailure(s);

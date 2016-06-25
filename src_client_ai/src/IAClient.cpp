@@ -397,6 +397,7 @@ int IAClient::IsIncanting(lua_State *state)
 
 void IAClient::IncantationFailure(std::string const &answer)
 {
+    std::cout << "fail incantation" << std::endl;
     Receive(ZappyRequest::INCANTATION, answer);
     incanting = false;
 }
