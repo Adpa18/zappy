@@ -63,11 +63,12 @@ public:
 public:
     void MakeRequest(Request request, std::string const &toConcat = "");
     void MakeBlockedRequest(Request request, std::string const &toContat = "");
-    void Update(struct timeval timeout = {1, 0});
+    void Update(struct timeval timeout = {0, 100000});
     bool IsARequest(Request request) const;
     bool IsTimerFinished(Request const &request) const;
     void AddTimer(Request request, size_t timer);
     bool IsSaturated(void) const;
+    void ClearTempException(void);
 
 private:
     bool ReceiveServerPong(Request request, std::string const &answer, std::string const &param);

@@ -146,12 +146,17 @@ function OnStart()
             local present = sight:GetNbOf(i);
             local have = inventory:GetNbOf(i);
 
+            print("for ressource "..Inventory.GetNameOf(i).." (need: "..need..", present: "..present..", have: "..have..")");
             if (need > 0 and present > 0 and have < need) then
                 if (need - have >= present) then
+                    print("taking "..present.." times");
                     PushAction(TAKE, Inventory.GetNameOf(i), present);
                 else
+                    print("taking "..(need - have).." times");
                     PushAction(TAKE, Inventory.GetNameOf(i), need - have);
                 end
+            else
+                print("do nothing");
             end
         end
     end
