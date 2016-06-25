@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Sat Jun 25 10:37:34 2016 Victor Gouet
+** Last update Sat Jun 25 12:16:44 2016 Victor Gouet
 */
 
 #include <signal.h>
@@ -90,11 +90,11 @@ void		server_run(t_command_line *command)
         break;
       if (FD_ISSET(server->socket.sock, &fds))
 	{
-	  if ((client = get_client_connection(server)) == NULL)
-	    break;
-	  if ((ref = add_client_to_list(&list, UNKNOWN, client)) == NULL)
+	  if ((client = get_client_connection(server)) == NULL ||
+	      ((ref = add_client_to_list(&list, UNKNOWN, client)) == NULL))
 	    break;
 	  bufferise(ref, BIENVENUE);
+	  ressources_generation(&list, list.map, 3, 6);
 	  /* send_message(BIENVENUE, &(client->sock)); */
 	}
       else
