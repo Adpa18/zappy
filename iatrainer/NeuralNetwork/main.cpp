@@ -80,8 +80,9 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
     UnsortMap<size_t , size_t> pointsPerNetwork;
     std::map<pid_t, size_t >::const_iterator it;
     size_t rank = 0;
-    pid_t server;
+    pid_t server, graphic;
     std::clock_t serverlaunch;
+    int status;
 
     if ((server = fork()) == -1)
         return (1);
@@ -120,13 +121,20 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
         pids[pid] = curr.first;
         ++rank;
     }
+    if ((graphic = fork()) == -1)
+        return 1;
+    if (graphic == 0)
+    {
+        if (execl("/bin/bash", "bash", "-c", "./zappy_graphic 127.0.0.1 4242") == -1)
+            exit(1);
+        exit(0);
+    }
     rank = 0;
     it = pids.begin();
     while (!pids.empty())
     {
         if (it == pids.end())
             it = pids.begin();
-        int status;
         if (waitpid(it->first, &status, WNOHANG) != 0)
         {
             pointsPerNetwork[it->second] = resolvePoints("log/output_" + std::to_string(it->first) + ".log", rank++);
@@ -135,9 +143,13 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
         else
             ++it;
         if ((std::clock() - serverlaunch) / CLOCKS_PER_SEC > 60)
-            kill(server, SIGKILL);
+            kill(server, SIGINT);
+        usleep(100);
     }
-    kill(server, SIGKILL);
+    kill(server, SIGINT);
+    waitpid(server, &status, 0);
+    kill(graphic, SIGKILL);
+    waitpid(graphic, &status, 0);
     generation = rankPlayers(pointsPerNetwork, generation);
     return 0;
 }
