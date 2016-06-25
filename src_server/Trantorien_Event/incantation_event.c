@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:59 2016 Victor Gouet
-** Last update Fri Jun 24 14:19:35 2016 Victor Gouet
+** Last update Sat Jun 25 09:18:55 2016 Victor Gouet
 */
 
 #include <stdbool.h>
@@ -119,7 +119,8 @@ int	incantation_event(t_trantorien *trantorien, t_list *list,
     }
   else
     {
-      send_message("ko\n", &(trantorien->ref->client->sock));
+      bufferise(trantorien->ref, "ko\n");
+      /* send_message("ko\n", &(trantorien->ref->client->sock)); */
       pie_event(trantorien, list, 0);
       plv_event_all_monitor(list);
     }

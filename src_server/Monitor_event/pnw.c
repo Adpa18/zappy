@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:37:58 2016 Victor Gouet
-** Last update Tue Jun 14 12:34:41 2016 Victor Gouet
+** Last update Sat Jun 25 09:28:52 2016 Victor Gouet
 */
 
 #include "../../stringLib/storage.h"
@@ -38,7 +38,8 @@ static int      pnw_msg(t_trantorien *trantorien, t_monitor *monitor)
 			trantorien->orientation, trantorien->elevation,
 			trantorien->team)) == NULL)
 	return (-1);
-      send_message(msg, &(monitor->ref->client->sock));
+      /* send_message(msg, &(monitor->ref->client->sock)); */
+      bufferise(monitor->ref, msg);
       free(msg);
     }
   return (0);

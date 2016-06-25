@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:53:39 2016 Victor Gouet
-** Last update Tue Jun 14 17:10:56 2016 Victor Gouet
+** Last update Sat Jun 25 10:15:42 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
@@ -32,12 +32,15 @@ int     expulse_event(t_trantorien *trantorien, t_list *list,
             && drone->pos.y == trantorien->pos.y)
         {
             move_by_dir(drone, command, getVectorDir(trantorien->orientation));
-            sendf_message(&(drone->ref->client->sock), "deplacement: %c\n",
-                          (char)(inv_dir + 48));
+            /* sendf_message(&(drone->ref->client->sock), "deplacement: %c\n", */
+            /*               (char)(inv_dir + 48)); */
+            fbufferise(drone->ref, "deplacement: %c\n",
+		       (char)(inv_dir + 48));
             ppo_event_to_all_monitor(drone, list);
         }
         ref = ref->next;
     }
-    sendf_message(&(trantorien->ref->client->sock), "%s\n", drone ? "ok" : "ko");
+    /* sendf_message(&(trantorien->ref->client->sock), "%s\n", drone ? "ok" : "ko"); */
+    fbufferise(trantorien->ref, "%s\n", drone ? "ok" : "ko");
     return ((void)tab, 0);
 }

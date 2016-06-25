@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:55:28 2016 Victor Gouet
-** Last update Tue Jun 14 18:39:07 2016 Victor Gouet
+** Last update Sat Jun 25 09:19:18 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
@@ -22,7 +22,8 @@ int		fork_event(t_trantorien *trantorien, t_list *list,
   pos.x = trantorien->pos.x;
   pos.y = trantorien->pos.y;
   create_egg_on_team_from_trantorien(pos, team, trantorien, list);
-  send_message("ok\n", &(trantorien->ref->client->sock));
+  /* send_message("ok\n", &(trantorien->ref->client->sock)); */
+  bufferise(trantorien->ref, "ok\n");
   (void)tab;
   return (0);
 }

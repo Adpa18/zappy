@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:05 2016 Victor Gouet
-** Last update Thu Jun 23 14:01:26 2016 Victor Gouet
+** Last update Sat Jun 25 10:16:34 2016 Victor Gouet
 */
 
 #include <math.h>
@@ -127,27 +127,30 @@ static int  broadcast(t_trantorien *trantorien, t_vector2d from, t_vector2d to,
 int     broadcast_event(t_trantorien *trantorien, t_list *list,
 			t_command_line *command, char **tab)
 {
-    t_trantorien    *drone;
-    char            *text;
-    int             case_dir;
-    t_ref           *ref;
+  t_trantorien    *drone;
+  char            *text;
+  int             case_dir;
+  t_ref           *ref;
 
-    if ((text = get_buffer_from_client_without_cammand(trantorien->ref)) == NULL)
-        return (1);
-    ref = list->begin;
-    while (ref)
+  if ((text = get_buffer_from_client_without_cammand(trantorien->ref)) == NULL)
+    return (1);
+  ref = list->begin;
+  while (ref)
     {
-        if (ref->type == TRANTORIEN && (drone = ref->ref)
-            && drone->id != trantorien->id)
+      if (ref->type == TRANTORIEN && (drone = ref->ref)
+	  && drone->id != trantorien->id)
         {
-            case_dir = broadcast(drone, trantorien->pos, drone->pos, command);
-            sendf_message(&(drone->ref->client->sock), "message %d, %s\n",
-                          case_dir, text);
+	  case_dir = broadcast(drone, trantorien->pos, drone->pos, command);
+	  /* sendf_message(&(drone->ref->client->sock), "message %d, %s\n", */
+	  /* 		case_dir, text); */
+	  fbufferise(drone->ref, "message %d, %s\n",
+		     case_dir, text);
         }
-        ref = ref->next;
+      ref = ref->next;
     }
-    pbc_event(trantorien, list, text);
-    send_message("ok\n", &(trantorien->ref->client->sock));
-    (void)tab;
+  pbc_event(trantorien, list, text);
+  /* send_message("ok\n", &(trantorien->ref->client->sock)); */
+  bufferise(trantorien->ref, "ok\n");
+  (void)tab;
   return (0);
 }

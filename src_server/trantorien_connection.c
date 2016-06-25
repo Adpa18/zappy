@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 21:37:18 2016 Victor Gouet
-** Last update Mon Jun 20 12:35:54 2016 Victor Gouet
+** Last update Sat Jun 25 10:18:59 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -55,9 +55,11 @@ int	trantorien_connection(t_ref *ref, t_team_name *team,
 
   client_left = team->nbr_max - team->nbr_client - 1;
   if (client_left <= -1)
-    return (send_message("ko\n", &(ref->client->sock)), -1);
-  sendf_message(&(ref->client->sock), "%d\n", client_left);
-  sendf_message(&(ref->client->sock), "%d %d\n", command->x, command->y);
+    return (bufferise(ref, "ko\n")/* send_message("ko\n", &(ref->client->sock)) */, -1);
+  /* sendf_message(&(ref->client->sock), "%d\n", client_left); */
+  /* sendf_message(&(ref->client->sock), "%d %d\n", command->x, command->y); */
+  fbufferise(ref, "%d\n", client_left);
+  fbufferise(ref, "%d %d\n", command->x, command->y);
   if ((trantorien = get_trantorien_baby_from_team(team))
       || (trantorien = get_trantorien_ghost_from_team(team)))
     {

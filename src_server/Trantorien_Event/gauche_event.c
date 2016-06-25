@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:51:49 2016 Victor Gouet
-** Last update Tue Jun 14 16:30:07 2016 Victor Gouet
+** Last update Sat Jun 25 09:21:46 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
@@ -18,7 +18,8 @@ int     gauche_event(t_trantorien *trantorien, t_list *list,
         trantorien->orientation = 4;
     else
         --trantorien->orientation;
-    send_message("ok\n", &(trantorien->ref->client->sock));
+    /* send_message("ok\n", &(trantorien->ref->client->sock)); */
+    bufferise(trantorien->ref, "ok\n");
     ppo_event_to_all_monitor(trantorien, list);
     (void)list;
     (void)command;

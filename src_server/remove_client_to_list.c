@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:01:02 2016 Victor Gouet
-** Last update Tue Jun 21 13:16:10 2016 Victor Gouet
+** Last update Sat Jun 25 10:45:51 2016 Victor Gouet
 */
 
 #include "../include_server/server.h"
@@ -48,6 +48,8 @@ t_ref	*delete_all_in_client(t_list *list,
 			      t_server *server,
 			      t_ref *ref)
 {
+  // TODO on appel flunsh pour vider le buffer avant de erase le client
+  flush(ref);
   remove_client_from_server(server, ref->client);
   if (ref->type == TRANTORIEN)
     {

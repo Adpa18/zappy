@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:52:48 2016 Victor Gouet
-** Last update Fri Jun 10 16:00:53 2016 Victor Gouet
+** Last update Sat Jun 25 10:33:43 2016 Victor Gouet
 */
 
 #include <stdlib.h>
@@ -42,12 +42,11 @@ void	*add_client_to_list(t_list *list, t_type type,
   ref->end = NULL;
   ref->buffer_size = 0;
   ref->client = client;
+  reset(&ref->ring);
   if (client->sock.sock > list->max_fd)
     list->max_fd = client->sock.sock;
   if (list->begin == NULL && list->end == NULL)
-    {
-      list->begin = ref;
-    }
+    list->begin = ref;
   else
     {
       ((t_ref *)list->end)->next = ref;

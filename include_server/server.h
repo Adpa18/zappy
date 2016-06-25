@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Sat Jun 25 08:58:53 2016 Victor Gouet
+** Last update Sat Jun 25 10:37:48 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -133,8 +133,13 @@ typedef struct	s_list
   int		max_fd;
   int		nbr_client;
   t_map		*map;
-  fd_set	fds_wri;
 }		t_list;
+
+/*
+**	flush_buffer.c
+*/
+
+int	flush_buffer_clients(t_list *list);
 
 /*
 **	ring_buffer.c
@@ -142,6 +147,7 @@ typedef struct	s_list
 
 void	flush(t_ref *client);
 void	bufferise(t_ref *client, char *data);
+void	fbufferise(t_ref *client, char *format, ...);
 
 /*
 **	command_input.c

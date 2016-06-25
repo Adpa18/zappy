@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun 22 13:54:15 2016 Victor Gouet
-** Last update Wed Jun 22 14:58:53 2016 Victor Gouet
+** Last update Sat Jun 25 10:07:01 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -17,7 +17,8 @@ int	time_event(t_monitor *monitor, t_list *list,
 {
   (void)list;
   (void)tab;
-  sendf_message(&(monitor->ref->client->sock), "time %ld\n",
-	        (long)command->time_launch);
+  /* sendf_message(&(monitor->ref->client->sock), "time %ld\n", */
+  /* 	        (long)command->time_launch); */
+  fbufferise(monitor->ref, "time %ld\n", (long)command->time_launch);
   return (0);
 }

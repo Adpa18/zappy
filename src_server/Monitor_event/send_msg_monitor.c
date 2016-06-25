@@ -5,22 +5,28 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 23:57:37 2016 Victor Gouet
-** Last update Mon Jun 13 23:59:44 2016 Victor Gouet
+** Last update Sat Jun 25 09:33:24 2016 Victor Gouet
 */
 
+#include "../../stringLib/storage.h"
 #include "../../include_server/monitor_event.h"
 
 void	send_msg_to_all_monitor(char const *msg, t_list *list)
 {
   t_ref	*ref;
+  char	*tmp;
 
+  if ((tmp = STRING("%s", msg)) == NULL)
+    return ;
   ref = list->begin;
   while (ref)
     {
       if (ref->type == MONITOR)
 	{
-	  send_message(msg, &(ref->client->sock));
+	  /* send_message(msg, &(ref->client->sock)); */
+	  bufferise(ref, tmp);
 	}
       ref = ref->next;
     }
+  free(tmp);
 }

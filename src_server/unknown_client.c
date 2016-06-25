@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 16:47:38 2016 Victor Gouet
-** Last update Tue Jun 14 11:04:02 2016 Victor Gouet
+** Last update Sat Jun 25 09:44:12 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -30,7 +30,8 @@ int		unknwon_client_event(t_ref *ref, t_list *list,
     }
   else
     {
-      send_message("ko\n", &(ref->client->sock));
+      /* send_message("ko\n", &(ref->client->sock)); */
+      bufferise(ref, "ko\n");
       return (-1);
     }
   return (0);

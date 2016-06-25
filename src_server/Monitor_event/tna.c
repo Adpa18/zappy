@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:32:18 2016 Victor Gouet
-** Last update Mon Jun 13 21:14:43 2016 Victor Gouet
+** Last update Sat Jun 25 10:09:23 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
@@ -20,7 +20,8 @@ int		tna_event(t_monitor *monitor, t_list *list,
   team = command->team_list.begin;
   while (team)
     {
-      sendf_message(&(monitor->ref->client->sock), "tna %s\n", team->name);
+      /* sendf_message(&(monitor->ref->client->sock), "tna %s\n", team->name); */
+      fbufferise(monitor->ref, "tna %s\n", team->name);
       team = team->next;
     }
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun 24 14:56:15 2016 Victor Gouet
-** Last update Fri Jun 24 15:22:12 2016 Victor Gouet
+** Last update Sat Jun 25 09:08:37 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -25,14 +25,16 @@ int	command_input_for(t_ref *ref, t_list *list)
   if (tab && tab[0] && strcmp("incantation", tab[0]) == 0
       && ref->type == TRANTORIEN && !can_elevate(ref->ref, list))
     {
-      send_message("ko\n", &(ref->client->sock));
+      /* send_message("ko\n", &(ref->client->sock)); */
+      bufferise(ref, "ko\n");
       ref->time_ref = 0;
       buffer_pop_front(ref);
     }
   else if (tab && tab[0] && strcmp("incantation", tab[0]) == 0
 	   && ref->type == TRANTORIEN && can_elevate(ref->ref, list))
     {
-      send_message("elevation en cours\n", &(ref->client->sock));
+      bufferise(ref, "elevation en cours\n");
+      /* send_message("elevation en cours\n", &(ref->client->sock)); */
       pic_event(ref->ref, list);
     }
   else if (tab && tab[0] && strcmp("fork", tab[0]) == 0)

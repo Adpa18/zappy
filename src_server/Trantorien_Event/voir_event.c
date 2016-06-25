@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:52:03 2016 Victor Gouet
-** Last update Wed Jun  8 11:22:08 2016 Victor Gouet
+** Last update Sat Jun 25 10:17:08 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -114,6 +114,7 @@ int     voir_event(t_trantorien *trantorien, t_list *list,
                                              trantorien->id));
         }
     }
-    sendf_message(&(trantorien->ref->client->sock), "%s}\n", buffer);
+    /* sendf_message(&(trantorien->ref->client->sock), "%s}\n", buffer); */
+    fbufferise(trantorien->ref, "%s}\n", buffer);
     return (0);
 }
