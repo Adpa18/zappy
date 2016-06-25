@@ -437,7 +437,7 @@ int IAClient::IsPossibleToElevate(lua_State *state)
 {
     Lua::LuaScript  script(state);
 
-    if (sight.size() > 0 && Recipee::recipeesPerLevel[lvl].CanBeMade(sight[0]) && sight[0].GetNbOf(Inventory::NONE) == Recipee::GetNbOfNeededPlayers(lvl + 1))
+    if (sight.size() > 0 && Recipee::recipeesPerLevel[lvl].CanBeMade(sight[0]) && sight[0].GetNbOf(Inventory::NONE) + 1 == Recipee::GetNbOfNeededPlayers(lvl + 1))
         script.PushVar(true);
     else
         script.PushVar(false);

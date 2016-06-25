@@ -113,20 +113,19 @@ void ZappyRequest::MakeRequest(ZappyRequest::Request request, const std::string 
 
     lastReqOf[request] = std::clock();
     requestQueue.push(std::make_pair(request, std::clock()));
-    watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
-        {
-/*<<<<<<< HEAD
-            std::cout << "Is client incanting ? : " << std::boolalpha << client->IsIncanting() << std::endl;
-            if (client->IsIncanting() && s == "ko")
+    try
+    {
+        watcher.RequestServer(req, [this, request, toConcat] (std::string const &s)
             {
-                client->IncantationFailure(s);
-                return (false);
-            }
-=======
->>>>>>> 6fab6878ae0e81d7a8ad0d1c4c9ff7fec961265f*/
-            return (ReceiveServerPong(request, s, toConcat));
-        }, *client);
-    ++nbRequest;
+                std::cout << "request: " << request << ", answer: '" << s << "'" << std::endl;
+                return (ReceiveServerPong(request, s, toConcat));
+            }, *client);
+        ++nbRequest;
+    }
+    catch (std::exception &exception)
+    {
+        std::cerr << "Make request: " << exception.what() << std::endl;
+    }
 }
 
 /**
@@ -230,7 +229,7 @@ void ZappyRequest::Req_incantation(const std::string &answer, const std::string 
             });
     }
     else if (answer != "ko")
-        throw BadRequestException("Bad answer received for incantation" + s);
+        throw BadRequestException("Bad answer received for incantation '" + s + "'");
 }
 
 /**
@@ -261,7 +260,7 @@ void ZappyRequest::Req_dropObj(const std::string &answer, const std::string &par
     if (status)
         client->DropObj(Inventory::getObjectFromName(param));
     if (answer != "ok" && answer != "ko")
-        throw BadRequestException("Bad answer received drop" + param);
+        throw BadRequestException("Bad answer received drop '" + param + "'");
 }
 
 /**
@@ -271,7 +270,7 @@ void ZappyRequest::Req_move(const std::string &a, const std::string &s)
 {
     client->Moved();
     if (a != "ok")
-        throw BadRequestException("Bad answer received move" + s);
+        throw BadRequestException("Bad answer received move '" + s + "'");
 }
 
 /**
@@ -281,7 +280,7 @@ void ZappyRequest::Req_turnRight(const std::string &a, const std::string &s)
 {
     client->TurnRight();
     if (a != "ok")
-        throw BadRequestException("Bad answer received right" + s);
+        throw BadRequestException("Bad answer received right '" + s + "'");
 }
 
 /**
@@ -291,7 +290,7 @@ void ZappyRequest::Req_turnLeft(const std::string &a, const std::string &s)
 {
     client->TurnLeft();
     if (a != "ok")
-        throw BadRequestException("Bad answer received left" + s);
+        throw BadRequestException("Bad answer received left '" + s + "'");
 }
 
 /**
