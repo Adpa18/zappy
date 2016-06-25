@@ -5,11 +5,17 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun  3 09:46:55 2016 Victor Gouet
-** Last update Fri Jun  3 10:17:50 2016 Victor Gouet
+** Last update Sat Jun 25 19:02:35 2016 Victor Gouet
 */
 
 #ifndef RING_BUFFER_HPP_
 # define RING_BUFFER_HPP_
+
+# define _GNU_SOURCE
+
+# include <stdio.h>
+# include <stdarg.h>
+# include <strings.h>
 
 typedef struct	s_ring_buffer
 {

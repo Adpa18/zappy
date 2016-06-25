@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:29:57 2016 Victor Gouet
-** Last update Sat Jun 25 16:56:21 2016 Victor Gouet
+** Last update Sat Jun 25 18:50:30 2016 Victor Gouet
 */
 
 #ifndef SERVER_H_
@@ -134,6 +134,14 @@ typedef struct	s_list
   int		nbr_client;
   t_map		*map;
 }		t_list;
+
+/*
+**	server_running.c
+*/
+
+int	server_running_event(t_list *list, t_server *server,
+			     t_command_line *command,
+			     fd_set *fds);
 
 /*
 **	flush_buffer.c

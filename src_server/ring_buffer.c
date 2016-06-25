@@ -5,12 +5,9 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun  3 09:49:21 2016 Victor Gouet
-** Last update Sat Jun 25 18:34:45 2016 Victor Gouet
+** Last update Sat Jun 25 19:10:51 2016 Victor Gouet
 */
 
-#include <stdio.h>
-#include <stdarg.h>
-#include <strings.h>
 #include "../include_server/ring_buffer.h"
 #include "../include_server/server.h"
 
@@ -71,10 +68,13 @@ void	bufferise(t_ref *client, char *data)
 void		fbufferise(t_ref *client, char *format, ...)
 {
   va_list	list;
-  char		tosend[BUFSIZ * 4];
+  char		*tosend;
 
   va_start(list, format);
-  if (vsnprintf(tosend, (BUFSIZ * 4) - 1, format, list) != -1)
-    bufferise(client, tosend);
+  if (vasprintf(&tosend, format, list) != -1)
+    {
+      bufferise(client, tosend);
+      free(tosend);
+    }
   va_end(list);
 }
