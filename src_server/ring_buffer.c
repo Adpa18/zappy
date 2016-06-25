@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun  3 09:49:21 2016 Victor Gouet
-** Last update Sat Jun 25 15:40:57 2016 Victor Gouet
+** Last update Sat Jun 25 18:34:45 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -71,10 +71,10 @@ void	bufferise(t_ref *client, char *data)
 void		fbufferise(t_ref *client, char *format, ...)
 {
   va_list	list;
-  char		tosend[BUFSIZ];
+  char		tosend[BUFSIZ * 4];
 
   va_start(list, format);
-  if (vsnprintf(tosend, BUFSIZ - 1, format, list) != -1)
+  if (vsnprintf(tosend, (BUFSIZ * 4) - 1, format, list) != -1)
     bufferise(client, tosend);
   va_end(list);
 }

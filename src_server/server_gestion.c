@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun  6 22:04:34 2016 Victor Gouet
-** Last update Sat Jun 25 15:55:11 2016 Victor Gouet
+** Last update Sat Jun 25 17:51:22 2016 Victor Gouet
 */
 
 #include <signal.h>
@@ -94,7 +94,8 @@ void		server_run(t_command_line *command)
 	  ressources_generation(&list, list.map, 3, 6);
 	}
       else
-	event_client(&list, command, &fds, server);
+	// TODO on stop tout si on recoit 2
+        event_client(&list, command, &fds, server);
       flush_buffer_clients(&list);
     }
   delete_all(server, command, &list);
