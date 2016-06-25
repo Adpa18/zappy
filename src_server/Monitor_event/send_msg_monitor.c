@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 23:57:37 2016 Victor Gouet
-** Last update Sat Jun 25 09:33:24 2016 Victor Gouet
+** Last update Sat Jun 25 15:49:54 2016 Victor Gouet
 */
 
 #include "../../stringLib/storage.h"
@@ -23,7 +23,6 @@ void	send_msg_to_all_monitor(char const *msg, t_list *list)
     {
       if (ref->type == MONITOR)
 	{
-	  /* send_message(msg, &(ref->client->sock)); */
 	  bufferise(ref, tmp);
 	}
       ref = ref->next;

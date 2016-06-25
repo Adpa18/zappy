@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:59 2016 Victor Gouet
-** Last update Sat Jun 25 09:18:55 2016 Victor Gouet
+** Last update Sat Jun 25 15:51:37 2016 Victor Gouet
 */
 
 #include <stdbool.h>
@@ -79,28 +79,6 @@ bool    can_elevate(t_trantorien *trantorien, t_list *list)
             (trantorien, list, false));
 }
 
-/* static void	send_msg_to_finish_elevation_ko(t_list *list, */
-/* 						int x, */
-/* 						int y) */
-/* { */
-/*   t_ref		*ref; */
-/*   t_trantorien	*trantorien; */
-
-/*   ref = list->begin; */
-/*   while (ref) */
-/*     { */
-/*       if (ref->type == TRANTORIEN) */
-/* 	{ */
-/* 	  trantorien = ref->ref; */
-/* 	  if (trantorien->pos.x == x && trantorien->pos.y == y) */
-/* 	    { */
-/* 	      sendf_message(&(ref->client->sock), "ko\n"); */
-/* 	    } */
-/* 	} */
-/*       ref = ref->next; */
-/*     } */
-/* } */
-
 int	incantation_event(t_trantorien *trantorien, t_list *list,
 			  t_command_line *command, char **tab)
 {
@@ -120,7 +98,6 @@ int	incantation_event(t_trantorien *trantorien, t_list *list,
   else
     {
       bufferise(trantorien->ref, "ko\n");
-      /* send_message("ko\n", &(trantorien->ref->client->sock)); */
       pie_event(trantorien, list, 0);
       plv_event_all_monitor(list);
     }

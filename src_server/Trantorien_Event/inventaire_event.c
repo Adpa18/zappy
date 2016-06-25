@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:52:19 2016 Victor Gouet
-** Last update Sat Jun 25 10:14:02 2016 Victor Gouet
+** Last update Sat Jun 25 15:51:24 2016 Victor Gouet
 */
 
 #include "../../include_server/trantorien_event.h"
@@ -13,12 +13,6 @@
 int     inventaire_event(t_trantorien *trantorien, t_list *list,
 			 t_command_line *command, char **tab)
 {
-  /* sendf_message(&(trantorien->ref->client->sock), */
-  /*               START_INVETAIRE END_INVENTAIRE, */
-  /*               trantorien->inventaire.food, trantorien->inventaire.linemate, */
-  /*               trantorien->inventaire.deraumere, trantorien->inventaire.sibur, */
-  /*               trantorien->inventaire.mendiane, trantorien->inventaire.phiras, */
-  /*               trantorien->inventaire.thystame); */
   fbufferise(trantorien->ref,
 		START_INVETAIRE END_INVENTAIRE,
 		trantorien->inventaire.food, trantorien->inventaire.linemate,

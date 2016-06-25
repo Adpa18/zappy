@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun  3 09:49:21 2016 Victor Gouet
-** Last update Sat Jun 25 10:57:17 2016 Victor Gouet
+** Last update Sat Jun 25 15:40:57 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -45,7 +45,8 @@ void		flush(t_ref *client)
       reset(&(client->ring));
       return ;
     }
-  init_select_for_fd(&fds, client->client->sock.sock);
+  if (init_select_for_fd(&fds, client->client->sock.sock) == -1)
+    return ;
   if (FD_ISSET(client->client->sock.sock, &fds))
     {
       send_message(client->ring.buffer, &(client->client->sock));

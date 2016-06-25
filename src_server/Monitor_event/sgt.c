@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:37:39 2016 Victor Gouet
-** Last update Sat Jun 25 10:11:54 2016 Victor Gouet
+** Last update Sat Jun 25 15:48:56 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
@@ -15,7 +15,6 @@ int	sgt_event(t_monitor *monitor, t_list *list,
 {
   (void)tab;
   (void)list;
-  /* sendf_message(&(monitor->ref->client->sock), "sgt %d\n", command->time); */
   fbufferise(monitor->ref, "sgt %d\n", command->time);
   return (0);
 }

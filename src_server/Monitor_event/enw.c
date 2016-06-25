@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Mon Jun 13 13:38:46 2016 Victor Gouet
-** Last update Sat Jun 25 09:28:06 2016 Victor Gouet
+** Last update Sat Jun 25 15:49:18 2016 Victor Gouet
 */
 
 #include "../../include_server/monitor_event.h"
@@ -36,7 +36,6 @@ static int	enw_msg(t_trantorien *trantorien, t_monitor *monitor)
 			trantorien->id_parrent, trantorien->pos.x,
 			trantorien->pos.y)) == NULL)
 	return (-1);
-      /* send_message(msg, &(monitor->ref->client->sock)); */
       bufferise(monitor->ref, msg);
       free(msg);
     }
