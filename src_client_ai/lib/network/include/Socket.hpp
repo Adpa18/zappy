@@ -94,6 +94,8 @@ public:
     int getCRLFLine(std::string &dest, struct timeval timeout = {1, 0}, int flags = 0) const;
     bool canRead(struct timeval timeout) const;
     bool canRead(void) const;
+    bool canWrite(struct timeval timeout) const;
+    bool canWrite(void) const;
 
 private:
     const std::string   protocol;

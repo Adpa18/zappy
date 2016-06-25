@@ -75,11 +75,21 @@ NetworkWatcher &NetworkWatcher::Update(Client &from, struct timeval timeout)
     {
         std::cout << "LINE : " << line.substr(0, 20) << std::endl;
         if ((it = GetException(line)) != exceptions.end())
-            it->second(line);
-        else if ((!callBacks[&from].empty()))
         {
-            if (callBacks[&from].front()(line))
-                callBacks[&from].pop();
+            it->second(line);
+        }
+        else
+        {
+            if ((it = tempException.find(line)) != tempException.end())
+            {
+                it->second(line);
+            }
+            else if ((!callBacks[&from].empty()))
+            {
+                if (callBacks[&from].front()(line))
+                    callBacks[&from].pop();
+            }
+            ClearTempException();
         }
     }
     return *this;
@@ -93,4 +103,14 @@ std::map<std::string, NetworkWatcher::NetworkException>::const_iterator NetworkW
             return it;
     }
     return exceptions.end();
+}
+
+void NetworkWatcher::AddTempException(std::string const &name, NetworkException const &tocall)
+{
+    tempException[name] = tocall;
+}
+
+void NetworkWatcher::ClearTempException(void)
+{
+    tempException.clear();
 }

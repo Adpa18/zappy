@@ -179,6 +179,7 @@ void IAClient::Upgrade(const std::string &string)
     ++lvl;
     Receive(ZappyRequest::INCANTATION, string);
     incanting = false;
+    request.ClearTempException();
 }
 
 bool IAClient::IsIncanting(void) const

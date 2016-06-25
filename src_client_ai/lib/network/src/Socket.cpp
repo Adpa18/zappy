@@ -121,7 +121,7 @@ std::string Socket::Read(int flags) const
 
 void Socket::Write(std::string const &towrite, int flags) const
 {
-    if (send(fd, (towrite + Socket::LF).c_str(), towrite.length() + Socket::LF.length(), flags) == -1)
+    if (canWrite({0, 0}) && send(fd, (towrite + Socket::LF).c_str(), towrite.length() + Socket::LF.length(), flags) == -1)
         throw SocketException(strerror(errno));
 }
 
@@ -181,4 +181,22 @@ bool Socket::canRead(void) const
     FD_ZERO(&set);
     FD_SET(fd, &set);
     return select(fd + 1, &set, NULL, NULL, NULL) != 0;
+}
+
+bool Socket::canWrite(struct timeval timeout) const
+{
+    fd_set  set;
+
+    FD_ZERO(&set);
+    FD_SET(fd, &set);
+    return select(fd + 1, NULL, &set, NULL, &timeout) != 0;
+}
+
+bool Socket::canWrite(void) const
+{
+    fd_set  set;
+
+    FD_ZERO(&set);
+    FD_SET(fd, &set);
+    return select(fd + 1, NULL, &set, NULL, NULL) != 0;
 }
