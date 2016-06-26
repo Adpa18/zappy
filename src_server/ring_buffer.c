@@ -25,7 +25,8 @@ static int		init_select_for_fd(fd_set *fds, int fd)
   FD_ZERO(fds);
   timeout.tv_sec = 0;
   timeout.tv_usec = 0;
-  printf("fd = %d\t%d\n", fd, FD_SETSIZE);
+  if (fd < 0)
+      return (-1);
   FD_SET(fd, fds);
   if (select(fd + 1, NULL, fds, NULL, &timeout) == -1)
     {
@@ -38,6 +39,10 @@ void		flush(t_ref *client)
 {
   fd_set	fds;
 
+  printf("client = %p\n", client);
+  printf("client->client = %p\n", client->client);
+  printf("client->client->sock = %p\n", &(client->client->sock));
+  printf("fd = %d\t%d\n", client->client->sock.sock, FD_SETSIZE);
   if (client->ring.buffer[0] == 0 || client->client->sock.sock < 0)
     {
       reset(&(client->ring));

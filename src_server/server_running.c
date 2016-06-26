@@ -26,7 +26,12 @@ static int		init_select(fd_set *fds,
   elem = list->begin;
   while (elem)
     {
-      FD_SET(elem->client->sock.sock, fds);
+      printf("client = %p\n", elem);
+      printf("client->client = %p\n", elem->client);
+      printf("client->client->sock = %p\n", &(elem->client->sock));
+      printf("fd = %d\t%d\n", elem->client->sock.sock, FD_SETSIZE);
+        if (elem->client->sock.sock > 0)
+            FD_SET(elem->client->sock.sock, fds);
       elem = elem->next;
     }
   if (select(list->max_fd + 1, fds, NULL, NULL, &timeout) == -1)
