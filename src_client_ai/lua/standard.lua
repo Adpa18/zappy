@@ -38,6 +38,7 @@ end
 
 actionList = Queue.new()
 priorityQueue = Queue.new();
+plsQueue = Queue.new();
 
 function CreatePath(case)
     local path = Queue.new();
@@ -155,7 +156,7 @@ function OnUpdate()
         local i = 3;
         local GetEnoughRessources = true;
 
-        if food >= 10 then
+        if food >= 30 then
             findFood = false;
         end
         for ressource = LINEMATE, THYSTAME do
@@ -166,8 +167,73 @@ function OnUpdate()
         for n = 2, lvl do
             i = i + (n * 2 + 1);
         end
-        -- vider la queue
 
+        local plsAct = Queue.pop(plsQueue);
+        if plsAct ~= nil then
+            if string.find(plsAct, "MOVE") ~= nil then
+                canAct = false;
+                return MOVE;
+            elseif string.find(plsAct, "RIGHT") ~= nil then
+                canAct = false;
+                return RIGHT;
+            elseif string.find(plsAct, "LEFT") ~= nil then
+                canAct = false;
+                return LEFT;
+            elseif string.find(plsAct, "TAKE") ~= nil then
+                if string.find(plsAct, "nourriture") ~= nil then
+                    IA:SetParameter("nourriture");
+                elseif string.find(plsAct, "linemate") ~= nil then
+                    IA:SetParameter("linemate");
+                elseif string.find(plsAct, "deraumere") ~= nil then
+                    IA:SetParameter("deraumere");
+                elseif string.find(plsAct, "sibur") ~= nil then
+                    IA:SetParameter("sibur");
+                elseif string.find(plsAct, "mendiane") ~= nil then
+                    IA:SetParameter("mendiane");
+                elseif string.find(plsAct, "phiras") ~= nil then
+                    IA:SetParameter("phiras");
+                elseif string.find(plsAct, "thystame") ~= nil then
+                    IA:SetParameter("thystame");
+                end
+                canAct = false;
+                return TAKE;
+            end
+        end
+        if food < 7 or findFood == true then
+            -- recherche de food
+            local n = 0;
+            local find = false;
+
+            priorityQueue = Queue.new();
+            findFood = true;
+            while n <= i and find == false do
+                local ncase = IA:GetSightAt(n);
+                if ncase == nil then
+                    return NONE;
+                end
+                if ncase:HasObject(FOOD) == true then
+                    find = true;
+                    plsQueue = CreatePath(n);
+                    return NONE;
+                end
+                n = n + 1;
+            end
+            local ran = math.random(0, 2);
+            if ran == 0 then
+                Queue.pushBack(plsQueue, "LEFT");
+                Queue.pushBack(plsQueue, "MOVE");
+                Queue.pushBack(plsQueue, "MOVE");
+            elseif ran == 1 then
+                Queue.pushBack(plsQueue, "RIGHT");
+                Queue.pushBack(plsQueue, "MOVE");
+                Queue.pushBack(plsQueue, "MOVE");
+            else
+                for j = 0, (lvl - 1) do
+                    Queue.pushBack(plsQueue, "MOVE");
+                end
+            end
+            return NONE;
+        end
         local priority = Queue.pop(priorityQueue);
         if priority ~= nil then
             if string.find(priority, "MOVE") ~= nil then
@@ -293,35 +359,6 @@ function OnUpdate()
                 canAct = false;
                 return DROP;
             end
-        elseif food < 7 or findFood == true then
-            -- recherche de food
-            local n = 0;
-            local find = false;
-
-            findFood = true;
-            while n <= i and find == false do
-                local ncase = IA:GetSightAt(n);
-                if ncase == nil then
-                    return NONE;
-                end
-                if ncase:HasObject(FOOD) == true then
-                    find = true;
-                    actionList = CreatePath(n);
-                    return NONE;
-                end
-                n = n + 1;
-            end
-            local ran = math.random(0, 2);
-            if ran == 0 then
-                Queue.pushBack(actionList, "LEFT");
-            elseif ran == 1 then
-                Queue.pushBack(actionList, "RIGHT");
-            else
-                for j = 0, (lvl - 1) do
-                    Queue.pushBack(actionList, "MOVE");
-                end
-            end
-            return NONE;
         elseif GetEnoughRessources == true then
             local canElevate = true;
             if IA:GetSightAt(0):GetNbOf(FOOD) ~= 0 then
