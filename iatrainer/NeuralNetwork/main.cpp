@@ -33,7 +33,7 @@ size_t  resolvePoints(std::string const &filename, size_t num)
         {
             size_t off = i + upmsg.size();
 
-            score += 2;
+            score += 5;
             filecontent = filecontent.substr(off, filecontent.size() - off);
         }
     }
@@ -92,6 +92,7 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
             exit(1);
         exit(0);
     }
+    sleep(5);
     serverlaunch = std::clock();
     std::cout << "starting" << std::endl;
     for (std::pair<const size_t, NeuralNetwork> &curr : generation)
@@ -121,14 +122,14 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
         pids[pid] = curr.first;
         ++rank;
     }
-    // if ((graphic = fork()) == -1)
-    //     return 1;
-    // if (graphic == 0)
-    // {
-    //     if (execl("/bin/bash", "bash", "-c", "./zappy_graphic 127.0.0.1 4242") == -1)
-    //         exit(1);
-    //     exit(0);
-    // }
+     if ((graphic = fork()) == -1)
+         return 1;
+     if (graphic == 0)
+     {
+         if (execl("/bin/bash", "bash", "-c", "./zappy_graphic 127.0.0.1 4242") == -1)
+             exit(1);
+         exit(0);
+     }
     rank = 0;
     it = pids.begin();
     while (!pids.empty())
@@ -143,13 +144,24 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
         else
             ++it;
         if ((std::clock() - serverlaunch) / CLOCKS_PER_SEC > 60)
+        {
             kill(server, SIGINT);
+            kill(server, SIGKILL);
+        }
         usleep(100);
     }
     kill(server, SIGINT);
+    kill(server, SIGKILL);
     waitpid(server, &status, 0);
-    // kill(graphic, SIGKILL);
-    // waitpid(graphic, &status, 0);
+    if (WIFSIGNALED(status))
+    {
+        if (WTERMSIG(status) == SIGSEGV)
+        {
+            throw std::runtime_error("server segfault");
+        }
+    }
+     kill(graphic, SIGKILL);
+     waitpid(graphic, &status, 0);
     generation = rankPlayers(pointsPerNetwork, generation);
     return 0;
 }

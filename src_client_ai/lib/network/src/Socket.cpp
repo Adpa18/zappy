@@ -112,7 +112,7 @@ std::string Socket::Read(int flags) const
 
     memset(buff, 0, BUFSIZ);
     if (recv(fd, buff, BUFSIZ - 1, flags) == -1)
-        throw SocketException(strerror(errno));
+        throw SocketException(std::string("Recv: ") + strerror(errno));
     toreturn += buff;
     if (toreturn.empty())
         throw SocketException("Kicked by server");
@@ -122,7 +122,7 @@ std::string Socket::Read(int flags) const
 void Socket::Write(std::string const &towrite, int flags) const
 {
     if (canWrite({0, 0}) && send(fd, (towrite + Socket::LF).c_str(), towrite.length() + Socket::LF.length(), flags) == -1)
-        throw SocketException(strerror(errno));
+        throw SocketException(std::string("Send: ") + strerror(errno));
 }
 
 Socket &Socket::operator>>(std::string &dest)

@@ -17,1903 +17,200 @@ ip : 127.0.0.1
 port : 4242
 team name : toto
 IA : ./lua/neuralia.lua
-Tourne a droite
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+doiing '10 '
+doiing '10 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
+doiing '1 '
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+doiing '1 '
+Avance
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-[31mPlayer die[0m
+doiing '1 '
