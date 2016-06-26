@@ -1,0 +1,676 @@
+    setting weight of 1
+    setting weight of 2
+    setting weight of 1
+    setting weight of 2
+    setting weight of 3
+    setting weight of 4
+    setting weight of 5
+    setting weight of 1
+    setting weight of 2
+    setting weight of 1
+    setting weight of 2
+    setting weight of 3
+    setting weight of 4
+    setting weight of 5
+    setting weight of 6
+ip : 127.0.0.1
+port : 4242
+team name : toto
+IA : ./lua/neuralia.lua
+doiing '10 '
+doiing '10 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 9)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 1, need: 1, have: 0)
+Take 0 times
+push process
+push done
+for ressource: deraumere(present: 3, need: 0, have: 0)
+Take 3 times
+push process
+pushing
+pushing
+pushing
+push done
+for ressource: sibur(present: 2, need: 0, have: 0)
+Take 2 times
+push process
+pushing
+pushing
+push done
+for ressource: mendiane(present: 1, need: 0, have: 0)
+Take 1 times
+push process
+pushing
+push done
+for ressource: phiras(present: 3, need: 0, have: 0)
+Take 3 times
+push process
+pushing
+pushing
+pushing
+push done
+for ressource: thystame(present: 1, need: 0, have: 0)
+Take 1 times
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 1, have: 0)
+taking 1 times
+push process
+pushing
+push done
+for ressource deraumere (need: 0, present: 3, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 2, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 1, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 1, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+doiing '6 deraumere'
+doiing '6 deraumere'
+doiing '6 deraumere'
+doiing '6 sibur'
+doiing '6 sibur'
+doiing '6 mendiane'
+doiing '6 phiras'
+doiing '6 phiras'
+doiing '6 phiras'
+doiing '6 thystame'
+doiing '6 linemate'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 7)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 1)
+Drop 1 times
+push process
+pushing
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+doiing '7 linemate'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 4)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 1, need: 1, have: 0)
+Take 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 1, have: 0)
+taking 1 times
+push process
+pushing
+push done
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+doiing '6 linemate'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 4)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 4)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 4)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 4)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 4)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Incantation process
+for ressource: nourriture(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: linemate(present: 0, need: 1, have: 0)
+Drop 0 times
+push process
+push done
+for ressource: deraumere(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: sibur(present: 0, need: 0, have: 2)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+for ressource: phiras(present: 0, need: 0, have: 3)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 1)
+Take 0 times
+push process
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 0)
+do nothing
+for ressource deraumere (need: 0, present: 0, have: 3)
+do nothing
+for ressource sibur (need: 0, present: 0, have: 2)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 1)
+do nothing
+for ressource phiras (need: 0, present: 0, have: 3)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 1)
+do nothing
+doiing '2 '
+doiing '3 '
+[31mPlayer die[0m

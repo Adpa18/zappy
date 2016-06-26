@@ -121,14 +121,14 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
         pids[pid] = curr.first;
         ++rank;
     }
-    if ((graphic = fork()) == -1)
-        return 1;
-    if (graphic == 0)
-    {
-        if (execl("/bin/bash", "bash", "-c", "./zappy_graphic 127.0.0.1 4242") == -1)
-            exit(1);
-        exit(0);
-    }
+    // if ((graphic = fork()) == -1)
+    //     return 1;
+    // if (graphic == 0)
+    // {
+    //     if (execl("/bin/bash", "bash", "-c", "./zappy_graphic 127.0.0.1 4242") == -1)
+    //         exit(1);
+    //     exit(0);
+    // }
     rank = 0;
     it = pids.begin();
     while (!pids.empty())
@@ -148,8 +148,8 @@ int     zappyIaGeneration(GeneticAlgorithm::Generation &generation)
     }
     kill(server, SIGINT);
     waitpid(server, &status, 0);
-    kill(graphic, SIGKILL);
-    waitpid(graphic, &status, 0);
+    // kill(graphic, SIGKILL);
+    // waitpid(graphic, &status, 0);
     generation = rankPlayers(pointsPerNetwork, generation);
     return 0;
 }
