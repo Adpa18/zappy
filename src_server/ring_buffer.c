@@ -25,6 +25,7 @@ static int		init_select_for_fd(fd_set *fds, int fd)
   FD_ZERO(fds);
   timeout.tv_sec = 0;
   timeout.tv_usec = 0;
+  printf("fd = %d\t%d\n", fd, FD_SETSIZE);
   FD_SET(fd, fds);
   if (select(fd + 1, NULL, fds, NULL, &timeout) == -1)
     {
