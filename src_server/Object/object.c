@@ -5,14 +5,14 @@
 ** Login   <gouet_v@epitech.net>
 **
 ** Started on  Wed Jun  8 07:52:46 2016 Victor Gouet
-** Last update Wed Jun 15 17:27:38 2016 Victor Gouet
+** Last update Sun Jun 26 13:43:07 2016 Victor Gouet
 */
 
 #include <string.h>
 #include "storage.h"
 #include "object.h"
 
-static const char	*objectsStr[7] = {
+static const char	objectsStr[7][20] = {
         "nourriture", "linemate", "deraumere", "sibur",
         "mendiane", "phiras", "thystame"
 };

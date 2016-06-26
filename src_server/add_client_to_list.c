@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 14:52:48 2016 Victor Gouet
-** Last update Sat Jun 25 10:33:43 2016 Victor Gouet
+** Last update Sun Jun 26 15:17:56 2016 Victor Gouet
 */
 
 #include <stdlib.h>
@@ -48,9 +48,7 @@ void	*add_client_to_list(t_list *list, t_type type,
   if (list->begin == NULL && list->end == NULL)
     list->begin = ref;
   else
-    {
       ((t_ref *)list->end)->next = ref;
-    }
   list->end = ref;
   return (ref);
 }

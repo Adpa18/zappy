@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:59 2016 Victor Gouet
-** Last update Sat Jun 25 15:51:37 2016 Victor Gouet
+** Last update Sun Jun 26 15:33:34 2016 Victor Gouet
 */
 
 #include <stdbool.h>
@@ -14,7 +14,7 @@
 #include "../../include_server/trantorien_event.h"
 #include "../../include_server/monitor_event.h"
 
-static const incantationPtr incantationFunc[] = {
+static const incantationPtr incantationFunc[7] = {
         incantation_one, incantation_two, incantation_three, incantation_four,
         incantation_five, incantation_six, incantation_seven
 };
@@ -84,7 +84,8 @@ int	incantation_event(t_trantorien *trantorien, t_list *list,
 {
   (void)command;
   (void)tab;
-  if (incantationFunc[trantorien->elevation - 1]
+  if (trantorien->elevation - 1 < 7 &&
+      incantationFunc[trantorien->elevation - 1]
       (trantorien, list, true))
     {
       elevate_players_at_pos(list, trantorien->pos.x, trantorien->pos.y);

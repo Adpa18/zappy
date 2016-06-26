@@ -5,14 +5,14 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:53:04 2016 Victor Gouet
-** Last update Sat Jun 25 15:53:55 2016 Victor Gouet
+** Last update Sun Jun 26 13:42:21 2016 Victor Gouet
 */
 
 #include "monitor_event.h"
 #include "object.h"
 #include "../../include_server/trantorien_event.h"
 
-static const objectPtr leaveObjectFunc[] = {
+static const objectPtr leaveObjectFunc[7] = {
         leaveFood, leaveLinemate, leaveDeraumere, leaveSibure,
         leaveMediane, leavePhiras, leaveThystame
 };

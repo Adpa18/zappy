@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:52:03 2016 Victor Gouet
-** Last update Sat Jun 25 15:51:00 2016 Victor Gouet
+** Last update Sun Jun 26 13:42:50 2016 Victor Gouet
 */
 
 #include <string.h>
@@ -14,7 +14,7 @@
 #include "storage.h"
 #include "object.h"
 
-static const char   *state_str[] = {
+static const char   state_str[4][20] = {
         "oeuf", "baby", "ghost", "joueur"
 };
 

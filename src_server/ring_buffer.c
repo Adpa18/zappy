@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun  3 09:49:21 2016 Victor Gouet
-** Last update Sat Jun 25 19:10:51 2016 Victor Gouet
+** Last update Sun Jun 26 15:17:33 2016 Victor Gouet
 */
 
 #include "../include_server/ring_buffer.h"
@@ -43,7 +43,10 @@ void		flush(t_ref *client)
       return ;
     }
   if (init_select_for_fd(&fds, client->client->sock.sock) == -1)
-    return ;
+    {
+      reset(&(client->ring));
+      return ;
+    }
   if (FD_ISSET(client->client->sock.sock, &fds))
     {
       send_message(client->ring.buffer, &(client->client->sock));
@@ -53,15 +56,18 @@ void		flush(t_ref *client)
 
 void	bufferise(t_ref *client, char *data)
 {
-  while (*data != '\0')
+  int	i;
+
+  i = 0;
+  while (data[i] != '\0')
     {
-      client->ring.buffer[(client->ring.end)++] = *data;
+      client->ring.buffer[(client->ring.end)++] = data[i];
       if (client->ring.end >= (int)(sizeof(client->ring.buffer) - 1))
-	{
-	  client->ring.buffer[client->ring.end] = '\0';
-	  flush(client);
-	}
-      ++data;
+      	{
+      	  client->ring.buffer[client->ring.end] = '\0';
+      	  flush(client);
+      	}
+      ++i;
     }
 }
 
