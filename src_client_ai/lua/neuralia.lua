@@ -132,7 +132,7 @@ function OnStart()
                 PushAction(TAKE, Inventory.GetNameOf(i), present - need);
             end
         end
-        if (sight:GetNbOf(PLAYER) < IA:GetNbNeededPlayers() + 1) then
+        if (sight:GetNbOf(PLAYER) + 1 < IA:GetNbNeededPlayers()) then
             PushAction(BROADCAST, "Incant "..IA:GetLevel(), math.floor(MAPW / 2 + MAPH / 2));
         end
         netActions[TAKE_NEED_R]();

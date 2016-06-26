@@ -277,13 +277,4 @@ pushing
 push done
 doiing '2 '
 doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-doiing '2 '
 [31mPlayer die[0m
