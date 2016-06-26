@@ -17,1194 +17,408 @@ ip : 127.0.0.1
 port : 4242
 team name : toto
 IA : ./lua/neuralia.lua
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
+Avance
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 7, have: 0)
+taking 1 times
 push process
 pushing
 push done
+for ressource deraumere (need: 0, present: 7, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 4, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 2, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 2, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
+doiing '6 linemate'
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
 Tourne a droite
-push process
-pushing
-push done
-Me nourrir
 push process
 pushing
 push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 1, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 2, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 3, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 3, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 2, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
 Tourne a droite
-push process
-pushing
-push done
-Me nourrir
 push process
 pushing
 push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 6, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 6, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 7, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 5, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 9, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
 Tourne a droite
-push process
-pushing
-push done
-Me nourrir
 push process
 pushing
 push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 9, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 7, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 10, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 8, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 7, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
+Avance
 push process
 pushing
 push done
-doiing '2 '
-doiing '6 nourriture'
 Tourne a droite
-push process
-pushing
-push done
-Me nourrir
 push process
 pushing
 push done
-doiing '2 '
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 7, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 7, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 4, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 2, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 2, have: 0)
+do nothing
+doiing '1 '
 doiing '10 '
 You have been upgraded: 'niveau actuel : 2'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 1, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 2, have: 0)
+taking 1 times
 push process
 pushing
 push done
+for ressource sibur (need: 1, present: 3, have: 0)
+taking 1 times
+push process
+pushing
+push done
+for ressource mendiane (need: 0, present: 3, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 2, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+doiing '6 deraumere'
+doiing '6 sibur'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 3, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 5, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 8, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 9, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 5, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 6, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 8, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 8, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 2, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 5, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 7, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 5, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 9, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 0, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 2, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 3, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 3, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 2, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 0, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 5, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 8, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 9, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 5, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 6, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 8, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 8, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 3, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 1, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 10, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 1, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 3, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 4, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 4, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 4, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 0, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 0, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 2, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 8, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 9, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 5, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 6, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 8, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 8, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
-doiing '6 nourriture'
+Avance
+push process
+pushing
+push done
 Tourne a droite
 push process
 pushing
 push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
-doiing '2 '
-doiing '6 nourriture'
-Tourne a droite
-push process
-pushing
-push done
-Me nourrir
-push process
-pushing
-push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 1, present: 3, have: 1)
+do nothing
+for ressource sibur (need: 1, present: 1, have: 1)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 2, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 5, have: 0)
+do nothing
+doiing '1 '
 doiing '2 '
 [31mPlayer die[0m

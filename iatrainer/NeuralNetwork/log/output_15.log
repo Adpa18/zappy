@@ -17,4 +17,5 @@ ip : 127.0.0.1
 port : 4242
 team name : toto
 IA : ./lua/neuralia.lua
+doiing '10 '
 [31mPlayer die[0m

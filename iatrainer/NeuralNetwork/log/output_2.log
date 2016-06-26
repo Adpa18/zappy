@@ -17,239 +17,235 @@ ip : 127.0.0.1
 port : 4242
 team name : toto
 IA : ./lua/neuralia.lua
+doiing '10 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
+doiing '3 '
 Tourne a droite
 push process
 pushing
 push done
-doiing '2 '
-Tourne a droite
+Tourne a gauche
 push process
 pushing
 push done
 doiing '2 '
-Tourne a droite
-push process
-pushing
-push done
-doiing '2 '
+doiing '3 '
 [31mPlayer die[0m
