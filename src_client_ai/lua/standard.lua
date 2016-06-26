@@ -199,7 +199,7 @@ function OnUpdate()
                 return TAKE;
             end
         end
-        if food < 7 or findFood == true then
+        if food < 8 or findFood == true then
             -- recherche de food
             local n = 0;
             local find = false;
