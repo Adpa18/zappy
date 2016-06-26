@@ -5,7 +5,7 @@
 ## Login   <gouet_v@epitech.net>
 ##
 ## Started on  Mon May  2 10:16:12 2016 Victor Gouet
-## Last update Sat Jun 25 18:51:26 2016 Victor Gouet
+## Last update Sun Jun 26 21:51:52 2016 Victor Gouet
 ##
 
 CC		= gcc
@@ -108,7 +108,7 @@ OBJSLIB		= $(LIBS:.c=.o)
 
 GRAPHIC_SERVER		= no
 
-CFLAGS      =   -W -Wall -Wextra -Werror -g
+CFLAGS      =   -W -Wall -Wextra -Werror
 
 CFLAGS		+=  -I./include -I ./lib -I $(SOCKETLIB)include/ -I ./include_server/ -I./stringLib/
 
