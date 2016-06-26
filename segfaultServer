@@ -1,0 +1,50 @@
+==2397== Invalid read of size 8
+==2397==    at 0x40489B: init_select_for_fd (ring_buffer.c:28)
+==2397==    by 0x404957: flush (ring_buffer.c:45)
+==2397==    by 0x404A64: bufferise (ring_buffer.c:68)
+==2397==    by 0x404B42: fbufferise (ring_buffer.c:82)
+==2397==    by 0x407D76: voir_event (voir_event.c:117)
+==2397==    by 0x402352: convert_data_to_command (event_client.c:149)
+==2397==    by 0x40249A: event_call (event_client.c:175)
+==2397==    by 0x402524: event_gestion (event_client.c:193)
+==2397==    by 0x4026DC: event_client (event_client.c:236)
+==2397==    by 0x4051E6: server_running_event (server_running.c:57)
+==2397==    by 0x401D05: server_run (server_gestion.c:60)
+==2397==    by 0x401533: main (main.c:42)
+==2397==  Address 0xff141f828 is not stack'd, malloc'd or (recently) free'd
+==2397== 
+==2397== 
+==2397== Process terminating with default action of signal 11 (SIGSEGV)
+==2397==  Access not within mapped region at address 0xFF141F828
+==2397==    at 0x40489B: init_select_for_fd (ring_buffer.c:28)
+==2397==    by 0x404957: flush (ring_buffer.c:45)
+==2397==    by 0x404A64: bufferise (ring_buffer.c:68)
+==2397==    by 0x404B42: fbufferise (ring_buffer.c:82)
+==2397==    by 0x407D76: voir_event (voir_event.c:117)
+==2397==    by 0x402352: convert_data_to_command (event_client.c:149)
+==2397==    by 0x40249A: event_call (event_client.c:175)
+==2397==    by 0x402524: event_gestion (event_client.c:193)
+==2397==    by 0x4026DC: event_client (event_client.c:236)
+==2397==    by 0x4051E6: server_running_event (server_running.c:57)
+==2397==    by 0x401D05: server_run (server_gestion.c:60)
+==2397==    by 0x401533: main (main.c:42)
+==2397==  If you believe this happened as a result of a stack
+==2397==  overflow in your program's main thread (unlikely but
+==2397==  possible), you can try to increase the size of the
+==2397==  main thread stack using the --main-stacksize= flag.
+==2397==  The main thread stack size used in this run was 8388608.
+==2397== 
+==2397== HEAP SUMMARY:
+==2397==     in use at exit: 51,047,620 bytes in 11,961 blocks
+==2397==   total heap usage: 5,923,343 allocs, 5,911,382 frees, 2,045,832,075 bytes allocated
+==2397== 
+==2397== LEAK SUMMARY:
+==2397==    definitely lost: 50,840,014 bytes in 11,829 blocks
+==2397==    indirectly lost: 0 bytes in 0 blocks
+==2397==      possibly lost: 19,551 bytes in 3 blocks
+==2397==    still reachable: 188,055 bytes in 129 blocks
+==2397==         suppressed: 0 bytes in 0 blocks
+==2397== Rerun with --leak-check=full to see details of leaked memory
+==2397== 
+==2397== For counts of detected and suppressed errors, rerun with: -v
+==2397== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
