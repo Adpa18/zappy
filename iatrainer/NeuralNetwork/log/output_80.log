@@ -17,829 +17,1429 @@ ip : 127.0.0.1
 port : 4242
 team name : toto
 IA : ./lua/neuralia.lua
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
-Me nourrir
+Tourne a droite
 push process
 pushing
 push done
-doiing '6 nourriture'
-Me nourrir
+Tourne a gauche
 push process
 pushing
 push done
-doiing '6 nourriture'
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
 Me nourrir
 push process
 pushing
 push done
+doiing '2 '
+doiing '3 '
 doiing '6 nourriture'
 [31mPlayer die[0m
