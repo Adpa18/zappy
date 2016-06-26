@@ -181,6 +181,9 @@ function OnUpdate()
                 return LEFT;
             elseif string.find(plsAct, "TAKE") ~= nil then
                 if string.find(plsAct, "nourriture") ~= nil then
+                    if food >= 40 then
+                        return NONE;
+                    end
                     IA:SetParameter("nourriture");
                 elseif string.find(plsAct, "linemate") ~= nil then
                     IA:SetParameter("linemate");
@@ -199,7 +202,7 @@ function OnUpdate()
                 return TAKE;
             end
         end
-        if food < 8 or findFood == true then
+        if food < 7 or findFood == true then
             -- recherche de food
             local n = 0;
             local find = false;
@@ -260,6 +263,9 @@ function OnUpdate()
                 return LAYEGG;
             elseif string.find(priority, "TAKE") ~= nil then
                 if string.find(priority, "nourriture") ~= nil then
+                    if food >= 40 then
+                        return NONE;
+                    end
                     IA:SetParameter("nourriture");
                 elseif string.find(priority, "linemate") ~= nil then
                     IA:SetParameter("linemate");
@@ -324,6 +330,9 @@ function OnUpdate()
                 return BROADCAST;
             elseif string.find(action, "TAKE") ~= nil then
                 if string.find(action, "nourriture") ~= nil then
+                    if food >= 40 then
+                        return NONE;
+                    end
                     IA:SetParameter("nourriture");
                 elseif string.find(action, "linemate") ~= nil then
                     IA:SetParameter("linemate");

@@ -23,7 +23,7 @@ void		flush(t_ref *client)
 {
   struct pollfd	fds;
   int		rc;
-  
+
   if (client->ring.buffer[0] == 0 || client->client->sock.sock < 0)
     {
       reset(&(client->ring));
