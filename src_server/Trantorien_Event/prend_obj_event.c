@@ -5,14 +5,14 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:52:46 2016 Victor Gouet
-** Last update Sat Jun 25 15:51:15 2016 Victor Gouet
+** Last update Sun Jun 26 15:35:47 2016 Victor Gouet
 */
 
 #include "object.h"
 #include "../../include_server/trantorien_event.h"
 #include "../../include_server/monitor_event.h"
 
-static const objectPtr takeObjectFunc[] = {
+static const objectPtr takeObjectFunc[7] = {
         takeFood, takeLinemate, takeDeraumere, takeSibure,
         takeMediane, takePhiras, takeThystame
 };
