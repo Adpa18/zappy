@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Sat Jun 25 18:44:02 2016 Victor Gouet
-** Last update Sat Jun 25 19:26:49 2016 Victor Gouet
+** Last update Sat Jun 25 19:43:14 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -40,8 +40,8 @@ int		server_running_event(t_list *list, t_server *server,
 				       t_command_line *command,
 				       fd_set *fds)
 {
-t_client	*client;
-t_ref		*ref;
+  t_client	*client;
+  t_ref		*ref;
 
   if (init_select(fds, server->socket.sock, list) == -1)
     return (-1);

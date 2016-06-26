@@ -5,13 +5,14 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun  3 09:46:55 2016 Victor Gouet
-** Last update Sat Jun 25 19:02:35 2016 Victor Gouet
+** Last update Sun Jun 26 15:17:17 2016 Victor Gouet
 */
 
 #ifndef RING_BUFFER_HPP_
 # define RING_BUFFER_HPP_
 
 # define _GNU_SOURCE
+# define BUFFER_SIZE 512
 
 # include <stdio.h>
 # include <stdarg.h>
@@ -21,7 +22,7 @@ typedef struct	s_ring_buffer
 {
   int		begin;
   int		end;
-  char		buffer[512];
+  char		buffer[BUFFER_SIZE];
 }		t_ring_buffer;
 
 void	reset(t_ring_buffer *ring);
