@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Wed Jun  8 07:54:59 2016 Victor Gouet
-** Last update Sun Jun 26 15:33:34 2016 Victor Gouet
+** Last update Sun Jun 26 15:57:22 2016 Victor Gouet
 */
 
 #include <stdbool.h>
@@ -75,8 +75,10 @@ bool     incantation_seven(t_trantorien *trantorien, t_list *list, bool end)
 
 bool    can_elevate(t_trantorien *trantorien, t_list *list)
 {
+  if (trantorien->elevation - 1 < 7)
     return (incantationFunc[trantorien->elevation - 1]
             (trantorien, list, false));
+  return (false);
 }
 
 int	incantation_event(t_trantorien *trantorien, t_list *list,
