@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Sat Jun 25 18:44:02 2016 Victor Gouet
-** Last update Sat Jun 25 19:43:14 2016 Victor Gouet
+** Last update Sun Jun 26 21:49:35 2016 Victor Gouet
 */
 
 #include <stdio.h>
@@ -26,12 +26,8 @@ static int		init_select(fd_set *fds,
   elem = list->begin;
   while (elem)
     {
-      printf("client = %p\n", elem);
-      printf("client->client = %p\n", elem->client);
-      printf("client->client->sock = %p\n", &(elem->client->sock));
-      printf("fd = %d\t%d\n", elem->client->sock.sock, FD_SETSIZE);
-        if (elem->client->sock.sock > 0)
-            FD_SET(elem->client->sock.sock, fds);
+      if (elem->client->sock.sock > 0)
+	FD_SET(elem->client->sock.sock, fds);
       elem = elem->next;
     }
   if (select(list->max_fd + 1, fds, NULL, NULL, &timeout) == -1)
