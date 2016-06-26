@@ -436,6 +436,11 @@ int IAClient::IsPossibleToElevate(lua_State *state)
 {
     Lua::LuaScript  script(state);
 
+    if (moved || request.IsTimerFinished(ZappyRequest::SEE))
+    {
+        moved = false;
+        RefreshSight();
+    }
     if (sight.size() > 0 && Recipee::recipeesPerLevel[lvl].CanBeMade(sight[0]) && sight[0].GetNbOf(Inventory::NONE) + 1 == Recipee::GetNbOfNeededPlayers(lvl + 1))
         script.PushVar(true);
     else

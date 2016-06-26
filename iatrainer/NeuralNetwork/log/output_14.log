@@ -1,0 +1,778 @@
+    setting weight of 1
+    setting weight of 2
+    setting weight of 1
+    setting weight of 2
+    setting weight of 3
+    setting weight of 4
+    setting weight of 5
+    setting weight of 1
+    setting weight of 2
+    setting weight of 1
+    setting weight of 2
+    setting weight of 3
+    setting weight of 4
+    setting weight of 5
+    setting weight of 6
+ip : 127.0.0.1
+port : 4242
+team name : toto
+IA : ./lua/neuralia.lua
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 0)
+taking 1 times
+push process
+pushing
+push done
+for ressource deraumere (need: 0, present: 5, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 4, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 5, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 2, have: 0)
+do nothing
+doiing '6 linemate'
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 5, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 8, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 7, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 9, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 8, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 7, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 6, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 5, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 4, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 4, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 3, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 2, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 1, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 5, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 4, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 3, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 2, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 1, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 3, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 2, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 6, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 0, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 3, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 0, have: 0)
+do nothing
+[31mPlayer die[0m
