@@ -19,45 +19,11 @@ void	reset(t_ring_buffer *ring)
   bzero(ring->buffer, sizeof(ring->buffer));
 }
 
-<<<<<<< HEAD
-/* static int		init_select_for_fd(fd_set *fds, int fd) */
-/* { */
-/*   struct timeval	timeout; */
-
-/*  FD_ZERO(fds);
-  timeout.tv_sec = 0;
-  timeout.tv_usec = 0;
-  if (fd < 0)
-      return (-1);
-  FD_SET(fd, fds);
-  if (select(fd + 1, NULL, fds, NULL, &timeout) == -1)
-    {
-      return (-1);
-    }
-  return (0);
-}*/
-/*   FD_ZERO(fds); */
-/*   timeout.tv_sec = 0; */
-/*   timeout.tv_usec = 0; */
-/*   FD_SET(fd, fds); */
-/*   if (select(fd + 1, NULL, fds, NULL, &timeout) == -1) */
-/*     { */
-/*       return (-1); */
-/*     } */
-/*   return (0); */
-/* } */
-
-=======
->>>>>>> bb899acd5eb3a555d8517e36e7328c5cf35219b0
 void		flush(t_ref *client)
 {
   struct pollfd	fds;
   int		rc;
-
-  printf("client = %p\n", client);
-  printf("client->client = %p\n", client->client);
-  printf("client->client->sock = %p\n", &(client->client->sock));
-  printf("fd = %d\t%d\n", client->client->sock.sock, FD_SETSIZE);
+  
   if (client->ring.buffer[0] == 0 || client->client->sock.sock < 0)
     {
       reset(&(client->ring));
