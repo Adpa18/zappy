@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Tue Jun  7 15:49:37 2016 Victor Gouet
-** Last update Sat Jun 25 17:19:30 2016 Victor Gouet
+** Last update Sun Jun 26 13:14:55 2016 Victor Gouet
 */
 
 #include <string.h>
