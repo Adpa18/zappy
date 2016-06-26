@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun  3 09:46:55 2016 Victor Gouet
-** Last update Sun Jun 26 15:17:17 2016 Victor Gouet
+** Last update Sun Jun 26 17:58:09 2016 Victor Gouet
 */
 
 #ifndef RING_BUFFER_HPP_
