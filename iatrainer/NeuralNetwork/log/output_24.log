@@ -17,6 +17,7 @@ ip : 127.0.0.1
 port : 4242
 team name : toto
 IA : ./lua/neuralia.lua
+doiing '10 '
 Tourne a gauche
 push process
 pushing
@@ -267,13 +268,4 @@ push process
 pushing
 push done
 doiing '3 '
-Tourne a gauche
-push process
-pushing
-push done
-doiing '3 '
-Tourne a gauche
-push process
-pushing
-push done
-doiing '3 '
+[31mPlayer die[0m

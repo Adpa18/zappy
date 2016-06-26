@@ -26,20 +26,20 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 7, have: 0)
+for ressource linemate (need: 1, present: 5, have: 0)
 taking 1 times
 push process
 pushing
 push done
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 5, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 0, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 0, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -53,40 +53,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -99,40 +76,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -145,40 +99,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -191,40 +122,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -237,40 +145,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -283,40 +168,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -329,40 +191,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -375,40 +214,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -421,40 +237,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -467,17 +260,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 5, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 0)
+for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 6, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 7, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -490,40 +283,201 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 1, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 1, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 1, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 1, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 1, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 1, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 1, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 1, have: 0)
+do nothing
+for ressource sibur (need: 0, present: 5, have: 0)
+do nothing
+for ressource mendiane (need: 0, present: 8, have: 0)
+do nothing
+for ressource phiras (need: 0, present: 6, have: 0)
+do nothing
+for ressource thystame (need: 0, present: 6, have: 0)
+do nothing
+doiing '2 '
+doiing '3 '
+Tourne a droite
+push process
+pushing
+push done
+Tourne a gauche
+push process
+pushing
+push done
+Prendre ressource necessaire
+for ressource linemate (need: 1, present: 4, have: 1)
+do nothing
+for ressource deraumere (need: 0, present: 2, have: 0)
 do nothing
 for ressource sibur (need: 0, present: 6, have: 0)
 do nothing
 for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 7, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 8, have: 0)
-do nothing
-doiing '2 '
-doiing '3 '
-Tourne a droite
-push process
-pushing
-push done
-Tourne a gauche
-push process
-pushing
-push done
-Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
-do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
-do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
-do nothing
-for ressource mendiane (need: 0, present: 8, have: 0)
-do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
-do nothing
-for ressource thystame (need: 0, present: 8, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -536,17 +490,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 2, have: 0)
 do nothing
 for ressource sibur (need: 0, present: 6, have: 0)
 do nothing
 for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 7, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 8, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -559,17 +513,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 2, have: 0)
 do nothing
 for ressource sibur (need: 0, present: 6, have: 0)
 do nothing
 for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 7, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 8, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -582,17 +536,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 2, have: 0)
 do nothing
 for ressource sibur (need: 0, present: 6, have: 0)
 do nothing
 for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 7, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 8, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -605,17 +559,17 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 2, have: 0)
 do nothing
 for ressource sibur (need: 0, present: 6, have: 0)
 do nothing
 for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 7, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 8, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
 doiing '3 '
@@ -628,17 +582,16 @@ push process
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 6, have: 1)
+for ressource linemate (need: 1, present: 4, have: 1)
 do nothing
-for ressource deraumere (need: 0, present: 8, have: 0)
+for ressource deraumere (need: 0, present: 2, have: 0)
 do nothing
 for ressource sibur (need: 0, present: 6, have: 0)
 do nothing
 for ressource mendiane (need: 0, present: 8, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 9, have: 0)
+for ressource phiras (need: 0, present: 7, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 8, have: 0)
+for ressource thystame (need: 0, present: 6, have: 0)
 do nothing
 doiing '2 '
-[31mPlayer die[0m
