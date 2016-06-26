@@ -7,6 +7,7 @@ Queue = {};
 canAct = true;
 teamName = "";
 takePriority = true;
+findFood = false;
 
 function Queue.new()
     return { first = 0, last = -1 };
@@ -138,6 +139,11 @@ function FindRessources(ressource)
     else
         for j = 0, IA:GetLevel() do
             Queue.pushBack(actionList, "MOVE");
+            if IA:GetSightAt(2):HasObject(FOOD) == true then
+                for w = 0, (IA:GetSightAt(2):GetNbOf(FOOD) - 1) do
+                    Queue.pushBack(actionList, "TAKE nourriture");
+                end
+            end
         end
     end
 end
@@ -148,6 +154,10 @@ function OnUpdate()
         local lvl = IA:GetLevel();
         local i = 3;
         local GetEnoughRessources = true;
+
+        if food >= 10 then
+            findFood = false;
+        end
         for ressource = LINEMATE, THYSTAME do
             if (IA:GetSightAt(0):GetNbOf(ressource) + IA:GetInventory():GetNbOf(ressource)) < IA:GetNbNeededRessources(ressource) then
                 GetEnoughRessources = false;
@@ -283,10 +293,12 @@ function OnUpdate()
                 canAct = false;
                 return DROP;
             end
-        elseif food < 7 then
+        elseif food < 7 or findFood == true then
             -- recherche de food
             local n = 0;
             local find = false;
+
+            findFood = true;
             while n <= i and find == false do
                 local ncase = IA:GetSightAt(n);
                 if ncase == nil then
@@ -385,34 +397,35 @@ function CreatePathSound(case)
         Queue.pushBack(priorityQueue, "NONE");
     elseif case == 1 then
         Queue.pushBack(priorityQueue, "MOVE");
+        if IA:GetSightAt(2):HasObject(FOOD) == true then
+            for w = 0, (IA:GetSightAt(2):GetNbOf(FOOD) - 1) do
+                Queue.pushBack(priorityQueue, "TAKE nourriture");
+            end
+        end
     elseif case == 2 then
         Queue.pushBack(priorityQueue, "MOVE");
-        Queue.pushBack(priorityQueue, "LEFT");
-        Queue.pushBack(priorityQueue, "MOVE");
+        if IA:GetSightAt(2):HasObject(FOOD) == true then
+            for w = 0, (IA:GetSightAt(2):GetNbOf(FOOD) - 1) do
+                Queue.pushBack(priorityQueue, "TAKE nourriture");
+            end
+        end
     elseif case == 3 then
         Queue.pushBack(priorityQueue, "LEFT");
-        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 4 then
         Queue.pushBack(priorityQueue, "LEFT");
-        Queue.pushBack(priorityQueue, "MOVE");
-        Queue.pushBack(priorityQueue, "LEFT");
-        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 5 then
         Queue.pushBack(priorityQueue, "LEFT");
-        Queue.pushBack(priorityQueue, "LEFT");
-        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 6 then
         Queue.pushBack(priorityQueue, "RIGHT");
-        Queue.pushBack(priorityQueue, "MOVE");
-        Queue.pushBack(priorityQueue, "RIGHT");
-        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 7 then
         Queue.pushBack(priorityQueue, "RIGHT");
-        Queue.pushBack(priorityQueue, "MOVE");
     elseif case == 8 then
         Queue.pushBack(priorityQueue, "MOVE");
-        Queue.pushBack(priorityQueue, "RIGHT");
-        Queue.pushBack(priorityQueue, "MOVE");
+        if IA:GetSightAt(2):HasObject(FOOD) == true then
+            for w = 0, (IA:GetSightAt(2):GetNbOf(FOOD) - 1) do
+                Queue.pushBack(priorityQueue, "TAKE nourriture");
+            end
+        end
     end
     return;
 end
