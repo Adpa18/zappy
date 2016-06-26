@@ -5,7 +5,7 @@
 ** Login   <gouet_v@epitech.net>
 ** 
 ** Started on  Fri Jun  3 09:49:21 2016 Victor Gouet
-** Last update Sun Jun 26 15:17:33 2016 Victor Gouet
+** Last update Sun Jun 26 18:00:59 2016 Victor Gouet
 */
 
 #include "../include_server/ring_buffer.h"
@@ -37,7 +37,7 @@ void		flush(t_ref *client)
 {
   fd_set	fds;
 
-  if (client->ring.buffer[0] == 0)
+  if (client->ring.buffer[0] == 0 || client->client->sock.sock < 0)
     {
       reset(&(client->ring));
       return ;
