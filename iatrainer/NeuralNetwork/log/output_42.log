@@ -22,8 +22,8 @@ push process
 pushing
 push done
 Incantation process
-for ressource: nourriture(present: 24, need: 0, have: 9)
-Take 24 times
+for ressource: nourriture(present: 36, need: 0, have: 9)
+Take 36 times
 push process
 pushing
 pushing
@@ -49,8 +49,29 @@ pushing
 pushing
 pushing
 pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
 push done
-for ressource: linemate(present: 7, need: 1, have: 0)
+for ressource: linemate(present: 6, need: 1, have: 0)
+Take 5 times
+push process
+pushing
+pushing
+pushing
+pushing
+pushing
+push done
+for ressource: deraumere(present: 6, need: 0, have: 0)
 Take 6 times
 push process
 pushing
@@ -60,78 +81,51 @@ pushing
 pushing
 pushing
 push done
-for ressource: deraumere(present: 5, need: 0, have: 0)
-Take 5 times
+for ressource: sibur(present: 0, need: 0, have: 0)
+Take 0 times
 push process
-pushing
-pushing
-pushing
-pushing
-pushing
 push done
-for ressource: sibur(present: 6, need: 0, have: 0)
-Take 6 times
+for ressource: mendiane(present: 0, need: 0, have: 0)
+Take 0 times
 push process
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
 push done
-for ressource: mendiane(present: 4, need: 0, have: 0)
-Take 4 times
+for ressource: phiras(present: 0, need: 0, have: 0)
+Take 0 times
 push process
-pushing
-pushing
-pushing
-pushing
 push done
-for ressource: phiras(present: 5, need: 0, have: 0)
-Take 5 times
+for ressource: thystame(present: 0, need: 0, have: 0)
+Take 0 times
 push process
-pushing
-pushing
-pushing
-pushing
-pushing
-push done
-for ressource: thystame(present: 3, need: 0, have: 0)
-Take 3 times
-push process
-pushing
-pushing
-pushing
-push done
-push process
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 7, have: 0)
+for ressource linemate (need: 1, present: 6, have: 0)
 taking 1 times
 push process
 pushing
 push done
-for ressource deraumere (need: 0, present: 5, have: 0)
+for ressource deraumere (need: 0, present: 6, have: 0)
 do nothing
-for ressource sibur (need: 0, present: 6, have: 0)
+for ressource sibur (need: 0, present: 0, have: 0)
 do nothing
-for ressource mendiane (need: 0, present: 4, have: 0)
+for ressource mendiane (need: 0, present: 0, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 5, have: 0)
+for ressource phiras (need: 0, present: 0, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 3, have: 0)
+for ressource thystame (need: 0, present: 0, have: 0)
 do nothing
 doiing '1 '
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
 doiing '6 nourriture'
 doiing '6 nourriture'
 doiing '6 nourriture'
@@ -164,7 +158,7 @@ push process
 pushing
 push done
 Incantation process
-for ressource: nourriture(present: 0, need: 0, have: 29)
+for ressource: nourriture(present: 0, need: 0, have: 18)
 Take 0 times
 push process
 push done
@@ -172,12 +166,9 @@ for ressource: linemate(present: 1, need: 1, have: 1)
 Take 0 times
 push process
 push done
-for ressource: deraumere(present: 7, need: 1, have: 0)
-Take 6 times
+for ressource: deraumere(present: 4, need: 1, have: 0)
+Take 3 times
 push process
-pushing
-pushing
-pushing
 pushing
 pushing
 pushing
@@ -190,7 +181,13 @@ pushing
 pushing
 pushing
 push done
-for ressource: mendiane(present: 5, need: 0, have: 0)
+for ressource: mendiane(present: 2, need: 0, have: 0)
+Take 2 times
+push process
+pushing
+pushing
+push done
+for ressource: phiras(present: 5, need: 0, have: 0)
 Take 5 times
 push process
 pushing
@@ -199,21 +196,9 @@ pushing
 pushing
 pushing
 push done
-for ressource: phiras(present: 6, need: 0, have: 0)
-Take 6 times
+for ressource: thystame(present: 4, need: 0, have: 0)
+Take 4 times
 push process
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-push done
-for ressource: thystame(present: 6, need: 0, have: 0)
-Take 6 times
-push process
-pushing
-pushing
 pushing
 pushing
 pushing
@@ -234,7 +219,7 @@ push done
 Prendre ressource necessaire
 for ressource linemate (need: 1, present: 1, have: 1)
 do nothing
-for ressource deraumere (need: 1, present: 7, have: 0)
+for ressource deraumere (need: 1, present: 4, have: 0)
 taking 1 times
 push process
 pushing
@@ -244,36 +229,27 @@ taking 1 times
 push process
 pushing
 push done
-for ressource mendiane (need: 0, present: 5, have: 0)
+for ressource mendiane (need: 0, present: 2, have: 0)
 do nothing
-for ressource phiras (need: 0, present: 6, have: 0)
+for ressource phiras (need: 0, present: 5, have: 0)
 do nothing
-for ressource thystame (need: 0, present: 6, have: 0)
+for ressource thystame (need: 0, present: 4, have: 0)
 do nothing
 doiing '1 '
 doiing '6 deraumere'
 doiing '6 deraumere'
 doiing '6 deraumere'
-doiing '6 deraumere'
-doiing '6 deraumere'
-doiing '6 deraumere'
 doiing '6 sibur'
 doiing '6 sibur'
 doiing '6 sibur'
 doiing '6 sibur'
 doiing '6 mendiane'
 doiing '6 mendiane'
-doiing '6 mendiane'
-doiing '6 mendiane'
-doiing '6 mendiane'
 doiing '6 phiras'
 doiing '6 phiras'
 doiing '6 phiras'
 doiing '6 phiras'
 doiing '6 phiras'
-doiing '6 phiras'
-doiing '6 thystame'
-doiing '6 thystame'
 doiing '6 thystame'
 doiing '6 thystame'
 doiing '6 thystame'
@@ -295,42 +271,51 @@ push process
 pushing
 push done
 Incantation process
-for ressource: nourriture(present: 3, need: 0, have: 22)
-Take 3 times
+for ressource: nourriture(present: 13, need: 0, have: 8)
+Take 13 times
 push process
 pushing
 pushing
 pushing
-push done
-for ressource: linemate(present: 0, need: 1, have: 1)
-Drop 1 times
-push process
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
 pushing
 push done
-for ressource: deraumere(present: 0, need: 1, have: 6)
-Drop 1 times
-push process
-pushing
-push done
-for ressource: sibur(present: 0, need: 1, have: 4)
-Drop 1 times
-push process
-pushing
-push done
-for ressource: mendiane(present: 1, need: 0, have: 5)
+for ressource: linemate(present: 2, need: 1, have: 1)
 Take 1 times
 push process
 pushing
 push done
-for ressource: phiras(present: 0, need: 0, have: 6)
-Take 0 times
-push process
-push done
-for ressource: thystame(present: 2, need: 0, have: 6)
+for ressource: deraumere(present: 3, need: 1, have: 4)
 Take 2 times
 push process
 pushing
 pushing
+push done
+for ressource: sibur(present: 1, need: 1, have: 5)
+Take 0 times
+push process
+push done
+for ressource: mendiane(present: 2, need: 0, have: 2)
+Take 2 times
+push process
+pushing
+pushing
+push done
+for ressource: phiras(present: 0, need: 0, have: 5)
+Take 0 times
+push process
+push done
+for ressource: thystame(present: 0, need: 0, have: 4)
+Take 0 times
+push process
 push done
 push process
 pushing
@@ -345,28 +330,37 @@ pushing
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 0, have: 1)
+for ressource linemate (need: 1, present: 2, have: 1)
 do nothing
-for ressource deraumere (need: 1, present: 0, have: 6)
+for ressource deraumere (need: 1, present: 3, have: 4)
 do nothing
-for ressource sibur (need: 1, present: 0, have: 4)
+for ressource sibur (need: 1, present: 1, have: 5)
 do nothing
-for ressource mendiane (need: 0, present: 1, have: 5)
+for ressource mendiane (need: 0, present: 2, have: 2)
 do nothing
-for ressource phiras (need: 0, present: 0, have: 6)
+for ressource phiras (need: 0, present: 0, have: 5)
 do nothing
-for ressource thystame (need: 0, present: 2, have: 6)
+for ressource thystame (need: 0, present: 0, have: 4)
 do nothing
 doiing '1 '
 doiing '6 nourriture'
 doiing '6 nourriture'
 doiing '6 nourriture'
-doiing '7 linemate'
-doiing '7 deraumere'
-doiing '7 sibur'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 linemate'
+doiing '6 deraumere'
+doiing '6 deraumere'
 doiing '6 mendiane'
-doiing '6 thystame'
-doiing '6 thystame'
+doiing '6 mendiane'
 doiing '9 Incant 2'
 doiing '9 Incant 2'
 doiing '9 Incant 2'
@@ -382,18 +376,8 @@ push process
 pushing
 push done
 Incantation process
-for ressource: nourriture(present: 0, need: 0, have: 15)
-Take 0 times
-push process
-push done
-for ressource: linemate(present: 3, need: 1, have: 0)
-Take 2 times
-push process
-pushing
-pushing
-push done
-for ressource: deraumere(present: 7, need: 1, have: 5)
-Take 6 times
+for ressource: nourriture(present: 29, need: 0, have: 17)
+Take 29 times
 push process
 pushing
 pushing
@@ -401,8 +385,31 @@ pushing
 pushing
 pushing
 pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
 push done
-for ressource: sibur(present: 9, need: 1, have: 3)
+for ressource: linemate(present: 9, need: 1, have: 2)
 Take 8 times
 push process
 pushing
@@ -414,7 +421,7 @@ pushing
 pushing
 pushing
 push done
-for ressource: mendiane(present: 7, need: 0, have: 6)
+for ressource: deraumere(present: 8, need: 1, have: 6)
 Take 7 times
 push process
 pushing
@@ -425,9 +432,10 @@ pushing
 pushing
 pushing
 push done
-for ressource: phiras(present: 8, need: 0, have: 6)
-Take 8 times
+for ressource: sibur(present: 10, need: 1, have: 5)
+Take 9 times
 push process
+pushing
 pushing
 pushing
 pushing
@@ -437,9 +445,42 @@ pushing
 pushing
 pushing
 push done
-for ressource: thystame(present: 5, need: 0, have: 8)
-Take 5 times
+for ressource: mendiane(present: 7, need: 0, have: 4)
+Take 7 times
 push process
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+push done
+for ressource: phiras(present: 14, need: 0, have: 5)
+Take 14 times
+push process
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+pushing
+push done
+for ressource: thystame(present: 9, need: 0, have: 4)
+Take 9 times
+push process
+pushing
+pushing
+pushing
+pushing
 pushing
 pushing
 pushing
@@ -459,22 +500,54 @@ pushing
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 3, have: 0)
-taking 1 times
-push process
-pushing
-push done
-for ressource deraumere (need: 1, present: 7, have: 5)
+for ressource linemate (need: 1, present: 9, have: 2)
 do nothing
-for ressource sibur (need: 1, present: 9, have: 3)
+for ressource deraumere (need: 1, present: 8, have: 6)
 do nothing
-for ressource mendiane (need: 0, present: 7, have: 6)
+for ressource sibur (need: 1, present: 10, have: 5)
 do nothing
-for ressource phiras (need: 0, present: 8, have: 6)
+for ressource mendiane (need: 0, present: 7, have: 4)
 do nothing
-for ressource thystame (need: 0, present: 5, have: 8)
+for ressource phiras (need: 0, present: 14, have: 5)
+do nothing
+for ressource thystame (need: 0, present: 9, have: 4)
 do nothing
 doiing '1 '
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 nourriture'
+doiing '6 linemate'
+doiing '6 linemate'
+doiing '6 linemate'
+doiing '6 linemate'
+doiing '6 linemate'
+doiing '6 linemate'
 doiing '6 linemate'
 doiing '6 linemate'
 doiing '6 deraumere'
@@ -483,6 +556,8 @@ doiing '6 deraumere'
 doiing '6 deraumere'
 doiing '6 deraumere'
 doiing '6 deraumere'
+doiing '6 deraumere'
+doiing '6 sibur'
 doiing '6 sibur'
 doiing '6 sibur'
 doiing '6 sibur'
@@ -498,6 +573,12 @@ doiing '6 mendiane'
 doiing '6 mendiane'
 doiing '6 mendiane'
 doiing '6 mendiane'
+doiing '6 phiras'
+doiing '6 phiras'
+doiing '6 phiras'
+doiing '6 phiras'
+doiing '6 phiras'
+doiing '6 phiras'
 doiing '6 phiras'
 doiing '6 phiras'
 doiing '6 phiras'
@@ -511,6 +592,10 @@ doiing '6 thystame'
 doiing '6 thystame'
 doiing '6 thystame'
 doiing '6 thystame'
+doiing '6 thystame'
+doiing '6 thystame'
+doiing '6 thystame'
+doiing '6 thystame'
 doiing '9 Incant 2'
 doiing '9 Incant 2'
 doiing '9 Incant 2'
@@ -521,14 +606,13 @@ doiing '9 Incant 2'
 doiing '9 Incant 2'
 doiing '9 Incant 2'
 doiing '9 Incant 2'
-doiing '6 linemate'
 Avance
 push process
 pushing
 push done
 Incantation process
-for ressource: nourriture(present: 43, need: 0, have: 12)
-Take 43 times
+for ressource: nourriture(present: 11, need: 0, have: 17)
+Take 11 times
 push process
 pushing
 pushing
@@ -541,68 +625,32 @@ pushing
 pushing
 pushing
 pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
-pushing
 push done
-for ressource: linemate(present: 3, need: 1, have: 3)
-Take 2 times
-push process
-pushing
-pushing
-push done
-for ressource: deraumere(present: 1, need: 1, have: 11)
+for ressource: linemate(present: 1, need: 1, have: 2)
 Take 0 times
 push process
 push done
-for ressource: sibur(present: 0, need: 1, have: 8)
-Drop 1 times
+for ressource: deraumere(present: 2, need: 1, have: 7)
+Take 1 times
 push process
 pushing
 push done
-for ressource: mendiane(present: 0, need: 0, have: 11)
+for ressource: sibur(present: 1, need: 1, have: 5)
 Take 0 times
 push process
 push done
-for ressource: phiras(present: 0, need: 0, have: 13)
+for ressource: mendiane(present: 0, need: 0, have: 8)
 Take 0 times
 push process
 push done
-for ressource: thystame(present: 3, need: 0, have: 13)
-Take 3 times
+for ressource: phiras(present: 1, need: 0, have: 5)
+Take 1 times
 push process
 pushing
-pushing
-pushing
+push done
+for ressource: thystame(present: 0, need: 0, have: 6)
+Take 0 times
+push process
 push done
 push process
 pushing
@@ -617,53 +665,19 @@ pushing
 pushing
 push done
 Prendre ressource necessaire
-for ressource linemate (need: 1, present: 3, have: 3)
+for ressource linemate (need: 1, present: 1, have: 2)
 do nothing
-for ressource deraumere (need: 1, present: 1, have: 11)
+for ressource deraumere (need: 1, present: 2, have: 7)
 do nothing
-for ressource sibur (need: 1, present: 0, have: 8)
+for ressource sibur (need: 1, present: 1, have: 5)
 do nothing
-for ressource mendiane (need: 0, present: 0, have: 11)
+for ressource mendiane (need: 0, present: 0, have: 8)
 do nothing
-for ressource phiras (need: 0, present: 0, have: 13)
+for ressource phiras (need: 0, present: 1, have: 5)
 do nothing
-for ressource thystame (need: 0, present: 3, have: 13)
+for ressource thystame (need: 0, present: 0, have: 6)
 do nothing
 doiing '1 '
-doiing '10 '
-doiing '10 '
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '10 '
-doiing '10 '
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
-doiing '6 nourriture'
 doiing '6 nourriture'
 doiing '6 nourriture'
 [31mPlayer die[0m
